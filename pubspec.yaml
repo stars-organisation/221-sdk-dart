@@ -1,0 +1,20 @@
+name: sdk221
+description: SDK Dart et Flutter de l'API 221, généré depuis l'OpenAPI, avec vérification des webhooks et données de référence hors ligne.
+version: 0.2.0
+homepage: https://221.orvlabs.com/documentation
+repository: https://github.com/stars-organisation/221-sdk-dart
+topics: [senegal, api, sdk, payments, mobile-money]
+
+environment:
+  sdk: ^3.5.0
+
+dependencies:
+  collection: ^1.19.1
+  crypto: ^3.0.6
+  http: ^1.6.0
+  intl: ^0.20.2
+  meta: ^1.18.0
+  unorm_dart: ^0.3.2
+
+dev_dependencies:
+  test: ^1.31.0
