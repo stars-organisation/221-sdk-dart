@@ -20,20 +20,21 @@ class RotationCleBody {
   RotationCleBodyGraceEnum grace;
 
   @override
-  bool operator ==(Object other) => identical(this, other) || other is RotationCleBody &&
-    other.grace == grace;
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      other is RotationCleBody && other.grace == grace;
 
   @override
   int get hashCode =>
-    // ignore: unnecessary_parenthesis
-    (grace.hashCode);
+      // ignore: unnecessary_parenthesis
+      (grace.hashCode);
 
   @override
   String toString() => 'RotationCleBody[grace=$grace]';
 
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
-      json[r'grace'] = this.grace;
+    json[r'grace'] = this.grace;
     return json;
   }
 
@@ -48,8 +49,10 @@ class RotationCleBody {
       // Note 1: the values aren't checked for validity beyond being non-null.
       // Note 2: this code is stripped in release mode!
       assert(() {
-        assert(json.containsKey(r'grace'), 'Required key "RotationCleBody[grace]" is missing from JSON.');
-        assert(json[r'grace'] != null, 'Required key "RotationCleBody[grace]" has a null value in JSON.');
+        assert(json.containsKey(r'grace'),
+            'Required key "RotationCleBody[grace]" is missing from JSON.');
+        assert(json[r'grace'] != null,
+            'Required key "RotationCleBody[grace]" has a null value in JSON.');
         return true;
       }());
 
@@ -60,7 +63,10 @@ class RotationCleBody {
     return null;
   }
 
-  static List<RotationCleBody> listFromJson(dynamic json, {bool growable = false,}) {
+  static List<RotationCleBody> listFromJson(
+    dynamic json, {
+    bool growable = false,
+  }) {
     final result = <RotationCleBody>[];
     if (json is List && json.isNotEmpty) {
       for (final row in json) {
@@ -88,13 +94,19 @@ class RotationCleBody {
   }
 
   // maps a json object with a list of RotationCleBody-objects as value to a dart map
-  static Map<String, List<RotationCleBody>> mapListFromJson(dynamic json, {bool growable = false,}) {
+  static Map<String, List<RotationCleBody>> mapListFromJson(
+    dynamic json, {
+    bool growable = false,
+  }) {
     final map = <String, List<RotationCleBody>>{};
     if (json is Map && json.isNotEmpty) {
       // ignore: parameter_assignments
       json = json.cast<String, dynamic>();
       for (final entry in json.entries) {
-        map[entry.key] = RotationCleBody.listFromJson(entry.value, growable: growable,);
+        map[entry.key] = RotationCleBody.listFromJson(
+          entry.value,
+          growable: growable,
+        );
       }
     }
     return map;
@@ -128,11 +140,15 @@ enum RotationCleBodyGraceEnum {
 
   /// Returns the instance of [RotationCleBodyGraceEnum] that was successfully decoded
   /// from the passed [value] on success, null otherwise.
-  static RotationCleBodyGraceEnum? fromJson(dynamic value) => RotationCleBodyGraceEnumTypeTransformer().decode(value);
+  static RotationCleBodyGraceEnum? fromJson(dynamic value) =>
+      RotationCleBodyGraceEnumTypeTransformer().decode(value);
 
   /// Returns a [List] containing instances of [RotationCleBodyGraceEnum]
   /// that were successfully decoded from the passed [JSON][json].
-  static List<RotationCleBodyGraceEnum> listFromJson(dynamic json, {bool growable = false,}) {
+  static List<RotationCleBodyGraceEnum> listFromJson(
+    dynamic json, {
+    bool growable = false,
+  }) {
     final result = <RotationCleBodyGraceEnum>[];
     if (json is List && json.isNotEmpty) {
       for (final row in json) {
@@ -149,7 +165,8 @@ enum RotationCleBodyGraceEnum {
 /// Transformation class that can [encode] an instance of [RotationCleBodyGraceEnum] to String,
 /// and [decode] dynamic data back to [RotationCleBodyGraceEnum].
 class RotationCleBodyGraceEnumTypeTransformer {
-  factory RotationCleBodyGraceEnumTypeTransformer() => _instance ??= const RotationCleBodyGraceEnumTypeTransformer._();
+  factory RotationCleBodyGraceEnumTypeTransformer() =>
+      _instance ??= const RotationCleBodyGraceEnumTypeTransformer._();
 
   const RotationCleBodyGraceEnumTypeTransformer._();
 
@@ -170,10 +187,14 @@ class RotationCleBodyGraceEnumTypeTransformer {
     }
     if (data != null) {
       switch (data) {
-        case r'now': return RotationCleBodyGraceEnum.now;
-        case r'1h': return RotationCleBodyGraceEnum.n1h;
-        case r'24h': return RotationCleBodyGraceEnum.n24h;
-        case r'7d': return RotationCleBodyGraceEnum.n7d;
+        case r'now':
+          return RotationCleBodyGraceEnum.now;
+        case r'1h':
+          return RotationCleBodyGraceEnum.n1h;
+        case r'24h':
+          return RotationCleBodyGraceEnum.n24h;
+        case r'7d':
+          return RotationCleBodyGraceEnum.n7d;
         default:
           if (!allowNull) {
             throw ArgumentError('Unknown enum value to decode: $data');
@@ -186,5 +207,3 @@ class RotationCleBodyGraceEnumTypeTransformer {
   /// The singleton instance of this transformer.
   static RotationCleBodyGraceEnumTypeTransformer? _instance;
 }
-
-

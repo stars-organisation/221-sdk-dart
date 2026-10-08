@@ -23,15 +23,16 @@ class NouveauWebhookBody {
   String url;
 
   @override
-  bool operator ==(Object other) => identical(this, other) || other is NouveauWebhookBody &&
-    _deepEquality.equals(other.events, events) &&
-    other.url == url;
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      other is NouveauWebhookBody &&
+          _deepEquality.equals(other.events, events) &&
+          other.url == url;
 
   @override
   int get hashCode =>
-    // ignore: unnecessary_parenthesis
-    (events == null ? 0 : events!.hashCode) +
-    (url.hashCode);
+      // ignore: unnecessary_parenthesis
+      (events == null ? 0 : events!.hashCode) + (url.hashCode);
 
   @override
   String toString() => 'NouveauWebhookBody[events=$events, url=$url]';
@@ -43,7 +44,7 @@ class NouveauWebhookBody {
     } else {
       json[r'events'] = null;
     }
-      json[r'url'] = this.url;
+    json[r'url'] = this.url;
     return json;
   }
 
@@ -58,8 +59,10 @@ class NouveauWebhookBody {
       // Note 1: the values aren't checked for validity beyond being non-null.
       // Note 2: this code is stripped in release mode!
       assert(() {
-        assert(json.containsKey(r'url'), 'Required key "NouveauWebhookBody[url]" is missing from JSON.');
-        assert(json[r'url'] != null, 'Required key "NouveauWebhookBody[url]" has a null value in JSON.');
+        assert(json.containsKey(r'url'),
+            'Required key "NouveauWebhookBody[url]" is missing from JSON.');
+        assert(json[r'url'] != null,
+            'Required key "NouveauWebhookBody[url]" has a null value in JSON.');
         return true;
       }());
 
@@ -73,7 +76,10 @@ class NouveauWebhookBody {
     return null;
   }
 
-  static List<NouveauWebhookBody> listFromJson(dynamic json, {bool growable = false,}) {
+  static List<NouveauWebhookBody> listFromJson(
+    dynamic json, {
+    bool growable = false,
+  }) {
     final result = <NouveauWebhookBody>[];
     if (json is List && json.isNotEmpty) {
       for (final row in json) {
@@ -101,13 +107,19 @@ class NouveauWebhookBody {
   }
 
   // maps a json object with a list of NouveauWebhookBody-objects as value to a dart map
-  static Map<String, List<NouveauWebhookBody>> mapListFromJson(dynamic json, {bool growable = false,}) {
+  static Map<String, List<NouveauWebhookBody>> mapListFromJson(
+    dynamic json, {
+    bool growable = false,
+  }) {
     final map = <String, List<NouveauWebhookBody>>{};
     if (json is Map && json.isNotEmpty) {
       // ignore: parameter_assignments
       json = json.cast<String, dynamic>();
       for (final entry in json.entries) {
-        map[entry.key] = NouveauWebhookBody.listFromJson(entry.value, growable: growable,);
+        map[entry.key] = NouveauWebhookBody.listFromJson(
+          entry.value,
+          growable: growable,
+        );
       }
     }
     return map;
@@ -118,4 +130,3 @@ class NouveauWebhookBody {
     'url',
   };
 }
-

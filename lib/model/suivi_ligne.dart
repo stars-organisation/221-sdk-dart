@@ -22,23 +22,24 @@ class SuiviLigne {
   String dataset;
 
   @override
-  bool operator ==(Object other) => identical(this, other) || other is SuiviLigne &&
-    other.createdAt == createdAt &&
-    other.dataset == dataset;
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      other is SuiviLigne &&
+          other.createdAt == createdAt &&
+          other.dataset == dataset;
 
   @override
   int get hashCode =>
-    // ignore: unnecessary_parenthesis
-    (createdAt.hashCode) +
-    (dataset.hashCode);
+      // ignore: unnecessary_parenthesis
+      (createdAt.hashCode) + (dataset.hashCode);
 
   @override
   String toString() => 'SuiviLigne[createdAt=$createdAt, dataset=$dataset]';
 
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
-      json[r'created_at'] = this.createdAt.toUtc().toIso8601String();
-      json[r'dataset'] = this.dataset;
+    json[r'created_at'] = this.createdAt.toUtc().toIso8601String();
+    json[r'dataset'] = this.dataset;
     return json;
   }
 
@@ -53,10 +54,14 @@ class SuiviLigne {
       // Note 1: the values aren't checked for validity beyond being non-null.
       // Note 2: this code is stripped in release mode!
       assert(() {
-        assert(json.containsKey(r'created_at'), 'Required key "SuiviLigne[created_at]" is missing from JSON.');
-        assert(json[r'created_at'] != null, 'Required key "SuiviLigne[created_at]" has a null value in JSON.');
-        assert(json.containsKey(r'dataset'), 'Required key "SuiviLigne[dataset]" is missing from JSON.');
-        assert(json[r'dataset'] != null, 'Required key "SuiviLigne[dataset]" has a null value in JSON.');
+        assert(json.containsKey(r'created_at'),
+            'Required key "SuiviLigne[created_at]" is missing from JSON.');
+        assert(json[r'created_at'] != null,
+            'Required key "SuiviLigne[created_at]" has a null value in JSON.');
+        assert(json.containsKey(r'dataset'),
+            'Required key "SuiviLigne[dataset]" is missing from JSON.');
+        assert(json[r'dataset'] != null,
+            'Required key "SuiviLigne[dataset]" has a null value in JSON.');
         return true;
       }());
 
@@ -68,7 +73,10 @@ class SuiviLigne {
     return null;
   }
 
-  static List<SuiviLigne> listFromJson(dynamic json, {bool growable = false,}) {
+  static List<SuiviLigne> listFromJson(
+    dynamic json, {
+    bool growable = false,
+  }) {
     final result = <SuiviLigne>[];
     if (json is List && json.isNotEmpty) {
       for (final row in json) {
@@ -96,13 +104,19 @@ class SuiviLigne {
   }
 
   // maps a json object with a list of SuiviLigne-objects as value to a dart map
-  static Map<String, List<SuiviLigne>> mapListFromJson(dynamic json, {bool growable = false,}) {
+  static Map<String, List<SuiviLigne>> mapListFromJson(
+    dynamic json, {
+    bool growable = false,
+  }) {
     final map = <String, List<SuiviLigne>>{};
     if (json is Map && json.isNotEmpty) {
       // ignore: parameter_assignments
       json = json.cast<String, dynamic>();
       for (final entry in json.entries) {
-        map[entry.key] = SuiviLigne.listFromJson(entry.value, growable: growable,);
+        map[entry.key] = SuiviLigne.listFromJson(
+          entry.value,
+          growable: growable,
+        );
       }
     }
     return map;
@@ -114,4 +128,3 @@ class SuiviLigne {
     'dataset',
   };
 }
-

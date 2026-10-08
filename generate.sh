@@ -27,6 +27,11 @@ const walk = (node) => {
 	Object.values(node).forEach(walk);
 };
 walk(spec);
+// Payout.destination_type and PayoutDestination.type both become PayoutDestinationTypeEnum: one shared schema instead.
+const schemas = spec.components.schemas;
+schemas.PayoutDestinationType = { type: "string", enum: ["mobile", "bank"] };
+schemas.Payout.properties.destination_type = { $ref: "#/components/schemas/PayoutDestinationType" };
+schemas.PayoutDestination.properties.type = { $ref: "#/components/schemas/PayoutDestinationType" };
 fs.writeFileSync(".tool/openapi.json", JSON.stringify(spec));'
 rm -rf lib/api lib/model lib/auth
 java -jar "$JAR" generate -g dart -i .tool/openapi.json -o . --additional-properties=pubName=sdk221

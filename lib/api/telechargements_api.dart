@@ -10,9 +10,9 @@
 
 part of openapi.api;
 
-
 class TelechargementsApi {
-  TelechargementsApi([ApiClient? apiClient]) : apiClient = apiClient ?? defaultApiClient;
+  TelechargementsApi([ApiClient? apiClient])
+      : apiClient = apiClient ?? defaultApiClient;
 
   final ApiClient apiClient;
 
@@ -26,10 +26,13 @@ class TelechargementsApi {
   ///   Identifiant du jeu (catalogue /v1/jeux).
   ///
   /// * [String] type:
-  Future<Response> countTelechargementWithHttpInfo(String jeu, { String? type, Future<void>? abortTrigger, }) async {
+  Future<Response> countTelechargementWithHttpInfo(
+    String jeu, {
+    String? type,
+    Future<void>? abortTrigger,
+  }) async {
     // ignore: prefer_const_declarations
-    final path = r'/v1/telechargements/{jeu}'
-      .replaceAll('{jeu}', jeu);
+    final path = r'/v1/telechargements/{jeu}'.replaceAll('{jeu}', jeu);
 
     // ignore: prefer_final_locals
     Object? postBody;
@@ -43,7 +46,6 @@ class TelechargementsApi {
     }
 
     const contentTypes = <String>[];
-
 
     return apiClient.invokeAPI(
       path,
@@ -65,8 +67,16 @@ class TelechargementsApi {
   ///   Identifiant du jeu (catalogue /v1/jeux).
   ///
   /// * [String] type:
-  Future<void> countTelechargement(String jeu, { String? type, Future<void>? abortTrigger, }) async {
-    final response = await countTelechargementWithHttpInfo(jeu, type: type, abortTrigger: abortTrigger,);
+  Future<void> countTelechargement(
+    String jeu, {
+    String? type,
+    Future<void>? abortTrigger,
+  }) async {
+    final response = await countTelechargementWithHttpInfo(
+      jeu,
+      type: type,
+      abortTrigger: abortTrigger,
+    );
     if (response.statusCode >= HttpStatus.badRequest) {
       throw ApiException(response.statusCode, await _decodeBodyBytes(response));
     }
@@ -75,7 +85,9 @@ class TelechargementsApi {
   /// Popularité des jeux : téléchargements et ouvertures comptés par le hub
   ///
   /// Note: This method returns the HTTP [Response].
-  Future<Response> listCompteursWithHttpInfo({ Future<void>? abortTrigger, }) async {
+  Future<Response> listCompteursWithHttpInfo({
+    Future<void>? abortTrigger,
+  }) async {
     // ignore: prefer_const_declarations
     final path = r'/v1/telechargements';
 
@@ -87,7 +99,6 @@ class TelechargementsApi {
     final formParams = <String, String>{};
 
     const contentTypes = <String>[];
-
 
     return apiClient.invokeAPI(
       path,
@@ -102,17 +113,24 @@ class TelechargementsApi {
   }
 
   /// Popularité des jeux : téléchargements et ouvertures comptés par le hub
-  Future<Compteurs?> listCompteurs({ Future<void>? abortTrigger, }) async {
-    final response = await listCompteursWithHttpInfo(abortTrigger: abortTrigger,);
+  Future<Compteurs?> listCompteurs({
+    Future<void>? abortTrigger,
+  }) async {
+    final response = await listCompteursWithHttpInfo(
+      abortTrigger: abortTrigger,
+    );
     if (response.statusCode >= HttpStatus.badRequest) {
       throw ApiException(response.statusCode, await _decodeBodyBytes(response));
     }
     // When a remote server returns no body with a status of 204, we shall not decode it.
     // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
     // FormatException when trying to decode an empty string.
-    if (response.body.isNotEmpty && response.statusCode != HttpStatus.noContent) {
-      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'Compteurs',) as Compteurs;
-    
+    if (response.body.isNotEmpty &&
+        response.statusCode != HttpStatus.noContent) {
+      return await apiClient.deserializeAsync(
+        await _decodeBodyBytes(response),
+        'Compteurs',
+      ) as Compteurs;
     }
     return null;
   }

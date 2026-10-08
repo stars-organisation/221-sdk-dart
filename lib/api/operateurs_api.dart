@@ -10,9 +10,9 @@
 
 part of openapi.api;
 
-
 class OperateursApi {
-  OperateursApi([ApiClient? apiClient]) : apiClient = apiClient ?? defaultApiClient;
+  OperateursApi([ApiClient? apiClient])
+      : apiClient = apiClient ?? defaultApiClient;
 
   final ApiClient apiClient;
 
@@ -23,10 +23,12 @@ class OperateursApi {
   /// Parameters:
   ///
   /// * [String] id (required):
-  Future<Response> getOperateurWithHttpInfo(String id, { Future<void>? abortTrigger, }) async {
+  Future<Response> getOperateurWithHttpInfo(
+    String id, {
+    Future<void>? abortTrigger,
+  }) async {
     // ignore: prefer_const_declarations
-    final path = r'/v1/operateurs/{id}'
-      .replaceAll('{id}', id);
+    final path = r'/v1/operateurs/{id}'.replaceAll('{id}', id);
 
     // ignore: prefer_final_locals
     Object? postBody;
@@ -36,7 +38,6 @@ class OperateursApi {
     final formParams = <String, String>{};
 
     const contentTypes = <String>[];
-
 
     return apiClient.invokeAPI(
       path,
@@ -55,17 +56,26 @@ class OperateursApi {
   /// Parameters:
   ///
   /// * [String] id (required):
-  Future<Object?> getOperateur(String id, { Future<void>? abortTrigger, }) async {
-    final response = await getOperateurWithHttpInfo(id, abortTrigger: abortTrigger,);
+  Future<PrefixeOperateur?> getOperateur(
+    String id, {
+    Future<void>? abortTrigger,
+  }) async {
+    final response = await getOperateurWithHttpInfo(
+      id,
+      abortTrigger: abortTrigger,
+    );
     if (response.statusCode >= HttpStatus.badRequest) {
       throw ApiException(response.statusCode, await _decodeBodyBytes(response));
     }
     // When a remote server returns no body with a status of 204, we shall not decode it.
     // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
     // FormatException when trying to decode an empty string.
-    if (response.body.isNotEmpty && response.statusCode != HttpStatus.noContent) {
-      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'Object',) as Object;
-    
+    if (response.body.isNotEmpty &&
+        response.statusCode != HttpStatus.noContent) {
+      return await apiClient.deserializeAsync(
+        await _decodeBodyBytes(response),
+        'PrefixeOperateur',
+      ) as PrefixeOperateur;
     }
     return null;
   }
@@ -86,7 +96,14 @@ class OperateursApi {
   /// * [String] operator_:
   ///
   /// * [String] type:
-  Future<Response> listOperateursWithHttpInfo({ int? page, int? perPage, String? q, String? operator_, String? type, Future<void>? abortTrigger, }) async {
+  Future<Response> listOperateursWithHttpInfo({
+    int? page,
+    int? perPage,
+    String? q,
+    String? operator_,
+    String? type,
+    Future<void>? abortTrigger,
+  }) async {
     // ignore: prefer_const_declarations
     final path = r'/v1/operateurs';
 
@@ -115,7 +132,6 @@ class OperateursApi {
 
     const contentTypes = <String>[];
 
-
     return apiClient.invokeAPI(
       path,
       'GET',
@@ -142,17 +158,34 @@ class OperateursApi {
   /// * [String] operator_:
   ///
   /// * [String] type:
-  Future<ItemPage?> listOperateurs({ int? page, int? perPage, String? q, String? operator_, String? type, Future<void>? abortTrigger, }) async {
-    final response = await listOperateursWithHttpInfo(page: page, perPage: perPage, q: q, operator_: operator_, type: type, abortTrigger: abortTrigger,);
+  Future<DatasetPagePrefixeOperateur?> listOperateurs({
+    int? page,
+    int? perPage,
+    String? q,
+    String? operator_,
+    String? type,
+    Future<void>? abortTrigger,
+  }) async {
+    final response = await listOperateursWithHttpInfo(
+      page: page,
+      perPage: perPage,
+      q: q,
+      operator_: operator_,
+      type: type,
+      abortTrigger: abortTrigger,
+    );
     if (response.statusCode >= HttpStatus.badRequest) {
       throw ApiException(response.statusCode, await _decodeBodyBytes(response));
     }
     // When a remote server returns no body with a status of 204, we shall not decode it.
     // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
     // FormatException when trying to decode an empty string.
-    if (response.body.isNotEmpty && response.statusCode != HttpStatus.noContent) {
-      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'ItemPage',) as ItemPage;
-    
+    if (response.body.isNotEmpty &&
+        response.statusCode != HttpStatus.noContent) {
+      return await apiClient.deserializeAsync(
+        await _decodeBodyBytes(response),
+        'DatasetPagePrefixeOperateur',
+      ) as DatasetPagePrefixeOperateur;
     }
     return null;
   }

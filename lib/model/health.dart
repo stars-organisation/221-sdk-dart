@@ -39,7 +39,7 @@ class Health {
   ///
   String? payClientId;
 
-  /// Mode de 221 Pay (off, test, live) et disponibilité (Postgres et ledger joints).
+  /// 221 Pay : live si le mode live répond, sinon test, sinon off ; chaque requête choisit son mode (clé API ou X-221-Mode).
   ///
   /// Please note: This property should have been non-nullable! Since the specification file
   /// does not include a default value (using the "default:" property), however, the generated
@@ -54,34 +54,37 @@ class Health {
   String status;
 
   @override
-  bool operator ==(Object other) => identical(this, other) || other is Health &&
-    other.controlCenterUrl == controlCenterUrl &&
-    other.database == database &&
-    other.kycUrl == kycUrl &&
-    other.payClientId == payClientId &&
-    other.payments == payments &&
-    _deepEquality.equals(other.social, social) &&
-    other.status == status;
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      other is Health &&
+          other.controlCenterUrl == controlCenterUrl &&
+          other.database == database &&
+          other.kycUrl == kycUrl &&
+          other.payClientId == payClientId &&
+          other.payments == payments &&
+          _deepEquality.equals(other.social, social) &&
+          other.status == status;
 
   @override
   int get hashCode =>
-    // ignore: unnecessary_parenthesis
-    (controlCenterUrl.hashCode) +
-    (database.hashCode) +
-    (kycUrl.hashCode) +
-    (payClientId == null ? 0 : payClientId!.hashCode) +
-    (payments == null ? 0 : payments!.hashCode) +
-    (social == null ? 0 : social!.hashCode) +
-    (status.hashCode);
+      // ignore: unnecessary_parenthesis
+      (controlCenterUrl.hashCode) +
+      (database.hashCode) +
+      (kycUrl.hashCode) +
+      (payClientId == null ? 0 : payClientId!.hashCode) +
+      (payments == null ? 0 : payments!.hashCode) +
+      (social == null ? 0 : social!.hashCode) +
+      (status.hashCode);
 
   @override
-  String toString() => 'Health[controlCenterUrl=$controlCenterUrl, database=$database, kycUrl=$kycUrl, payClientId=$payClientId, payments=$payments, social=$social, status=$status]';
+  String toString() =>
+      'Health[controlCenterUrl=$controlCenterUrl, database=$database, kycUrl=$kycUrl, payClientId=$payClientId, payments=$payments, social=$social, status=$status]';
 
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
-      json[r'control_center_url'] = this.controlCenterUrl;
-      json[r'database'] = this.database;
-      json[r'kyc_url'] = this.kycUrl;
+    json[r'control_center_url'] = this.controlCenterUrl;
+    json[r'database'] = this.database;
+    json[r'kyc_url'] = this.kycUrl;
     if (this.payClientId != null) {
       json[r'pay_client_id'] = this.payClientId;
     } else {
@@ -97,7 +100,7 @@ class Health {
     } else {
       json[r'social'] = null;
     }
-      json[r'status'] = this.status;
+    json[r'status'] = this.status;
     return json;
   }
 
@@ -112,14 +115,22 @@ class Health {
       // Note 1: the values aren't checked for validity beyond being non-null.
       // Note 2: this code is stripped in release mode!
       assert(() {
-        assert(json.containsKey(r'control_center_url'), 'Required key "Health[control_center_url]" is missing from JSON.');
-        assert(json[r'control_center_url'] != null, 'Required key "Health[control_center_url]" has a null value in JSON.');
-        assert(json.containsKey(r'database'), 'Required key "Health[database]" is missing from JSON.');
-        assert(json[r'database'] != null, 'Required key "Health[database]" has a null value in JSON.');
-        assert(json.containsKey(r'kyc_url'), 'Required key "Health[kyc_url]" is missing from JSON.');
-        assert(json[r'kyc_url'] != null, 'Required key "Health[kyc_url]" has a null value in JSON.');
-        assert(json.containsKey(r'status'), 'Required key "Health[status]" is missing from JSON.');
-        assert(json[r'status'] != null, 'Required key "Health[status]" has a null value in JSON.');
+        assert(json.containsKey(r'control_center_url'),
+            'Required key "Health[control_center_url]" is missing from JSON.');
+        assert(json[r'control_center_url'] != null,
+            'Required key "Health[control_center_url]" has a null value in JSON.');
+        assert(json.containsKey(r'database'),
+            'Required key "Health[database]" is missing from JSON.');
+        assert(json[r'database'] != null,
+            'Required key "Health[database]" has a null value in JSON.');
+        assert(json.containsKey(r'kyc_url'),
+            'Required key "Health[kyc_url]" is missing from JSON.');
+        assert(json[r'kyc_url'] != null,
+            'Required key "Health[kyc_url]" has a null value in JSON.');
+        assert(json.containsKey(r'status'),
+            'Required key "Health[status]" is missing from JSON.');
+        assert(json[r'status'] != null,
+            'Required key "Health[status]" has a null value in JSON.');
         return true;
       }());
 
@@ -130,7 +141,9 @@ class Health {
         payClientId: mapValueOfType<String>(json, r'pay_client_id'),
         payments: PaymentsHealth.fromJson(json[r'payments']),
         social: json[r'social'] is Iterable
-            ? (json[r'social'] as Iterable).cast<String>().toList(growable: false)
+            ? (json[r'social'] as Iterable)
+                .cast<String>()
+                .toList(growable: false)
             : const [],
         status: mapValueOfType<String>(json, r'status')!,
       );
@@ -138,7 +151,10 @@ class Health {
     return null;
   }
 
-  static List<Health> listFromJson(dynamic json, {bool growable = false,}) {
+  static List<Health> listFromJson(
+    dynamic json, {
+    bool growable = false,
+  }) {
     final result = <Health>[];
     if (json is List && json.isNotEmpty) {
       for (final row in json) {
@@ -166,13 +182,19 @@ class Health {
   }
 
   // maps a json object with a list of Health-objects as value to a dart map
-  static Map<String, List<Health>> mapListFromJson(dynamic json, {bool growable = false,}) {
+  static Map<String, List<Health>> mapListFromJson(
+    dynamic json, {
+    bool growable = false,
+  }) {
     final map = <String, List<Health>>{};
     if (json is Map && json.isNotEmpty) {
       // ignore: parameter_assignments
       json = json.cast<String, dynamic>();
       for (final entry in json.entries) {
-        map[entry.key] = Health.listFromJson(entry.value, growable: growable,);
+        map[entry.key] = Health.listFromJson(
+          entry.value,
+          growable: growable,
+        );
       }
     }
     return map;
@@ -186,4 +208,3 @@ class Health {
     'status',
   };
 }
-

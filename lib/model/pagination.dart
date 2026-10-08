@@ -28,29 +28,32 @@ class Pagination {
   int totalPages;
 
   @override
-  bool operator ==(Object other) => identical(this, other) || other is Pagination &&
-    other.page == page &&
-    other.perPage == perPage &&
-    other.total == total &&
-    other.totalPages == totalPages;
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      other is Pagination &&
+          other.page == page &&
+          other.perPage == perPage &&
+          other.total == total &&
+          other.totalPages == totalPages;
 
   @override
   int get hashCode =>
-    // ignore: unnecessary_parenthesis
-    (page.hashCode) +
-    (perPage.hashCode) +
-    (total.hashCode) +
-    (totalPages.hashCode);
+      // ignore: unnecessary_parenthesis
+      (page.hashCode) +
+      (perPage.hashCode) +
+      (total.hashCode) +
+      (totalPages.hashCode);
 
   @override
-  String toString() => 'Pagination[page=$page, perPage=$perPage, total=$total, totalPages=$totalPages]';
+  String toString() =>
+      'Pagination[page=$page, perPage=$perPage, total=$total, totalPages=$totalPages]';
 
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
-      json[r'page'] = this.page;
-      json[r'per_page'] = this.perPage;
-      json[r'total'] = this.total;
-      json[r'total_pages'] = this.totalPages;
+    json[r'page'] = this.page;
+    json[r'per_page'] = this.perPage;
+    json[r'total'] = this.total;
+    json[r'total_pages'] = this.totalPages;
     return json;
   }
 
@@ -65,14 +68,22 @@ class Pagination {
       // Note 1: the values aren't checked for validity beyond being non-null.
       // Note 2: this code is stripped in release mode!
       assert(() {
-        assert(json.containsKey(r'page'), 'Required key "Pagination[page]" is missing from JSON.');
-        assert(json[r'page'] != null, 'Required key "Pagination[page]" has a null value in JSON.');
-        assert(json.containsKey(r'per_page'), 'Required key "Pagination[per_page]" is missing from JSON.');
-        assert(json[r'per_page'] != null, 'Required key "Pagination[per_page]" has a null value in JSON.');
-        assert(json.containsKey(r'total'), 'Required key "Pagination[total]" is missing from JSON.');
-        assert(json[r'total'] != null, 'Required key "Pagination[total]" has a null value in JSON.');
-        assert(json.containsKey(r'total_pages'), 'Required key "Pagination[total_pages]" is missing from JSON.');
-        assert(json[r'total_pages'] != null, 'Required key "Pagination[total_pages]" has a null value in JSON.');
+        assert(json.containsKey(r'page'),
+            'Required key "Pagination[page]" is missing from JSON.');
+        assert(json[r'page'] != null,
+            'Required key "Pagination[page]" has a null value in JSON.');
+        assert(json.containsKey(r'per_page'),
+            'Required key "Pagination[per_page]" is missing from JSON.');
+        assert(json[r'per_page'] != null,
+            'Required key "Pagination[per_page]" has a null value in JSON.');
+        assert(json.containsKey(r'total'),
+            'Required key "Pagination[total]" is missing from JSON.');
+        assert(json[r'total'] != null,
+            'Required key "Pagination[total]" has a null value in JSON.');
+        assert(json.containsKey(r'total_pages'),
+            'Required key "Pagination[total_pages]" is missing from JSON.');
+        assert(json[r'total_pages'] != null,
+            'Required key "Pagination[total_pages]" has a null value in JSON.');
         return true;
       }());
 
@@ -86,7 +97,10 @@ class Pagination {
     return null;
   }
 
-  static List<Pagination> listFromJson(dynamic json, {bool growable = false,}) {
+  static List<Pagination> listFromJson(
+    dynamic json, {
+    bool growable = false,
+  }) {
     final result = <Pagination>[];
     if (json is List && json.isNotEmpty) {
       for (final row in json) {
@@ -114,13 +128,19 @@ class Pagination {
   }
 
   // maps a json object with a list of Pagination-objects as value to a dart map
-  static Map<String, List<Pagination>> mapListFromJson(dynamic json, {bool growable = false,}) {
+  static Map<String, List<Pagination>> mapListFromJson(
+    dynamic json, {
+    bool growable = false,
+  }) {
     final map = <String, List<Pagination>>{};
     if (json is Map && json.isNotEmpty) {
       // ignore: parameter_assignments
       json = json.cast<String, dynamic>();
       for (final entry in json.entries) {
-        map[entry.key] = Pagination.listFromJson(entry.value, growable: growable,);
+        map[entry.key] = Pagination.listFromJson(
+          entry.value,
+          growable: growable,
+        );
       }
     }
     return map;
@@ -134,4 +154,3 @@ class Pagination {
     'total_pages',
   };
 }
-

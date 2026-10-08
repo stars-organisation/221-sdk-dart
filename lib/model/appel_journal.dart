@@ -40,41 +40,44 @@ class AppelJournal {
   int status;
 
   @override
-  bool operator ==(Object other) => identical(this, other) || other is AppelJournal &&
-    other.createdAt == createdAt &&
-    other.durationMs == durationMs &&
-    other.id == id &&
-    other.keyId == keyId &&
-    other.method == method &&
-    other.path == path &&
-    other.prefix == prefix &&
-    other.status == status;
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      other is AppelJournal &&
+          other.createdAt == createdAt &&
+          other.durationMs == durationMs &&
+          other.id == id &&
+          other.keyId == keyId &&
+          other.method == method &&
+          other.path == path &&
+          other.prefix == prefix &&
+          other.status == status;
 
   @override
   int get hashCode =>
-    // ignore: unnecessary_parenthesis
-    (createdAt.hashCode) +
-    (durationMs.hashCode) +
-    (id.hashCode) +
-    (keyId.hashCode) +
-    (method.hashCode) +
-    (path.hashCode) +
-    (prefix.hashCode) +
-    (status.hashCode);
+      // ignore: unnecessary_parenthesis
+      (createdAt.hashCode) +
+      (durationMs.hashCode) +
+      (id.hashCode) +
+      (keyId.hashCode) +
+      (method.hashCode) +
+      (path.hashCode) +
+      (prefix.hashCode) +
+      (status.hashCode);
 
   @override
-  String toString() => 'AppelJournal[createdAt=$createdAt, durationMs=$durationMs, id=$id, keyId=$keyId, method=$method, path=$path, prefix=$prefix, status=$status]';
+  String toString() =>
+      'AppelJournal[createdAt=$createdAt, durationMs=$durationMs, id=$id, keyId=$keyId, method=$method, path=$path, prefix=$prefix, status=$status]';
 
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
-      json[r'created_at'] = this.createdAt.toUtc().toIso8601String();
-      json[r'duration_ms'] = this.durationMs;
-      json[r'id'] = this.id;
-      json[r'key_id'] = this.keyId;
-      json[r'method'] = this.method;
-      json[r'path'] = this.path;
-      json[r'prefix'] = this.prefix;
-      json[r'status'] = this.status;
+    json[r'created_at'] = this.createdAt.toUtc().toIso8601String();
+    json[r'duration_ms'] = this.durationMs;
+    json[r'id'] = this.id;
+    json[r'key_id'] = this.keyId;
+    json[r'method'] = this.method;
+    json[r'path'] = this.path;
+    json[r'prefix'] = this.prefix;
+    json[r'status'] = this.status;
     return json;
   }
 
@@ -89,22 +92,38 @@ class AppelJournal {
       // Note 1: the values aren't checked for validity beyond being non-null.
       // Note 2: this code is stripped in release mode!
       assert(() {
-        assert(json.containsKey(r'created_at'), 'Required key "AppelJournal[created_at]" is missing from JSON.');
-        assert(json[r'created_at'] != null, 'Required key "AppelJournal[created_at]" has a null value in JSON.');
-        assert(json.containsKey(r'duration_ms'), 'Required key "AppelJournal[duration_ms]" is missing from JSON.');
-        assert(json[r'duration_ms'] != null, 'Required key "AppelJournal[duration_ms]" has a null value in JSON.');
-        assert(json.containsKey(r'id'), 'Required key "AppelJournal[id]" is missing from JSON.');
-        assert(json[r'id'] != null, 'Required key "AppelJournal[id]" has a null value in JSON.');
-        assert(json.containsKey(r'key_id'), 'Required key "AppelJournal[key_id]" is missing from JSON.');
-        assert(json[r'key_id'] != null, 'Required key "AppelJournal[key_id]" has a null value in JSON.');
-        assert(json.containsKey(r'method'), 'Required key "AppelJournal[method]" is missing from JSON.');
-        assert(json[r'method'] != null, 'Required key "AppelJournal[method]" has a null value in JSON.');
-        assert(json.containsKey(r'path'), 'Required key "AppelJournal[path]" is missing from JSON.');
-        assert(json[r'path'] != null, 'Required key "AppelJournal[path]" has a null value in JSON.');
-        assert(json.containsKey(r'prefix'), 'Required key "AppelJournal[prefix]" is missing from JSON.');
-        assert(json[r'prefix'] != null, 'Required key "AppelJournal[prefix]" has a null value in JSON.');
-        assert(json.containsKey(r'status'), 'Required key "AppelJournal[status]" is missing from JSON.');
-        assert(json[r'status'] != null, 'Required key "AppelJournal[status]" has a null value in JSON.');
+        assert(json.containsKey(r'created_at'),
+            'Required key "AppelJournal[created_at]" is missing from JSON.');
+        assert(json[r'created_at'] != null,
+            'Required key "AppelJournal[created_at]" has a null value in JSON.');
+        assert(json.containsKey(r'duration_ms'),
+            'Required key "AppelJournal[duration_ms]" is missing from JSON.');
+        assert(json[r'duration_ms'] != null,
+            'Required key "AppelJournal[duration_ms]" has a null value in JSON.');
+        assert(json.containsKey(r'id'),
+            'Required key "AppelJournal[id]" is missing from JSON.');
+        assert(json[r'id'] != null,
+            'Required key "AppelJournal[id]" has a null value in JSON.');
+        assert(json.containsKey(r'key_id'),
+            'Required key "AppelJournal[key_id]" is missing from JSON.');
+        assert(json[r'key_id'] != null,
+            'Required key "AppelJournal[key_id]" has a null value in JSON.');
+        assert(json.containsKey(r'method'),
+            'Required key "AppelJournal[method]" is missing from JSON.');
+        assert(json[r'method'] != null,
+            'Required key "AppelJournal[method]" has a null value in JSON.');
+        assert(json.containsKey(r'path'),
+            'Required key "AppelJournal[path]" is missing from JSON.');
+        assert(json[r'path'] != null,
+            'Required key "AppelJournal[path]" has a null value in JSON.');
+        assert(json.containsKey(r'prefix'),
+            'Required key "AppelJournal[prefix]" is missing from JSON.');
+        assert(json[r'prefix'] != null,
+            'Required key "AppelJournal[prefix]" has a null value in JSON.');
+        assert(json.containsKey(r'status'),
+            'Required key "AppelJournal[status]" is missing from JSON.');
+        assert(json[r'status'] != null,
+            'Required key "AppelJournal[status]" has a null value in JSON.');
         return true;
       }());
 
@@ -122,7 +141,10 @@ class AppelJournal {
     return null;
   }
 
-  static List<AppelJournal> listFromJson(dynamic json, {bool growable = false,}) {
+  static List<AppelJournal> listFromJson(
+    dynamic json, {
+    bool growable = false,
+  }) {
     final result = <AppelJournal>[];
     if (json is List && json.isNotEmpty) {
       for (final row in json) {
@@ -150,13 +172,19 @@ class AppelJournal {
   }
 
   // maps a json object with a list of AppelJournal-objects as value to a dart map
-  static Map<String, List<AppelJournal>> mapListFromJson(dynamic json, {bool growable = false,}) {
+  static Map<String, List<AppelJournal>> mapListFromJson(
+    dynamic json, {
+    bool growable = false,
+  }) {
     final map = <String, List<AppelJournal>>{};
     if (json is Map && json.isNotEmpty) {
       // ignore: parameter_assignments
       json = json.cast<String, dynamic>();
       for (final entry in json.entries) {
-        map[entry.key] = AppelJournal.listFromJson(entry.value, growable: growable,);
+        map[entry.key] = AppelJournal.listFromJson(
+          entry.value,
+          growable: growable,
+        );
       }
     }
     return map;
@@ -174,4 +202,3 @@ class AppelJournal {
     'status',
   };
 }
-

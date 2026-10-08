@@ -22,23 +22,24 @@ class Conditions {
   String version;
 
   @override
-  bool operator ==(Object other) => identical(this, other) || other is Conditions &&
-    other.accepted == accepted &&
-    other.version == version;
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      other is Conditions &&
+          other.accepted == accepted &&
+          other.version == version;
 
   @override
   int get hashCode =>
-    // ignore: unnecessary_parenthesis
-    (accepted.hashCode) +
-    (version.hashCode);
+      // ignore: unnecessary_parenthesis
+      (accepted.hashCode) + (version.hashCode);
 
   @override
   String toString() => 'Conditions[accepted=$accepted, version=$version]';
 
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
-      json[r'accepted'] = this.accepted;
-      json[r'version'] = this.version;
+    json[r'accepted'] = this.accepted;
+    json[r'version'] = this.version;
     return json;
   }
 
@@ -53,10 +54,14 @@ class Conditions {
       // Note 1: the values aren't checked for validity beyond being non-null.
       // Note 2: this code is stripped in release mode!
       assert(() {
-        assert(json.containsKey(r'accepted'), 'Required key "Conditions[accepted]" is missing from JSON.');
-        assert(json[r'accepted'] != null, 'Required key "Conditions[accepted]" has a null value in JSON.');
-        assert(json.containsKey(r'version'), 'Required key "Conditions[version]" is missing from JSON.');
-        assert(json[r'version'] != null, 'Required key "Conditions[version]" has a null value in JSON.');
+        assert(json.containsKey(r'accepted'),
+            'Required key "Conditions[accepted]" is missing from JSON.');
+        assert(json[r'accepted'] != null,
+            'Required key "Conditions[accepted]" has a null value in JSON.');
+        assert(json.containsKey(r'version'),
+            'Required key "Conditions[version]" is missing from JSON.');
+        assert(json[r'version'] != null,
+            'Required key "Conditions[version]" has a null value in JSON.');
         return true;
       }());
 
@@ -68,7 +73,10 @@ class Conditions {
     return null;
   }
 
-  static List<Conditions> listFromJson(dynamic json, {bool growable = false,}) {
+  static List<Conditions> listFromJson(
+    dynamic json, {
+    bool growable = false,
+  }) {
     final result = <Conditions>[];
     if (json is List && json.isNotEmpty) {
       for (final row in json) {
@@ -96,13 +104,19 @@ class Conditions {
   }
 
   // maps a json object with a list of Conditions-objects as value to a dart map
-  static Map<String, List<Conditions>> mapListFromJson(dynamic json, {bool growable = false,}) {
+  static Map<String, List<Conditions>> mapListFromJson(
+    dynamic json, {
+    bool growable = false,
+  }) {
     final map = <String, List<Conditions>>{};
     if (json is Map && json.isNotEmpty) {
       // ignore: parameter_assignments
       json = json.cast<String, dynamic>();
       for (final entry in json.entries) {
-        map[entry.key] = Conditions.listFromJson(entry.value, growable: growable,);
+        map[entry.key] = Conditions.listFromJson(
+          entry.value,
+          growable: growable,
+        );
       }
     }
     return map;
@@ -114,4 +128,3 @@ class Conditions {
     'version',
   };
 }
-

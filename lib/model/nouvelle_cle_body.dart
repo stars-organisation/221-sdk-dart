@@ -41,24 +41,27 @@ class NouvelleCleBody {
   Set<NouvelleCleBodyScopesEnum>? scopes;
 
   @override
-  bool operator ==(Object other) => identical(this, other) || other is NouvelleCleBody &&
-    other.dailyLimit == dailyLimit &&
-    other.expiresIn == expiresIn &&
-    other.mode == mode &&
-    other.name == name &&
-    _deepEquality.equals(other.scopes, scopes);
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      other is NouvelleCleBody &&
+          other.dailyLimit == dailyLimit &&
+          other.expiresIn == expiresIn &&
+          other.mode == mode &&
+          other.name == name &&
+          _deepEquality.equals(other.scopes, scopes);
 
   @override
   int get hashCode =>
-    // ignore: unnecessary_parenthesis
-    (dailyLimit == null ? 0 : dailyLimit!.hashCode) +
-    (expiresIn == null ? 0 : expiresIn!.hashCode) +
-    (mode == null ? 0 : mode!.hashCode) +
-    (name.hashCode) +
-    (scopes == null ? 0 : scopes!.hashCode);
+      // ignore: unnecessary_parenthesis
+      (dailyLimit == null ? 0 : dailyLimit!.hashCode) +
+      (expiresIn == null ? 0 : expiresIn!.hashCode) +
+      (mode == null ? 0 : mode!.hashCode) +
+      (name.hashCode) +
+      (scopes == null ? 0 : scopes!.hashCode);
 
   @override
-  String toString() => 'NouvelleCleBody[dailyLimit=$dailyLimit, expiresIn=$expiresIn, mode=$mode, name=$name, scopes=$scopes]';
+  String toString() =>
+      'NouvelleCleBody[dailyLimit=$dailyLimit, expiresIn=$expiresIn, mode=$mode, name=$name, scopes=$scopes]';
 
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -77,7 +80,7 @@ class NouvelleCleBody {
     } else {
       json[r'mode'] = null;
     }
-      json[r'name'] = this.name;
+    json[r'name'] = this.name;
     if (this.scopes != null) {
       json[r'scopes'] = this.scopes!.toList(growable: false);
     } else {
@@ -97,8 +100,10 @@ class NouvelleCleBody {
       // Note 1: the values aren't checked for validity beyond being non-null.
       // Note 2: this code is stripped in release mode!
       assert(() {
-        assert(json.containsKey(r'name'), 'Required key "NouvelleCleBody[name]" is missing from JSON.');
-        assert(json[r'name'] != null, 'Required key "NouvelleCleBody[name]" has a null value in JSON.');
+        assert(json.containsKey(r'name'),
+            'Required key "NouvelleCleBody[name]" is missing from JSON.');
+        assert(json[r'name'] != null,
+            'Required key "NouvelleCleBody[name]" has a null value in JSON.');
         return true;
       }());
 
@@ -113,7 +118,10 @@ class NouvelleCleBody {
     return null;
   }
 
-  static List<NouvelleCleBody> listFromJson(dynamic json, {bool growable = false,}) {
+  static List<NouvelleCleBody> listFromJson(
+    dynamic json, {
+    bool growable = false,
+  }) {
     final result = <NouvelleCleBody>[];
     if (json is List && json.isNotEmpty) {
       for (final row in json) {
@@ -141,13 +149,19 @@ class NouvelleCleBody {
   }
 
   // maps a json object with a list of NouvelleCleBody-objects as value to a dart map
-  static Map<String, List<NouvelleCleBody>> mapListFromJson(dynamic json, {bool growable = false,}) {
+  static Map<String, List<NouvelleCleBody>> mapListFromJson(
+    dynamic json, {
+    bool growable = false,
+  }) {
     final map = <String, List<NouvelleCleBody>>{};
     if (json is Map && json.isNotEmpty) {
       // ignore: parameter_assignments
       json = json.cast<String, dynamic>();
       for (final entry in json.entries) {
-        map[entry.key] = NouvelleCleBody.listFromJson(entry.value, growable: growable,);
+        map[entry.key] = NouvelleCleBody.listFromJson(
+          entry.value,
+          growable: growable,
+        );
       }
     }
     return map;
@@ -181,11 +195,15 @@ enum NouvelleCleBodyExpiresInEnum {
 
   /// Returns the instance of [NouvelleCleBodyExpiresInEnum] that was successfully decoded
   /// from the passed [value] on success, null otherwise.
-  static NouvelleCleBodyExpiresInEnum? fromJson(dynamic value) => NouvelleCleBodyExpiresInEnumTypeTransformer().decode(value);
+  static NouvelleCleBodyExpiresInEnum? fromJson(dynamic value) =>
+      NouvelleCleBodyExpiresInEnumTypeTransformer().decode(value);
 
   /// Returns a [List] containing instances of [NouvelleCleBodyExpiresInEnum]
   /// that were successfully decoded from the passed [JSON][json].
-  static List<NouvelleCleBodyExpiresInEnum> listFromJson(dynamic json, {bool growable = false,}) {
+  static List<NouvelleCleBodyExpiresInEnum> listFromJson(
+    dynamic json, {
+    bool growable = false,
+  }) {
     final result = <NouvelleCleBodyExpiresInEnum>[];
     if (json is List && json.isNotEmpty) {
       for (final row in json) {
@@ -202,7 +220,8 @@ enum NouvelleCleBodyExpiresInEnum {
 /// Transformation class that can [encode] an instance of [NouvelleCleBodyExpiresInEnum] to String,
 /// and [decode] dynamic data back to [NouvelleCleBodyExpiresInEnum].
 class NouvelleCleBodyExpiresInEnumTypeTransformer {
-  factory NouvelleCleBodyExpiresInEnumTypeTransformer() => _instance ??= const NouvelleCleBodyExpiresInEnumTypeTransformer._();
+  factory NouvelleCleBodyExpiresInEnumTypeTransformer() =>
+      _instance ??= const NouvelleCleBodyExpiresInEnumTypeTransformer._();
 
   const NouvelleCleBodyExpiresInEnumTypeTransformer._();
 
@@ -223,10 +242,14 @@ class NouvelleCleBodyExpiresInEnumTypeTransformer {
     }
     if (data != null) {
       switch (data) {
-        case r'never': return NouvelleCleBodyExpiresInEnum.never;
-        case r'30d': return NouvelleCleBodyExpiresInEnum.n30d;
-        case r'90d': return NouvelleCleBodyExpiresInEnum.n90d;
-        case r'1y': return NouvelleCleBodyExpiresInEnum.n1y;
+        case r'never':
+          return NouvelleCleBodyExpiresInEnum.never;
+        case r'30d':
+          return NouvelleCleBodyExpiresInEnum.n30d;
+        case r'90d':
+          return NouvelleCleBodyExpiresInEnum.n90d;
+        case r'1y':
+          return NouvelleCleBodyExpiresInEnum.n1y;
         default:
           if (!allowNull) {
             throw ArgumentError('Unknown enum value to decode: $data');
@@ -239,7 +262,6 @@ class NouvelleCleBodyExpiresInEnumTypeTransformer {
   /// The singleton instance of this transformer.
   static NouvelleCleBodyExpiresInEnumTypeTransformer? _instance;
 }
-
 
 /// test (par défaut) ou live, une fois le mode live du projet activé.
 enum NouvelleCleBodyModeEnum {
@@ -261,11 +283,15 @@ enum NouvelleCleBodyModeEnum {
 
   /// Returns the instance of [NouvelleCleBodyModeEnum] that was successfully decoded
   /// from the passed [value] on success, null otherwise.
-  static NouvelleCleBodyModeEnum? fromJson(dynamic value) => NouvelleCleBodyModeEnumTypeTransformer().decode(value);
+  static NouvelleCleBodyModeEnum? fromJson(dynamic value) =>
+      NouvelleCleBodyModeEnumTypeTransformer().decode(value);
 
   /// Returns a [List] containing instances of [NouvelleCleBodyModeEnum]
   /// that were successfully decoded from the passed [JSON][json].
-  static List<NouvelleCleBodyModeEnum> listFromJson(dynamic json, {bool growable = false,}) {
+  static List<NouvelleCleBodyModeEnum> listFromJson(
+    dynamic json, {
+    bool growable = false,
+  }) {
     final result = <NouvelleCleBodyModeEnum>[];
     if (json is List && json.isNotEmpty) {
       for (final row in json) {
@@ -282,7 +308,8 @@ enum NouvelleCleBodyModeEnum {
 /// Transformation class that can [encode] an instance of [NouvelleCleBodyModeEnum] to String,
 /// and [decode] dynamic data back to [NouvelleCleBodyModeEnum].
 class NouvelleCleBodyModeEnumTypeTransformer {
-  factory NouvelleCleBodyModeEnumTypeTransformer() => _instance ??= const NouvelleCleBodyModeEnumTypeTransformer._();
+  factory NouvelleCleBodyModeEnumTypeTransformer() =>
+      _instance ??= const NouvelleCleBodyModeEnumTypeTransformer._();
 
   const NouvelleCleBodyModeEnumTypeTransformer._();
 
@@ -303,8 +330,10 @@ class NouvelleCleBodyModeEnumTypeTransformer {
     }
     if (data != null) {
       switch (data) {
-        case r'test': return NouvelleCleBodyModeEnum.test;
-        case r'live': return NouvelleCleBodyModeEnum.live;
+        case r'test':
+          return NouvelleCleBodyModeEnum.test;
+        case r'live':
+          return NouvelleCleBodyModeEnum.live;
         default:
           if (!allowNull) {
             throw ArgumentError('Unknown enum value to decode: $data');
@@ -317,8 +346,6 @@ class NouvelleCleBodyModeEnumTypeTransformer {
   /// The singleton instance of this transformer.
   static NouvelleCleBodyModeEnumTypeTransformer? _instance;
 }
-
-
 
 enum NouvelleCleBodyScopesEnum {
   payments._(r'payments'),
@@ -339,11 +366,15 @@ enum NouvelleCleBodyScopesEnum {
 
   /// Returns the instance of [NouvelleCleBodyScopesEnum] that was successfully decoded
   /// from the passed [value] on success, null otherwise.
-  static NouvelleCleBodyScopesEnum? fromJson(dynamic value) => NouvelleCleBodyScopesEnumTypeTransformer().decode(value);
+  static NouvelleCleBodyScopesEnum? fromJson(dynamic value) =>
+      NouvelleCleBodyScopesEnumTypeTransformer().decode(value);
 
   /// Returns a [List] containing instances of [NouvelleCleBodyScopesEnum]
   /// that were successfully decoded from the passed [JSON][json].
-  static List<NouvelleCleBodyScopesEnum> listFromJson(dynamic json, {bool growable = false,}) {
+  static List<NouvelleCleBodyScopesEnum> listFromJson(
+    dynamic json, {
+    bool growable = false,
+  }) {
     final result = <NouvelleCleBodyScopesEnum>[];
     if (json is List && json.isNotEmpty) {
       for (final row in json) {
@@ -360,7 +391,8 @@ enum NouvelleCleBodyScopesEnum {
 /// Transformation class that can [encode] an instance of [NouvelleCleBodyScopesEnum] to String,
 /// and [decode] dynamic data back to [NouvelleCleBodyScopesEnum].
 class NouvelleCleBodyScopesEnumTypeTransformer {
-  factory NouvelleCleBodyScopesEnumTypeTransformer() => _instance ??= const NouvelleCleBodyScopesEnumTypeTransformer._();
+  factory NouvelleCleBodyScopesEnumTypeTransformer() =>
+      _instance ??= const NouvelleCleBodyScopesEnumTypeTransformer._();
 
   const NouvelleCleBodyScopesEnumTypeTransformer._();
 
@@ -381,8 +413,10 @@ class NouvelleCleBodyScopesEnumTypeTransformer {
     }
     if (data != null) {
       switch (data) {
-        case r'payments': return NouvelleCleBodyScopesEnum.payments;
-        case r'data': return NouvelleCleBodyScopesEnum.data;
+        case r'payments':
+          return NouvelleCleBodyScopesEnum.payments;
+        case r'data':
+          return NouvelleCleBodyScopesEnum.data;
         default:
           if (!allowNull) {
             throw ArgumentError('Unknown enum value to decode: $data');
@@ -395,5 +429,3 @@ class NouvelleCleBodyScopesEnumTypeTransformer {
   /// The singleton instance of this transformer.
   static NouvelleCleBodyScopesEnumTypeTransformer? _instance;
 }
-
-

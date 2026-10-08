@@ -31,30 +31,33 @@ class Meta {
   String? version;
 
   @override
-  bool operator ==(Object other) => identical(this, other) || other is Meta &&
-    other.attribution == attribution &&
-    other.licence == licence &&
-    other.source_ == source_ &&
-    other.verifiedOn == verifiedOn &&
-    other.version == version;
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      other is Meta &&
+          other.attribution == attribution &&
+          other.licence == licence &&
+          other.source_ == source_ &&
+          other.verifiedOn == verifiedOn &&
+          other.version == version;
 
   @override
   int get hashCode =>
-    // ignore: unnecessary_parenthesis
-    (attribution.hashCode) +
-    (licence.hashCode) +
-    (source_.hashCode) +
-    (verifiedOn == null ? 0 : verifiedOn!.hashCode) +
-    (version == null ? 0 : version!.hashCode);
+      // ignore: unnecessary_parenthesis
+      (attribution.hashCode) +
+      (licence.hashCode) +
+      (source_.hashCode) +
+      (verifiedOn == null ? 0 : verifiedOn!.hashCode) +
+      (version == null ? 0 : version!.hashCode);
 
   @override
-  String toString() => 'Meta[attribution=$attribution, licence=$licence, source_=$source_, verifiedOn=$verifiedOn, version=$version]';
+  String toString() =>
+      'Meta[attribution=$attribution, licence=$licence, source_=$source_, verifiedOn=$verifiedOn, version=$version]';
 
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
-      json[r'attribution'] = this.attribution;
-      json[r'licence'] = this.licence;
-      json[r'source'] = this.source_;
+    json[r'attribution'] = this.attribution;
+    json[r'licence'] = this.licence;
+    json[r'source'] = this.source_;
     if (this.verifiedOn != null) {
       json[r'verified_on'] = this.verifiedOn;
     } else {
@@ -79,12 +82,18 @@ class Meta {
       // Note 1: the values aren't checked for validity beyond being non-null.
       // Note 2: this code is stripped in release mode!
       assert(() {
-        assert(json.containsKey(r'attribution'), 'Required key "Meta[attribution]" is missing from JSON.');
-        assert(json[r'attribution'] != null, 'Required key "Meta[attribution]" has a null value in JSON.');
-        assert(json.containsKey(r'licence'), 'Required key "Meta[licence]" is missing from JSON.');
-        assert(json[r'licence'] != null, 'Required key "Meta[licence]" has a null value in JSON.');
-        assert(json.containsKey(r'source'), 'Required key "Meta[source]" is missing from JSON.');
-        assert(json[r'source'] != null, 'Required key "Meta[source]" has a null value in JSON.');
+        assert(json.containsKey(r'attribution'),
+            'Required key "Meta[attribution]" is missing from JSON.');
+        assert(json[r'attribution'] != null,
+            'Required key "Meta[attribution]" has a null value in JSON.');
+        assert(json.containsKey(r'licence'),
+            'Required key "Meta[licence]" is missing from JSON.');
+        assert(json[r'licence'] != null,
+            'Required key "Meta[licence]" has a null value in JSON.');
+        assert(json.containsKey(r'source'),
+            'Required key "Meta[source]" is missing from JSON.');
+        assert(json[r'source'] != null,
+            'Required key "Meta[source]" has a null value in JSON.');
         return true;
       }());
 
@@ -99,7 +108,10 @@ class Meta {
     return null;
   }
 
-  static List<Meta> listFromJson(dynamic json, {bool growable = false,}) {
+  static List<Meta> listFromJson(
+    dynamic json, {
+    bool growable = false,
+  }) {
     final result = <Meta>[];
     if (json is List && json.isNotEmpty) {
       for (final row in json) {
@@ -127,13 +139,19 @@ class Meta {
   }
 
   // maps a json object with a list of Meta-objects as value to a dart map
-  static Map<String, List<Meta>> mapListFromJson(dynamic json, {bool growable = false,}) {
+  static Map<String, List<Meta>> mapListFromJson(
+    dynamic json, {
+    bool growable = false,
+  }) {
     final map = <String, List<Meta>>{};
     if (json is Map && json.isNotEmpty) {
       // ignore: parameter_assignments
       json = json.cast<String, dynamic>();
       for (final entry in json.entries) {
-        map[entry.key] = Meta.listFromJson(entry.value, growable: growable,);
+        map[entry.key] = Meta.listFromJson(
+          entry.value,
+          growable: growable,
+        );
       }
     }
     return map;
@@ -146,4 +164,3 @@ class Meta {
     'source',
   };
 }
-

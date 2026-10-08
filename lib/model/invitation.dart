@@ -28,29 +28,29 @@ class Invitation {
   InvitationRoleEnum role;
 
   @override
-  bool operator ==(Object other) => identical(this, other) || other is Invitation &&
-    other.email == email &&
-    other.expiresAt == expiresAt &&
-    other.id == id &&
-    other.role == role;
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      other is Invitation &&
+          other.email == email &&
+          other.expiresAt == expiresAt &&
+          other.id == id &&
+          other.role == role;
 
   @override
   int get hashCode =>
-    // ignore: unnecessary_parenthesis
-    (email.hashCode) +
-    (expiresAt.hashCode) +
-    (id.hashCode) +
-    (role.hashCode);
+      // ignore: unnecessary_parenthesis
+      (email.hashCode) + (expiresAt.hashCode) + (id.hashCode) + (role.hashCode);
 
   @override
-  String toString() => 'Invitation[email=$email, expiresAt=$expiresAt, id=$id, role=$role]';
+  String toString() =>
+      'Invitation[email=$email, expiresAt=$expiresAt, id=$id, role=$role]';
 
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
-      json[r'email'] = this.email;
-      json[r'expires_at'] = this.expiresAt.toUtc().toIso8601String();
-      json[r'id'] = this.id;
-      json[r'role'] = this.role;
+    json[r'email'] = this.email;
+    json[r'expires_at'] = this.expiresAt.toUtc().toIso8601String();
+    json[r'id'] = this.id;
+    json[r'role'] = this.role;
     return json;
   }
 
@@ -65,14 +65,22 @@ class Invitation {
       // Note 1: the values aren't checked for validity beyond being non-null.
       // Note 2: this code is stripped in release mode!
       assert(() {
-        assert(json.containsKey(r'email'), 'Required key "Invitation[email]" is missing from JSON.');
-        assert(json[r'email'] != null, 'Required key "Invitation[email]" has a null value in JSON.');
-        assert(json.containsKey(r'expires_at'), 'Required key "Invitation[expires_at]" is missing from JSON.');
-        assert(json[r'expires_at'] != null, 'Required key "Invitation[expires_at]" has a null value in JSON.');
-        assert(json.containsKey(r'id'), 'Required key "Invitation[id]" is missing from JSON.');
-        assert(json[r'id'] != null, 'Required key "Invitation[id]" has a null value in JSON.');
-        assert(json.containsKey(r'role'), 'Required key "Invitation[role]" is missing from JSON.');
-        assert(json[r'role'] != null, 'Required key "Invitation[role]" has a null value in JSON.');
+        assert(json.containsKey(r'email'),
+            'Required key "Invitation[email]" is missing from JSON.');
+        assert(json[r'email'] != null,
+            'Required key "Invitation[email]" has a null value in JSON.');
+        assert(json.containsKey(r'expires_at'),
+            'Required key "Invitation[expires_at]" is missing from JSON.');
+        assert(json[r'expires_at'] != null,
+            'Required key "Invitation[expires_at]" has a null value in JSON.');
+        assert(json.containsKey(r'id'),
+            'Required key "Invitation[id]" is missing from JSON.');
+        assert(json[r'id'] != null,
+            'Required key "Invitation[id]" has a null value in JSON.');
+        assert(json.containsKey(r'role'),
+            'Required key "Invitation[role]" is missing from JSON.');
+        assert(json[r'role'] != null,
+            'Required key "Invitation[role]" has a null value in JSON.');
         return true;
       }());
 
@@ -86,7 +94,10 @@ class Invitation {
     return null;
   }
 
-  static List<Invitation> listFromJson(dynamic json, {bool growable = false,}) {
+  static List<Invitation> listFromJson(
+    dynamic json, {
+    bool growable = false,
+  }) {
     final result = <Invitation>[];
     if (json is List && json.isNotEmpty) {
       for (final row in json) {
@@ -114,13 +125,19 @@ class Invitation {
   }
 
   // maps a json object with a list of Invitation-objects as value to a dart map
-  static Map<String, List<Invitation>> mapListFromJson(dynamic json, {bool growable = false,}) {
+  static Map<String, List<Invitation>> mapListFromJson(
+    dynamic json, {
+    bool growable = false,
+  }) {
     final map = <String, List<Invitation>>{};
     if (json is Map && json.isNotEmpty) {
       // ignore: parameter_assignments
       json = json.cast<String, dynamic>();
       for (final entry in json.entries) {
-        map[entry.key] = Invitation.listFromJson(entry.value, growable: growable,);
+        map[entry.key] = Invitation.listFromJson(
+          entry.value,
+          growable: growable,
+        );
       }
     }
     return map;
@@ -134,7 +151,6 @@ class Invitation {
     'role',
   };
 }
-
 
 enum InvitationRoleEnum {
   admin._(r'admin'),
@@ -156,11 +172,15 @@ enum InvitationRoleEnum {
 
   /// Returns the instance of [InvitationRoleEnum] that was successfully decoded
   /// from the passed [value] on success, null otherwise.
-  static InvitationRoleEnum? fromJson(dynamic value) => InvitationRoleEnumTypeTransformer().decode(value);
+  static InvitationRoleEnum? fromJson(dynamic value) =>
+      InvitationRoleEnumTypeTransformer().decode(value);
 
   /// Returns a [List] containing instances of [InvitationRoleEnum]
   /// that were successfully decoded from the passed [JSON][json].
-  static List<InvitationRoleEnum> listFromJson(dynamic json, {bool growable = false,}) {
+  static List<InvitationRoleEnum> listFromJson(
+    dynamic json, {
+    bool growable = false,
+  }) {
     final result = <InvitationRoleEnum>[];
     if (json is List && json.isNotEmpty) {
       for (final row in json) {
@@ -177,7 +197,8 @@ enum InvitationRoleEnum {
 /// Transformation class that can [encode] an instance of [InvitationRoleEnum] to String,
 /// and [decode] dynamic data back to [InvitationRoleEnum].
 class InvitationRoleEnumTypeTransformer {
-  factory InvitationRoleEnumTypeTransformer() => _instance ??= const InvitationRoleEnumTypeTransformer._();
+  factory InvitationRoleEnumTypeTransformer() =>
+      _instance ??= const InvitationRoleEnumTypeTransformer._();
 
   const InvitationRoleEnumTypeTransformer._();
 
@@ -198,9 +219,12 @@ class InvitationRoleEnumTypeTransformer {
     }
     if (data != null) {
       switch (data) {
-        case r'admin': return InvitationRoleEnum.admin;
-        case r'user': return InvitationRoleEnum.user;
-        case r'read_only': return InvitationRoleEnum.readOnly;
+        case r'admin':
+          return InvitationRoleEnum.admin;
+        case r'user':
+          return InvitationRoleEnum.user;
+        case r'read_only':
+          return InvitationRoleEnum.readOnly;
         default:
           if (!allowNull) {
             throw ArgumentError('Unknown enum value to decode: $data');
@@ -213,5 +237,3 @@ class InvitationRoleEnumTypeTransformer {
   /// The singleton instance of this transformer.
   static InvitationRoleEnumTypeTransformer? _instance;
 }
-
-

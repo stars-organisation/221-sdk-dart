@@ -10,9 +10,9 @@
 
 part of openapi.api;
 
-
 class ModulesApi {
-  ModulesApi([ApiClient? apiClient]) : apiClient = apiClient ?? defaultApiClient;
+  ModulesApi([ApiClient? apiClient])
+      : apiClient = apiClient ?? defaultApiClient;
 
   final ApiClient apiClient;
 
@@ -23,10 +23,12 @@ class ModulesApi {
   /// Parameters:
   ///
   /// * [String] id (required):
-  Future<Response> getModuleWithHttpInfo(String id, { Future<void>? abortTrigger, }) async {
+  Future<Response> getModuleWithHttpInfo(
+    String id, {
+    Future<void>? abortTrigger,
+  }) async {
     // ignore: prefer_const_declarations
-    final path = r'/v1/modules/{id}'
-      .replaceAll('{id}', id);
+    final path = r'/v1/modules/{id}'.replaceAll('{id}', id);
 
     // ignore: prefer_final_locals
     Object? postBody;
@@ -36,7 +38,6 @@ class ModulesApi {
     final formParams = <String, String>{};
 
     const contentTypes = <String>[];
-
 
     return apiClient.invokeAPI(
       path,
@@ -55,17 +56,26 @@ class ModulesApi {
   /// Parameters:
   ///
   /// * [String] id (required):
-  Future<Object?> getModule(String id, { Future<void>? abortTrigger, }) async {
-    final response = await getModuleWithHttpInfo(id, abortTrigger: abortTrigger,);
+  Future<Object?> getModule(
+    String id, {
+    Future<void>? abortTrigger,
+  }) async {
+    final response = await getModuleWithHttpInfo(
+      id,
+      abortTrigger: abortTrigger,
+    );
     if (response.statusCode >= HttpStatus.badRequest) {
       throw ApiException(response.statusCode, await _decodeBodyBytes(response));
     }
     // When a remote server returns no body with a status of 204, we shall not decode it.
     // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
     // FormatException when trying to decode an empty string.
-    if (response.body.isNotEmpty && response.statusCode != HttpStatus.noContent) {
-      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'Object',) as Object;
-    
+    if (response.body.isNotEmpty &&
+        response.statusCode != HttpStatus.noContent) {
+      return await apiClient.deserializeAsync(
+        await _decodeBodyBytes(response),
+        'Object',
+      ) as Object;
     }
     return null;
   }
@@ -86,7 +96,14 @@ class ModulesApi {
   /// * [String] status:
   ///
   /// * [String] form:
-  Future<Response> listModulesWithHttpInfo({ int? page, int? perPage, String? q, String? status, String? form, Future<void>? abortTrigger, }) async {
+  Future<Response> listModulesWithHttpInfo({
+    int? page,
+    int? perPage,
+    String? q,
+    String? status,
+    String? form,
+    Future<void>? abortTrigger,
+  }) async {
     // ignore: prefer_const_declarations
     final path = r'/v1/modules';
 
@@ -115,7 +132,6 @@ class ModulesApi {
 
     const contentTypes = <String>[];
 
-
     return apiClient.invokeAPI(
       path,
       'GET',
@@ -142,17 +158,34 @@ class ModulesApi {
   /// * [String] status:
   ///
   /// * [String] form:
-  Future<ItemPage?> listModules({ int? page, int? perPage, String? q, String? status, String? form, Future<void>? abortTrigger, }) async {
-    final response = await listModulesWithHttpInfo(page: page, perPage: perPage, q: q, status: status, form: form, abortTrigger: abortTrigger,);
+  Future<ItemPage?> listModules({
+    int? page,
+    int? perPage,
+    String? q,
+    String? status,
+    String? form,
+    Future<void>? abortTrigger,
+  }) async {
+    final response = await listModulesWithHttpInfo(
+      page: page,
+      perPage: perPage,
+      q: q,
+      status: status,
+      form: form,
+      abortTrigger: abortTrigger,
+    );
     if (response.statusCode >= HttpStatus.badRequest) {
       throw ApiException(response.statusCode, await _decodeBodyBytes(response));
     }
     // When a remote server returns no body with a status of 204, we shall not decode it.
     // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
     // FormatException when trying to decode an empty string.
-    if (response.body.isNotEmpty && response.statusCode != HttpStatus.noContent) {
-      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'ItemPage',) as ItemPage;
-    
+    if (response.body.isNotEmpty &&
+        response.statusCode != HttpStatus.noContent) {
+      return await apiClient.deserializeAsync(
+        await _decodeBodyBytes(response),
+        'ItemPage',
+      ) as ItemPage;
     }
     return null;
   }

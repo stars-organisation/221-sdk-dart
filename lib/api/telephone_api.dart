@@ -10,9 +10,9 @@
 
 part of openapi.api;
 
-
 class TelephoneApi {
-  TelephoneApi([ApiClient? apiClient]) : apiClient = apiClient ?? defaultApiClient;
+  TelephoneApi([ApiClient? apiClient])
+      : apiClient = apiClient ?? defaultApiClient;
 
   final ApiClient apiClient;
 
@@ -23,7 +23,10 @@ class TelephoneApi {
   /// Parameters:
   ///
   /// * [String] numero (required):
-  Future<Response> analyseTelephoneWithHttpInfo(String numero, { Future<void>? abortTrigger, }) async {
+  Future<Response> analyseTelephoneWithHttpInfo(
+    String numero, {
+    Future<void>? abortTrigger,
+  }) async {
     // ignore: prefer_const_declarations
     final path = r'/v1/telephone/analyse';
 
@@ -34,10 +37,9 @@ class TelephoneApi {
     final headerParams = <String, String>{};
     final formParams = <String, String>{};
 
-      queryParams.addAll(_queryParams('', 'numero', numero));
+    queryParams.addAll(_queryParams('', 'numero', numero));
 
     const contentTypes = <String>[];
-
 
     return apiClient.invokeAPI(
       path,
@@ -56,17 +58,26 @@ class TelephoneApi {
   /// Parameters:
   ///
   /// * [String] numero (required):
-  Future<Telephone?> analyseTelephone(String numero, { Future<void>? abortTrigger, }) async {
-    final response = await analyseTelephoneWithHttpInfo(numero, abortTrigger: abortTrigger,);
+  Future<Telephone?> analyseTelephone(
+    String numero, {
+    Future<void>? abortTrigger,
+  }) async {
+    final response = await analyseTelephoneWithHttpInfo(
+      numero,
+      abortTrigger: abortTrigger,
+    );
     if (response.statusCode >= HttpStatus.badRequest) {
       throw ApiException(response.statusCode, await _decodeBodyBytes(response));
     }
     // When a remote server returns no body with a status of 204, we shall not decode it.
     // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
     // FormatException when trying to decode an empty string.
-    if (response.body.isNotEmpty && response.statusCode != HttpStatus.noContent) {
-      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'Telephone',) as Telephone;
-    
+    if (response.body.isNotEmpty &&
+        response.statusCode != HttpStatus.noContent) {
+      return await apiClient.deserializeAsync(
+        await _decodeBodyBytes(response),
+        'Telephone',
+      ) as Telephone;
     }
     return null;
   }

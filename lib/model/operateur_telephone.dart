@@ -28,33 +28,36 @@ class OperateurTelephone {
   String type;
 
   @override
-  bool operator ==(Object other) => identical(this, other) || other is OperateurTelephone &&
-    other.name == name &&
-    other.prefix == prefix &&
-    _deepEquality.equals(other.sources, sources) &&
-    other.type == type;
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      other is OperateurTelephone &&
+          other.name == name &&
+          other.prefix == prefix &&
+          _deepEquality.equals(other.sources, sources) &&
+          other.type == type;
 
   @override
   int get hashCode =>
-    // ignore: unnecessary_parenthesis
-    (name.hashCode) +
-    (prefix.hashCode) +
-    (sources == null ? 0 : sources!.hashCode) +
-    (type.hashCode);
+      // ignore: unnecessary_parenthesis
+      (name.hashCode) +
+      (prefix.hashCode) +
+      (sources == null ? 0 : sources!.hashCode) +
+      (type.hashCode);
 
   @override
-  String toString() => 'OperateurTelephone[name=$name, prefix=$prefix, sources=$sources, type=$type]';
+  String toString() =>
+      'OperateurTelephone[name=$name, prefix=$prefix, sources=$sources, type=$type]';
 
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
-      json[r'name'] = this.name;
-      json[r'prefix'] = this.prefix;
+    json[r'name'] = this.name;
+    json[r'prefix'] = this.prefix;
     if (this.sources != null) {
       json[r'sources'] = this.sources;
     } else {
       json[r'sources'] = null;
     }
-      json[r'type'] = this.type;
+    json[r'type'] = this.type;
     return json;
   }
 
@@ -69,12 +72,18 @@ class OperateurTelephone {
       // Note 1: the values aren't checked for validity beyond being non-null.
       // Note 2: this code is stripped in release mode!
       assert(() {
-        assert(json.containsKey(r'name'), 'Required key "OperateurTelephone[name]" is missing from JSON.');
-        assert(json[r'name'] != null, 'Required key "OperateurTelephone[name]" has a null value in JSON.');
-        assert(json.containsKey(r'prefix'), 'Required key "OperateurTelephone[prefix]" is missing from JSON.');
-        assert(json[r'prefix'] != null, 'Required key "OperateurTelephone[prefix]" has a null value in JSON.');
-        assert(json.containsKey(r'type'), 'Required key "OperateurTelephone[type]" is missing from JSON.');
-        assert(json[r'type'] != null, 'Required key "OperateurTelephone[type]" has a null value in JSON.');
+        assert(json.containsKey(r'name'),
+            'Required key "OperateurTelephone[name]" is missing from JSON.');
+        assert(json[r'name'] != null,
+            'Required key "OperateurTelephone[name]" has a null value in JSON.');
+        assert(json.containsKey(r'prefix'),
+            'Required key "OperateurTelephone[prefix]" is missing from JSON.');
+        assert(json[r'prefix'] != null,
+            'Required key "OperateurTelephone[prefix]" has a null value in JSON.');
+        assert(json.containsKey(r'type'),
+            'Required key "OperateurTelephone[type]" is missing from JSON.');
+        assert(json[r'type'] != null,
+            'Required key "OperateurTelephone[type]" has a null value in JSON.');
         return true;
       }());
 
@@ -82,7 +91,9 @@ class OperateurTelephone {
         name: mapValueOfType<String>(json, r'name')!,
         prefix: mapValueOfType<String>(json, r'prefix')!,
         sources: json[r'sources'] is Iterable
-            ? (json[r'sources'] as Iterable).cast<Object>().toList(growable: false)
+            ? (json[r'sources'] as Iterable)
+                .cast<Object>()
+                .toList(growable: false)
             : const [],
         type: mapValueOfType<String>(json, r'type')!,
       );
@@ -90,7 +101,10 @@ class OperateurTelephone {
     return null;
   }
 
-  static List<OperateurTelephone> listFromJson(dynamic json, {bool growable = false,}) {
+  static List<OperateurTelephone> listFromJson(
+    dynamic json, {
+    bool growable = false,
+  }) {
     final result = <OperateurTelephone>[];
     if (json is List && json.isNotEmpty) {
       for (final row in json) {
@@ -118,13 +132,19 @@ class OperateurTelephone {
   }
 
   // maps a json object with a list of OperateurTelephone-objects as value to a dart map
-  static Map<String, List<OperateurTelephone>> mapListFromJson(dynamic json, {bool growable = false,}) {
+  static Map<String, List<OperateurTelephone>> mapListFromJson(
+    dynamic json, {
+    bool growable = false,
+  }) {
     final map = <String, List<OperateurTelephone>>{};
     if (json is Map && json.isNotEmpty) {
       // ignore: parameter_assignments
       json = json.cast<String, dynamic>();
       for (final entry in json.entries) {
-        map[entry.key] = OperateurTelephone.listFromJson(entry.value, growable: growable,);
+        map[entry.key] = OperateurTelephone.listFromJson(
+          entry.value,
+          growable: growable,
+        );
       }
     }
     return map;
@@ -137,4 +157,3 @@ class OperateurTelephone {
     'type',
   };
 }
-

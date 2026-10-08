@@ -37,39 +37,42 @@ class Signalement {
   SignalementStatusEnum status;
 
   @override
-  bool operator ==(Object other) => identical(this, other) || other is Signalement &&
-    other.createdAt == createdAt &&
-    other.dataset == dataset &&
-    other.decidedAt == decidedAt &&
-    other.issueUrl == issueUrl &&
-    other.numero == numero &&
-    other.status == status;
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      other is Signalement &&
+          other.createdAt == createdAt &&
+          other.dataset == dataset &&
+          other.decidedAt == decidedAt &&
+          other.issueUrl == issueUrl &&
+          other.numero == numero &&
+          other.status == status;
 
   @override
   int get hashCode =>
-    // ignore: unnecessary_parenthesis
-    (createdAt.hashCode) +
-    (dataset.hashCode) +
-    (decidedAt.hashCode) +
-    (issueUrl == null ? 0 : issueUrl!.hashCode) +
-    (numero.hashCode) +
-    (status.hashCode);
+      // ignore: unnecessary_parenthesis
+      (createdAt.hashCode) +
+      (dataset.hashCode) +
+      (decidedAt.hashCode) +
+      (issueUrl == null ? 0 : issueUrl!.hashCode) +
+      (numero.hashCode) +
+      (status.hashCode);
 
   @override
-  String toString() => 'Signalement[createdAt=$createdAt, dataset=$dataset, decidedAt=$decidedAt, issueUrl=$issueUrl, numero=$numero, status=$status]';
+  String toString() =>
+      'Signalement[createdAt=$createdAt, dataset=$dataset, decidedAt=$decidedAt, issueUrl=$issueUrl, numero=$numero, status=$status]';
 
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
-      json[r'created_at'] = this.createdAt.toUtc().toIso8601String();
-      json[r'dataset'] = this.dataset;
-      json[r'decided_at'] = this.decidedAt.toUtc().toIso8601String();
+    json[r'created_at'] = this.createdAt.toUtc().toIso8601String();
+    json[r'dataset'] = this.dataset;
+    json[r'decided_at'] = this.decidedAt.toUtc().toIso8601String();
     if (this.issueUrl != null) {
       json[r'issue_url'] = this.issueUrl;
     } else {
       json[r'issue_url'] = null;
     }
-      json[r'numero'] = this.numero;
-      json[r'status'] = this.status;
+    json[r'numero'] = this.numero;
+    json[r'status'] = this.status;
     return json;
   }
 
@@ -84,16 +87,26 @@ class Signalement {
       // Note 1: the values aren't checked for validity beyond being non-null.
       // Note 2: this code is stripped in release mode!
       assert(() {
-        assert(json.containsKey(r'created_at'), 'Required key "Signalement[created_at]" is missing from JSON.');
-        assert(json[r'created_at'] != null, 'Required key "Signalement[created_at]" has a null value in JSON.');
-        assert(json.containsKey(r'dataset'), 'Required key "Signalement[dataset]" is missing from JSON.');
-        assert(json[r'dataset'] != null, 'Required key "Signalement[dataset]" has a null value in JSON.');
-        assert(json.containsKey(r'decided_at'), 'Required key "Signalement[decided_at]" is missing from JSON.');
-        assert(json[r'decided_at'] != null, 'Required key "Signalement[decided_at]" has a null value in JSON.');
-        assert(json.containsKey(r'numero'), 'Required key "Signalement[numero]" is missing from JSON.');
-        assert(json[r'numero'] != null, 'Required key "Signalement[numero]" has a null value in JSON.');
-        assert(json.containsKey(r'status'), 'Required key "Signalement[status]" is missing from JSON.');
-        assert(json[r'status'] != null, 'Required key "Signalement[status]" has a null value in JSON.');
+        assert(json.containsKey(r'created_at'),
+            'Required key "Signalement[created_at]" is missing from JSON.');
+        assert(json[r'created_at'] != null,
+            'Required key "Signalement[created_at]" has a null value in JSON.');
+        assert(json.containsKey(r'dataset'),
+            'Required key "Signalement[dataset]" is missing from JSON.');
+        assert(json[r'dataset'] != null,
+            'Required key "Signalement[dataset]" has a null value in JSON.');
+        assert(json.containsKey(r'decided_at'),
+            'Required key "Signalement[decided_at]" is missing from JSON.');
+        assert(json[r'decided_at'] != null,
+            'Required key "Signalement[decided_at]" has a null value in JSON.');
+        assert(json.containsKey(r'numero'),
+            'Required key "Signalement[numero]" is missing from JSON.');
+        assert(json[r'numero'] != null,
+            'Required key "Signalement[numero]" has a null value in JSON.');
+        assert(json.containsKey(r'status'),
+            'Required key "Signalement[status]" is missing from JSON.');
+        assert(json[r'status'] != null,
+            'Required key "Signalement[status]" has a null value in JSON.');
         return true;
       }());
 
@@ -109,7 +122,10 @@ class Signalement {
     return null;
   }
 
-  static List<Signalement> listFromJson(dynamic json, {bool growable = false,}) {
+  static List<Signalement> listFromJson(
+    dynamic json, {
+    bool growable = false,
+  }) {
     final result = <Signalement>[];
     if (json is List && json.isNotEmpty) {
       for (final row in json) {
@@ -137,13 +153,19 @@ class Signalement {
   }
 
   // maps a json object with a list of Signalement-objects as value to a dart map
-  static Map<String, List<Signalement>> mapListFromJson(dynamic json, {bool growable = false,}) {
+  static Map<String, List<Signalement>> mapListFromJson(
+    dynamic json, {
+    bool growable = false,
+  }) {
     final map = <String, List<Signalement>>{};
     if (json is Map && json.isNotEmpty) {
       // ignore: parameter_assignments
       json = json.cast<String, dynamic>();
       for (final entry in json.entries) {
-        map[entry.key] = Signalement.listFromJson(entry.value, growable: growable,);
+        map[entry.key] = Signalement.listFromJson(
+          entry.value,
+          growable: growable,
+        );
       }
     }
     return map;
@@ -180,11 +202,15 @@ enum SignalementStatusEnum {
 
   /// Returns the instance of [SignalementStatusEnum] that was successfully decoded
   /// from the passed [value] on success, null otherwise.
-  static SignalementStatusEnum? fromJson(dynamic value) => SignalementStatusEnumTypeTransformer().decode(value);
+  static SignalementStatusEnum? fromJson(dynamic value) =>
+      SignalementStatusEnumTypeTransformer().decode(value);
 
   /// Returns a [List] containing instances of [SignalementStatusEnum]
   /// that were successfully decoded from the passed [JSON][json].
-  static List<SignalementStatusEnum> listFromJson(dynamic json, {bool growable = false,}) {
+  static List<SignalementStatusEnum> listFromJson(
+    dynamic json, {
+    bool growable = false,
+  }) {
     final result = <SignalementStatusEnum>[];
     if (json is List && json.isNotEmpty) {
       for (final row in json) {
@@ -201,7 +227,8 @@ enum SignalementStatusEnum {
 /// Transformation class that can [encode] an instance of [SignalementStatusEnum] to String,
 /// and [decode] dynamic data back to [SignalementStatusEnum].
 class SignalementStatusEnumTypeTransformer {
-  factory SignalementStatusEnumTypeTransformer() => _instance ??= const SignalementStatusEnumTypeTransformer._();
+  factory SignalementStatusEnumTypeTransformer() =>
+      _instance ??= const SignalementStatusEnumTypeTransformer._();
 
   const SignalementStatusEnumTypeTransformer._();
 
@@ -222,9 +249,12 @@ class SignalementStatusEnumTypeTransformer {
     }
     if (data != null) {
       switch (data) {
-        case r'recu': return SignalementStatusEnum.recu;
-        case r'accepte': return SignalementStatusEnum.accepte;
-        case r'refuse': return SignalementStatusEnum.refuse;
+        case r'recu':
+          return SignalementStatusEnum.recu;
+        case r'accepte':
+          return SignalementStatusEnum.accepte;
+        case r'refuse':
+          return SignalementStatusEnum.refuse;
         default:
           if (!allowNull) {
             throw ArgumentError('Unknown enum value to decode: $data');
@@ -237,5 +267,3 @@ class SignalementStatusEnumTypeTransformer {
   /// The singleton instance of this transformer.
   static SignalementStatusEnumTypeTransformer? _instance;
 }
-
-

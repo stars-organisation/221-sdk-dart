@@ -10,9 +10,9 @@
 
 part of openapi.api;
 
-
 class AdressesApi {
-  AdressesApi([ApiClient? apiClient]) : apiClient = apiClient ?? defaultApiClient;
+  AdressesApi([ApiClient? apiClient])
+      : apiClient = apiClient ?? defaultApiClient;
 
   final ApiClient apiClient;
 
@@ -23,7 +23,10 @@ class AdressesApi {
   /// Parameters:
   ///
   /// * [String] texte (required):
-  Future<Response> geocoderAdresseWithHttpInfo(String texte, { Future<void>? abortTrigger, }) async {
+  Future<Response> geocoderAdresseWithHttpInfo(
+    String texte, {
+    Future<void>? abortTrigger,
+  }) async {
     // ignore: prefer_const_declarations
     final path = r'/v1/adresses/geocoder';
 
@@ -34,10 +37,9 @@ class AdressesApi {
     final headerParams = <String, String>{};
     final formParams = <String, String>{};
 
-      queryParams.addAll(_queryParams('', 'texte', texte));
+    queryParams.addAll(_queryParams('', 'texte', texte));
 
     const contentTypes = <String>[];
-
 
     return apiClient.invokeAPI(
       path,
@@ -56,17 +58,26 @@ class AdressesApi {
   /// Parameters:
   ///
   /// * [String] texte (required):
-  Future<Geocodage?> geocoderAdresse(String texte, { Future<void>? abortTrigger, }) async {
-    final response = await geocoderAdresseWithHttpInfo(texte, abortTrigger: abortTrigger,);
+  Future<Geocodage?> geocoderAdresse(
+    String texte, {
+    Future<void>? abortTrigger,
+  }) async {
+    final response = await geocoderAdresseWithHttpInfo(
+      texte,
+      abortTrigger: abortTrigger,
+    );
     if (response.statusCode >= HttpStatus.badRequest) {
       throw ApiException(response.statusCode, await _decodeBodyBytes(response));
     }
     // When a remote server returns no body with a status of 204, we shall not decode it.
     // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
     // FormatException when trying to decode an empty string.
-    if (response.body.isNotEmpty && response.statusCode != HttpStatus.noContent) {
-      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'Geocodage',) as Geocodage;
-    
+    if (response.body.isNotEmpty &&
+        response.statusCode != HttpStatus.noContent) {
+      return await apiClient.deserializeAsync(
+        await _decodeBodyBytes(response),
+        'Geocodage',
+      ) as Geocodage;
     }
     return null;
   }
@@ -78,7 +89,10 @@ class AdressesApi {
   /// Parameters:
   ///
   /// * [String] texte (required):
-  Future<Response> normaliserAdresseWithHttpInfo(String texte, { Future<void>? abortTrigger, }) async {
+  Future<Response> normaliserAdresseWithHttpInfo(
+    String texte, {
+    Future<void>? abortTrigger,
+  }) async {
     // ignore: prefer_const_declarations
     final path = r'/v1/adresses/normaliser';
 
@@ -89,10 +103,9 @@ class AdressesApi {
     final headerParams = <String, String>{};
     final formParams = <String, String>{};
 
-      queryParams.addAll(_queryParams('', 'texte', texte));
+    queryParams.addAll(_queryParams('', 'texte', texte));
 
     const contentTypes = <String>[];
-
 
     return apiClient.invokeAPI(
       path,
@@ -111,17 +124,26 @@ class AdressesApi {
   /// Parameters:
   ///
   /// * [String] texte (required):
-  Future<AdresseNormalisee?> normaliserAdresse(String texte, { Future<void>? abortTrigger, }) async {
-    final response = await normaliserAdresseWithHttpInfo(texte, abortTrigger: abortTrigger,);
+  Future<AdresseNormalisee?> normaliserAdresse(
+    String texte, {
+    Future<void>? abortTrigger,
+  }) async {
+    final response = await normaliserAdresseWithHttpInfo(
+      texte,
+      abortTrigger: abortTrigger,
+    );
     if (response.statusCode >= HttpStatus.badRequest) {
       throw ApiException(response.statusCode, await _decodeBodyBytes(response));
     }
     // When a remote server returns no body with a status of 204, we shall not decode it.
     // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
     // FormatException when trying to decode an empty string.
-    if (response.body.isNotEmpty && response.statusCode != HttpStatus.noContent) {
-      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'AdresseNormalisee',) as AdresseNormalisee;
-    
+    if (response.body.isNotEmpty &&
+        response.statusCode != HttpStatus.noContent) {
+      return await apiClient.deserializeAsync(
+        await _decodeBodyBytes(response),
+        'AdresseNormalisee',
+      ) as AdresseNormalisee;
     }
     return null;
   }
@@ -135,7 +157,11 @@ class AdressesApi {
   /// * [String] q (required):
   ///
   /// * [int] limit:
-  Future<Response> suggestAdressesWithHttpInfo(String q, { int? limit, Future<void>? abortTrigger, }) async {
+  Future<Response> suggestAdressesWithHttpInfo(
+    String q, {
+    int? limit,
+    Future<void>? abortTrigger,
+  }) async {
     // ignore: prefer_const_declarations
     final path = r'/v1/adresses/suggestions';
 
@@ -146,13 +172,12 @@ class AdressesApi {
     final headerParams = <String, String>{};
     final formParams = <String, String>{};
 
-      queryParams.addAll(_queryParams('', 'q', q));
+    queryParams.addAll(_queryParams('', 'q', q));
     if (limit != null) {
       queryParams.addAll(_queryParams('', 'limit', limit));
     }
 
     const contentTypes = <String>[];
-
 
     return apiClient.invokeAPI(
       path,
@@ -173,17 +198,28 @@ class AdressesApi {
   /// * [String] q (required):
   ///
   /// * [int] limit:
-  Future<Suggestions?> suggestAdresses(String q, { int? limit, Future<void>? abortTrigger, }) async {
-    final response = await suggestAdressesWithHttpInfo(q, limit: limit, abortTrigger: abortTrigger,);
+  Future<Suggestions?> suggestAdresses(
+    String q, {
+    int? limit,
+    Future<void>? abortTrigger,
+  }) async {
+    final response = await suggestAdressesWithHttpInfo(
+      q,
+      limit: limit,
+      abortTrigger: abortTrigger,
+    );
     if (response.statusCode >= HttpStatus.badRequest) {
       throw ApiException(response.statusCode, await _decodeBodyBytes(response));
     }
     // When a remote server returns no body with a status of 204, we shall not decode it.
     // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
     // FormatException when trying to decode an empty string.
-    if (response.body.isNotEmpty && response.statusCode != HttpStatus.noContent) {
-      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'Suggestions',) as Suggestions;
-    
+    if (response.body.isNotEmpty &&
+        response.statusCode != HttpStatus.noContent) {
+      return await apiClient.deserializeAsync(
+        await _decodeBodyBytes(response),
+        'Suggestions',
+      ) as Suggestions;
     }
     return null;
   }

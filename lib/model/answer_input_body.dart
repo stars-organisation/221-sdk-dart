@@ -19,20 +19,21 @@ class AnswerInputBody {
   String answer;
 
   @override
-  bool operator ==(Object other) => identical(this, other) || other is AnswerInputBody &&
-    other.answer == answer;
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      other is AnswerInputBody && other.answer == answer;
 
   @override
   int get hashCode =>
-    // ignore: unnecessary_parenthesis
-    (answer.hashCode);
+      // ignore: unnecessary_parenthesis
+      (answer.hashCode);
 
   @override
   String toString() => 'AnswerInputBody[answer=$answer]';
 
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
-      json[r'answer'] = this.answer;
+    json[r'answer'] = this.answer;
     return json;
   }
 
@@ -47,8 +48,10 @@ class AnswerInputBody {
       // Note 1: the values aren't checked for validity beyond being non-null.
       // Note 2: this code is stripped in release mode!
       assert(() {
-        assert(json.containsKey(r'answer'), 'Required key "AnswerInputBody[answer]" is missing from JSON.');
-        assert(json[r'answer'] != null, 'Required key "AnswerInputBody[answer]" has a null value in JSON.');
+        assert(json.containsKey(r'answer'),
+            'Required key "AnswerInputBody[answer]" is missing from JSON.');
+        assert(json[r'answer'] != null,
+            'Required key "AnswerInputBody[answer]" has a null value in JSON.');
         return true;
       }());
 
@@ -59,7 +62,10 @@ class AnswerInputBody {
     return null;
   }
 
-  static List<AnswerInputBody> listFromJson(dynamic json, {bool growable = false,}) {
+  static List<AnswerInputBody> listFromJson(
+    dynamic json, {
+    bool growable = false,
+  }) {
     final result = <AnswerInputBody>[];
     if (json is List && json.isNotEmpty) {
       for (final row in json) {
@@ -87,13 +93,19 @@ class AnswerInputBody {
   }
 
   // maps a json object with a list of AnswerInputBody-objects as value to a dart map
-  static Map<String, List<AnswerInputBody>> mapListFromJson(dynamic json, {bool growable = false,}) {
+  static Map<String, List<AnswerInputBody>> mapListFromJson(
+    dynamic json, {
+    bool growable = false,
+  }) {
     final map = <String, List<AnswerInputBody>>{};
     if (json is Map && json.isNotEmpty) {
       // ignore: parameter_assignments
       json = json.cast<String, dynamic>();
       for (final entry in json.entries) {
-        map[entry.key] = AnswerInputBody.listFromJson(entry.value, growable: growable,);
+        map[entry.key] = AnswerInputBody.listFromJson(
+          entry.value,
+          growable: growable,
+        );
       }
     }
     return map;
@@ -104,4 +116,3 @@ class AnswerInputBody {
     'answer',
   };
 }
-

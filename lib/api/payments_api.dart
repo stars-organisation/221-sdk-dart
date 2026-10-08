@@ -10,450 +10,11 @@
 
 part of openapi.api;
 
-
 class PaymentsApi {
-  PaymentsApi([ApiClient? apiClient]) : apiClient = apiClient ?? defaultApiClient;
+  PaymentsApi([ApiClient? apiClient])
+      : apiClient = apiClient ?? defaultApiClient;
 
   final ApiClient apiClient;
-
-  /// Performs an HTTP 'POST /v1/alerts/{id}' operation and returns the [Response].
-  /// Parameters:
-  ///
-  /// * [String] id (required):
-  ///
-  /// * [MultipartFile] body (required):
-  ///
-  /// * [String] authorization:
-  ///
-  /// * [String] xAPIKey:
-  ///
-  /// * [String] cookie:
-  ///
-  /// * [String] x221ExternalRef:
-  ///
-  /// * [String] x221ProjectId:
-  ///
-  /// * [String] projectId:
-  ///
-  /// * [String] lang:
-  ///
-  /// * [String] acceptLanguage:
-  Future<Response> alertsActWithHttpInfo(String id, MultipartFile body, { String? authorization, String? xAPIKey, String? cookie, String? x221ExternalRef, String? x221ProjectId, String? projectId, String? lang, String? acceptLanguage, Future<void>? abortTrigger, }) async {
-    // ignore: prefer_const_declarations
-    final path = r'/v1/alerts/{id}'
-      .replaceAll('{id}', id);
-
-    // ignore: prefer_final_locals
-    Object? postBody = body;
-
-    final queryParams = <QueryParam>[];
-    final headerParams = <String, String>{};
-    final formParams = <String, String>{};
-
-    if (projectId != null) {
-      queryParams.addAll(_queryParams('', 'project_id', projectId));
-    }
-    if (lang != null) {
-      queryParams.addAll(_queryParams('', 'lang', lang));
-    }
-
-    if (authorization != null) {
-      headerParams[r'Authorization'] = parameterToString(authorization);
-    }
-    if (xAPIKey != null) {
-      headerParams[r'X-API-Key'] = parameterToString(xAPIKey);
-    }
-    if (cookie != null) {
-      headerParams[r'Cookie'] = parameterToString(cookie);
-    }
-    if (x221ExternalRef != null) {
-      headerParams[r'X-221-External-Ref'] = parameterToString(x221ExternalRef);
-    }
-    if (x221ProjectId != null) {
-      headerParams[r'X-221-Project-Id'] = parameterToString(x221ProjectId);
-    }
-    if (acceptLanguage != null) {
-      headerParams[r'Accept-Language'] = parameterToString(acceptLanguage);
-    }
-
-    const contentTypes = <String>['application/octet-stream'];
-
-
-    return apiClient.invokeAPI(
-      path,
-      'POST',
-      queryParams,
-      postBody,
-      headerParams,
-      formParams,
-      contentTypes.isEmpty ? null : contentTypes.first,
-      abortTrigger: abortTrigger,
-    );
-  }
-
-  /// Parameters:
-  ///
-  /// * [String] id (required):
-  ///
-  /// * [MultipartFile] body (required):
-  ///
-  /// * [String] authorization:
-  ///
-  /// * [String] xAPIKey:
-  ///
-  /// * [String] cookie:
-  ///
-  /// * [String] x221ExternalRef:
-  ///
-  /// * [String] x221ProjectId:
-  ///
-  /// * [String] projectId:
-  ///
-  /// * [String] lang:
-  ///
-  /// * [String] acceptLanguage:
-  Future<Object?> alertsAct(String id, MultipartFile body, { String? authorization, String? xAPIKey, String? cookie, String? x221ExternalRef, String? x221ProjectId, String? projectId, String? lang, String? acceptLanguage, Future<void>? abortTrigger, }) async {
-    final response = await alertsActWithHttpInfo(id, body, authorization: authorization, xAPIKey: xAPIKey, cookie: cookie, x221ExternalRef: x221ExternalRef, x221ProjectId: x221ProjectId, projectId: projectId, lang: lang, acceptLanguage: acceptLanguage, abortTrigger: abortTrigger,);
-    if (response.statusCode >= HttpStatus.badRequest) {
-      throw ApiException(response.statusCode, await _decodeBodyBytes(response));
-    }
-    // When a remote server returns no body with a status of 204, we shall not decode it.
-    // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
-    // FormatException when trying to decode an empty string.
-    if (response.body.isNotEmpty && response.statusCode != HttpStatus.noContent) {
-      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'Object',) as Object;
-    
-    }
-    return null;
-  }
-
-  /// Performs an HTTP 'POST /v1/alerts/list' operation and returns the [Response].
-  /// Parameters:
-  ///
-  /// * [MultipartFile] body (required):
-  ///
-  /// * [String] authorization:
-  ///
-  /// * [String] xAPIKey:
-  ///
-  /// * [String] cookie:
-  ///
-  /// * [String] x221ExternalRef:
-  ///
-  /// * [String] x221ProjectId:
-  ///
-  /// * [String] projectId:
-  ///
-  /// * [String] lang:
-  ///
-  /// * [String] acceptLanguage:
-  Future<Response> alertsListWithHttpInfo(MultipartFile body, { String? authorization, String? xAPIKey, String? cookie, String? x221ExternalRef, String? x221ProjectId, String? projectId, String? lang, String? acceptLanguage, Future<void>? abortTrigger, }) async {
-    // ignore: prefer_const_declarations
-    final path = r'/v1/alerts/list';
-
-    // ignore: prefer_final_locals
-    Object? postBody = body;
-
-    final queryParams = <QueryParam>[];
-    final headerParams = <String, String>{};
-    final formParams = <String, String>{};
-
-    if (projectId != null) {
-      queryParams.addAll(_queryParams('', 'project_id', projectId));
-    }
-    if (lang != null) {
-      queryParams.addAll(_queryParams('', 'lang', lang));
-    }
-
-    if (authorization != null) {
-      headerParams[r'Authorization'] = parameterToString(authorization);
-    }
-    if (xAPIKey != null) {
-      headerParams[r'X-API-Key'] = parameterToString(xAPIKey);
-    }
-    if (cookie != null) {
-      headerParams[r'Cookie'] = parameterToString(cookie);
-    }
-    if (x221ExternalRef != null) {
-      headerParams[r'X-221-External-Ref'] = parameterToString(x221ExternalRef);
-    }
-    if (x221ProjectId != null) {
-      headerParams[r'X-221-Project-Id'] = parameterToString(x221ProjectId);
-    }
-    if (acceptLanguage != null) {
-      headerParams[r'Accept-Language'] = parameterToString(acceptLanguage);
-    }
-
-    const contentTypes = <String>['application/octet-stream'];
-
-
-    return apiClient.invokeAPI(
-      path,
-      'POST',
-      queryParams,
-      postBody,
-      headerParams,
-      formParams,
-      contentTypes.isEmpty ? null : contentTypes.first,
-      abortTrigger: abortTrigger,
-    );
-  }
-
-  /// Parameters:
-  ///
-  /// * [MultipartFile] body (required):
-  ///
-  /// * [String] authorization:
-  ///
-  /// * [String] xAPIKey:
-  ///
-  /// * [String] cookie:
-  ///
-  /// * [String] x221ExternalRef:
-  ///
-  /// * [String] x221ProjectId:
-  ///
-  /// * [String] projectId:
-  ///
-  /// * [String] lang:
-  ///
-  /// * [String] acceptLanguage:
-  Future<Object?> alertsList(MultipartFile body, { String? authorization, String? xAPIKey, String? cookie, String? x221ExternalRef, String? x221ProjectId, String? projectId, String? lang, String? acceptLanguage, Future<void>? abortTrigger, }) async {
-    final response = await alertsListWithHttpInfo(body, authorization: authorization, xAPIKey: xAPIKey, cookie: cookie, x221ExternalRef: x221ExternalRef, x221ProjectId: x221ProjectId, projectId: projectId, lang: lang, acceptLanguage: acceptLanguage, abortTrigger: abortTrigger,);
-    if (response.statusCode >= HttpStatus.badRequest) {
-      throw ApiException(response.statusCode, await _decodeBodyBytes(response));
-    }
-    // When a remote server returns no body with a status of 204, we shall not decode it.
-    // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
-    // FormatException when trying to decode an empty string.
-    if (response.body.isNotEmpty && response.statusCode != HttpStatus.noContent) {
-      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'Object',) as Object;
-    
-    }
-    return null;
-  }
-
-  /// Performs an HTTP 'POST /v1/analytics/filters/{domain}' operation and returns the [Response].
-  /// Parameters:
-  ///
-  /// * [String] domain (required):
-  ///
-  /// * [MultipartFile] body (required):
-  ///
-  /// * [String] authorization:
-  ///
-  /// * [String] xAPIKey:
-  ///
-  /// * [String] cookie:
-  ///
-  /// * [String] x221ExternalRef:
-  ///
-  /// * [String] x221ProjectId:
-  ///
-  /// * [String] projectId:
-  ///
-  /// * [String] lang:
-  ///
-  /// * [String] acceptLanguage:
-  Future<Response> analyticsFiltersWithHttpInfo(String domain, MultipartFile body, { String? authorization, String? xAPIKey, String? cookie, String? x221ExternalRef, String? x221ProjectId, String? projectId, String? lang, String? acceptLanguage, Future<void>? abortTrigger, }) async {
-    // ignore: prefer_const_declarations
-    final path = r'/v1/analytics/filters/{domain}'
-      .replaceAll('{domain}', domain);
-
-    // ignore: prefer_final_locals
-    Object? postBody = body;
-
-    final queryParams = <QueryParam>[];
-    final headerParams = <String, String>{};
-    final formParams = <String, String>{};
-
-    if (projectId != null) {
-      queryParams.addAll(_queryParams('', 'project_id', projectId));
-    }
-    if (lang != null) {
-      queryParams.addAll(_queryParams('', 'lang', lang));
-    }
-
-    if (authorization != null) {
-      headerParams[r'Authorization'] = parameterToString(authorization);
-    }
-    if (xAPIKey != null) {
-      headerParams[r'X-API-Key'] = parameterToString(xAPIKey);
-    }
-    if (cookie != null) {
-      headerParams[r'Cookie'] = parameterToString(cookie);
-    }
-    if (x221ExternalRef != null) {
-      headerParams[r'X-221-External-Ref'] = parameterToString(x221ExternalRef);
-    }
-    if (x221ProjectId != null) {
-      headerParams[r'X-221-Project-Id'] = parameterToString(x221ProjectId);
-    }
-    if (acceptLanguage != null) {
-      headerParams[r'Accept-Language'] = parameterToString(acceptLanguage);
-    }
-
-    const contentTypes = <String>['application/octet-stream'];
-
-
-    return apiClient.invokeAPI(
-      path,
-      'POST',
-      queryParams,
-      postBody,
-      headerParams,
-      formParams,
-      contentTypes.isEmpty ? null : contentTypes.first,
-      abortTrigger: abortTrigger,
-    );
-  }
-
-  /// Parameters:
-  ///
-  /// * [String] domain (required):
-  ///
-  /// * [MultipartFile] body (required):
-  ///
-  /// * [String] authorization:
-  ///
-  /// * [String] xAPIKey:
-  ///
-  /// * [String] cookie:
-  ///
-  /// * [String] x221ExternalRef:
-  ///
-  /// * [String] x221ProjectId:
-  ///
-  /// * [String] projectId:
-  ///
-  /// * [String] lang:
-  ///
-  /// * [String] acceptLanguage:
-  Future<Object?> analyticsFilters(String domain, MultipartFile body, { String? authorization, String? xAPIKey, String? cookie, String? x221ExternalRef, String? x221ProjectId, String? projectId, String? lang, String? acceptLanguage, Future<void>? abortTrigger, }) async {
-    final response = await analyticsFiltersWithHttpInfo(domain, body, authorization: authorization, xAPIKey: xAPIKey, cookie: cookie, x221ExternalRef: x221ExternalRef, x221ProjectId: x221ProjectId, projectId: projectId, lang: lang, acceptLanguage: acceptLanguage, abortTrigger: abortTrigger,);
-    if (response.statusCode >= HttpStatus.badRequest) {
-      throw ApiException(response.statusCode, await _decodeBodyBytes(response));
-    }
-    // When a remote server returns no body with a status of 204, we shall not decode it.
-    // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
-    // FormatException when trying to decode an empty string.
-    if (response.body.isNotEmpty && response.statusCode != HttpStatus.noContent) {
-      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'Object',) as Object;
-    
-    }
-    return null;
-  }
-
-  /// Performs an HTTP 'POST /v1/analytics/metrics/{domain}' operation and returns the [Response].
-  /// Parameters:
-  ///
-  /// * [String] domain (required):
-  ///
-  /// * [MultipartFile] body (required):
-  ///
-  /// * [String] authorization:
-  ///
-  /// * [String] xAPIKey:
-  ///
-  /// * [String] cookie:
-  ///
-  /// * [String] x221ExternalRef:
-  ///
-  /// * [String] x221ProjectId:
-  ///
-  /// * [String] projectId:
-  ///
-  /// * [String] lang:
-  ///
-  /// * [String] acceptLanguage:
-  Future<Response> analyticsMetricsWithHttpInfo(String domain, MultipartFile body, { String? authorization, String? xAPIKey, String? cookie, String? x221ExternalRef, String? x221ProjectId, String? projectId, String? lang, String? acceptLanguage, Future<void>? abortTrigger, }) async {
-    // ignore: prefer_const_declarations
-    final path = r'/v1/analytics/metrics/{domain}'
-      .replaceAll('{domain}', domain);
-
-    // ignore: prefer_final_locals
-    Object? postBody = body;
-
-    final queryParams = <QueryParam>[];
-    final headerParams = <String, String>{};
-    final formParams = <String, String>{};
-
-    if (projectId != null) {
-      queryParams.addAll(_queryParams('', 'project_id', projectId));
-    }
-    if (lang != null) {
-      queryParams.addAll(_queryParams('', 'lang', lang));
-    }
-
-    if (authorization != null) {
-      headerParams[r'Authorization'] = parameterToString(authorization);
-    }
-    if (xAPIKey != null) {
-      headerParams[r'X-API-Key'] = parameterToString(xAPIKey);
-    }
-    if (cookie != null) {
-      headerParams[r'Cookie'] = parameterToString(cookie);
-    }
-    if (x221ExternalRef != null) {
-      headerParams[r'X-221-External-Ref'] = parameterToString(x221ExternalRef);
-    }
-    if (x221ProjectId != null) {
-      headerParams[r'X-221-Project-Id'] = parameterToString(x221ProjectId);
-    }
-    if (acceptLanguage != null) {
-      headerParams[r'Accept-Language'] = parameterToString(acceptLanguage);
-    }
-
-    const contentTypes = <String>['application/octet-stream'];
-
-
-    return apiClient.invokeAPI(
-      path,
-      'POST',
-      queryParams,
-      postBody,
-      headerParams,
-      formParams,
-      contentTypes.isEmpty ? null : contentTypes.first,
-      abortTrigger: abortTrigger,
-    );
-  }
-
-  /// Parameters:
-  ///
-  /// * [String] domain (required):
-  ///
-  /// * [MultipartFile] body (required):
-  ///
-  /// * [String] authorization:
-  ///
-  /// * [String] xAPIKey:
-  ///
-  /// * [String] cookie:
-  ///
-  /// * [String] x221ExternalRef:
-  ///
-  /// * [String] x221ProjectId:
-  ///
-  /// * [String] projectId:
-  ///
-  /// * [String] lang:
-  ///
-  /// * [String] acceptLanguage:
-  Future<Object?> analyticsMetrics(String domain, MultipartFile body, { String? authorization, String? xAPIKey, String? cookie, String? x221ExternalRef, String? x221ProjectId, String? projectId, String? lang, String? acceptLanguage, Future<void>? abortTrigger, }) async {
-    final response = await analyticsMetricsWithHttpInfo(domain, body, authorization: authorization, xAPIKey: xAPIKey, cookie: cookie, x221ExternalRef: x221ExternalRef, x221ProjectId: x221ProjectId, projectId: projectId, lang: lang, acceptLanguage: acceptLanguage, abortTrigger: abortTrigger,);
-    if (response.statusCode >= HttpStatus.badRequest) {
-      throw ApiException(response.statusCode, await _decodeBodyBytes(response));
-    }
-    // When a remote server returns no body with a status of 204, we shall not decode it.
-    // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
-    // FormatException when trying to decode an empty string.
-    if (response.body.isNotEmpty && response.statusCode != HttpStatus.noContent) {
-      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'Object',) as Object;
-    
-    }
-    return null;
-  }
 
   /// Performs an HTTP 'GET /v1/balances' operation and returns the [Response].
   /// Parameters:
@@ -473,7 +34,17 @@ class PaymentsApi {
   /// * [String] lang:
   ///
   /// * [String] acceptLanguage:
-  Future<Response> balancesGetWithHttpInfo({ String? authorization, String? xAPIKey, String? cookie, String? x221ExternalRef, String? x221ProjectId, String? projectId, String? lang, String? acceptLanguage, Future<void>? abortTrigger, }) async {
+  Future<Response> balancesGetWithHttpInfo({
+    String? authorization,
+    String? xAPIKey,
+    String? cookie,
+    String? x221ExternalRef,
+    String? x221ProjectId,
+    String? projectId,
+    String? lang,
+    String? acceptLanguage,
+    Future<void>? abortTrigger,
+  }) async {
     // ignore: prefer_const_declarations
     final path = r'/v1/balances';
 
@@ -512,7 +83,6 @@ class PaymentsApi {
 
     const contentTypes = <String>[];
 
-
     return apiClient.invokeAPI(
       path,
       'GET',
@@ -542,123 +112,40 @@ class PaymentsApi {
   /// * [String] lang:
   ///
   /// * [String] acceptLanguage:
-  Future<Object?> balancesGet({ String? authorization, String? xAPIKey, String? cookie, String? x221ExternalRef, String? x221ProjectId, String? projectId, String? lang, String? acceptLanguage, Future<void>? abortTrigger, }) async {
-    final response = await balancesGetWithHttpInfo(authorization: authorization, xAPIKey: xAPIKey, cookie: cookie, x221ExternalRef: x221ExternalRef, x221ProjectId: x221ProjectId, projectId: projectId, lang: lang, acceptLanguage: acceptLanguage, abortTrigger: abortTrigger,);
-    if (response.statusCode >= HttpStatus.badRequest) {
-      throw ApiException(response.statusCode, await _decodeBodyBytes(response));
-    }
-    // When a remote server returns no body with a status of 204, we shall not decode it.
-    // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
-    // FormatException when trying to decode an empty string.
-    if (response.body.isNotEmpty && response.statusCode != HttpStatus.noContent) {
-      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'Object',) as Object;
-    
-    }
-    return null;
-  }
-
-  /// Performs an HTTP 'POST /v1/chat' operation and returns the [Response].
-  /// Parameters:
-  ///
-  /// * [MultipartFile] body (required):
-  ///
-  /// * [String] authorization:
-  ///
-  /// * [String] xAPIKey:
-  ///
-  /// * [String] cookie:
-  ///
-  /// * [String] x221ExternalRef:
-  ///
-  /// * [String] x221ProjectId:
-  ///
-  /// * [String] projectId:
-  ///
-  /// * [String] lang:
-  ///
-  /// * [String] acceptLanguage:
-  Future<Response> chatWithHttpInfo(MultipartFile body, { String? authorization, String? xAPIKey, String? cookie, String? x221ExternalRef, String? x221ProjectId, String? projectId, String? lang, String? acceptLanguage, Future<void>? abortTrigger, }) async {
-    // ignore: prefer_const_declarations
-    final path = r'/v1/chat';
-
-    // ignore: prefer_final_locals
-    Object? postBody = body;
-
-    final queryParams = <QueryParam>[];
-    final headerParams = <String, String>{};
-    final formParams = <String, String>{};
-
-    if (projectId != null) {
-      queryParams.addAll(_queryParams('', 'project_id', projectId));
-    }
-    if (lang != null) {
-      queryParams.addAll(_queryParams('', 'lang', lang));
-    }
-
-    if (authorization != null) {
-      headerParams[r'Authorization'] = parameterToString(authorization);
-    }
-    if (xAPIKey != null) {
-      headerParams[r'X-API-Key'] = parameterToString(xAPIKey);
-    }
-    if (cookie != null) {
-      headerParams[r'Cookie'] = parameterToString(cookie);
-    }
-    if (x221ExternalRef != null) {
-      headerParams[r'X-221-External-Ref'] = parameterToString(x221ExternalRef);
-    }
-    if (x221ProjectId != null) {
-      headerParams[r'X-221-Project-Id'] = parameterToString(x221ProjectId);
-    }
-    if (acceptLanguage != null) {
-      headerParams[r'Accept-Language'] = parameterToString(acceptLanguage);
-    }
-
-    const contentTypes = <String>['application/octet-stream'];
-
-
-    return apiClient.invokeAPI(
-      path,
-      'POST',
-      queryParams,
-      postBody,
-      headerParams,
-      formParams,
-      contentTypes.isEmpty ? null : contentTypes.first,
+  Future<Balances?> balancesGet({
+    String? authorization,
+    String? xAPIKey,
+    String? cookie,
+    String? x221ExternalRef,
+    String? x221ProjectId,
+    String? projectId,
+    String? lang,
+    String? acceptLanguage,
+    Future<void>? abortTrigger,
+  }) async {
+    final response = await balancesGetWithHttpInfo(
+      authorization: authorization,
+      xAPIKey: xAPIKey,
+      cookie: cookie,
+      x221ExternalRef: x221ExternalRef,
+      x221ProjectId: x221ProjectId,
+      projectId: projectId,
+      lang: lang,
+      acceptLanguage: acceptLanguage,
       abortTrigger: abortTrigger,
     );
-  }
-
-  /// Parameters:
-  ///
-  /// * [MultipartFile] body (required):
-  ///
-  /// * [String] authorization:
-  ///
-  /// * [String] xAPIKey:
-  ///
-  /// * [String] cookie:
-  ///
-  /// * [String] x221ExternalRef:
-  ///
-  /// * [String] x221ProjectId:
-  ///
-  /// * [String] projectId:
-  ///
-  /// * [String] lang:
-  ///
-  /// * [String] acceptLanguage:
-  Future<Object?> chat(MultipartFile body, { String? authorization, String? xAPIKey, String? cookie, String? x221ExternalRef, String? x221ProjectId, String? projectId, String? lang, String? acceptLanguage, Future<void>? abortTrigger, }) async {
-    final response = await chatWithHttpInfo(body, authorization: authorization, xAPIKey: xAPIKey, cookie: cookie, x221ExternalRef: x221ExternalRef, x221ProjectId: x221ProjectId, projectId: projectId, lang: lang, acceptLanguage: acceptLanguage, abortTrigger: abortTrigger,);
     if (response.statusCode >= HttpStatus.badRequest) {
       throw ApiException(response.statusCode, await _decodeBodyBytes(response));
     }
     // When a remote server returns no body with a status of 204, we shall not decode it.
     // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
     // FormatException when trying to decode an empty string.
-    if (response.body.isNotEmpty && response.statusCode != HttpStatus.noContent) {
-      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'Object',) as Object;
-    
+    if (response.body.isNotEmpty &&
+        response.statusCode != HttpStatus.noContent) {
+      return await apiClient.deserializeAsync(
+        await _decodeBodyBytes(response),
+        'Balances',
+      ) as Balances;
     }
     return null;
   }
@@ -683,10 +170,20 @@ class PaymentsApi {
   /// * [String] lang:
   ///
   /// * [String] acceptLanguage:
-  Future<Response> customersGetWithHttpInfo(String id, { String? authorization, String? xAPIKey, String? cookie, String? x221ExternalRef, String? x221ProjectId, String? projectId, String? lang, String? acceptLanguage, Future<void>? abortTrigger, }) async {
+  Future<Response> customersGetWithHttpInfo(
+    String id, {
+    String? authorization,
+    String? xAPIKey,
+    String? cookie,
+    String? x221ExternalRef,
+    String? x221ProjectId,
+    String? projectId,
+    String? lang,
+    String? acceptLanguage,
+    Future<void>? abortTrigger,
+  }) async {
     // ignore: prefer_const_declarations
-    final path = r'/v1/customers/{id}'
-      .replaceAll('{id}', id);
+    final path = r'/v1/customers/{id}'.replaceAll('{id}', id);
 
     // ignore: prefer_final_locals
     Object? postBody;
@@ -723,7 +220,6 @@ class PaymentsApi {
 
     const contentTypes = <String>[];
 
-
     return apiClient.invokeAPI(
       path,
       'GET',
@@ -755,17 +251,42 @@ class PaymentsApi {
   /// * [String] lang:
   ///
   /// * [String] acceptLanguage:
-  Future<Object?> customersGet(String id, { String? authorization, String? xAPIKey, String? cookie, String? x221ExternalRef, String? x221ProjectId, String? projectId, String? lang, String? acceptLanguage, Future<void>? abortTrigger, }) async {
-    final response = await customersGetWithHttpInfo(id, authorization: authorization, xAPIKey: xAPIKey, cookie: cookie, x221ExternalRef: x221ExternalRef, x221ProjectId: x221ProjectId, projectId: projectId, lang: lang, acceptLanguage: acceptLanguage, abortTrigger: abortTrigger,);
+  Future<Customer?> customersGet(
+    String id, {
+    String? authorization,
+    String? xAPIKey,
+    String? cookie,
+    String? x221ExternalRef,
+    String? x221ProjectId,
+    String? projectId,
+    String? lang,
+    String? acceptLanguage,
+    Future<void>? abortTrigger,
+  }) async {
+    final response = await customersGetWithHttpInfo(
+      id,
+      authorization: authorization,
+      xAPIKey: xAPIKey,
+      cookie: cookie,
+      x221ExternalRef: x221ExternalRef,
+      x221ProjectId: x221ProjectId,
+      projectId: projectId,
+      lang: lang,
+      acceptLanguage: acceptLanguage,
+      abortTrigger: abortTrigger,
+    );
     if (response.statusCode >= HttpStatus.badRequest) {
       throw ApiException(response.statusCode, await _decodeBodyBytes(response));
     }
     // When a remote server returns no body with a status of 204, we shall not decode it.
     // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
     // FormatException when trying to decode an empty string.
-    if (response.body.isNotEmpty && response.statusCode != HttpStatus.noContent) {
-      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'Object',) as Object;
-    
+    if (response.body.isNotEmpty &&
+        response.statusCode != HttpStatus.noContent) {
+      return await apiClient.deserializeAsync(
+        await _decodeBodyBytes(response),
+        'Customer',
+      ) as Customer;
     }
     return null;
   }
@@ -798,7 +319,22 @@ class PaymentsApi {
   /// * [String] from:
   ///
   /// * [String] to:
-  Future<Response> customersListWithHttpInfo({ String? authorization, String? xAPIKey, String? cookie, String? x221ExternalRef, String? x221ProjectId, String? projectId, String? lang, String? acceptLanguage, String? limit, String? offset, String? q, String? from, String? to, Future<void>? abortTrigger, }) async {
+  Future<Response> customersListWithHttpInfo({
+    String? authorization,
+    String? xAPIKey,
+    String? cookie,
+    String? x221ExternalRef,
+    String? x221ProjectId,
+    String? projectId,
+    String? lang,
+    String? acceptLanguage,
+    String? limit,
+    String? offset,
+    String? q,
+    String? from,
+    String? to,
+    Future<void>? abortTrigger,
+  }) async {
     // ignore: prefer_const_declarations
     final path = r'/v1/customers';
 
@@ -852,7 +388,6 @@ class PaymentsApi {
 
     const contentTypes = <String>[];
 
-
     return apiClient.invokeAPI(
       path,
       'GET',
@@ -892,17 +427,50 @@ class PaymentsApi {
   /// * [String] from:
   ///
   /// * [String] to:
-  Future<Object?> customersList({ String? authorization, String? xAPIKey, String? cookie, String? x221ExternalRef, String? x221ProjectId, String? projectId, String? lang, String? acceptLanguage, String? limit, String? offset, String? q, String? from, String? to, Future<void>? abortTrigger, }) async {
-    final response = await customersListWithHttpInfo(authorization: authorization, xAPIKey: xAPIKey, cookie: cookie, x221ExternalRef: x221ExternalRef, x221ProjectId: x221ProjectId, projectId: projectId, lang: lang, acceptLanguage: acceptLanguage, limit: limit, offset: offset, q: q, from: from, to: to, abortTrigger: abortTrigger,);
+  Future<PageCustomer?> customersList({
+    String? authorization,
+    String? xAPIKey,
+    String? cookie,
+    String? x221ExternalRef,
+    String? x221ProjectId,
+    String? projectId,
+    String? lang,
+    String? acceptLanguage,
+    String? limit,
+    String? offset,
+    String? q,
+    String? from,
+    String? to,
+    Future<void>? abortTrigger,
+  }) async {
+    final response = await customersListWithHttpInfo(
+      authorization: authorization,
+      xAPIKey: xAPIKey,
+      cookie: cookie,
+      x221ExternalRef: x221ExternalRef,
+      x221ProjectId: x221ProjectId,
+      projectId: projectId,
+      lang: lang,
+      acceptLanguage: acceptLanguage,
+      limit: limit,
+      offset: offset,
+      q: q,
+      from: from,
+      to: to,
+      abortTrigger: abortTrigger,
+    );
     if (response.statusCode >= HttpStatus.badRequest) {
       throw ApiException(response.statusCode, await _decodeBodyBytes(response));
     }
     // When a remote server returns no body with a status of 204, we shall not decode it.
     // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
     // FormatException when trying to decode an empty string.
-    if (response.body.isNotEmpty && response.statusCode != HttpStatus.noContent) {
-      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'Object',) as Object;
-    
+    if (response.body.isNotEmpty &&
+        response.statusCode != HttpStatus.noContent) {
+      return await apiClient.deserializeAsync(
+        await _decodeBodyBytes(response),
+        'PageCustomer',
+      ) as PageCustomer;
     }
     return null;
   }
@@ -927,10 +495,20 @@ class PaymentsApi {
   /// * [String] lang:
   ///
   /// * [String] acceptLanguage:
-  Future<Response> disputesAcceptWithHttpInfo(String id, { String? authorization, String? xAPIKey, String? cookie, String? x221ExternalRef, String? x221ProjectId, String? projectId, String? lang, String? acceptLanguage, Future<void>? abortTrigger, }) async {
+  Future<Response> disputesAcceptWithHttpInfo(
+    String id, {
+    String? authorization,
+    String? xAPIKey,
+    String? cookie,
+    String? x221ExternalRef,
+    String? x221ProjectId,
+    String? projectId,
+    String? lang,
+    String? acceptLanguage,
+    Future<void>? abortTrigger,
+  }) async {
     // ignore: prefer_const_declarations
-    final path = r'/v1/disputes/{id}/accept'
-      .replaceAll('{id}', id);
+    final path = r'/v1/disputes/{id}/accept'.replaceAll('{id}', id);
 
     // ignore: prefer_final_locals
     Object? postBody;
@@ -967,7 +545,6 @@ class PaymentsApi {
 
     const contentTypes = <String>[];
 
-
     return apiClient.invokeAPI(
       path,
       'POST',
@@ -999,17 +576,42 @@ class PaymentsApi {
   /// * [String] lang:
   ///
   /// * [String] acceptLanguage:
-  Future<Object?> disputesAccept(String id, { String? authorization, String? xAPIKey, String? cookie, String? x221ExternalRef, String? x221ProjectId, String? projectId, String? lang, String? acceptLanguage, Future<void>? abortTrigger, }) async {
-    final response = await disputesAcceptWithHttpInfo(id, authorization: authorization, xAPIKey: xAPIKey, cookie: cookie, x221ExternalRef: x221ExternalRef, x221ProjectId: x221ProjectId, projectId: projectId, lang: lang, acceptLanguage: acceptLanguage, abortTrigger: abortTrigger,);
+  Future<Dispute?> disputesAccept(
+    String id, {
+    String? authorization,
+    String? xAPIKey,
+    String? cookie,
+    String? x221ExternalRef,
+    String? x221ProjectId,
+    String? projectId,
+    String? lang,
+    String? acceptLanguage,
+    Future<void>? abortTrigger,
+  }) async {
+    final response = await disputesAcceptWithHttpInfo(
+      id,
+      authorization: authorization,
+      xAPIKey: xAPIKey,
+      cookie: cookie,
+      x221ExternalRef: x221ExternalRef,
+      x221ProjectId: x221ProjectId,
+      projectId: projectId,
+      lang: lang,
+      acceptLanguage: acceptLanguage,
+      abortTrigger: abortTrigger,
+    );
     if (response.statusCode >= HttpStatus.badRequest) {
       throw ApiException(response.statusCode, await _decodeBodyBytes(response));
     }
     // When a remote server returns no body with a status of 204, we shall not decode it.
     // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
     // FormatException when trying to decode an empty string.
-    if (response.body.isNotEmpty && response.statusCode != HttpStatus.noContent) {
-      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'Object',) as Object;
-    
+    if (response.body.isNotEmpty &&
+        response.statusCode != HttpStatus.noContent) {
+      return await apiClient.deserializeAsync(
+        await _decodeBodyBytes(response),
+        'Dispute',
+      ) as Dispute;
     }
     return null;
   }
@@ -1019,7 +621,7 @@ class PaymentsApi {
   ///
   /// * [String] id (required):
   ///
-  /// * [MultipartFile] body (required):
+  /// * [DisputeChallengeRequest] disputeChallengeRequest (required):
   ///
   /// * [String] authorization:
   ///
@@ -1038,13 +640,25 @@ class PaymentsApi {
   /// * [String] acceptLanguage:
   ///
   /// * [String] contentType:
-  Future<Response> disputesChallengeWithHttpInfo(String id, MultipartFile body, { String? authorization, String? xAPIKey, String? cookie, String? x221ExternalRef, String? x221ProjectId, String? projectId, String? lang, String? acceptLanguage, String? contentType, Future<void>? abortTrigger, }) async {
+  Future<Response> disputesChallengeWithHttpInfo(
+    String id,
+    DisputeChallengeRequest disputeChallengeRequest, {
+    String? authorization,
+    String? xAPIKey,
+    String? cookie,
+    String? x221ExternalRef,
+    String? x221ProjectId,
+    String? projectId,
+    String? lang,
+    String? acceptLanguage,
+    String? contentType,
+    Future<void>? abortTrigger,
+  }) async {
     // ignore: prefer_const_declarations
-    final path = r'/v1/disputes/{id}/evidence'
-      .replaceAll('{id}', id);
+    final path = r'/v1/disputes/{id}/evidence'.replaceAll('{id}', id);
 
     // ignore: prefer_final_locals
-    Object? postBody = body;
+    Object? postBody = disputeChallengeRequest;
 
     final queryParams = <QueryParam>[];
     final headerParams = <String, String>{};
@@ -1079,8 +693,7 @@ class PaymentsApi {
       headerParams[r'Content-Type'] = parameterToString(contentType);
     }
 
-    const contentTypes = <String>['application/octet-stream'];
-
+    const contentTypes = <String>['application/json'];
 
     return apiClient.invokeAPI(
       path,
@@ -1098,7 +711,7 @@ class PaymentsApi {
   ///
   /// * [String] id (required):
   ///
-  /// * [MultipartFile] body (required):
+  /// * [DisputeChallengeRequest] disputeChallengeRequest (required):
   ///
   /// * [String] authorization:
   ///
@@ -1117,17 +730,46 @@ class PaymentsApi {
   /// * [String] acceptLanguage:
   ///
   /// * [String] contentType:
-  Future<Object?> disputesChallenge(String id, MultipartFile body, { String? authorization, String? xAPIKey, String? cookie, String? x221ExternalRef, String? x221ProjectId, String? projectId, String? lang, String? acceptLanguage, String? contentType, Future<void>? abortTrigger, }) async {
-    final response = await disputesChallengeWithHttpInfo(id, body, authorization: authorization, xAPIKey: xAPIKey, cookie: cookie, x221ExternalRef: x221ExternalRef, x221ProjectId: x221ProjectId, projectId: projectId, lang: lang, acceptLanguage: acceptLanguage, contentType: contentType, abortTrigger: abortTrigger,);
+  Future<Dispute?> disputesChallenge(
+    String id,
+    DisputeChallengeRequest disputeChallengeRequest, {
+    String? authorization,
+    String? xAPIKey,
+    String? cookie,
+    String? x221ExternalRef,
+    String? x221ProjectId,
+    String? projectId,
+    String? lang,
+    String? acceptLanguage,
+    String? contentType,
+    Future<void>? abortTrigger,
+  }) async {
+    final response = await disputesChallengeWithHttpInfo(
+      id,
+      disputeChallengeRequest,
+      authorization: authorization,
+      xAPIKey: xAPIKey,
+      cookie: cookie,
+      x221ExternalRef: x221ExternalRef,
+      x221ProjectId: x221ProjectId,
+      projectId: projectId,
+      lang: lang,
+      acceptLanguage: acceptLanguage,
+      contentType: contentType,
+      abortTrigger: abortTrigger,
+    );
     if (response.statusCode >= HttpStatus.badRequest) {
       throw ApiException(response.statusCode, await _decodeBodyBytes(response));
     }
     // When a remote server returns no body with a status of 204, we shall not decode it.
     // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
     // FormatException when trying to decode an empty string.
-    if (response.body.isNotEmpty && response.statusCode != HttpStatus.noContent) {
-      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'Object',) as Object;
-    
+    if (response.body.isNotEmpty &&
+        response.statusCode != HttpStatus.noContent) {
+      return await apiClient.deserializeAsync(
+        await _decodeBodyBytes(response),
+        'Dispute',
+      ) as Dispute;
     }
     return null;
   }
@@ -1135,7 +777,7 @@ class PaymentsApi {
   /// Performs an HTTP 'POST /v1/disputes' operation and returns the [Response].
   /// Parameters:
   ///
-  /// * [MultipartFile] body (required):
+  /// * [DisputeRequest] disputeRequest (required):
   ///
   /// * [String] authorization:
   ///
@@ -1152,12 +794,23 @@ class PaymentsApi {
   /// * [String] lang:
   ///
   /// * [String] acceptLanguage:
-  Future<Response> disputesCreateWithHttpInfo(MultipartFile body, { String? authorization, String? xAPIKey, String? cookie, String? x221ExternalRef, String? x221ProjectId, String? projectId, String? lang, String? acceptLanguage, Future<void>? abortTrigger, }) async {
+  Future<Response> disputesCreateWithHttpInfo(
+    DisputeRequest disputeRequest, {
+    String? authorization,
+    String? xAPIKey,
+    String? cookie,
+    String? x221ExternalRef,
+    String? x221ProjectId,
+    String? projectId,
+    String? lang,
+    String? acceptLanguage,
+    Future<void>? abortTrigger,
+  }) async {
     // ignore: prefer_const_declarations
     final path = r'/v1/disputes';
 
     // ignore: prefer_final_locals
-    Object? postBody = body;
+    Object? postBody = disputeRequest;
 
     final queryParams = <QueryParam>[];
     final headerParams = <String, String>{};
@@ -1189,8 +842,7 @@ class PaymentsApi {
       headerParams[r'Accept-Language'] = parameterToString(acceptLanguage);
     }
 
-    const contentTypes = <String>['application/octet-stream'];
-
+    const contentTypes = <String>['application/json'];
 
     return apiClient.invokeAPI(
       path,
@@ -1206,7 +858,7 @@ class PaymentsApi {
 
   /// Parameters:
   ///
-  /// * [MultipartFile] body (required):
+  /// * [DisputeRequest] disputeRequest (required):
   ///
   /// * [String] authorization:
   ///
@@ -1223,17 +875,237 @@ class PaymentsApi {
   /// * [String] lang:
   ///
   /// * [String] acceptLanguage:
-  Future<Object?> disputesCreate(MultipartFile body, { String? authorization, String? xAPIKey, String? cookie, String? x221ExternalRef, String? x221ProjectId, String? projectId, String? lang, String? acceptLanguage, Future<void>? abortTrigger, }) async {
-    final response = await disputesCreateWithHttpInfo(body, authorization: authorization, xAPIKey: xAPIKey, cookie: cookie, x221ExternalRef: x221ExternalRef, x221ProjectId: x221ProjectId, projectId: projectId, lang: lang, acceptLanguage: acceptLanguage, abortTrigger: abortTrigger,);
+  Future<Dispute?> disputesCreate(
+    DisputeRequest disputeRequest, {
+    String? authorization,
+    String? xAPIKey,
+    String? cookie,
+    String? x221ExternalRef,
+    String? x221ProjectId,
+    String? projectId,
+    String? lang,
+    String? acceptLanguage,
+    Future<void>? abortTrigger,
+  }) async {
+    final response = await disputesCreateWithHttpInfo(
+      disputeRequest,
+      authorization: authorization,
+      xAPIKey: xAPIKey,
+      cookie: cookie,
+      x221ExternalRef: x221ExternalRef,
+      x221ProjectId: x221ProjectId,
+      projectId: projectId,
+      lang: lang,
+      acceptLanguage: acceptLanguage,
+      abortTrigger: abortTrigger,
+    );
     if (response.statusCode >= HttpStatus.badRequest) {
       throw ApiException(response.statusCode, await _decodeBodyBytes(response));
     }
     // When a remote server returns no body with a status of 204, we shall not decode it.
     // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
     // FormatException when trying to decode an empty string.
-    if (response.body.isNotEmpty && response.statusCode != HttpStatus.noContent) {
-      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'Object',) as Object;
-    
+    if (response.body.isNotEmpty &&
+        response.statusCode != HttpStatus.noContent) {
+      return await apiClient.deserializeAsync(
+        await _decodeBodyBytes(response),
+        'Dispute',
+      ) as Dispute;
+    }
+    return null;
+  }
+
+  /// Performs an HTTP 'PUT /v1/disputes/{id}/evidence' operation and returns the [Response].
+  /// Parameters:
+  ///
+  /// * [String] id (required):
+  ///
+  /// * [String] evidenceType (required):
+  ///
+  /// * [MultipartFile] file (required):
+  ///   JPEG, PNG ou PDF, 5 Mo au plus : le type est vérifié sur le contenu du fichier.
+  ///
+  /// * [String] authorization:
+  ///
+  /// * [String] xAPIKey:
+  ///
+  /// * [String] cookie:
+  ///
+  /// * [String] x221ExternalRef:
+  ///
+  /// * [String] x221ProjectId:
+  ///
+  /// * [String] projectId:
+  ///
+  /// * [String] lang:
+  ///
+  /// * [String] acceptLanguage:
+  ///
+  /// * [String] contentType:
+  ///
+  /// * [String] disputeId:
+  ///   Facultatif ; doit être celui de l'URL.
+  Future<Response> disputesEvidenceUploadWithHttpInfo(
+    String id,
+    String evidenceType,
+    MultipartFile file, {
+    String? authorization,
+    String? xAPIKey,
+    String? cookie,
+    String? x221ExternalRef,
+    String? x221ProjectId,
+    String? projectId,
+    String? lang,
+    String? acceptLanguage,
+    String? contentType,
+    String? disputeId,
+    Future<void>? abortTrigger,
+  }) async {
+    // ignore: prefer_const_declarations
+    final path = r'/v1/disputes/{id}/evidence'.replaceAll('{id}', id);
+
+    // ignore: prefer_final_locals
+    Object? postBody;
+
+    final queryParams = <QueryParam>[];
+    final headerParams = <String, String>{};
+    final formParams = <String, String>{};
+
+    if (projectId != null) {
+      queryParams.addAll(_queryParams('', 'project_id', projectId));
+    }
+    if (lang != null) {
+      queryParams.addAll(_queryParams('', 'lang', lang));
+    }
+
+    if (authorization != null) {
+      headerParams[r'Authorization'] = parameterToString(authorization);
+    }
+    if (xAPIKey != null) {
+      headerParams[r'X-API-Key'] = parameterToString(xAPIKey);
+    }
+    if (cookie != null) {
+      headerParams[r'Cookie'] = parameterToString(cookie);
+    }
+    if (x221ExternalRef != null) {
+      headerParams[r'X-221-External-Ref'] = parameterToString(x221ExternalRef);
+    }
+    if (x221ProjectId != null) {
+      headerParams[r'X-221-Project-Id'] = parameterToString(x221ProjectId);
+    }
+    if (acceptLanguage != null) {
+      headerParams[r'Accept-Language'] = parameterToString(acceptLanguage);
+    }
+    if (contentType != null) {
+      headerParams[r'Content-Type'] = parameterToString(contentType);
+    }
+
+    const contentTypes = <String>['multipart/form-data'];
+
+    bool hasFields = false;
+    final mp = MultipartRequest('PUT', Uri.parse(path));
+    if (disputeId != null) {
+      hasFields = true;
+      mp.fields[r'dispute_id'] = parameterToString(disputeId);
+    }
+    if (evidenceType != null) {
+      hasFields = true;
+      mp.fields[r'evidence_type'] = parameterToString(evidenceType);
+    }
+    if (file != null) {
+      hasFields = true;
+      mp.fields[r'file'] = file.field;
+      mp.files.add(file);
+    }
+    if (hasFields) {
+      postBody = mp;
+    }
+
+    return apiClient.invokeAPI(
+      path,
+      'PUT',
+      queryParams,
+      postBody,
+      headerParams,
+      formParams,
+      contentTypes.isEmpty ? null : contentTypes.first,
+      abortTrigger: abortTrigger,
+    );
+  }
+
+  /// Parameters:
+  ///
+  /// * [String] id (required):
+  ///
+  /// * [String] evidenceType (required):
+  ///
+  /// * [MultipartFile] file (required):
+  ///   JPEG, PNG ou PDF, 5 Mo au plus : le type est vérifié sur le contenu du fichier.
+  ///
+  /// * [String] authorization:
+  ///
+  /// * [String] xAPIKey:
+  ///
+  /// * [String] cookie:
+  ///
+  /// * [String] x221ExternalRef:
+  ///
+  /// * [String] x221ProjectId:
+  ///
+  /// * [String] projectId:
+  ///
+  /// * [String] lang:
+  ///
+  /// * [String] acceptLanguage:
+  ///
+  /// * [String] contentType:
+  ///
+  /// * [String] disputeId:
+  ///   Facultatif ; doit être celui de l'URL.
+  Future<DisputeEvidenceFile?> disputesEvidenceUpload(
+    String id,
+    String evidenceType,
+    MultipartFile file, {
+    String? authorization,
+    String? xAPIKey,
+    String? cookie,
+    String? x221ExternalRef,
+    String? x221ProjectId,
+    String? projectId,
+    String? lang,
+    String? acceptLanguage,
+    String? contentType,
+    String? disputeId,
+    Future<void>? abortTrigger,
+  }) async {
+    final response = await disputesEvidenceUploadWithHttpInfo(
+      id,
+      evidenceType,
+      file,
+      authorization: authorization,
+      xAPIKey: xAPIKey,
+      cookie: cookie,
+      x221ExternalRef: x221ExternalRef,
+      x221ProjectId: x221ProjectId,
+      projectId: projectId,
+      lang: lang,
+      acceptLanguage: acceptLanguage,
+      contentType: contentType,
+      disputeId: disputeId,
+      abortTrigger: abortTrigger,
+    );
+    if (response.statusCode >= HttpStatus.badRequest) {
+      throw ApiException(response.statusCode, await _decodeBodyBytes(response));
+    }
+    // When a remote server returns no body with a status of 204, we shall not decode it.
+    // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
+    // FormatException when trying to decode an empty string.
+    if (response.body.isNotEmpty &&
+        response.statusCode != HttpStatus.noContent) {
+      return await apiClient.deserializeAsync(
+        await _decodeBodyBytes(response),
+        'DisputeEvidenceFile',
+      ) as DisputeEvidenceFile;
     }
     return null;
   }
@@ -1258,10 +1130,20 @@ class PaymentsApi {
   /// * [String] lang:
   ///
   /// * [String] acceptLanguage:
-  Future<Response> disputesGetWithHttpInfo(String id, { String? authorization, String? xAPIKey, String? cookie, String? x221ExternalRef, String? x221ProjectId, String? projectId, String? lang, String? acceptLanguage, Future<void>? abortTrigger, }) async {
+  Future<Response> disputesGetWithHttpInfo(
+    String id, {
+    String? authorization,
+    String? xAPIKey,
+    String? cookie,
+    String? x221ExternalRef,
+    String? x221ProjectId,
+    String? projectId,
+    String? lang,
+    String? acceptLanguage,
+    Future<void>? abortTrigger,
+  }) async {
     // ignore: prefer_const_declarations
-    final path = r'/v1/disputes/{id}'
-      .replaceAll('{id}', id);
+    final path = r'/v1/disputes/{id}'.replaceAll('{id}', id);
 
     // ignore: prefer_final_locals
     Object? postBody;
@@ -1298,7 +1180,6 @@ class PaymentsApi {
 
     const contentTypes = <String>[];
 
-
     return apiClient.invokeAPI(
       path,
       'GET',
@@ -1330,17 +1211,42 @@ class PaymentsApi {
   /// * [String] lang:
   ///
   /// * [String] acceptLanguage:
-  Future<Object?> disputesGet(String id, { String? authorization, String? xAPIKey, String? cookie, String? x221ExternalRef, String? x221ProjectId, String? projectId, String? lang, String? acceptLanguage, Future<void>? abortTrigger, }) async {
-    final response = await disputesGetWithHttpInfo(id, authorization: authorization, xAPIKey: xAPIKey, cookie: cookie, x221ExternalRef: x221ExternalRef, x221ProjectId: x221ProjectId, projectId: projectId, lang: lang, acceptLanguage: acceptLanguage, abortTrigger: abortTrigger,);
+  Future<Dispute?> disputesGet(
+    String id, {
+    String? authorization,
+    String? xAPIKey,
+    String? cookie,
+    String? x221ExternalRef,
+    String? x221ProjectId,
+    String? projectId,
+    String? lang,
+    String? acceptLanguage,
+    Future<void>? abortTrigger,
+  }) async {
+    final response = await disputesGetWithHttpInfo(
+      id,
+      authorization: authorization,
+      xAPIKey: xAPIKey,
+      cookie: cookie,
+      x221ExternalRef: x221ExternalRef,
+      x221ProjectId: x221ProjectId,
+      projectId: projectId,
+      lang: lang,
+      acceptLanguage: acceptLanguage,
+      abortTrigger: abortTrigger,
+    );
     if (response.statusCode >= HttpStatus.badRequest) {
       throw ApiException(response.statusCode, await _decodeBodyBytes(response));
     }
     // When a remote server returns no body with a status of 204, we shall not decode it.
     // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
     // FormatException when trying to decode an empty string.
-    if (response.body.isNotEmpty && response.statusCode != HttpStatus.noContent) {
-      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'Object',) as Object;
-    
+    if (response.body.isNotEmpty &&
+        response.statusCode != HttpStatus.noContent) {
+      return await apiClient.deserializeAsync(
+        await _decodeBodyBytes(response),
+        'Dispute',
+      ) as Dispute;
     }
     return null;
   }
@@ -1370,12 +1276,28 @@ class PaymentsApi {
   ///
   /// * [String] paymentId:
   ///
-  /// * [String] disputeStatus:
+  /// * [String] status:
   ///
   /// * [String] from:
   ///
   /// * [String] to:
-  Future<Response> disputesListWithHttpInfo({ String? authorization, String? xAPIKey, String? cookie, String? x221ExternalRef, String? x221ProjectId, String? projectId, String? lang, String? acceptLanguage, String? limit, String? offset, String? paymentId, String? disputeStatus, String? from, String? to, Future<void>? abortTrigger, }) async {
+  Future<Response> disputesListWithHttpInfo({
+    String? authorization,
+    String? xAPIKey,
+    String? cookie,
+    String? x221ExternalRef,
+    String? x221ProjectId,
+    String? projectId,
+    String? lang,
+    String? acceptLanguage,
+    String? limit,
+    String? offset,
+    String? paymentId,
+    String? status,
+    String? from,
+    String? to,
+    Future<void>? abortTrigger,
+  }) async {
     // ignore: prefer_const_declarations
     final path = r'/v1/disputes';
 
@@ -1401,8 +1323,8 @@ class PaymentsApi {
     if (paymentId != null) {
       queryParams.addAll(_queryParams('', 'payment_id', paymentId));
     }
-    if (disputeStatus != null) {
-      queryParams.addAll(_queryParams('', 'dispute_status', disputeStatus));
+    if (status != null) {
+      queryParams.addAll(_queryParams('', 'status', status));
     }
     if (from != null) {
       queryParams.addAll(_queryParams('', 'from', from));
@@ -1431,7 +1353,6 @@ class PaymentsApi {
     }
 
     const contentTypes = <String>[];
-
 
     return apiClient.invokeAPI(
       path,
@@ -1469,22 +1390,191 @@ class PaymentsApi {
   ///
   /// * [String] paymentId:
   ///
-  /// * [String] disputeStatus:
+  /// * [String] status:
   ///
   /// * [String] from:
   ///
   /// * [String] to:
-  Future<Object?> disputesList({ String? authorization, String? xAPIKey, String? cookie, String? x221ExternalRef, String? x221ProjectId, String? projectId, String? lang, String? acceptLanguage, String? limit, String? offset, String? paymentId, String? disputeStatus, String? from, String? to, Future<void>? abortTrigger, }) async {
-    final response = await disputesListWithHttpInfo(authorization: authorization, xAPIKey: xAPIKey, cookie: cookie, x221ExternalRef: x221ExternalRef, x221ProjectId: x221ProjectId, projectId: projectId, lang: lang, acceptLanguage: acceptLanguage, limit: limit, offset: offset, paymentId: paymentId, disputeStatus: disputeStatus, from: from, to: to, abortTrigger: abortTrigger,);
+  Future<PageDispute?> disputesList({
+    String? authorization,
+    String? xAPIKey,
+    String? cookie,
+    String? x221ExternalRef,
+    String? x221ProjectId,
+    String? projectId,
+    String? lang,
+    String? acceptLanguage,
+    String? limit,
+    String? offset,
+    String? paymentId,
+    String? status,
+    String? from,
+    String? to,
+    Future<void>? abortTrigger,
+  }) async {
+    final response = await disputesListWithHttpInfo(
+      authorization: authorization,
+      xAPIKey: xAPIKey,
+      cookie: cookie,
+      x221ExternalRef: x221ExternalRef,
+      x221ProjectId: x221ProjectId,
+      projectId: projectId,
+      lang: lang,
+      acceptLanguage: acceptLanguage,
+      limit: limit,
+      offset: offset,
+      paymentId: paymentId,
+      status: status,
+      from: from,
+      to: to,
+      abortTrigger: abortTrigger,
+    );
     if (response.statusCode >= HttpStatus.badRequest) {
       throw ApiException(response.statusCode, await _decodeBodyBytes(response));
     }
     // When a remote server returns no body with a status of 204, we shall not decode it.
     // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
     // FormatException when trying to decode an empty string.
-    if (response.body.isNotEmpty && response.statusCode != HttpStatus.noContent) {
-      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'Object',) as Object;
-    
+    if (response.body.isNotEmpty &&
+        response.statusCode != HttpStatus.noContent) {
+      return await apiClient.deserializeAsync(
+        await _decodeBodyBytes(response),
+        'PageDispute',
+      ) as PageDispute;
+    }
+    return null;
+  }
+
+  /// Performs an HTTP 'GET /v1/fees' operation and returns the [Response].
+  /// Parameters:
+  ///
+  /// * [String] authorization:
+  ///
+  /// * [String] xAPIKey:
+  ///
+  /// * [String] cookie:
+  ///
+  /// * [String] x221ExternalRef:
+  ///
+  /// * [String] x221ProjectId:
+  ///
+  /// * [String] projectId:
+  ///
+  /// * [String] lang:
+  ///
+  /// * [String] acceptLanguage:
+  Future<Response> feesGetWithHttpInfo({
+    String? authorization,
+    String? xAPIKey,
+    String? cookie,
+    String? x221ExternalRef,
+    String? x221ProjectId,
+    String? projectId,
+    String? lang,
+    String? acceptLanguage,
+    Future<void>? abortTrigger,
+  }) async {
+    // ignore: prefer_const_declarations
+    final path = r'/v1/fees';
+
+    // ignore: prefer_final_locals
+    Object? postBody;
+
+    final queryParams = <QueryParam>[];
+    final headerParams = <String, String>{};
+    final formParams = <String, String>{};
+
+    if (projectId != null) {
+      queryParams.addAll(_queryParams('', 'project_id', projectId));
+    }
+    if (lang != null) {
+      queryParams.addAll(_queryParams('', 'lang', lang));
+    }
+
+    if (authorization != null) {
+      headerParams[r'Authorization'] = parameterToString(authorization);
+    }
+    if (xAPIKey != null) {
+      headerParams[r'X-API-Key'] = parameterToString(xAPIKey);
+    }
+    if (cookie != null) {
+      headerParams[r'Cookie'] = parameterToString(cookie);
+    }
+    if (x221ExternalRef != null) {
+      headerParams[r'X-221-External-Ref'] = parameterToString(x221ExternalRef);
+    }
+    if (x221ProjectId != null) {
+      headerParams[r'X-221-Project-Id'] = parameterToString(x221ProjectId);
+    }
+    if (acceptLanguage != null) {
+      headerParams[r'Accept-Language'] = parameterToString(acceptLanguage);
+    }
+
+    const contentTypes = <String>[];
+
+    return apiClient.invokeAPI(
+      path,
+      'GET',
+      queryParams,
+      postBody,
+      headerParams,
+      formParams,
+      contentTypes.isEmpty ? null : contentTypes.first,
+      abortTrigger: abortTrigger,
+    );
+  }
+
+  /// Parameters:
+  ///
+  /// * [String] authorization:
+  ///
+  /// * [String] xAPIKey:
+  ///
+  /// * [String] cookie:
+  ///
+  /// * [String] x221ExternalRef:
+  ///
+  /// * [String] x221ProjectId:
+  ///
+  /// * [String] projectId:
+  ///
+  /// * [String] lang:
+  ///
+  /// * [String] acceptLanguage:
+  Future<Fees?> feesGet({
+    String? authorization,
+    String? xAPIKey,
+    String? cookie,
+    String? x221ExternalRef,
+    String? x221ProjectId,
+    String? projectId,
+    String? lang,
+    String? acceptLanguage,
+    Future<void>? abortTrigger,
+  }) async {
+    final response = await feesGetWithHttpInfo(
+      authorization: authorization,
+      xAPIKey: xAPIKey,
+      cookie: cookie,
+      x221ExternalRef: x221ExternalRef,
+      x221ProjectId: x221ProjectId,
+      projectId: projectId,
+      lang: lang,
+      acceptLanguage: acceptLanguage,
+      abortTrigger: abortTrigger,
+    );
+    if (response.statusCode >= HttpStatus.badRequest) {
+      throw ApiException(response.statusCode, await _decodeBodyBytes(response));
+    }
+    // When a remote server returns no body with a status of 204, we shall not decode it.
+    // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
+    // FormatException when trying to decode an empty string.
+    if (response.body.isNotEmpty &&
+        response.statusCode != HttpStatus.noContent) {
+      return await apiClient.deserializeAsync(
+        await _decodeBodyBytes(response),
+        'Fees',
+      ) as Fees;
     }
     return null;
   }
@@ -1507,7 +1597,17 @@ class PaymentsApi {
   /// * [String] lang:
   ///
   /// * [String] acceptLanguage:
-  Future<Response> kycDocumentsWithHttpInfo({ String? authorization, String? xAPIKey, String? cookie, String? x221ExternalRef, String? x221ProjectId, String? projectId, String? lang, String? acceptLanguage, Future<void>? abortTrigger, }) async {
+  Future<Response> kycDocumentsWithHttpInfo({
+    String? authorization,
+    String? xAPIKey,
+    String? cookie,
+    String? x221ExternalRef,
+    String? x221ProjectId,
+    String? projectId,
+    String? lang,
+    String? acceptLanguage,
+    Future<void>? abortTrigger,
+  }) async {
     // ignore: prefer_const_declarations
     final path = r'/v1/kyc/documents';
 
@@ -1546,7 +1646,6 @@ class PaymentsApi {
 
     const contentTypes = <String>[];
 
-
     return apiClient.invokeAPI(
       path,
       'GET',
@@ -1576,17 +1675,40 @@ class PaymentsApi {
   /// * [String] lang:
   ///
   /// * [String] acceptLanguage:
-  Future<Object?> kycDocuments({ String? authorization, String? xAPIKey, String? cookie, String? x221ExternalRef, String? x221ProjectId, String? projectId, String? lang, String? acceptLanguage, Future<void>? abortTrigger, }) async {
-    final response = await kycDocumentsWithHttpInfo(authorization: authorization, xAPIKey: xAPIKey, cookie: cookie, x221ExternalRef: x221ExternalRef, x221ProjectId: x221ProjectId, projectId: projectId, lang: lang, acceptLanguage: acceptLanguage, abortTrigger: abortTrigger,);
+  Future<KycDocuments?> kycDocuments({
+    String? authorization,
+    String? xAPIKey,
+    String? cookie,
+    String? x221ExternalRef,
+    String? x221ProjectId,
+    String? projectId,
+    String? lang,
+    String? acceptLanguage,
+    Future<void>? abortTrigger,
+  }) async {
+    final response = await kycDocumentsWithHttpInfo(
+      authorization: authorization,
+      xAPIKey: xAPIKey,
+      cookie: cookie,
+      x221ExternalRef: x221ExternalRef,
+      x221ProjectId: x221ProjectId,
+      projectId: projectId,
+      lang: lang,
+      acceptLanguage: acceptLanguage,
+      abortTrigger: abortTrigger,
+    );
     if (response.statusCode >= HttpStatus.badRequest) {
       throw ApiException(response.statusCode, await _decodeBodyBytes(response));
     }
     // When a remote server returns no body with a status of 204, we shall not decode it.
     // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
     // FormatException when trying to decode an empty string.
-    if (response.body.isNotEmpty && response.statusCode != HttpStatus.noContent) {
-      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'Object',) as Object;
-    
+    if (response.body.isNotEmpty &&
+        response.statusCode != HttpStatus.noContent) {
+      return await apiClient.deserializeAsync(
+        await _decodeBodyBytes(response),
+        'KycDocuments',
+      ) as KycDocuments;
     }
     return null;
   }
@@ -1594,7 +1716,7 @@ class PaymentsApi {
   /// Performs an HTTP 'POST /v1/kyc/sessions' operation and returns the [Response].
   /// Parameters:
   ///
-  /// * [MultipartFile] body (required):
+  /// * [KycSessionRequest] kycSessionRequest (required):
   ///
   /// * [String] authorization:
   ///
@@ -1611,12 +1733,23 @@ class PaymentsApi {
   /// * [String] lang:
   ///
   /// * [String] acceptLanguage:
-  Future<Response> kycSessionsCreateWithHttpInfo(MultipartFile body, { String? authorization, String? xAPIKey, String? cookie, String? x221ExternalRef, String? x221ProjectId, String? projectId, String? lang, String? acceptLanguage, Future<void>? abortTrigger, }) async {
+  Future<Response> kycSessionsCreateWithHttpInfo(
+    KycSessionRequest kycSessionRequest, {
+    String? authorization,
+    String? xAPIKey,
+    String? cookie,
+    String? x221ExternalRef,
+    String? x221ProjectId,
+    String? projectId,
+    String? lang,
+    String? acceptLanguage,
+    Future<void>? abortTrigger,
+  }) async {
     // ignore: prefer_const_declarations
     final path = r'/v1/kyc/sessions';
 
     // ignore: prefer_final_locals
-    Object? postBody = body;
+    Object? postBody = kycSessionRequest;
 
     final queryParams = <QueryParam>[];
     final headerParams = <String, String>{};
@@ -1648,8 +1781,7 @@ class PaymentsApi {
       headerParams[r'Accept-Language'] = parameterToString(acceptLanguage);
     }
 
-    const contentTypes = <String>['application/octet-stream'];
-
+    const contentTypes = <String>['application/json'];
 
     return apiClient.invokeAPI(
       path,
@@ -1665,7 +1797,7 @@ class PaymentsApi {
 
   /// Parameters:
   ///
-  /// * [MultipartFile] body (required):
+  /// * [KycSessionRequest] kycSessionRequest (required):
   ///
   /// * [String] authorization:
   ///
@@ -1682,17 +1814,42 @@ class PaymentsApi {
   /// * [String] lang:
   ///
   /// * [String] acceptLanguage:
-  Future<Object?> kycSessionsCreate(MultipartFile body, { String? authorization, String? xAPIKey, String? cookie, String? x221ExternalRef, String? x221ProjectId, String? projectId, String? lang, String? acceptLanguage, Future<void>? abortTrigger, }) async {
-    final response = await kycSessionsCreateWithHttpInfo(body, authorization: authorization, xAPIKey: xAPIKey, cookie: cookie, x221ExternalRef: x221ExternalRef, x221ProjectId: x221ProjectId, projectId: projectId, lang: lang, acceptLanguage: acceptLanguage, abortTrigger: abortTrigger,);
+  Future<KycSession?> kycSessionsCreate(
+    KycSessionRequest kycSessionRequest, {
+    String? authorization,
+    String? xAPIKey,
+    String? cookie,
+    String? x221ExternalRef,
+    String? x221ProjectId,
+    String? projectId,
+    String? lang,
+    String? acceptLanguage,
+    Future<void>? abortTrigger,
+  }) async {
+    final response = await kycSessionsCreateWithHttpInfo(
+      kycSessionRequest,
+      authorization: authorization,
+      xAPIKey: xAPIKey,
+      cookie: cookie,
+      x221ExternalRef: x221ExternalRef,
+      x221ProjectId: x221ProjectId,
+      projectId: projectId,
+      lang: lang,
+      acceptLanguage: acceptLanguage,
+      abortTrigger: abortTrigger,
+    );
     if (response.statusCode >= HttpStatus.badRequest) {
       throw ApiException(response.statusCode, await _decodeBodyBytes(response));
     }
     // When a remote server returns no body with a status of 204, we shall not decode it.
     // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
     // FormatException when trying to decode an empty string.
-    if (response.body.isNotEmpty && response.statusCode != HttpStatus.noContent) {
-      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'Object',) as Object;
-    
+    if (response.body.isNotEmpty &&
+        response.statusCode != HttpStatus.noContent) {
+      return await apiClient.deserializeAsync(
+        await _decodeBodyBytes(response),
+        'KycSession',
+      ) as KycSession;
     }
     return null;
   }
@@ -1715,7 +1872,17 @@ class PaymentsApi {
   /// * [String] lang:
   ///
   /// * [String] acceptLanguage:
-  Future<Response> kycSessionsUploadsWithHttpInfo({ String? authorization, String? xAPIKey, String? cookie, String? x221ExternalRef, String? x221ProjectId, String? projectId, String? lang, String? acceptLanguage, Future<void>? abortTrigger, }) async {
+  Future<Response> kycSessionsUploadsWithHttpInfo({
+    String? authorization,
+    String? xAPIKey,
+    String? cookie,
+    String? x221ExternalRef,
+    String? x221ProjectId,
+    String? projectId,
+    String? lang,
+    String? acceptLanguage,
+    Future<void>? abortTrigger,
+  }) async {
     // ignore: prefer_const_declarations
     final path = r'/v1/kyc/sessions/uploads';
 
@@ -1754,7 +1921,6 @@ class PaymentsApi {
 
     const contentTypes = <String>[];
 
-
     return apiClient.invokeAPI(
       path,
       'POST',
@@ -1784,17 +1950,40 @@ class PaymentsApi {
   /// * [String] lang:
   ///
   /// * [String] acceptLanguage:
-  Future<Object?> kycSessionsUploads({ String? authorization, String? xAPIKey, String? cookie, String? x221ExternalRef, String? x221ProjectId, String? projectId, String? lang, String? acceptLanguage, Future<void>? abortTrigger, }) async {
-    final response = await kycSessionsUploadsWithHttpInfo(authorization: authorization, xAPIKey: xAPIKey, cookie: cookie, x221ExternalRef: x221ExternalRef, x221ProjectId: x221ProjectId, projectId: projectId, lang: lang, acceptLanguage: acceptLanguage, abortTrigger: abortTrigger,);
+  Future<KycSession?> kycSessionsUploads({
+    String? authorization,
+    String? xAPIKey,
+    String? cookie,
+    String? x221ExternalRef,
+    String? x221ProjectId,
+    String? projectId,
+    String? lang,
+    String? acceptLanguage,
+    Future<void>? abortTrigger,
+  }) async {
+    final response = await kycSessionsUploadsWithHttpInfo(
+      authorization: authorization,
+      xAPIKey: xAPIKey,
+      cookie: cookie,
+      x221ExternalRef: x221ExternalRef,
+      x221ProjectId: x221ProjectId,
+      projectId: projectId,
+      lang: lang,
+      acceptLanguage: acceptLanguage,
+      abortTrigger: abortTrigger,
+    );
     if (response.statusCode >= HttpStatus.badRequest) {
       throw ApiException(response.statusCode, await _decodeBodyBytes(response));
     }
     // When a remote server returns no body with a status of 204, we shall not decode it.
     // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
     // FormatException when trying to decode an empty string.
-    if (response.body.isNotEmpty && response.statusCode != HttpStatus.noContent) {
-      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'Object',) as Object;
-    
+    if (response.body.isNotEmpty &&
+        response.statusCode != HttpStatus.noContent) {
+      return await apiClient.deserializeAsync(
+        await _decodeBodyBytes(response),
+        'KycSession',
+      ) as KycSession;
     }
     return null;
   }
@@ -1817,7 +2006,17 @@ class PaymentsApi {
   /// * [String] lang:
   ///
   /// * [String] acceptLanguage:
-  Future<Response> kycStatusWithHttpInfo({ String? authorization, String? xAPIKey, String? cookie, String? x221ExternalRef, String? x221ProjectId, String? projectId, String? lang, String? acceptLanguage, Future<void>? abortTrigger, }) async {
+  Future<Response> kycStatusWithHttpInfo({
+    String? authorization,
+    String? xAPIKey,
+    String? cookie,
+    String? x221ExternalRef,
+    String? x221ProjectId,
+    String? projectId,
+    String? lang,
+    String? acceptLanguage,
+    Future<void>? abortTrigger,
+  }) async {
     // ignore: prefer_const_declarations
     final path = r'/v1/kyc/status';
 
@@ -1856,7 +2055,6 @@ class PaymentsApi {
 
     const contentTypes = <String>[];
 
-
     return apiClient.invokeAPI(
       path,
       'GET',
@@ -1886,17 +2084,40 @@ class PaymentsApi {
   /// * [String] lang:
   ///
   /// * [String] acceptLanguage:
-  Future<Object?> kycStatus({ String? authorization, String? xAPIKey, String? cookie, String? x221ExternalRef, String? x221ProjectId, String? projectId, String? lang, String? acceptLanguage, Future<void>? abortTrigger, }) async {
-    final response = await kycStatusWithHttpInfo(authorization: authorization, xAPIKey: xAPIKey, cookie: cookie, x221ExternalRef: x221ExternalRef, x221ProjectId: x221ProjectId, projectId: projectId, lang: lang, acceptLanguage: acceptLanguage, abortTrigger: abortTrigger,);
+  Future<KycStatus?> kycStatus({
+    String? authorization,
+    String? xAPIKey,
+    String? cookie,
+    String? x221ExternalRef,
+    String? x221ProjectId,
+    String? projectId,
+    String? lang,
+    String? acceptLanguage,
+    Future<void>? abortTrigger,
+  }) async {
+    final response = await kycStatusWithHttpInfo(
+      authorization: authorization,
+      xAPIKey: xAPIKey,
+      cookie: cookie,
+      x221ExternalRef: x221ExternalRef,
+      x221ProjectId: x221ProjectId,
+      projectId: projectId,
+      lang: lang,
+      acceptLanguage: acceptLanguage,
+      abortTrigger: abortTrigger,
+    );
     if (response.statusCode >= HttpStatus.badRequest) {
       throw ApiException(response.statusCode, await _decodeBodyBytes(response));
     }
     // When a remote server returns no body with a status of 204, we shall not decode it.
     // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
     // FormatException when trying to decode an empty string.
-    if (response.body.isNotEmpty && response.statusCode != HttpStatus.noContent) {
-      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'Object',) as Object;
-    
+    if (response.body.isNotEmpty &&
+        response.statusCode != HttpStatus.noContent) {
+      return await apiClient.deserializeAsync(
+        await _decodeBodyBytes(response),
+        'KycStatus',
+      ) as KycStatus;
     }
     return null;
   }
@@ -1919,7 +2140,17 @@ class PaymentsApi {
   /// * [String] lang:
   ///
   /// * [String] acceptLanguage:
-  Future<Response> kycSubmitWithHttpInfo({ String? authorization, String? xAPIKey, String? cookie, String? x221ExternalRef, String? x221ProjectId, String? projectId, String? lang, String? acceptLanguage, Future<void>? abortTrigger, }) async {
+  Future<Response> kycSubmitWithHttpInfo({
+    String? authorization,
+    String? xAPIKey,
+    String? cookie,
+    String? x221ExternalRef,
+    String? x221ProjectId,
+    String? projectId,
+    String? lang,
+    String? acceptLanguage,
+    Future<void>? abortTrigger,
+  }) async {
     // ignore: prefer_const_declarations
     final path = r'/v1/kyc/submit';
 
@@ -1958,7 +2189,6 @@ class PaymentsApi {
 
     const contentTypes = <String>[];
 
-
     return apiClient.invokeAPI(
       path,
       'POST',
@@ -1988,17 +2218,40 @@ class PaymentsApi {
   /// * [String] lang:
   ///
   /// * [String] acceptLanguage:
-  Future<Object?> kycSubmit({ String? authorization, String? xAPIKey, String? cookie, String? x221ExternalRef, String? x221ProjectId, String? projectId, String? lang, String? acceptLanguage, Future<void>? abortTrigger, }) async {
-    final response = await kycSubmitWithHttpInfo(authorization: authorization, xAPIKey: xAPIKey, cookie: cookie, x221ExternalRef: x221ExternalRef, x221ProjectId: x221ProjectId, projectId: projectId, lang: lang, acceptLanguage: acceptLanguage, abortTrigger: abortTrigger,);
+  Future<KycSession?> kycSubmit({
+    String? authorization,
+    String? xAPIKey,
+    String? cookie,
+    String? x221ExternalRef,
+    String? x221ProjectId,
+    String? projectId,
+    String? lang,
+    String? acceptLanguage,
+    Future<void>? abortTrigger,
+  }) async {
+    final response = await kycSubmitWithHttpInfo(
+      authorization: authorization,
+      xAPIKey: xAPIKey,
+      cookie: cookie,
+      x221ExternalRef: x221ExternalRef,
+      x221ProjectId: x221ProjectId,
+      projectId: projectId,
+      lang: lang,
+      acceptLanguage: acceptLanguage,
+      abortTrigger: abortTrigger,
+    );
     if (response.statusCode >= HttpStatus.badRequest) {
       throw ApiException(response.statusCode, await _decodeBodyBytes(response));
     }
     // When a remote server returns no body with a status of 204, we shall not decode it.
     // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
     // FormatException when trying to decode an empty string.
-    if (response.body.isNotEmpty && response.statusCode != HttpStatus.noContent) {
-      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'Object',) as Object;
-    
+    if (response.body.isNotEmpty &&
+        response.statusCode != HttpStatus.noContent) {
+      return await apiClient.deserializeAsync(
+        await _decodeBodyBytes(response),
+        'KycSession',
+      ) as KycSession;
     }
     return null;
   }
@@ -2006,7 +2259,7 @@ class PaymentsApi {
   /// Performs an HTTP 'POST /v1/offers' operation and returns the [Response].
   /// Parameters:
   ///
-  /// * [MultipartFile] body (required):
+  /// * [OfferRequest] offerRequest (required):
   ///
   /// * [String] authorization:
   ///
@@ -2023,12 +2276,23 @@ class PaymentsApi {
   /// * [String] lang:
   ///
   /// * [String] acceptLanguage:
-  Future<Response> offersCreateWithHttpInfo(MultipartFile body, { String? authorization, String? xAPIKey, String? cookie, String? x221ExternalRef, String? x221ProjectId, String? projectId, String? lang, String? acceptLanguage, Future<void>? abortTrigger, }) async {
+  Future<Response> offersCreateWithHttpInfo(
+    OfferRequest offerRequest, {
+    String? authorization,
+    String? xAPIKey,
+    String? cookie,
+    String? x221ExternalRef,
+    String? x221ProjectId,
+    String? projectId,
+    String? lang,
+    String? acceptLanguage,
+    Future<void>? abortTrigger,
+  }) async {
     // ignore: prefer_const_declarations
     final path = r'/v1/offers';
 
     // ignore: prefer_final_locals
-    Object? postBody = body;
+    Object? postBody = offerRequest;
 
     final queryParams = <QueryParam>[];
     final headerParams = <String, String>{};
@@ -2060,8 +2324,7 @@ class PaymentsApi {
       headerParams[r'Accept-Language'] = parameterToString(acceptLanguage);
     }
 
-    const contentTypes = <String>['application/octet-stream'];
-
+    const contentTypes = <String>['application/json'];
 
     return apiClient.invokeAPI(
       path,
@@ -2077,7 +2340,7 @@ class PaymentsApi {
 
   /// Parameters:
   ///
-  /// * [MultipartFile] body (required):
+  /// * [OfferRequest] offerRequest (required):
   ///
   /// * [String] authorization:
   ///
@@ -2094,17 +2357,42 @@ class PaymentsApi {
   /// * [String] lang:
   ///
   /// * [String] acceptLanguage:
-  Future<Object?> offersCreate(MultipartFile body, { String? authorization, String? xAPIKey, String? cookie, String? x221ExternalRef, String? x221ProjectId, String? projectId, String? lang, String? acceptLanguage, Future<void>? abortTrigger, }) async {
-    final response = await offersCreateWithHttpInfo(body, authorization: authorization, xAPIKey: xAPIKey, cookie: cookie, x221ExternalRef: x221ExternalRef, x221ProjectId: x221ProjectId, projectId: projectId, lang: lang, acceptLanguage: acceptLanguage, abortTrigger: abortTrigger,);
+  Future<Offer?> offersCreate(
+    OfferRequest offerRequest, {
+    String? authorization,
+    String? xAPIKey,
+    String? cookie,
+    String? x221ExternalRef,
+    String? x221ProjectId,
+    String? projectId,
+    String? lang,
+    String? acceptLanguage,
+    Future<void>? abortTrigger,
+  }) async {
+    final response = await offersCreateWithHttpInfo(
+      offerRequest,
+      authorization: authorization,
+      xAPIKey: xAPIKey,
+      cookie: cookie,
+      x221ExternalRef: x221ExternalRef,
+      x221ProjectId: x221ProjectId,
+      projectId: projectId,
+      lang: lang,
+      acceptLanguage: acceptLanguage,
+      abortTrigger: abortTrigger,
+    );
     if (response.statusCode >= HttpStatus.badRequest) {
       throw ApiException(response.statusCode, await _decodeBodyBytes(response));
     }
     // When a remote server returns no body with a status of 204, we shall not decode it.
     // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
     // FormatException when trying to decode an empty string.
-    if (response.body.isNotEmpty && response.statusCode != HttpStatus.noContent) {
-      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'Object',) as Object;
-    
+    if (response.body.isNotEmpty &&
+        response.statusCode != HttpStatus.noContent) {
+      return await apiClient.deserializeAsync(
+        await _decodeBodyBytes(response),
+        'Offer',
+      ) as Offer;
     }
     return null;
   }
@@ -2129,10 +2417,20 @@ class PaymentsApi {
   /// * [String] lang:
   ///
   /// * [String] acceptLanguage:
-  Future<Response> offersDeleteWithHttpInfo(String id, { String? authorization, String? xAPIKey, String? cookie, String? x221ExternalRef, String? x221ProjectId, String? projectId, String? lang, String? acceptLanguage, Future<void>? abortTrigger, }) async {
+  Future<Response> offersDeleteWithHttpInfo(
+    String id, {
+    String? authorization,
+    String? xAPIKey,
+    String? cookie,
+    String? x221ExternalRef,
+    String? x221ProjectId,
+    String? projectId,
+    String? lang,
+    String? acceptLanguage,
+    Future<void>? abortTrigger,
+  }) async {
     // ignore: prefer_const_declarations
-    final path = r'/v1/offers/{id}'
-      .replaceAll('{id}', id);
+    final path = r'/v1/offers/{id}'.replaceAll('{id}', id);
 
     // ignore: prefer_final_locals
     Object? postBody;
@@ -2168,7 +2466,6 @@ class PaymentsApi {
     }
 
     const contentTypes = <String>[];
-
 
     return apiClient.invokeAPI(
       path,
@@ -2201,17 +2498,42 @@ class PaymentsApi {
   /// * [String] lang:
   ///
   /// * [String] acceptLanguage:
-  Future<Object?> offersDelete(String id, { String? authorization, String? xAPIKey, String? cookie, String? x221ExternalRef, String? x221ProjectId, String? projectId, String? lang, String? acceptLanguage, Future<void>? abortTrigger, }) async {
-    final response = await offersDeleteWithHttpInfo(id, authorization: authorization, xAPIKey: xAPIKey, cookie: cookie, x221ExternalRef: x221ExternalRef, x221ProjectId: x221ProjectId, projectId: projectId, lang: lang, acceptLanguage: acceptLanguage, abortTrigger: abortTrigger,);
+  Future<Offer?> offersDelete(
+    String id, {
+    String? authorization,
+    String? xAPIKey,
+    String? cookie,
+    String? x221ExternalRef,
+    String? x221ProjectId,
+    String? projectId,
+    String? lang,
+    String? acceptLanguage,
+    Future<void>? abortTrigger,
+  }) async {
+    final response = await offersDeleteWithHttpInfo(
+      id,
+      authorization: authorization,
+      xAPIKey: xAPIKey,
+      cookie: cookie,
+      x221ExternalRef: x221ExternalRef,
+      x221ProjectId: x221ProjectId,
+      projectId: projectId,
+      lang: lang,
+      acceptLanguage: acceptLanguage,
+      abortTrigger: abortTrigger,
+    );
     if (response.statusCode >= HttpStatus.badRequest) {
       throw ApiException(response.statusCode, await _decodeBodyBytes(response));
     }
     // When a remote server returns no body with a status of 204, we shall not decode it.
     // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
     // FormatException when trying to decode an empty string.
-    if (response.body.isNotEmpty && response.statusCode != HttpStatus.noContent) {
-      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'Object',) as Object;
-    
+    if (response.body.isNotEmpty &&
+        response.statusCode != HttpStatus.noContent) {
+      return await apiClient.deserializeAsync(
+        await _decodeBodyBytes(response),
+        'Offer',
+      ) as Offer;
     }
     return null;
   }
@@ -2236,10 +2558,20 @@ class PaymentsApi {
   /// * [String] lang:
   ///
   /// * [String] acceptLanguage:
-  Future<Response> offersGetWithHttpInfo(String id, { String? authorization, String? xAPIKey, String? cookie, String? x221ExternalRef, String? x221ProjectId, String? projectId, String? lang, String? acceptLanguage, Future<void>? abortTrigger, }) async {
+  Future<Response> offersGetWithHttpInfo(
+    String id, {
+    String? authorization,
+    String? xAPIKey,
+    String? cookie,
+    String? x221ExternalRef,
+    String? x221ProjectId,
+    String? projectId,
+    String? lang,
+    String? acceptLanguage,
+    Future<void>? abortTrigger,
+  }) async {
     // ignore: prefer_const_declarations
-    final path = r'/v1/offers/{id}'
-      .replaceAll('{id}', id);
+    final path = r'/v1/offers/{id}'.replaceAll('{id}', id);
 
     // ignore: prefer_final_locals
     Object? postBody;
@@ -2276,7 +2608,6 @@ class PaymentsApi {
 
     const contentTypes = <String>[];
 
-
     return apiClient.invokeAPI(
       path,
       'GET',
@@ -2308,17 +2639,42 @@ class PaymentsApi {
   /// * [String] lang:
   ///
   /// * [String] acceptLanguage:
-  Future<Object?> offersGet(String id, { String? authorization, String? xAPIKey, String? cookie, String? x221ExternalRef, String? x221ProjectId, String? projectId, String? lang, String? acceptLanguage, Future<void>? abortTrigger, }) async {
-    final response = await offersGetWithHttpInfo(id, authorization: authorization, xAPIKey: xAPIKey, cookie: cookie, x221ExternalRef: x221ExternalRef, x221ProjectId: x221ProjectId, projectId: projectId, lang: lang, acceptLanguage: acceptLanguage, abortTrigger: abortTrigger,);
+  Future<Offer?> offersGet(
+    String id, {
+    String? authorization,
+    String? xAPIKey,
+    String? cookie,
+    String? x221ExternalRef,
+    String? x221ProjectId,
+    String? projectId,
+    String? lang,
+    String? acceptLanguage,
+    Future<void>? abortTrigger,
+  }) async {
+    final response = await offersGetWithHttpInfo(
+      id,
+      authorization: authorization,
+      xAPIKey: xAPIKey,
+      cookie: cookie,
+      x221ExternalRef: x221ExternalRef,
+      x221ProjectId: x221ProjectId,
+      projectId: projectId,
+      lang: lang,
+      acceptLanguage: acceptLanguage,
+      abortTrigger: abortTrigger,
+    );
     if (response.statusCode >= HttpStatus.badRequest) {
       throw ApiException(response.statusCode, await _decodeBodyBytes(response));
     }
     // When a remote server returns no body with a status of 204, we shall not decode it.
     // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
     // FormatException when trying to decode an empty string.
-    if (response.body.isNotEmpty && response.statusCode != HttpStatus.noContent) {
-      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'Object',) as Object;
-    
+    if (response.body.isNotEmpty &&
+        response.statusCode != HttpStatus.noContent) {
+      return await apiClient.deserializeAsync(
+        await _decodeBodyBytes(response),
+        'Offer',
+      ) as Offer;
     }
     return null;
   }
@@ -2347,7 +2703,20 @@ class PaymentsApi {
   /// * [String] offset:
   ///
   /// * [String] status:
-  Future<Response> offersListWithHttpInfo({ String? authorization, String? xAPIKey, String? cookie, String? x221ExternalRef, String? x221ProjectId, String? projectId, String? lang, String? acceptLanguage, String? limit, String? offset, String? status, Future<void>? abortTrigger, }) async {
+  Future<Response> offersListWithHttpInfo({
+    String? authorization,
+    String? xAPIKey,
+    String? cookie,
+    String? x221ExternalRef,
+    String? x221ProjectId,
+    String? projectId,
+    String? lang,
+    String? acceptLanguage,
+    String? limit,
+    String? offset,
+    String? status,
+    Future<void>? abortTrigger,
+  }) async {
     // ignore: prefer_const_declarations
     final path = r'/v1/offers';
 
@@ -2395,7 +2764,6 @@ class PaymentsApi {
 
     const contentTypes = <String>[];
 
-
     return apiClient.invokeAPI(
       path,
       'GET',
@@ -2431,17 +2799,46 @@ class PaymentsApi {
   /// * [String] offset:
   ///
   /// * [String] status:
-  Future<Object?> offersList({ String? authorization, String? xAPIKey, String? cookie, String? x221ExternalRef, String? x221ProjectId, String? projectId, String? lang, String? acceptLanguage, String? limit, String? offset, String? status, Future<void>? abortTrigger, }) async {
-    final response = await offersListWithHttpInfo(authorization: authorization, xAPIKey: xAPIKey, cookie: cookie, x221ExternalRef: x221ExternalRef, x221ProjectId: x221ProjectId, projectId: projectId, lang: lang, acceptLanguage: acceptLanguage, limit: limit, offset: offset, status: status, abortTrigger: abortTrigger,);
+  Future<PageOffer?> offersList({
+    String? authorization,
+    String? xAPIKey,
+    String? cookie,
+    String? x221ExternalRef,
+    String? x221ProjectId,
+    String? projectId,
+    String? lang,
+    String? acceptLanguage,
+    String? limit,
+    String? offset,
+    String? status,
+    Future<void>? abortTrigger,
+  }) async {
+    final response = await offersListWithHttpInfo(
+      authorization: authorization,
+      xAPIKey: xAPIKey,
+      cookie: cookie,
+      x221ExternalRef: x221ExternalRef,
+      x221ProjectId: x221ProjectId,
+      projectId: projectId,
+      lang: lang,
+      acceptLanguage: acceptLanguage,
+      limit: limit,
+      offset: offset,
+      status: status,
+      abortTrigger: abortTrigger,
+    );
     if (response.statusCode >= HttpStatus.badRequest) {
       throw ApiException(response.statusCode, await _decodeBodyBytes(response));
     }
     // When a remote server returns no body with a status of 204, we shall not decode it.
     // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
     // FormatException when trying to decode an empty string.
-    if (response.body.isNotEmpty && response.statusCode != HttpStatus.noContent) {
-      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'Object',) as Object;
-    
+    if (response.body.isNotEmpty &&
+        response.statusCode != HttpStatus.noContent) {
+      return await apiClient.deserializeAsync(
+        await _decodeBodyBytes(response),
+        'PageOffer',
+      ) as PageOffer;
     }
     return null;
   }
@@ -2451,7 +2848,7 @@ class PaymentsApi {
   ///
   /// * [String] id (required):
   ///
-  /// * [MultipartFile] body (required):
+  /// * [OfferStatusRequest] offerStatusRequest (required):
   ///
   /// * [String] authorization:
   ///
@@ -2468,13 +2865,24 @@ class PaymentsApi {
   /// * [String] lang:
   ///
   /// * [String] acceptLanguage:
-  Future<Response> offersStatusWithHttpInfo(String id, MultipartFile body, { String? authorization, String? xAPIKey, String? cookie, String? x221ExternalRef, String? x221ProjectId, String? projectId, String? lang, String? acceptLanguage, Future<void>? abortTrigger, }) async {
+  Future<Response> offersStatusWithHttpInfo(
+    String id,
+    OfferStatusRequest offerStatusRequest, {
+    String? authorization,
+    String? xAPIKey,
+    String? cookie,
+    String? x221ExternalRef,
+    String? x221ProjectId,
+    String? projectId,
+    String? lang,
+    String? acceptLanguage,
+    Future<void>? abortTrigger,
+  }) async {
     // ignore: prefer_const_declarations
-    final path = r'/v1/offers/{id}/status'
-      .replaceAll('{id}', id);
+    final path = r'/v1/offers/{id}/status'.replaceAll('{id}', id);
 
     // ignore: prefer_final_locals
-    Object? postBody = body;
+    Object? postBody = offerStatusRequest;
 
     final queryParams = <QueryParam>[];
     final headerParams = <String, String>{};
@@ -2506,8 +2914,7 @@ class PaymentsApi {
       headerParams[r'Accept-Language'] = parameterToString(acceptLanguage);
     }
 
-    const contentTypes = <String>['application/octet-stream'];
-
+    const contentTypes = <String>['application/json'];
 
     return apiClient.invokeAPI(
       path,
@@ -2525,7 +2932,7 @@ class PaymentsApi {
   ///
   /// * [String] id (required):
   ///
-  /// * [MultipartFile] body (required):
+  /// * [OfferStatusRequest] offerStatusRequest (required):
   ///
   /// * [String] authorization:
   ///
@@ -2542,17 +2949,44 @@ class PaymentsApi {
   /// * [String] lang:
   ///
   /// * [String] acceptLanguage:
-  Future<Object?> offersStatus(String id, MultipartFile body, { String? authorization, String? xAPIKey, String? cookie, String? x221ExternalRef, String? x221ProjectId, String? projectId, String? lang, String? acceptLanguage, Future<void>? abortTrigger, }) async {
-    final response = await offersStatusWithHttpInfo(id, body, authorization: authorization, xAPIKey: xAPIKey, cookie: cookie, x221ExternalRef: x221ExternalRef, x221ProjectId: x221ProjectId, projectId: projectId, lang: lang, acceptLanguage: acceptLanguage, abortTrigger: abortTrigger,);
+  Future<Offer?> offersStatus(
+    String id,
+    OfferStatusRequest offerStatusRequest, {
+    String? authorization,
+    String? xAPIKey,
+    String? cookie,
+    String? x221ExternalRef,
+    String? x221ProjectId,
+    String? projectId,
+    String? lang,
+    String? acceptLanguage,
+    Future<void>? abortTrigger,
+  }) async {
+    final response = await offersStatusWithHttpInfo(
+      id,
+      offerStatusRequest,
+      authorization: authorization,
+      xAPIKey: xAPIKey,
+      cookie: cookie,
+      x221ExternalRef: x221ExternalRef,
+      x221ProjectId: x221ProjectId,
+      projectId: projectId,
+      lang: lang,
+      acceptLanguage: acceptLanguage,
+      abortTrigger: abortTrigger,
+    );
     if (response.statusCode >= HttpStatus.badRequest) {
       throw ApiException(response.statusCode, await _decodeBodyBytes(response));
     }
     // When a remote server returns no body with a status of 204, we shall not decode it.
     // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
     // FormatException when trying to decode an empty string.
-    if (response.body.isNotEmpty && response.statusCode != HttpStatus.noContent) {
-      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'Object',) as Object;
-    
+    if (response.body.isNotEmpty &&
+        response.statusCode != HttpStatus.noContent) {
+      return await apiClient.deserializeAsync(
+        await _decodeBodyBytes(response),
+        'Offer',
+      ) as Offer;
     }
     return null;
   }
@@ -2560,7 +2994,7 @@ class PaymentsApi {
   /// Performs an HTTP 'POST /v1/payment-links' operation and returns the [Response].
   /// Parameters:
   ///
-  /// * [MultipartFile] body (required):
+  /// * [PaymentLinkRequest] paymentLinkRequest (required):
   ///
   /// * [String] authorization:
   ///
@@ -2577,12 +3011,23 @@ class PaymentsApi {
   /// * [String] lang:
   ///
   /// * [String] acceptLanguage:
-  Future<Response> paymentLinksCreateWithHttpInfo(MultipartFile body, { String? authorization, String? xAPIKey, String? cookie, String? x221ExternalRef, String? x221ProjectId, String? projectId, String? lang, String? acceptLanguage, Future<void>? abortTrigger, }) async {
+  Future<Response> paymentLinksCreateWithHttpInfo(
+    PaymentLinkRequest paymentLinkRequest, {
+    String? authorization,
+    String? xAPIKey,
+    String? cookie,
+    String? x221ExternalRef,
+    String? x221ProjectId,
+    String? projectId,
+    String? lang,
+    String? acceptLanguage,
+    Future<void>? abortTrigger,
+  }) async {
     // ignore: prefer_const_declarations
     final path = r'/v1/payment-links';
 
     // ignore: prefer_final_locals
-    Object? postBody = body;
+    Object? postBody = paymentLinkRequest;
 
     final queryParams = <QueryParam>[];
     final headerParams = <String, String>{};
@@ -2614,8 +3059,7 @@ class PaymentsApi {
       headerParams[r'Accept-Language'] = parameterToString(acceptLanguage);
     }
 
-    const contentTypes = <String>['application/octet-stream'];
-
+    const contentTypes = <String>['application/json'];
 
     return apiClient.invokeAPI(
       path,
@@ -2631,7 +3075,7 @@ class PaymentsApi {
 
   /// Parameters:
   ///
-  /// * [MultipartFile] body (required):
+  /// * [PaymentLinkRequest] paymentLinkRequest (required):
   ///
   /// * [String] authorization:
   ///
@@ -2648,17 +3092,42 @@ class PaymentsApi {
   /// * [String] lang:
   ///
   /// * [String] acceptLanguage:
-  Future<Object?> paymentLinksCreate(MultipartFile body, { String? authorization, String? xAPIKey, String? cookie, String? x221ExternalRef, String? x221ProjectId, String? projectId, String? lang, String? acceptLanguage, Future<void>? abortTrigger, }) async {
-    final response = await paymentLinksCreateWithHttpInfo(body, authorization: authorization, xAPIKey: xAPIKey, cookie: cookie, x221ExternalRef: x221ExternalRef, x221ProjectId: x221ProjectId, projectId: projectId, lang: lang, acceptLanguage: acceptLanguage, abortTrigger: abortTrigger,);
+  Future<PaymentLink?> paymentLinksCreate(
+    PaymentLinkRequest paymentLinkRequest, {
+    String? authorization,
+    String? xAPIKey,
+    String? cookie,
+    String? x221ExternalRef,
+    String? x221ProjectId,
+    String? projectId,
+    String? lang,
+    String? acceptLanguage,
+    Future<void>? abortTrigger,
+  }) async {
+    final response = await paymentLinksCreateWithHttpInfo(
+      paymentLinkRequest,
+      authorization: authorization,
+      xAPIKey: xAPIKey,
+      cookie: cookie,
+      x221ExternalRef: x221ExternalRef,
+      x221ProjectId: x221ProjectId,
+      projectId: projectId,
+      lang: lang,
+      acceptLanguage: acceptLanguage,
+      abortTrigger: abortTrigger,
+    );
     if (response.statusCode >= HttpStatus.badRequest) {
       throw ApiException(response.statusCode, await _decodeBodyBytes(response));
     }
     // When a remote server returns no body with a status of 204, we shall not decode it.
     // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
     // FormatException when trying to decode an empty string.
-    if (response.body.isNotEmpty && response.statusCode != HttpStatus.noContent) {
-      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'Object',) as Object;
-    
+    if (response.body.isNotEmpty &&
+        response.statusCode != HttpStatus.noContent) {
+      return await apiClient.deserializeAsync(
+        await _decodeBodyBytes(response),
+        'PaymentLink',
+      ) as PaymentLink;
     }
     return null;
   }
@@ -2683,10 +3152,20 @@ class PaymentsApi {
   /// * [String] lang:
   ///
   /// * [String] acceptLanguage:
-  Future<Response> paymentLinksGetWithHttpInfo(String id, { String? authorization, String? xAPIKey, String? cookie, String? x221ExternalRef, String? x221ProjectId, String? projectId, String? lang, String? acceptLanguage, Future<void>? abortTrigger, }) async {
+  Future<Response> paymentLinksGetWithHttpInfo(
+    String id, {
+    String? authorization,
+    String? xAPIKey,
+    String? cookie,
+    String? x221ExternalRef,
+    String? x221ProjectId,
+    String? projectId,
+    String? lang,
+    String? acceptLanguage,
+    Future<void>? abortTrigger,
+  }) async {
     // ignore: prefer_const_declarations
-    final path = r'/v1/payment-links/{id}'
-      .replaceAll('{id}', id);
+    final path = r'/v1/payment-links/{id}'.replaceAll('{id}', id);
 
     // ignore: prefer_final_locals
     Object? postBody;
@@ -2723,7 +3202,6 @@ class PaymentsApi {
 
     const contentTypes = <String>[];
 
-
     return apiClient.invokeAPI(
       path,
       'GET',
@@ -2755,17 +3233,42 @@ class PaymentsApi {
   /// * [String] lang:
   ///
   /// * [String] acceptLanguage:
-  Future<Object?> paymentLinksGet(String id, { String? authorization, String? xAPIKey, String? cookie, String? x221ExternalRef, String? x221ProjectId, String? projectId, String? lang, String? acceptLanguage, Future<void>? abortTrigger, }) async {
-    final response = await paymentLinksGetWithHttpInfo(id, authorization: authorization, xAPIKey: xAPIKey, cookie: cookie, x221ExternalRef: x221ExternalRef, x221ProjectId: x221ProjectId, projectId: projectId, lang: lang, acceptLanguage: acceptLanguage, abortTrigger: abortTrigger,);
+  Future<PaymentLink?> paymentLinksGet(
+    String id, {
+    String? authorization,
+    String? xAPIKey,
+    String? cookie,
+    String? x221ExternalRef,
+    String? x221ProjectId,
+    String? projectId,
+    String? lang,
+    String? acceptLanguage,
+    Future<void>? abortTrigger,
+  }) async {
+    final response = await paymentLinksGetWithHttpInfo(
+      id,
+      authorization: authorization,
+      xAPIKey: xAPIKey,
+      cookie: cookie,
+      x221ExternalRef: x221ExternalRef,
+      x221ProjectId: x221ProjectId,
+      projectId: projectId,
+      lang: lang,
+      acceptLanguage: acceptLanguage,
+      abortTrigger: abortTrigger,
+    );
     if (response.statusCode >= HttpStatus.badRequest) {
       throw ApiException(response.statusCode, await _decodeBodyBytes(response));
     }
     // When a remote server returns no body with a status of 204, we shall not decode it.
     // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
     // FormatException when trying to decode an empty string.
-    if (response.body.isNotEmpty && response.statusCode != HttpStatus.noContent) {
-      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'Object',) as Object;
-    
+    if (response.body.isNotEmpty &&
+        response.statusCode != HttpStatus.noContent) {
+      return await apiClient.deserializeAsync(
+        await _decodeBodyBytes(response),
+        'PaymentLink',
+      ) as PaymentLink;
     }
     return null;
   }
@@ -2798,7 +3301,22 @@ class PaymentsApi {
   /// * [String] from:
   ///
   /// * [String] to:
-  Future<Response> paymentLinksListWithHttpInfo({ String? authorization, String? xAPIKey, String? cookie, String? x221ExternalRef, String? x221ProjectId, String? projectId, String? lang, String? acceptLanguage, String? limit, String? offset, String? status, String? from, String? to, Future<void>? abortTrigger, }) async {
+  Future<Response> paymentLinksListWithHttpInfo({
+    String? authorization,
+    String? xAPIKey,
+    String? cookie,
+    String? x221ExternalRef,
+    String? x221ProjectId,
+    String? projectId,
+    String? lang,
+    String? acceptLanguage,
+    String? limit,
+    String? offset,
+    String? status,
+    String? from,
+    String? to,
+    Future<void>? abortTrigger,
+  }) async {
     // ignore: prefer_const_declarations
     final path = r'/v1/payment-links';
 
@@ -2852,7 +3370,6 @@ class PaymentsApi {
 
     const contentTypes = <String>[];
 
-
     return apiClient.invokeAPI(
       path,
       'GET',
@@ -2892,17 +3409,50 @@ class PaymentsApi {
   /// * [String] from:
   ///
   /// * [String] to:
-  Future<Object?> paymentLinksList({ String? authorization, String? xAPIKey, String? cookie, String? x221ExternalRef, String? x221ProjectId, String? projectId, String? lang, String? acceptLanguage, String? limit, String? offset, String? status, String? from, String? to, Future<void>? abortTrigger, }) async {
-    final response = await paymentLinksListWithHttpInfo(authorization: authorization, xAPIKey: xAPIKey, cookie: cookie, x221ExternalRef: x221ExternalRef, x221ProjectId: x221ProjectId, projectId: projectId, lang: lang, acceptLanguage: acceptLanguage, limit: limit, offset: offset, status: status, from: from, to: to, abortTrigger: abortTrigger,);
+  Future<PagePaymentLink?> paymentLinksList({
+    String? authorization,
+    String? xAPIKey,
+    String? cookie,
+    String? x221ExternalRef,
+    String? x221ProjectId,
+    String? projectId,
+    String? lang,
+    String? acceptLanguage,
+    String? limit,
+    String? offset,
+    String? status,
+    String? from,
+    String? to,
+    Future<void>? abortTrigger,
+  }) async {
+    final response = await paymentLinksListWithHttpInfo(
+      authorization: authorization,
+      xAPIKey: xAPIKey,
+      cookie: cookie,
+      x221ExternalRef: x221ExternalRef,
+      x221ProjectId: x221ProjectId,
+      projectId: projectId,
+      lang: lang,
+      acceptLanguage: acceptLanguage,
+      limit: limit,
+      offset: offset,
+      status: status,
+      from: from,
+      to: to,
+      abortTrigger: abortTrigger,
+    );
     if (response.statusCode >= HttpStatus.badRequest) {
       throw ApiException(response.statusCode, await _decodeBodyBytes(response));
     }
     // When a remote server returns no body with a status of 204, we shall not decode it.
     // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
     // FormatException when trying to decode an empty string.
-    if (response.body.isNotEmpty && response.statusCode != HttpStatus.noContent) {
-      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'Object',) as Object;
-    
+    if (response.body.isNotEmpty &&
+        response.statusCode != HttpStatus.noContent) {
+      return await apiClient.deserializeAsync(
+        await _decodeBodyBytes(response),
+        'PagePaymentLink',
+      ) as PagePaymentLink;
     }
     return null;
   }
@@ -2912,7 +3462,7 @@ class PaymentsApi {
   ///
   /// * [String] id (required):
   ///
-  /// * [MultipartFile] body (required):
+  /// * [PaymentLinkStatusRequest] paymentLinkStatusRequest (required):
   ///
   /// * [String] authorization:
   ///
@@ -2929,13 +3479,24 @@ class PaymentsApi {
   /// * [String] lang:
   ///
   /// * [String] acceptLanguage:
-  Future<Response> paymentLinksStatusWithHttpInfo(String id, MultipartFile body, { String? authorization, String? xAPIKey, String? cookie, String? x221ExternalRef, String? x221ProjectId, String? projectId, String? lang, String? acceptLanguage, Future<void>? abortTrigger, }) async {
+  Future<Response> paymentLinksStatusWithHttpInfo(
+    String id,
+    PaymentLinkStatusRequest paymentLinkStatusRequest, {
+    String? authorization,
+    String? xAPIKey,
+    String? cookie,
+    String? x221ExternalRef,
+    String? x221ProjectId,
+    String? projectId,
+    String? lang,
+    String? acceptLanguage,
+    Future<void>? abortTrigger,
+  }) async {
     // ignore: prefer_const_declarations
-    final path = r'/v1/payment-links/{id}/status'
-      .replaceAll('{id}', id);
+    final path = r'/v1/payment-links/{id}/status'.replaceAll('{id}', id);
 
     // ignore: prefer_final_locals
-    Object? postBody = body;
+    Object? postBody = paymentLinkStatusRequest;
 
     final queryParams = <QueryParam>[];
     final headerParams = <String, String>{};
@@ -2967,8 +3528,7 @@ class PaymentsApi {
       headerParams[r'Accept-Language'] = parameterToString(acceptLanguage);
     }
 
-    const contentTypes = <String>['application/octet-stream'];
-
+    const contentTypes = <String>['application/json'];
 
     return apiClient.invokeAPI(
       path,
@@ -2986,7 +3546,7 @@ class PaymentsApi {
   ///
   /// * [String] id (required):
   ///
-  /// * [MultipartFile] body (required):
+  /// * [PaymentLinkStatusRequest] paymentLinkStatusRequest (required):
   ///
   /// * [String] authorization:
   ///
@@ -3003,17 +3563,44 @@ class PaymentsApi {
   /// * [String] lang:
   ///
   /// * [String] acceptLanguage:
-  Future<Object?> paymentLinksStatus(String id, MultipartFile body, { String? authorization, String? xAPIKey, String? cookie, String? x221ExternalRef, String? x221ProjectId, String? projectId, String? lang, String? acceptLanguage, Future<void>? abortTrigger, }) async {
-    final response = await paymentLinksStatusWithHttpInfo(id, body, authorization: authorization, xAPIKey: xAPIKey, cookie: cookie, x221ExternalRef: x221ExternalRef, x221ProjectId: x221ProjectId, projectId: projectId, lang: lang, acceptLanguage: acceptLanguage, abortTrigger: abortTrigger,);
+  Future<PaymentLink?> paymentLinksStatus(
+    String id,
+    PaymentLinkStatusRequest paymentLinkStatusRequest, {
+    String? authorization,
+    String? xAPIKey,
+    String? cookie,
+    String? x221ExternalRef,
+    String? x221ProjectId,
+    String? projectId,
+    String? lang,
+    String? acceptLanguage,
+    Future<void>? abortTrigger,
+  }) async {
+    final response = await paymentLinksStatusWithHttpInfo(
+      id,
+      paymentLinkStatusRequest,
+      authorization: authorization,
+      xAPIKey: xAPIKey,
+      cookie: cookie,
+      x221ExternalRef: x221ExternalRef,
+      x221ProjectId: x221ProjectId,
+      projectId: projectId,
+      lang: lang,
+      acceptLanguage: acceptLanguage,
+      abortTrigger: abortTrigger,
+    );
     if (response.statusCode >= HttpStatus.badRequest) {
       throw ApiException(response.statusCode, await _decodeBodyBytes(response));
     }
     // When a remote server returns no body with a status of 204, we shall not decode it.
     // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
     // FormatException when trying to decode an empty string.
-    if (response.body.isNotEmpty && response.statusCode != HttpStatus.noContent) {
-      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'Object',) as Object;
-    
+    if (response.body.isNotEmpty &&
+        response.statusCode != HttpStatus.noContent) {
+      return await apiClient.deserializeAsync(
+        await _decodeBodyBytes(response),
+        'PaymentLink',
+      ) as PaymentLink;
     }
     return null;
   }
@@ -3025,7 +3612,10 @@ class PaymentsApi {
   /// Parameters:
   ///
   /// * [String] lang:
-  Future<Response> paymentsConsoleWithHttpInfo({ String? lang, Future<void>? abortTrigger, }) async {
+  Future<Response> paymentsConsoleWithHttpInfo({
+    String? lang,
+    Future<void>? abortTrigger,
+  }) async {
     // ignore: prefer_const_declarations
     final path = r'/v1/payments/console';
 
@@ -3041,7 +3631,6 @@ class PaymentsApi {
     }
 
     const contentTypes = <String>[];
-
 
     return apiClient.invokeAPI(
       path,
@@ -3060,17 +3649,26 @@ class PaymentsApi {
   /// Parameters:
   ///
   /// * [String] lang:
-  Future<Error?> paymentsConsole({ String? lang, Future<void>? abortTrigger, }) async {
-    final response = await paymentsConsoleWithHttpInfo(lang: lang, abortTrigger: abortTrigger,);
+  Future<Error?> paymentsConsole({
+    String? lang,
+    Future<void>? abortTrigger,
+  }) async {
+    final response = await paymentsConsoleWithHttpInfo(
+      lang: lang,
+      abortTrigger: abortTrigger,
+    );
     if (response.statusCode >= HttpStatus.badRequest) {
       throw ApiException(response.statusCode, await _decodeBodyBytes(response));
     }
     // When a remote server returns no body with a status of 204, we shall not decode it.
     // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
     // FormatException when trying to decode an empty string.
-    if (response.body.isNotEmpty && response.statusCode != HttpStatus.noContent) {
-      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'Error',) as Error;
-    
+    if (response.body.isNotEmpty &&
+        response.statusCode != HttpStatus.noContent) {
+      return await apiClient.deserializeAsync(
+        await _decodeBodyBytes(response),
+        'Error',
+      ) as Error;
     }
     return null;
   }
@@ -3078,7 +3676,10 @@ class PaymentsApi {
   /// Performs an HTTP 'POST /v1/payments' operation and returns the [Response].
   /// Parameters:
   ///
-  /// * [MultipartFile] body (required):
+  /// * [String] idempotencyKey (required):
+  ///   Valeur unique par opération. Un renvoi avec la même valeur et le même corps rend le résultat déjà obtenu ; un corps différent donne IDEMPOTENCY_CONFLICT.
+  ///
+  /// * [PaymentRequest] paymentRequest (required):
   ///
   /// * [String] authorization:
   ///
@@ -3095,14 +3696,24 @@ class PaymentsApi {
   /// * [String] lang:
   ///
   /// * [String] acceptLanguage:
-  ///
-  /// * [String] idempotencyKey:
-  Future<Response> paymentsCreateWithHttpInfo(MultipartFile body, { String? authorization, String? xAPIKey, String? cookie, String? x221ExternalRef, String? x221ProjectId, String? projectId, String? lang, String? acceptLanguage, String? idempotencyKey, Future<void>? abortTrigger, }) async {
+  Future<Response> paymentsCreateWithHttpInfo(
+    String idempotencyKey,
+    PaymentRequest paymentRequest, {
+    String? authorization,
+    String? xAPIKey,
+    String? cookie,
+    String? x221ExternalRef,
+    String? x221ProjectId,
+    String? projectId,
+    String? lang,
+    String? acceptLanguage,
+    Future<void>? abortTrigger,
+  }) async {
     // ignore: prefer_const_declarations
     final path = r'/v1/payments';
 
     // ignore: prefer_final_locals
-    Object? postBody = body;
+    Object? postBody = paymentRequest;
 
     final queryParams = <QueryParam>[];
     final headerParams = <String, String>{};
@@ -3133,12 +3744,9 @@ class PaymentsApi {
     if (acceptLanguage != null) {
       headerParams[r'Accept-Language'] = parameterToString(acceptLanguage);
     }
-    if (idempotencyKey != null) {
-      headerParams[r'Idempotency-Key'] = parameterToString(idempotencyKey);
-    }
+    headerParams[r'Idempotency-Key'] = parameterToString(idempotencyKey);
 
-    const contentTypes = <String>['application/octet-stream'];
-
+    const contentTypes = <String>['application/json'];
 
     return apiClient.invokeAPI(
       path,
@@ -3154,7 +3762,10 @@ class PaymentsApi {
 
   /// Parameters:
   ///
-  /// * [MultipartFile] body (required):
+  /// * [String] idempotencyKey (required):
+  ///   Valeur unique par opération. Un renvoi avec la même valeur et le même corps rend le résultat déjà obtenu ; un corps différent donne IDEMPOTENCY_CONFLICT.
+  ///
+  /// * [PaymentRequest] paymentRequest (required):
   ///
   /// * [String] authorization:
   ///
@@ -3171,19 +3782,44 @@ class PaymentsApi {
   /// * [String] lang:
   ///
   /// * [String] acceptLanguage:
-  ///
-  /// * [String] idempotencyKey:
-  Future<Object?> paymentsCreate(MultipartFile body, { String? authorization, String? xAPIKey, String? cookie, String? x221ExternalRef, String? x221ProjectId, String? projectId, String? lang, String? acceptLanguage, String? idempotencyKey, Future<void>? abortTrigger, }) async {
-    final response = await paymentsCreateWithHttpInfo(body, authorization: authorization, xAPIKey: xAPIKey, cookie: cookie, x221ExternalRef: x221ExternalRef, x221ProjectId: x221ProjectId, projectId: projectId, lang: lang, acceptLanguage: acceptLanguage, idempotencyKey: idempotencyKey, abortTrigger: abortTrigger,);
+  Future<Payment?> paymentsCreate(
+    String idempotencyKey,
+    PaymentRequest paymentRequest, {
+    String? authorization,
+    String? xAPIKey,
+    String? cookie,
+    String? x221ExternalRef,
+    String? x221ProjectId,
+    String? projectId,
+    String? lang,
+    String? acceptLanguage,
+    Future<void>? abortTrigger,
+  }) async {
+    final response = await paymentsCreateWithHttpInfo(
+      idempotencyKey,
+      paymentRequest,
+      authorization: authorization,
+      xAPIKey: xAPIKey,
+      cookie: cookie,
+      x221ExternalRef: x221ExternalRef,
+      x221ProjectId: x221ProjectId,
+      projectId: projectId,
+      lang: lang,
+      acceptLanguage: acceptLanguage,
+      abortTrigger: abortTrigger,
+    );
     if (response.statusCode >= HttpStatus.badRequest) {
       throw ApiException(response.statusCode, await _decodeBodyBytes(response));
     }
     // When a remote server returns no body with a status of 204, we shall not decode it.
     // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
     // FormatException when trying to decode an empty string.
-    if (response.body.isNotEmpty && response.statusCode != HttpStatus.noContent) {
-      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'Object',) as Object;
-    
+    if (response.body.isNotEmpty &&
+        response.statusCode != HttpStatus.noContent) {
+      return await apiClient.deserializeAsync(
+        await _decodeBodyBytes(response),
+        'Payment',
+      ) as Payment;
     }
     return null;
   }
@@ -3208,10 +3844,20 @@ class PaymentsApi {
   /// * [String] lang:
   ///
   /// * [String] acceptLanguage:
-  Future<Response> paymentsGetWithHttpInfo(String id, { String? authorization, String? xAPIKey, String? cookie, String? x221ExternalRef, String? x221ProjectId, String? projectId, String? lang, String? acceptLanguage, Future<void>? abortTrigger, }) async {
+  Future<Response> paymentsGetWithHttpInfo(
+    String id, {
+    String? authorization,
+    String? xAPIKey,
+    String? cookie,
+    String? x221ExternalRef,
+    String? x221ProjectId,
+    String? projectId,
+    String? lang,
+    String? acceptLanguage,
+    Future<void>? abortTrigger,
+  }) async {
     // ignore: prefer_const_declarations
-    final path = r'/v1/payments/{id}'
-      .replaceAll('{id}', id);
+    final path = r'/v1/payments/{id}'.replaceAll('{id}', id);
 
     // ignore: prefer_final_locals
     Object? postBody;
@@ -3248,7 +3894,6 @@ class PaymentsApi {
 
     const contentTypes = <String>[];
 
-
     return apiClient.invokeAPI(
       path,
       'GET',
@@ -3280,17 +3925,42 @@ class PaymentsApi {
   /// * [String] lang:
   ///
   /// * [String] acceptLanguage:
-  Future<Object?> paymentsGet(String id, { String? authorization, String? xAPIKey, String? cookie, String? x221ExternalRef, String? x221ProjectId, String? projectId, String? lang, String? acceptLanguage, Future<void>? abortTrigger, }) async {
-    final response = await paymentsGetWithHttpInfo(id, authorization: authorization, xAPIKey: xAPIKey, cookie: cookie, x221ExternalRef: x221ExternalRef, x221ProjectId: x221ProjectId, projectId: projectId, lang: lang, acceptLanguage: acceptLanguage, abortTrigger: abortTrigger,);
+  Future<PaymentDetail?> paymentsGet(
+    String id, {
+    String? authorization,
+    String? xAPIKey,
+    String? cookie,
+    String? x221ExternalRef,
+    String? x221ProjectId,
+    String? projectId,
+    String? lang,
+    String? acceptLanguage,
+    Future<void>? abortTrigger,
+  }) async {
+    final response = await paymentsGetWithHttpInfo(
+      id,
+      authorization: authorization,
+      xAPIKey: xAPIKey,
+      cookie: cookie,
+      x221ExternalRef: x221ExternalRef,
+      x221ProjectId: x221ProjectId,
+      projectId: projectId,
+      lang: lang,
+      acceptLanguage: acceptLanguage,
+      abortTrigger: abortTrigger,
+    );
     if (response.statusCode >= HttpStatus.badRequest) {
       throw ApiException(response.statusCode, await _decodeBodyBytes(response));
     }
     // When a remote server returns no body with a status of 204, we shall not decode it.
     // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
     // FormatException when trying to decode an empty string.
-    if (response.body.isNotEmpty && response.statusCode != HttpStatus.noContent) {
-      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'Object',) as Object;
-    
+    if (response.body.isNotEmpty &&
+        response.statusCode != HttpStatus.noContent) {
+      return await apiClient.deserializeAsync(
+        await _decodeBodyBytes(response),
+        'PaymentDetail',
+      ) as PaymentDetail;
     }
     return null;
   }
@@ -3333,7 +4003,27 @@ class PaymentsApi {
   /// * [String] q:
   ///
   /// * [String] customerPhone:
-  Future<Response> paymentsListWithHttpInfo({ String? authorization, String? xAPIKey, String? cookie, String? x221ExternalRef, String? x221ProjectId, String? projectId, String? lang, String? acceptLanguage, String? limit, String? offset, String? cursor, List<String>? status, String? method, String? rail, String? from, String? to, String? q, String? customerPhone, Future<void>? abortTrigger, }) async {
+  Future<Response> paymentsListWithHttpInfo({
+    String? authorization,
+    String? xAPIKey,
+    String? cookie,
+    String? x221ExternalRef,
+    String? x221ProjectId,
+    String? projectId,
+    String? lang,
+    String? acceptLanguage,
+    String? limit,
+    String? offset,
+    String? cursor,
+    List<String>? status,
+    String? method,
+    String? rail,
+    String? from,
+    String? to,
+    String? q,
+    String? customerPhone,
+    Future<void>? abortTrigger,
+  }) async {
     // ignore: prefer_const_declarations
     final path = r'/v1/payments';
 
@@ -3402,7 +4092,6 @@ class PaymentsApi {
 
     const contentTypes = <String>[];
 
-
     return apiClient.invokeAPI(
       path,
       'GET',
@@ -3452,17 +4141,60 @@ class PaymentsApi {
   /// * [String] q:
   ///
   /// * [String] customerPhone:
-  Future<Object?> paymentsList({ String? authorization, String? xAPIKey, String? cookie, String? x221ExternalRef, String? x221ProjectId, String? projectId, String? lang, String? acceptLanguage, String? limit, String? offset, String? cursor, List<String>? status, String? method, String? rail, String? from, String? to, String? q, String? customerPhone, Future<void>? abortTrigger, }) async {
-    final response = await paymentsListWithHttpInfo(authorization: authorization, xAPIKey: xAPIKey, cookie: cookie, x221ExternalRef: x221ExternalRef, x221ProjectId: x221ProjectId, projectId: projectId, lang: lang, acceptLanguage: acceptLanguage, limit: limit, offset: offset, cursor: cursor, status: status, method: method, rail: rail, from: from, to: to, q: q, customerPhone: customerPhone, abortTrigger: abortTrigger,);
+  Future<PaymentList?> paymentsList({
+    String? authorization,
+    String? xAPIKey,
+    String? cookie,
+    String? x221ExternalRef,
+    String? x221ProjectId,
+    String? projectId,
+    String? lang,
+    String? acceptLanguage,
+    String? limit,
+    String? offset,
+    String? cursor,
+    List<String>? status,
+    String? method,
+    String? rail,
+    String? from,
+    String? to,
+    String? q,
+    String? customerPhone,
+    Future<void>? abortTrigger,
+  }) async {
+    final response = await paymentsListWithHttpInfo(
+      authorization: authorization,
+      xAPIKey: xAPIKey,
+      cookie: cookie,
+      x221ExternalRef: x221ExternalRef,
+      x221ProjectId: x221ProjectId,
+      projectId: projectId,
+      lang: lang,
+      acceptLanguage: acceptLanguage,
+      limit: limit,
+      offset: offset,
+      cursor: cursor,
+      status: status,
+      method: method,
+      rail: rail,
+      from: from,
+      to: to,
+      q: q,
+      customerPhone: customerPhone,
+      abortTrigger: abortTrigger,
+    );
     if (response.statusCode >= HttpStatus.badRequest) {
       throw ApiException(response.statusCode, await _decodeBodyBytes(response));
     }
     // When a remote server returns no body with a status of 204, we shall not decode it.
     // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
     // FormatException when trying to decode an empty string.
-    if (response.body.isNotEmpty && response.statusCode != HttpStatus.noContent) {
-      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'Object',) as Object;
-    
+    if (response.body.isNotEmpty &&
+        response.statusCode != HttpStatus.noContent) {
+      return await apiClient.deserializeAsync(
+        await _decodeBodyBytes(response),
+        'PaymentList',
+      ) as PaymentList;
     }
     return null;
   }
@@ -3470,7 +4202,7 @@ class PaymentsApi {
   /// Performs an HTTP 'POST /v1/payout-destinations' operation and returns the [Response].
   /// Parameters:
   ///
-  /// * [MultipartFile] body (required):
+  /// * [PayoutDestinationRequest] payoutDestinationRequest (required):
   ///
   /// * [String] authorization:
   ///
@@ -3487,12 +4219,23 @@ class PaymentsApi {
   /// * [String] lang:
   ///
   /// * [String] acceptLanguage:
-  Future<Response> payoutDestinationsAddWithHttpInfo(MultipartFile body, { String? authorization, String? xAPIKey, String? cookie, String? x221ExternalRef, String? x221ProjectId, String? projectId, String? lang, String? acceptLanguage, Future<void>? abortTrigger, }) async {
+  Future<Response> payoutDestinationsAddWithHttpInfo(
+    PayoutDestinationRequest payoutDestinationRequest, {
+    String? authorization,
+    String? xAPIKey,
+    String? cookie,
+    String? x221ExternalRef,
+    String? x221ProjectId,
+    String? projectId,
+    String? lang,
+    String? acceptLanguage,
+    Future<void>? abortTrigger,
+  }) async {
     // ignore: prefer_const_declarations
     final path = r'/v1/payout-destinations';
 
     // ignore: prefer_final_locals
-    Object? postBody = body;
+    Object? postBody = payoutDestinationRequest;
 
     final queryParams = <QueryParam>[];
     final headerParams = <String, String>{};
@@ -3524,8 +4267,7 @@ class PaymentsApi {
       headerParams[r'Accept-Language'] = parameterToString(acceptLanguage);
     }
 
-    const contentTypes = <String>['application/octet-stream'];
-
+    const contentTypes = <String>['application/json'];
 
     return apiClient.invokeAPI(
       path,
@@ -3541,7 +4283,7 @@ class PaymentsApi {
 
   /// Parameters:
   ///
-  /// * [MultipartFile] body (required):
+  /// * [PayoutDestinationRequest] payoutDestinationRequest (required):
   ///
   /// * [String] authorization:
   ///
@@ -3558,17 +4300,42 @@ class PaymentsApi {
   /// * [String] lang:
   ///
   /// * [String] acceptLanguage:
-  Future<Object?> payoutDestinationsAdd(MultipartFile body, { String? authorization, String? xAPIKey, String? cookie, String? x221ExternalRef, String? x221ProjectId, String? projectId, String? lang, String? acceptLanguage, Future<void>? abortTrigger, }) async {
-    final response = await payoutDestinationsAddWithHttpInfo(body, authorization: authorization, xAPIKey: xAPIKey, cookie: cookie, x221ExternalRef: x221ExternalRef, x221ProjectId: x221ProjectId, projectId: projectId, lang: lang, acceptLanguage: acceptLanguage, abortTrigger: abortTrigger,);
+  Future<PayoutDestination?> payoutDestinationsAdd(
+    PayoutDestinationRequest payoutDestinationRequest, {
+    String? authorization,
+    String? xAPIKey,
+    String? cookie,
+    String? x221ExternalRef,
+    String? x221ProjectId,
+    String? projectId,
+    String? lang,
+    String? acceptLanguage,
+    Future<void>? abortTrigger,
+  }) async {
+    final response = await payoutDestinationsAddWithHttpInfo(
+      payoutDestinationRequest,
+      authorization: authorization,
+      xAPIKey: xAPIKey,
+      cookie: cookie,
+      x221ExternalRef: x221ExternalRef,
+      x221ProjectId: x221ProjectId,
+      projectId: projectId,
+      lang: lang,
+      acceptLanguage: acceptLanguage,
+      abortTrigger: abortTrigger,
+    );
     if (response.statusCode >= HttpStatus.badRequest) {
       throw ApiException(response.statusCode, await _decodeBodyBytes(response));
     }
     // When a remote server returns no body with a status of 204, we shall not decode it.
     // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
     // FormatException when trying to decode an empty string.
-    if (response.body.isNotEmpty && response.statusCode != HttpStatus.noContent) {
-      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'Object',) as Object;
-    
+    if (response.body.isNotEmpty &&
+        response.statusCode != HttpStatus.noContent) {
+      return await apiClient.deserializeAsync(
+        await _decodeBodyBytes(response),
+        'PayoutDestination',
+      ) as PayoutDestination;
     }
     return null;
   }
@@ -3591,7 +4358,17 @@ class PaymentsApi {
   /// * [String] lang:
   ///
   /// * [String] acceptLanguage:
-  Future<Response> payoutDestinationsListWithHttpInfo({ String? authorization, String? xAPIKey, String? cookie, String? x221ExternalRef, String? x221ProjectId, String? projectId, String? lang, String? acceptLanguage, Future<void>? abortTrigger, }) async {
+  Future<Response> payoutDestinationsListWithHttpInfo({
+    String? authorization,
+    String? xAPIKey,
+    String? cookie,
+    String? x221ExternalRef,
+    String? x221ProjectId,
+    String? projectId,
+    String? lang,
+    String? acceptLanguage,
+    Future<void>? abortTrigger,
+  }) async {
     // ignore: prefer_const_declarations
     final path = r'/v1/payout-destinations';
 
@@ -3629,7 +4406,6 @@ class PaymentsApi {
     }
 
     const contentTypes = <String>[];
-
 
     return apiClient.invokeAPI(
       path,
@@ -3660,17 +4436,40 @@ class PaymentsApi {
   /// * [String] lang:
   ///
   /// * [String] acceptLanguage:
-  Future<Object?> payoutDestinationsList({ String? authorization, String? xAPIKey, String? cookie, String? x221ExternalRef, String? x221ProjectId, String? projectId, String? lang, String? acceptLanguage, Future<void>? abortTrigger, }) async {
-    final response = await payoutDestinationsListWithHttpInfo(authorization: authorization, xAPIKey: xAPIKey, cookie: cookie, x221ExternalRef: x221ExternalRef, x221ProjectId: x221ProjectId, projectId: projectId, lang: lang, acceptLanguage: acceptLanguage, abortTrigger: abortTrigger,);
+  Future<CollectionPayoutDestination?> payoutDestinationsList({
+    String? authorization,
+    String? xAPIKey,
+    String? cookie,
+    String? x221ExternalRef,
+    String? x221ProjectId,
+    String? projectId,
+    String? lang,
+    String? acceptLanguage,
+    Future<void>? abortTrigger,
+  }) async {
+    final response = await payoutDestinationsListWithHttpInfo(
+      authorization: authorization,
+      xAPIKey: xAPIKey,
+      cookie: cookie,
+      x221ExternalRef: x221ExternalRef,
+      x221ProjectId: x221ProjectId,
+      projectId: projectId,
+      lang: lang,
+      acceptLanguage: acceptLanguage,
+      abortTrigger: abortTrigger,
+    );
     if (response.statusCode >= HttpStatus.badRequest) {
       throw ApiException(response.statusCode, await _decodeBodyBytes(response));
     }
     // When a remote server returns no body with a status of 204, we shall not decode it.
     // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
     // FormatException when trying to decode an empty string.
-    if (response.body.isNotEmpty && response.statusCode != HttpStatus.noContent) {
-      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'Object',) as Object;
-    
+    if (response.body.isNotEmpty &&
+        response.statusCode != HttpStatus.noContent) {
+      return await apiClient.deserializeAsync(
+        await _decodeBodyBytes(response),
+        'CollectionPayoutDestination',
+      ) as CollectionPayoutDestination;
     }
     return null;
   }
@@ -3695,10 +4494,20 @@ class PaymentsApi {
   /// * [String] lang:
   ///
   /// * [String] acceptLanguage:
-  Future<Response> payoutDestinationsRemoveWithHttpInfo(String id, { String? authorization, String? xAPIKey, String? cookie, String? x221ExternalRef, String? x221ProjectId, String? projectId, String? lang, String? acceptLanguage, Future<void>? abortTrigger, }) async {
+  Future<Response> payoutDestinationsRemoveWithHttpInfo(
+    String id, {
+    String? authorization,
+    String? xAPIKey,
+    String? cookie,
+    String? x221ExternalRef,
+    String? x221ProjectId,
+    String? projectId,
+    String? lang,
+    String? acceptLanguage,
+    Future<void>? abortTrigger,
+  }) async {
     // ignore: prefer_const_declarations
-    final path = r'/v1/payout-destinations/{id}'
-      .replaceAll('{id}', id);
+    final path = r'/v1/payout-destinations/{id}'.replaceAll('{id}', id);
 
     // ignore: prefer_final_locals
     Object? postBody;
@@ -3734,7 +4543,6 @@ class PaymentsApi {
     }
 
     const contentTypes = <String>[];
-
 
     return apiClient.invokeAPI(
       path,
@@ -3767,17 +4575,39 @@ class PaymentsApi {
   /// * [String] lang:
   ///
   /// * [String] acceptLanguage:
-  Future<void> payoutDestinationsRemove(String id, { String? authorization, String? xAPIKey, String? cookie, String? x221ExternalRef, String? x221ProjectId, String? projectId, String? lang, String? acceptLanguage, Future<void>? abortTrigger, }) async {
-    final response = await payoutDestinationsRemoveWithHttpInfo(id, authorization: authorization, xAPIKey: xAPIKey, cookie: cookie, x221ExternalRef: x221ExternalRef, x221ProjectId: x221ProjectId, projectId: projectId, lang: lang, acceptLanguage: acceptLanguage, abortTrigger: abortTrigger,);
+  Future<void> payoutDestinationsRemove(
+    String id, {
+    String? authorization,
+    String? xAPIKey,
+    String? cookie,
+    String? x221ExternalRef,
+    String? x221ProjectId,
+    String? projectId,
+    String? lang,
+    String? acceptLanguage,
+    Future<void>? abortTrigger,
+  }) async {
+    final response = await payoutDestinationsRemoveWithHttpInfo(
+      id,
+      authorization: authorization,
+      xAPIKey: xAPIKey,
+      cookie: cookie,
+      x221ExternalRef: x221ExternalRef,
+      x221ProjectId: x221ProjectId,
+      projectId: projectId,
+      lang: lang,
+      acceptLanguage: acceptLanguage,
+      abortTrigger: abortTrigger,
+    );
     if (response.statusCode >= HttpStatus.badRequest) {
       throw ApiException(response.statusCode, await _decodeBodyBytes(response));
     }
   }
 
-  /// Performs an HTTP 'POST /v1/payout-quotes' operation and returns the [Response].
+  /// Performs an HTTP 'POST /v1/payout-destinations/{id}/resend' operation and returns the [Response].
   /// Parameters:
   ///
-  /// * [MultipartFile] body (required):
+  /// * [String] id (required):
   ///
   /// * [String] authorization:
   ///
@@ -3794,12 +4624,23 @@ class PaymentsApi {
   /// * [String] lang:
   ///
   /// * [String] acceptLanguage:
-  Future<Response> payoutQuotesCreateWithHttpInfo(MultipartFile body, { String? authorization, String? xAPIKey, String? cookie, String? x221ExternalRef, String? x221ProjectId, String? projectId, String? lang, String? acceptLanguage, Future<void>? abortTrigger, }) async {
+  Future<Response> payoutDestinationsResendWithHttpInfo(
+    String id, {
+    String? authorization,
+    String? xAPIKey,
+    String? cookie,
+    String? x221ExternalRef,
+    String? x221ProjectId,
+    String? projectId,
+    String? lang,
+    String? acceptLanguage,
+    Future<void>? abortTrigger,
+  }) async {
     // ignore: prefer_const_declarations
-    final path = r'/v1/payout-quotes';
+    final path = r'/v1/payout-destinations/{id}/resend'.replaceAll('{id}', id);
 
     // ignore: prefer_final_locals
-    Object? postBody = body;
+    Object? postBody;
 
     final queryParams = <QueryParam>[];
     final headerParams = <String, String>{};
@@ -3831,8 +4672,7 @@ class PaymentsApi {
       headerParams[r'Accept-Language'] = parameterToString(acceptLanguage);
     }
 
-    const contentTypes = <String>['application/octet-stream'];
-
+    const contentTypes = <String>[];
 
     return apiClient.invokeAPI(
       path,
@@ -3848,7 +4688,7 @@ class PaymentsApi {
 
   /// Parameters:
   ///
-  /// * [MultipartFile] body (required):
+  /// * [String] id (required):
   ///
   /// * [String] authorization:
   ///
@@ -3865,17 +4705,331 @@ class PaymentsApi {
   /// * [String] lang:
   ///
   /// * [String] acceptLanguage:
-  Future<Object?> payoutQuotesCreate(MultipartFile body, { String? authorization, String? xAPIKey, String? cookie, String? x221ExternalRef, String? x221ProjectId, String? projectId, String? lang, String? acceptLanguage, Future<void>? abortTrigger, }) async {
-    final response = await payoutQuotesCreateWithHttpInfo(body, authorization: authorization, xAPIKey: xAPIKey, cookie: cookie, x221ExternalRef: x221ExternalRef, x221ProjectId: x221ProjectId, projectId: projectId, lang: lang, acceptLanguage: acceptLanguage, abortTrigger: abortTrigger,);
+  Future<PayoutDestination?> payoutDestinationsResend(
+    String id, {
+    String? authorization,
+    String? xAPIKey,
+    String? cookie,
+    String? x221ExternalRef,
+    String? x221ProjectId,
+    String? projectId,
+    String? lang,
+    String? acceptLanguage,
+    Future<void>? abortTrigger,
+  }) async {
+    final response = await payoutDestinationsResendWithHttpInfo(
+      id,
+      authorization: authorization,
+      xAPIKey: xAPIKey,
+      cookie: cookie,
+      x221ExternalRef: x221ExternalRef,
+      x221ProjectId: x221ProjectId,
+      projectId: projectId,
+      lang: lang,
+      acceptLanguage: acceptLanguage,
+      abortTrigger: abortTrigger,
+    );
     if (response.statusCode >= HttpStatus.badRequest) {
       throw ApiException(response.statusCode, await _decodeBodyBytes(response));
     }
     // When a remote server returns no body with a status of 204, we shall not decode it.
     // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
     // FormatException when trying to decode an empty string.
-    if (response.body.isNotEmpty && response.statusCode != HttpStatus.noContent) {
-      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'Object',) as Object;
-    
+    if (response.body.isNotEmpty &&
+        response.statusCode != HttpStatus.noContent) {
+      return await apiClient.deserializeAsync(
+        await _decodeBodyBytes(response),
+        'PayoutDestination',
+      ) as PayoutDestination;
+    }
+    return null;
+  }
+
+  /// Performs an HTTP 'POST /v1/payout-destinations/{id}/verify' operation and returns the [Response].
+  /// Parameters:
+  ///
+  /// * [String] id (required):
+  ///
+  /// * [DestinationCodeRequest] destinationCodeRequest (required):
+  ///
+  /// * [String] authorization:
+  ///
+  /// * [String] xAPIKey:
+  ///
+  /// * [String] cookie:
+  ///
+  /// * [String] x221ExternalRef:
+  ///
+  /// * [String] x221ProjectId:
+  ///
+  /// * [String] projectId:
+  ///
+  /// * [String] lang:
+  ///
+  /// * [String] acceptLanguage:
+  Future<Response> payoutDestinationsVerifyWithHttpInfo(
+    String id,
+    DestinationCodeRequest destinationCodeRequest, {
+    String? authorization,
+    String? xAPIKey,
+    String? cookie,
+    String? x221ExternalRef,
+    String? x221ProjectId,
+    String? projectId,
+    String? lang,
+    String? acceptLanguage,
+    Future<void>? abortTrigger,
+  }) async {
+    // ignore: prefer_const_declarations
+    final path = r'/v1/payout-destinations/{id}/verify'.replaceAll('{id}', id);
+
+    // ignore: prefer_final_locals
+    Object? postBody = destinationCodeRequest;
+
+    final queryParams = <QueryParam>[];
+    final headerParams = <String, String>{};
+    final formParams = <String, String>{};
+
+    if (projectId != null) {
+      queryParams.addAll(_queryParams('', 'project_id', projectId));
+    }
+    if (lang != null) {
+      queryParams.addAll(_queryParams('', 'lang', lang));
+    }
+
+    if (authorization != null) {
+      headerParams[r'Authorization'] = parameterToString(authorization);
+    }
+    if (xAPIKey != null) {
+      headerParams[r'X-API-Key'] = parameterToString(xAPIKey);
+    }
+    if (cookie != null) {
+      headerParams[r'Cookie'] = parameterToString(cookie);
+    }
+    if (x221ExternalRef != null) {
+      headerParams[r'X-221-External-Ref'] = parameterToString(x221ExternalRef);
+    }
+    if (x221ProjectId != null) {
+      headerParams[r'X-221-Project-Id'] = parameterToString(x221ProjectId);
+    }
+    if (acceptLanguage != null) {
+      headerParams[r'Accept-Language'] = parameterToString(acceptLanguage);
+    }
+
+    const contentTypes = <String>['application/json'];
+
+    return apiClient.invokeAPI(
+      path,
+      'POST',
+      queryParams,
+      postBody,
+      headerParams,
+      formParams,
+      contentTypes.isEmpty ? null : contentTypes.first,
+      abortTrigger: abortTrigger,
+    );
+  }
+
+  /// Parameters:
+  ///
+  /// * [String] id (required):
+  ///
+  /// * [DestinationCodeRequest] destinationCodeRequest (required):
+  ///
+  /// * [String] authorization:
+  ///
+  /// * [String] xAPIKey:
+  ///
+  /// * [String] cookie:
+  ///
+  /// * [String] x221ExternalRef:
+  ///
+  /// * [String] x221ProjectId:
+  ///
+  /// * [String] projectId:
+  ///
+  /// * [String] lang:
+  ///
+  /// * [String] acceptLanguage:
+  Future<PayoutDestination?> payoutDestinationsVerify(
+    String id,
+    DestinationCodeRequest destinationCodeRequest, {
+    String? authorization,
+    String? xAPIKey,
+    String? cookie,
+    String? x221ExternalRef,
+    String? x221ProjectId,
+    String? projectId,
+    String? lang,
+    String? acceptLanguage,
+    Future<void>? abortTrigger,
+  }) async {
+    final response = await payoutDestinationsVerifyWithHttpInfo(
+      id,
+      destinationCodeRequest,
+      authorization: authorization,
+      xAPIKey: xAPIKey,
+      cookie: cookie,
+      x221ExternalRef: x221ExternalRef,
+      x221ProjectId: x221ProjectId,
+      projectId: projectId,
+      lang: lang,
+      acceptLanguage: acceptLanguage,
+      abortTrigger: abortTrigger,
+    );
+    if (response.statusCode >= HttpStatus.badRequest) {
+      throw ApiException(response.statusCode, await _decodeBodyBytes(response));
+    }
+    // When a remote server returns no body with a status of 204, we shall not decode it.
+    // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
+    // FormatException when trying to decode an empty string.
+    if (response.body.isNotEmpty &&
+        response.statusCode != HttpStatus.noContent) {
+      return await apiClient.deserializeAsync(
+        await _decodeBodyBytes(response),
+        'PayoutDestination',
+      ) as PayoutDestination;
+    }
+    return null;
+  }
+
+  /// Performs an HTTP 'POST /v1/payout-quotes' operation and returns the [Response].
+  /// Parameters:
+  ///
+  /// * [PayoutQuoteRequest] payoutQuoteRequest (required):
+  ///
+  /// * [String] authorization:
+  ///
+  /// * [String] xAPIKey:
+  ///
+  /// * [String] cookie:
+  ///
+  /// * [String] x221ExternalRef:
+  ///
+  /// * [String] x221ProjectId:
+  ///
+  /// * [String] projectId:
+  ///
+  /// * [String] lang:
+  ///
+  /// * [String] acceptLanguage:
+  Future<Response> payoutQuotesCreateWithHttpInfo(
+    PayoutQuoteRequest payoutQuoteRequest, {
+    String? authorization,
+    String? xAPIKey,
+    String? cookie,
+    String? x221ExternalRef,
+    String? x221ProjectId,
+    String? projectId,
+    String? lang,
+    String? acceptLanguage,
+    Future<void>? abortTrigger,
+  }) async {
+    // ignore: prefer_const_declarations
+    final path = r'/v1/payout-quotes';
+
+    // ignore: prefer_final_locals
+    Object? postBody = payoutQuoteRequest;
+
+    final queryParams = <QueryParam>[];
+    final headerParams = <String, String>{};
+    final formParams = <String, String>{};
+
+    if (projectId != null) {
+      queryParams.addAll(_queryParams('', 'project_id', projectId));
+    }
+    if (lang != null) {
+      queryParams.addAll(_queryParams('', 'lang', lang));
+    }
+
+    if (authorization != null) {
+      headerParams[r'Authorization'] = parameterToString(authorization);
+    }
+    if (xAPIKey != null) {
+      headerParams[r'X-API-Key'] = parameterToString(xAPIKey);
+    }
+    if (cookie != null) {
+      headerParams[r'Cookie'] = parameterToString(cookie);
+    }
+    if (x221ExternalRef != null) {
+      headerParams[r'X-221-External-Ref'] = parameterToString(x221ExternalRef);
+    }
+    if (x221ProjectId != null) {
+      headerParams[r'X-221-Project-Id'] = parameterToString(x221ProjectId);
+    }
+    if (acceptLanguage != null) {
+      headerParams[r'Accept-Language'] = parameterToString(acceptLanguage);
+    }
+
+    const contentTypes = <String>['application/json'];
+
+    return apiClient.invokeAPI(
+      path,
+      'POST',
+      queryParams,
+      postBody,
+      headerParams,
+      formParams,
+      contentTypes.isEmpty ? null : contentTypes.first,
+      abortTrigger: abortTrigger,
+    );
+  }
+
+  /// Parameters:
+  ///
+  /// * [PayoutQuoteRequest] payoutQuoteRequest (required):
+  ///
+  /// * [String] authorization:
+  ///
+  /// * [String] xAPIKey:
+  ///
+  /// * [String] cookie:
+  ///
+  /// * [String] x221ExternalRef:
+  ///
+  /// * [String] x221ProjectId:
+  ///
+  /// * [String] projectId:
+  ///
+  /// * [String] lang:
+  ///
+  /// * [String] acceptLanguage:
+  Future<PayoutQuote?> payoutQuotesCreate(
+    PayoutQuoteRequest payoutQuoteRequest, {
+    String? authorization,
+    String? xAPIKey,
+    String? cookie,
+    String? x221ExternalRef,
+    String? x221ProjectId,
+    String? projectId,
+    String? lang,
+    String? acceptLanguage,
+    Future<void>? abortTrigger,
+  }) async {
+    final response = await payoutQuotesCreateWithHttpInfo(
+      payoutQuoteRequest,
+      authorization: authorization,
+      xAPIKey: xAPIKey,
+      cookie: cookie,
+      x221ExternalRef: x221ExternalRef,
+      x221ProjectId: x221ProjectId,
+      projectId: projectId,
+      lang: lang,
+      acceptLanguage: acceptLanguage,
+      abortTrigger: abortTrigger,
+    );
+    if (response.statusCode >= HttpStatus.badRequest) {
+      throw ApiException(response.statusCode, await _decodeBodyBytes(response));
+    }
+    // When a remote server returns no body with a status of 204, we shall not decode it.
+    // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
+    // FormatException when trying to decode an empty string.
+    if (response.body.isNotEmpty &&
+        response.statusCode != HttpStatus.noContent) {
+      return await apiClient.deserializeAsync(
+        await _decodeBodyBytes(response),
+        'PayoutQuote',
+      ) as PayoutQuote;
     }
     return null;
   }
@@ -3883,7 +5037,10 @@ class PaymentsApi {
   /// Performs an HTTP 'POST /v1/payouts' operation and returns the [Response].
   /// Parameters:
   ///
-  /// * [MultipartFile] body (required):
+  /// * [String] idempotencyKey (required):
+  ///   Valeur unique par opération. Un renvoi avec la même valeur et le même corps rend le résultat déjà obtenu ; un corps différent donne IDEMPOTENCY_CONFLICT.
+  ///
+  /// * [PayoutRequest] payoutRequest (required):
   ///
   /// * [String] authorization:
   ///
@@ -3900,14 +5057,24 @@ class PaymentsApi {
   /// * [String] lang:
   ///
   /// * [String] acceptLanguage:
-  ///
-  /// * [String] idempotencyKey:
-  Future<Response> payoutsCreateWithHttpInfo(MultipartFile body, { String? authorization, String? xAPIKey, String? cookie, String? x221ExternalRef, String? x221ProjectId, String? projectId, String? lang, String? acceptLanguage, String? idempotencyKey, Future<void>? abortTrigger, }) async {
+  Future<Response> payoutsCreateWithHttpInfo(
+    String idempotencyKey,
+    PayoutRequest payoutRequest, {
+    String? authorization,
+    String? xAPIKey,
+    String? cookie,
+    String? x221ExternalRef,
+    String? x221ProjectId,
+    String? projectId,
+    String? lang,
+    String? acceptLanguage,
+    Future<void>? abortTrigger,
+  }) async {
     // ignore: prefer_const_declarations
     final path = r'/v1/payouts';
 
     // ignore: prefer_final_locals
-    Object? postBody = body;
+    Object? postBody = payoutRequest;
 
     final queryParams = <QueryParam>[];
     final headerParams = <String, String>{};
@@ -3938,12 +5105,9 @@ class PaymentsApi {
     if (acceptLanguage != null) {
       headerParams[r'Accept-Language'] = parameterToString(acceptLanguage);
     }
-    if (idempotencyKey != null) {
-      headerParams[r'Idempotency-Key'] = parameterToString(idempotencyKey);
-    }
+    headerParams[r'Idempotency-Key'] = parameterToString(idempotencyKey);
 
-    const contentTypes = <String>['application/octet-stream'];
-
+    const contentTypes = <String>['application/json'];
 
     return apiClient.invokeAPI(
       path,
@@ -3959,7 +5123,10 @@ class PaymentsApi {
 
   /// Parameters:
   ///
-  /// * [MultipartFile] body (required):
+  /// * [String] idempotencyKey (required):
+  ///   Valeur unique par opération. Un renvoi avec la même valeur et le même corps rend le résultat déjà obtenu ; un corps différent donne IDEMPOTENCY_CONFLICT.
+  ///
+  /// * [PayoutRequest] payoutRequest (required):
   ///
   /// * [String] authorization:
   ///
@@ -3976,19 +5143,44 @@ class PaymentsApi {
   /// * [String] lang:
   ///
   /// * [String] acceptLanguage:
-  ///
-  /// * [String] idempotencyKey:
-  Future<Object?> payoutsCreate(MultipartFile body, { String? authorization, String? xAPIKey, String? cookie, String? x221ExternalRef, String? x221ProjectId, String? projectId, String? lang, String? acceptLanguage, String? idempotencyKey, Future<void>? abortTrigger, }) async {
-    final response = await payoutsCreateWithHttpInfo(body, authorization: authorization, xAPIKey: xAPIKey, cookie: cookie, x221ExternalRef: x221ExternalRef, x221ProjectId: x221ProjectId, projectId: projectId, lang: lang, acceptLanguage: acceptLanguage, idempotencyKey: idempotencyKey, abortTrigger: abortTrigger,);
+  Future<Payout?> payoutsCreate(
+    String idempotencyKey,
+    PayoutRequest payoutRequest, {
+    String? authorization,
+    String? xAPIKey,
+    String? cookie,
+    String? x221ExternalRef,
+    String? x221ProjectId,
+    String? projectId,
+    String? lang,
+    String? acceptLanguage,
+    Future<void>? abortTrigger,
+  }) async {
+    final response = await payoutsCreateWithHttpInfo(
+      idempotencyKey,
+      payoutRequest,
+      authorization: authorization,
+      xAPIKey: xAPIKey,
+      cookie: cookie,
+      x221ExternalRef: x221ExternalRef,
+      x221ProjectId: x221ProjectId,
+      projectId: projectId,
+      lang: lang,
+      acceptLanguage: acceptLanguage,
+      abortTrigger: abortTrigger,
+    );
     if (response.statusCode >= HttpStatus.badRequest) {
       throw ApiException(response.statusCode, await _decodeBodyBytes(response));
     }
     // When a remote server returns no body with a status of 204, we shall not decode it.
     // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
     // FormatException when trying to decode an empty string.
-    if (response.body.isNotEmpty && response.statusCode != HttpStatus.noContent) {
-      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'Object',) as Object;
-    
+    if (response.body.isNotEmpty &&
+        response.statusCode != HttpStatus.noContent) {
+      return await apiClient.deserializeAsync(
+        await _decodeBodyBytes(response),
+        'Payout',
+      ) as Payout;
     }
     return null;
   }
@@ -4013,10 +5205,20 @@ class PaymentsApi {
   /// * [String] lang:
   ///
   /// * [String] acceptLanguage:
-  Future<Response> payoutsGetWithHttpInfo(String id, { String? authorization, String? xAPIKey, String? cookie, String? x221ExternalRef, String? x221ProjectId, String? projectId, String? lang, String? acceptLanguage, Future<void>? abortTrigger, }) async {
+  Future<Response> payoutsGetWithHttpInfo(
+    String id, {
+    String? authorization,
+    String? xAPIKey,
+    String? cookie,
+    String? x221ExternalRef,
+    String? x221ProjectId,
+    String? projectId,
+    String? lang,
+    String? acceptLanguage,
+    Future<void>? abortTrigger,
+  }) async {
     // ignore: prefer_const_declarations
-    final path = r'/v1/payouts/{id}'
-      .replaceAll('{id}', id);
+    final path = r'/v1/payouts/{id}'.replaceAll('{id}', id);
 
     // ignore: prefer_final_locals
     Object? postBody;
@@ -4053,7 +5255,6 @@ class PaymentsApi {
 
     const contentTypes = <String>[];
 
-
     return apiClient.invokeAPI(
       path,
       'GET',
@@ -4085,17 +5286,42 @@ class PaymentsApi {
   /// * [String] lang:
   ///
   /// * [String] acceptLanguage:
-  Future<Object?> payoutsGet(String id, { String? authorization, String? xAPIKey, String? cookie, String? x221ExternalRef, String? x221ProjectId, String? projectId, String? lang, String? acceptLanguage, Future<void>? abortTrigger, }) async {
-    final response = await payoutsGetWithHttpInfo(id, authorization: authorization, xAPIKey: xAPIKey, cookie: cookie, x221ExternalRef: x221ExternalRef, x221ProjectId: x221ProjectId, projectId: projectId, lang: lang, acceptLanguage: acceptLanguage, abortTrigger: abortTrigger,);
+  Future<Payout?> payoutsGet(
+    String id, {
+    String? authorization,
+    String? xAPIKey,
+    String? cookie,
+    String? x221ExternalRef,
+    String? x221ProjectId,
+    String? projectId,
+    String? lang,
+    String? acceptLanguage,
+    Future<void>? abortTrigger,
+  }) async {
+    final response = await payoutsGetWithHttpInfo(
+      id,
+      authorization: authorization,
+      xAPIKey: xAPIKey,
+      cookie: cookie,
+      x221ExternalRef: x221ExternalRef,
+      x221ProjectId: x221ProjectId,
+      projectId: projectId,
+      lang: lang,
+      acceptLanguage: acceptLanguage,
+      abortTrigger: abortTrigger,
+    );
     if (response.statusCode >= HttpStatus.badRequest) {
       throw ApiException(response.statusCode, await _decodeBodyBytes(response));
     }
     // When a remote server returns no body with a status of 204, we shall not decode it.
     // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
     // FormatException when trying to decode an empty string.
-    if (response.body.isNotEmpty && response.statusCode != HttpStatus.noContent) {
-      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'Object',) as Object;
-    
+    if (response.body.isNotEmpty &&
+        response.statusCode != HttpStatus.noContent) {
+      return await apiClient.deserializeAsync(
+        await _decodeBodyBytes(response),
+        'Payout',
+      ) as Payout;
     }
     return null;
   }
@@ -4118,7 +5344,17 @@ class PaymentsApi {
   /// * [String] lang:
   ///
   /// * [String] acceptLanguage:
-  Future<Response> payoutsListWithHttpInfo({ String? authorization, String? xAPIKey, String? cookie, String? x221ExternalRef, String? x221ProjectId, String? projectId, String? lang, String? acceptLanguage, Future<void>? abortTrigger, }) async {
+  Future<Response> payoutsListWithHttpInfo({
+    String? authorization,
+    String? xAPIKey,
+    String? cookie,
+    String? x221ExternalRef,
+    String? x221ProjectId,
+    String? projectId,
+    String? lang,
+    String? acceptLanguage,
+    Future<void>? abortTrigger,
+  }) async {
     // ignore: prefer_const_declarations
     final path = r'/v1/payouts';
 
@@ -4157,7 +5393,6 @@ class PaymentsApi {
 
     const contentTypes = <String>[];
 
-
     return apiClient.invokeAPI(
       path,
       'GET',
@@ -4187,17 +5422,181 @@ class PaymentsApi {
   /// * [String] lang:
   ///
   /// * [String] acceptLanguage:
-  Future<Object?> payoutsList({ String? authorization, String? xAPIKey, String? cookie, String? x221ExternalRef, String? x221ProjectId, String? projectId, String? lang, String? acceptLanguage, Future<void>? abortTrigger, }) async {
-    final response = await payoutsListWithHttpInfo(authorization: authorization, xAPIKey: xAPIKey, cookie: cookie, x221ExternalRef: x221ExternalRef, x221ProjectId: x221ProjectId, projectId: projectId, lang: lang, acceptLanguage: acceptLanguage, abortTrigger: abortTrigger,);
+  Future<CollectionPayout?> payoutsList({
+    String? authorization,
+    String? xAPIKey,
+    String? cookie,
+    String? x221ExternalRef,
+    String? x221ProjectId,
+    String? projectId,
+    String? lang,
+    String? acceptLanguage,
+    Future<void>? abortTrigger,
+  }) async {
+    final response = await payoutsListWithHttpInfo(
+      authorization: authorization,
+      xAPIKey: xAPIKey,
+      cookie: cookie,
+      x221ExternalRef: x221ExternalRef,
+      x221ProjectId: x221ProjectId,
+      projectId: projectId,
+      lang: lang,
+      acceptLanguage: acceptLanguage,
+      abortTrigger: abortTrigger,
+    );
     if (response.statusCode >= HttpStatus.badRequest) {
       throw ApiException(response.statusCode, await _decodeBodyBytes(response));
     }
     // When a remote server returns no body with a status of 204, we shall not decode it.
     // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
     // FormatException when trying to decode an empty string.
-    if (response.body.isNotEmpty && response.statusCode != HttpStatus.noContent) {
-      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'Object',) as Object;
-    
+    if (response.body.isNotEmpty &&
+        response.statusCode != HttpStatus.noContent) {
+      return await apiClient.deserializeAsync(
+        await _decodeBodyBytes(response),
+        'CollectionPayout',
+      ) as CollectionPayout;
+    }
+    return null;
+  }
+
+  /// Performs an HTTP 'GET /v1/payouts/{id}/receipt' operation and returns the [Response].
+  /// Parameters:
+  ///
+  /// * [String] id (required):
+  ///
+  /// * [String] authorization:
+  ///
+  /// * [String] xAPIKey:
+  ///
+  /// * [String] cookie:
+  ///
+  /// * [String] x221ExternalRef:
+  ///
+  /// * [String] x221ProjectId:
+  ///
+  /// * [String] projectId:
+  ///
+  /// * [String] lang:
+  ///
+  /// * [String] acceptLanguage:
+  Future<Response> payoutsReceiptWithHttpInfo(
+    String id, {
+    String? authorization,
+    String? xAPIKey,
+    String? cookie,
+    String? x221ExternalRef,
+    String? x221ProjectId,
+    String? projectId,
+    String? lang,
+    String? acceptLanguage,
+    Future<void>? abortTrigger,
+  }) async {
+    // ignore: prefer_const_declarations
+    final path = r'/v1/payouts/{id}/receipt'.replaceAll('{id}', id);
+
+    // ignore: prefer_final_locals
+    Object? postBody;
+
+    final queryParams = <QueryParam>[];
+    final headerParams = <String, String>{};
+    final formParams = <String, String>{};
+
+    if (projectId != null) {
+      queryParams.addAll(_queryParams('', 'project_id', projectId));
+    }
+    if (lang != null) {
+      queryParams.addAll(_queryParams('', 'lang', lang));
+    }
+
+    if (authorization != null) {
+      headerParams[r'Authorization'] = parameterToString(authorization);
+    }
+    if (xAPIKey != null) {
+      headerParams[r'X-API-Key'] = parameterToString(xAPIKey);
+    }
+    if (cookie != null) {
+      headerParams[r'Cookie'] = parameterToString(cookie);
+    }
+    if (x221ExternalRef != null) {
+      headerParams[r'X-221-External-Ref'] = parameterToString(x221ExternalRef);
+    }
+    if (x221ProjectId != null) {
+      headerParams[r'X-221-Project-Id'] = parameterToString(x221ProjectId);
+    }
+    if (acceptLanguage != null) {
+      headerParams[r'Accept-Language'] = parameterToString(acceptLanguage);
+    }
+
+    const contentTypes = <String>[];
+
+    return apiClient.invokeAPI(
+      path,
+      'GET',
+      queryParams,
+      postBody,
+      headerParams,
+      formParams,
+      contentTypes.isEmpty ? null : contentTypes.first,
+      abortTrigger: abortTrigger,
+    );
+  }
+
+  /// Parameters:
+  ///
+  /// * [String] id (required):
+  ///
+  /// * [String] authorization:
+  ///
+  /// * [String] xAPIKey:
+  ///
+  /// * [String] cookie:
+  ///
+  /// * [String] x221ExternalRef:
+  ///
+  /// * [String] x221ProjectId:
+  ///
+  /// * [String] projectId:
+  ///
+  /// * [String] lang:
+  ///
+  /// * [String] acceptLanguage:
+  Future<PayoutReceipt?> payoutsReceipt(
+    String id, {
+    String? authorization,
+    String? xAPIKey,
+    String? cookie,
+    String? x221ExternalRef,
+    String? x221ProjectId,
+    String? projectId,
+    String? lang,
+    String? acceptLanguage,
+    Future<void>? abortTrigger,
+  }) async {
+    final response = await payoutsReceiptWithHttpInfo(
+      id,
+      authorization: authorization,
+      xAPIKey: xAPIKey,
+      cookie: cookie,
+      x221ExternalRef: x221ExternalRef,
+      x221ProjectId: x221ProjectId,
+      projectId: projectId,
+      lang: lang,
+      acceptLanguage: acceptLanguage,
+      abortTrigger: abortTrigger,
+    );
+    if (response.statusCode >= HttpStatus.badRequest) {
+      throw ApiException(response.statusCode, await _decodeBodyBytes(response));
+    }
+    // When a remote server returns no body with a status of 204, we shall not decode it.
+    // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
+    // FormatException when trying to decode an empty string.
+    if (response.body.isNotEmpty &&
+        response.statusCode != HttpStatus.noContent) {
+      return await apiClient.deserializeAsync(
+        await _decodeBodyBytes(response),
+        'PayoutReceipt',
+      ) as PayoutReceipt;
     }
     return null;
   }
@@ -4220,7 +5619,17 @@ class PaymentsApi {
   /// * [String] lang:
   ///
   /// * [String] acceptLanguage:
-  Future<Response> railsListWithHttpInfo({ String? authorization, String? xAPIKey, String? cookie, String? x221ExternalRef, String? x221ProjectId, String? projectId, String? lang, String? acceptLanguage, Future<void>? abortTrigger, }) async {
+  Future<Response> railsListWithHttpInfo({
+    String? authorization,
+    String? xAPIKey,
+    String? cookie,
+    String? x221ExternalRef,
+    String? x221ProjectId,
+    String? projectId,
+    String? lang,
+    String? acceptLanguage,
+    Future<void>? abortTrigger,
+  }) async {
     // ignore: prefer_const_declarations
     final path = r'/v1/rails';
 
@@ -4259,7 +5668,6 @@ class PaymentsApi {
 
     const contentTypes = <String>[];
 
-
     return apiClient.invokeAPI(
       path,
       'GET',
@@ -4289,17 +5697,40 @@ class PaymentsApi {
   /// * [String] lang:
   ///
   /// * [String] acceptLanguage:
-  Future<Object?> railsList({ String? authorization, String? xAPIKey, String? cookie, String? x221ExternalRef, String? x221ProjectId, String? projectId, String? lang, String? acceptLanguage, Future<void>? abortTrigger, }) async {
-    final response = await railsListWithHttpInfo(authorization: authorization, xAPIKey: xAPIKey, cookie: cookie, x221ExternalRef: x221ExternalRef, x221ProjectId: x221ProjectId, projectId: projectId, lang: lang, acceptLanguage: acceptLanguage, abortTrigger: abortTrigger,);
+  Future<RailList?> railsList({
+    String? authorization,
+    String? xAPIKey,
+    String? cookie,
+    String? x221ExternalRef,
+    String? x221ProjectId,
+    String? projectId,
+    String? lang,
+    String? acceptLanguage,
+    Future<void>? abortTrigger,
+  }) async {
+    final response = await railsListWithHttpInfo(
+      authorization: authorization,
+      xAPIKey: xAPIKey,
+      cookie: cookie,
+      x221ExternalRef: x221ExternalRef,
+      x221ProjectId: x221ProjectId,
+      projectId: projectId,
+      lang: lang,
+      acceptLanguage: acceptLanguage,
+      abortTrigger: abortTrigger,
+    );
     if (response.statusCode >= HttpStatus.badRequest) {
       throw ApiException(response.statusCode, await _decodeBodyBytes(response));
     }
     // When a remote server returns no body with a status of 204, we shall not decode it.
     // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
     // FormatException when trying to decode an empty string.
-    if (response.body.isNotEmpty && response.statusCode != HttpStatus.noContent) {
-      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'Object',) as Object;
-    
+    if (response.body.isNotEmpty &&
+        response.statusCode != HttpStatus.noContent) {
+      return await apiClient.deserializeAsync(
+        await _decodeBodyBytes(response),
+        'RailList',
+      ) as RailList;
     }
     return null;
   }
@@ -4309,7 +5740,7 @@ class PaymentsApi {
   ///
   /// * [String] id (required):
   ///
-  /// * [MultipartFile] body (required):
+  /// * [RailSwitchRequest] railSwitchRequest (required):
   ///
   /// * [String] authorization:
   ///
@@ -4326,13 +5757,24 @@ class PaymentsApi {
   /// * [String] lang:
   ///
   /// * [String] acceptLanguage:
-  Future<Response> railsSetEnabledWithHttpInfo(String id, MultipartFile body, { String? authorization, String? xAPIKey, String? cookie, String? x221ExternalRef, String? x221ProjectId, String? projectId, String? lang, String? acceptLanguage, Future<void>? abortTrigger, }) async {
+  Future<Response> railsSetEnabledWithHttpInfo(
+    String id,
+    RailSwitchRequest railSwitchRequest, {
+    String? authorization,
+    String? xAPIKey,
+    String? cookie,
+    String? x221ExternalRef,
+    String? x221ProjectId,
+    String? projectId,
+    String? lang,
+    String? acceptLanguage,
+    Future<void>? abortTrigger,
+  }) async {
     // ignore: prefer_const_declarations
-    final path = r'/v1/rails/{id}/enabled'
-      .replaceAll('{id}', id);
+    final path = r'/v1/rails/{id}/enabled'.replaceAll('{id}', id);
 
     // ignore: prefer_final_locals
-    Object? postBody = body;
+    Object? postBody = railSwitchRequest;
 
     final queryParams = <QueryParam>[];
     final headerParams = <String, String>{};
@@ -4364,8 +5806,7 @@ class PaymentsApi {
       headerParams[r'Accept-Language'] = parameterToString(acceptLanguage);
     }
 
-    const contentTypes = <String>['application/octet-stream'];
-
+    const contentTypes = <String>['application/json'];
 
     return apiClient.invokeAPI(
       path,
@@ -4383,7 +5824,7 @@ class PaymentsApi {
   ///
   /// * [String] id (required):
   ///
-  /// * [MultipartFile] body (required):
+  /// * [RailSwitchRequest] railSwitchRequest (required):
   ///
   /// * [String] authorization:
   ///
@@ -4400,17 +5841,44 @@ class PaymentsApi {
   /// * [String] lang:
   ///
   /// * [String] acceptLanguage:
-  Future<Object?> railsSetEnabled(String id, MultipartFile body, { String? authorization, String? xAPIKey, String? cookie, String? x221ExternalRef, String? x221ProjectId, String? projectId, String? lang, String? acceptLanguage, Future<void>? abortTrigger, }) async {
-    final response = await railsSetEnabledWithHttpInfo(id, body, authorization: authorization, xAPIKey: xAPIKey, cookie: cookie, x221ExternalRef: x221ExternalRef, x221ProjectId: x221ProjectId, projectId: projectId, lang: lang, acceptLanguage: acceptLanguage, abortTrigger: abortTrigger,);
+  Future<Rail?> railsSetEnabled(
+    String id,
+    RailSwitchRequest railSwitchRequest, {
+    String? authorization,
+    String? xAPIKey,
+    String? cookie,
+    String? x221ExternalRef,
+    String? x221ProjectId,
+    String? projectId,
+    String? lang,
+    String? acceptLanguage,
+    Future<void>? abortTrigger,
+  }) async {
+    final response = await railsSetEnabledWithHttpInfo(
+      id,
+      railSwitchRequest,
+      authorization: authorization,
+      xAPIKey: xAPIKey,
+      cookie: cookie,
+      x221ExternalRef: x221ExternalRef,
+      x221ProjectId: x221ProjectId,
+      projectId: projectId,
+      lang: lang,
+      acceptLanguage: acceptLanguage,
+      abortTrigger: abortTrigger,
+    );
     if (response.statusCode >= HttpStatus.badRequest) {
       throw ApiException(response.statusCode, await _decodeBodyBytes(response));
     }
     // When a remote server returns no body with a status of 204, we shall not decode it.
     // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
     // FormatException when trying to decode an empty string.
-    if (response.body.isNotEmpty && response.statusCode != HttpStatus.noContent) {
-      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'Object',) as Object;
-    
+    if (response.body.isNotEmpty &&
+        response.statusCode != HttpStatus.noContent) {
+      return await apiClient.deserializeAsync(
+        await _decodeBodyBytes(response),
+        'Rail',
+      ) as Rail;
     }
     return null;
   }
@@ -4418,7 +5886,7 @@ class PaymentsApi {
   /// Performs an HTTP 'POST /v1/refund-quotes' operation and returns the [Response].
   /// Parameters:
   ///
-  /// * [MultipartFile] body (required):
+  /// * [RefundQuoteRequest] refundQuoteRequest (required):
   ///
   /// * [String] authorization:
   ///
@@ -4435,12 +5903,23 @@ class PaymentsApi {
   /// * [String] lang:
   ///
   /// * [String] acceptLanguage:
-  Future<Response> refundQuotesCreateWithHttpInfo(MultipartFile body, { String? authorization, String? xAPIKey, String? cookie, String? x221ExternalRef, String? x221ProjectId, String? projectId, String? lang, String? acceptLanguage, Future<void>? abortTrigger, }) async {
+  Future<Response> refundQuotesCreateWithHttpInfo(
+    RefundQuoteRequest refundQuoteRequest, {
+    String? authorization,
+    String? xAPIKey,
+    String? cookie,
+    String? x221ExternalRef,
+    String? x221ProjectId,
+    String? projectId,
+    String? lang,
+    String? acceptLanguage,
+    Future<void>? abortTrigger,
+  }) async {
     // ignore: prefer_const_declarations
     final path = r'/v1/refund-quotes';
 
     // ignore: prefer_final_locals
-    Object? postBody = body;
+    Object? postBody = refundQuoteRequest;
 
     final queryParams = <QueryParam>[];
     final headerParams = <String, String>{};
@@ -4472,8 +5951,7 @@ class PaymentsApi {
       headerParams[r'Accept-Language'] = parameterToString(acceptLanguage);
     }
 
-    const contentTypes = <String>['application/octet-stream'];
-
+    const contentTypes = <String>['application/json'];
 
     return apiClient.invokeAPI(
       path,
@@ -4489,7 +5967,7 @@ class PaymentsApi {
 
   /// Parameters:
   ///
-  /// * [MultipartFile] body (required):
+  /// * [RefundQuoteRequest] refundQuoteRequest (required):
   ///
   /// * [String] authorization:
   ///
@@ -4506,17 +5984,42 @@ class PaymentsApi {
   /// * [String] lang:
   ///
   /// * [String] acceptLanguage:
-  Future<Object?> refundQuotesCreate(MultipartFile body, { String? authorization, String? xAPIKey, String? cookie, String? x221ExternalRef, String? x221ProjectId, String? projectId, String? lang, String? acceptLanguage, Future<void>? abortTrigger, }) async {
-    final response = await refundQuotesCreateWithHttpInfo(body, authorization: authorization, xAPIKey: xAPIKey, cookie: cookie, x221ExternalRef: x221ExternalRef, x221ProjectId: x221ProjectId, projectId: projectId, lang: lang, acceptLanguage: acceptLanguage, abortTrigger: abortTrigger,);
+  Future<RefundQuote?> refundQuotesCreate(
+    RefundQuoteRequest refundQuoteRequest, {
+    String? authorization,
+    String? xAPIKey,
+    String? cookie,
+    String? x221ExternalRef,
+    String? x221ProjectId,
+    String? projectId,
+    String? lang,
+    String? acceptLanguage,
+    Future<void>? abortTrigger,
+  }) async {
+    final response = await refundQuotesCreateWithHttpInfo(
+      refundQuoteRequest,
+      authorization: authorization,
+      xAPIKey: xAPIKey,
+      cookie: cookie,
+      x221ExternalRef: x221ExternalRef,
+      x221ProjectId: x221ProjectId,
+      projectId: projectId,
+      lang: lang,
+      acceptLanguage: acceptLanguage,
+      abortTrigger: abortTrigger,
+    );
     if (response.statusCode >= HttpStatus.badRequest) {
       throw ApiException(response.statusCode, await _decodeBodyBytes(response));
     }
     // When a remote server returns no body with a status of 204, we shall not decode it.
     // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
     // FormatException when trying to decode an empty string.
-    if (response.body.isNotEmpty && response.statusCode != HttpStatus.noContent) {
-      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'Object',) as Object;
-    
+    if (response.body.isNotEmpty &&
+        response.statusCode != HttpStatus.noContent) {
+      return await apiClient.deserializeAsync(
+        await _decodeBodyBytes(response),
+        'RefundQuote',
+      ) as RefundQuote;
     }
     return null;
   }
@@ -4524,7 +6027,10 @@ class PaymentsApi {
   /// Performs an HTTP 'POST /v1/refunds' operation and returns the [Response].
   /// Parameters:
   ///
-  /// * [MultipartFile] body (required):
+  /// * [String] idempotencyKey (required):
+  ///   Valeur unique par opération. Un renvoi avec la même valeur et le même corps rend le résultat déjà obtenu ; un corps différent donne IDEMPOTENCY_CONFLICT.
+  ///
+  /// * [RefundRequest] refundRequest (required):
   ///
   /// * [String] authorization:
   ///
@@ -4541,14 +6047,24 @@ class PaymentsApi {
   /// * [String] lang:
   ///
   /// * [String] acceptLanguage:
-  ///
-  /// * [String] idempotencyKey:
-  Future<Response> refundsCreateWithHttpInfo(MultipartFile body, { String? authorization, String? xAPIKey, String? cookie, String? x221ExternalRef, String? x221ProjectId, String? projectId, String? lang, String? acceptLanguage, String? idempotencyKey, Future<void>? abortTrigger, }) async {
+  Future<Response> refundsCreateWithHttpInfo(
+    String idempotencyKey,
+    RefundRequest refundRequest, {
+    String? authorization,
+    String? xAPIKey,
+    String? cookie,
+    String? x221ExternalRef,
+    String? x221ProjectId,
+    String? projectId,
+    String? lang,
+    String? acceptLanguage,
+    Future<void>? abortTrigger,
+  }) async {
     // ignore: prefer_const_declarations
     final path = r'/v1/refunds';
 
     // ignore: prefer_final_locals
-    Object? postBody = body;
+    Object? postBody = refundRequest;
 
     final queryParams = <QueryParam>[];
     final headerParams = <String, String>{};
@@ -4579,12 +6095,9 @@ class PaymentsApi {
     if (acceptLanguage != null) {
       headerParams[r'Accept-Language'] = parameterToString(acceptLanguage);
     }
-    if (idempotencyKey != null) {
-      headerParams[r'Idempotency-Key'] = parameterToString(idempotencyKey);
-    }
+    headerParams[r'Idempotency-Key'] = parameterToString(idempotencyKey);
 
-    const contentTypes = <String>['application/octet-stream'];
-
+    const contentTypes = <String>['application/json'];
 
     return apiClient.invokeAPI(
       path,
@@ -4600,7 +6113,10 @@ class PaymentsApi {
 
   /// Parameters:
   ///
-  /// * [MultipartFile] body (required):
+  /// * [String] idempotencyKey (required):
+  ///   Valeur unique par opération. Un renvoi avec la même valeur et le même corps rend le résultat déjà obtenu ; un corps différent donne IDEMPOTENCY_CONFLICT.
+  ///
+  /// * [RefundRequest] refundRequest (required):
   ///
   /// * [String] authorization:
   ///
@@ -4617,19 +6133,44 @@ class PaymentsApi {
   /// * [String] lang:
   ///
   /// * [String] acceptLanguage:
-  ///
-  /// * [String] idempotencyKey:
-  Future<Object?> refundsCreate(MultipartFile body, { String? authorization, String? xAPIKey, String? cookie, String? x221ExternalRef, String? x221ProjectId, String? projectId, String? lang, String? acceptLanguage, String? idempotencyKey, Future<void>? abortTrigger, }) async {
-    final response = await refundsCreateWithHttpInfo(body, authorization: authorization, xAPIKey: xAPIKey, cookie: cookie, x221ExternalRef: x221ExternalRef, x221ProjectId: x221ProjectId, projectId: projectId, lang: lang, acceptLanguage: acceptLanguage, idempotencyKey: idempotencyKey, abortTrigger: abortTrigger,);
+  Future<Refund?> refundsCreate(
+    String idempotencyKey,
+    RefundRequest refundRequest, {
+    String? authorization,
+    String? xAPIKey,
+    String? cookie,
+    String? x221ExternalRef,
+    String? x221ProjectId,
+    String? projectId,
+    String? lang,
+    String? acceptLanguage,
+    Future<void>? abortTrigger,
+  }) async {
+    final response = await refundsCreateWithHttpInfo(
+      idempotencyKey,
+      refundRequest,
+      authorization: authorization,
+      xAPIKey: xAPIKey,
+      cookie: cookie,
+      x221ExternalRef: x221ExternalRef,
+      x221ProjectId: x221ProjectId,
+      projectId: projectId,
+      lang: lang,
+      acceptLanguage: acceptLanguage,
+      abortTrigger: abortTrigger,
+    );
     if (response.statusCode >= HttpStatus.badRequest) {
       throw ApiException(response.statusCode, await _decodeBodyBytes(response));
     }
     // When a remote server returns no body with a status of 204, we shall not decode it.
     // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
     // FormatException when trying to decode an empty string.
-    if (response.body.isNotEmpty && response.statusCode != HttpStatus.noContent) {
-      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'Object',) as Object;
-    
+    if (response.body.isNotEmpty &&
+        response.statusCode != HttpStatus.noContent) {
+      return await apiClient.deserializeAsync(
+        await _decodeBodyBytes(response),
+        'Refund',
+      ) as Refund;
     }
     return null;
   }
@@ -4654,10 +6195,20 @@ class PaymentsApi {
   /// * [String] lang:
   ///
   /// * [String] acceptLanguage:
-  Future<Response> refundsGetWithHttpInfo(String id, { String? authorization, String? xAPIKey, String? cookie, String? x221ExternalRef, String? x221ProjectId, String? projectId, String? lang, String? acceptLanguage, Future<void>? abortTrigger, }) async {
+  Future<Response> refundsGetWithHttpInfo(
+    String id, {
+    String? authorization,
+    String? xAPIKey,
+    String? cookie,
+    String? x221ExternalRef,
+    String? x221ProjectId,
+    String? projectId,
+    String? lang,
+    String? acceptLanguage,
+    Future<void>? abortTrigger,
+  }) async {
     // ignore: prefer_const_declarations
-    final path = r'/v1/refunds/{id}'
-      .replaceAll('{id}', id);
+    final path = r'/v1/refunds/{id}'.replaceAll('{id}', id);
 
     // ignore: prefer_final_locals
     Object? postBody;
@@ -4694,7 +6245,6 @@ class PaymentsApi {
 
     const contentTypes = <String>[];
 
-
     return apiClient.invokeAPI(
       path,
       'GET',
@@ -4726,17 +6276,42 @@ class PaymentsApi {
   /// * [String] lang:
   ///
   /// * [String] acceptLanguage:
-  Future<Object?> refundsGet(String id, { String? authorization, String? xAPIKey, String? cookie, String? x221ExternalRef, String? x221ProjectId, String? projectId, String? lang, String? acceptLanguage, Future<void>? abortTrigger, }) async {
-    final response = await refundsGetWithHttpInfo(id, authorization: authorization, xAPIKey: xAPIKey, cookie: cookie, x221ExternalRef: x221ExternalRef, x221ProjectId: x221ProjectId, projectId: projectId, lang: lang, acceptLanguage: acceptLanguage, abortTrigger: abortTrigger,);
+  Future<Refund?> refundsGet(
+    String id, {
+    String? authorization,
+    String? xAPIKey,
+    String? cookie,
+    String? x221ExternalRef,
+    String? x221ProjectId,
+    String? projectId,
+    String? lang,
+    String? acceptLanguage,
+    Future<void>? abortTrigger,
+  }) async {
+    final response = await refundsGetWithHttpInfo(
+      id,
+      authorization: authorization,
+      xAPIKey: xAPIKey,
+      cookie: cookie,
+      x221ExternalRef: x221ExternalRef,
+      x221ProjectId: x221ProjectId,
+      projectId: projectId,
+      lang: lang,
+      acceptLanguage: acceptLanguage,
+      abortTrigger: abortTrigger,
+    );
     if (response.statusCode >= HttpStatus.badRequest) {
       throw ApiException(response.statusCode, await _decodeBodyBytes(response));
     }
     // When a remote server returns no body with a status of 204, we shall not decode it.
     // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
     // FormatException when trying to decode an empty string.
-    if (response.body.isNotEmpty && response.statusCode != HttpStatus.noContent) {
-      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'Object',) as Object;
-    
+    if (response.body.isNotEmpty &&
+        response.statusCode != HttpStatus.noContent) {
+      return await apiClient.deserializeAsync(
+        await _decodeBodyBytes(response),
+        'Refund',
+      ) as Refund;
     }
     return null;
   }
@@ -4771,7 +6346,23 @@ class PaymentsApi {
   /// * [String] from:
   ///
   /// * [String] to:
-  Future<Response> refundsListWithHttpInfo({ String? authorization, String? xAPIKey, String? cookie, String? x221ExternalRef, String? x221ProjectId, String? projectId, String? lang, String? acceptLanguage, String? limit, String? offset, String? paymentId, String? status, String? from, String? to, Future<void>? abortTrigger, }) async {
+  Future<Response> refundsListWithHttpInfo({
+    String? authorization,
+    String? xAPIKey,
+    String? cookie,
+    String? x221ExternalRef,
+    String? x221ProjectId,
+    String? projectId,
+    String? lang,
+    String? acceptLanguage,
+    String? limit,
+    String? offset,
+    String? paymentId,
+    String? status,
+    String? from,
+    String? to,
+    Future<void>? abortTrigger,
+  }) async {
     // ignore: prefer_const_declarations
     final path = r'/v1/refunds';
 
@@ -4828,7 +6419,6 @@ class PaymentsApi {
 
     const contentTypes = <String>[];
 
-
     return apiClient.invokeAPI(
       path,
       'GET',
@@ -4870,17 +6460,52 @@ class PaymentsApi {
   /// * [String] from:
   ///
   /// * [String] to:
-  Future<Object?> refundsList({ String? authorization, String? xAPIKey, String? cookie, String? x221ExternalRef, String? x221ProjectId, String? projectId, String? lang, String? acceptLanguage, String? limit, String? offset, String? paymentId, String? status, String? from, String? to, Future<void>? abortTrigger, }) async {
-    final response = await refundsListWithHttpInfo(authorization: authorization, xAPIKey: xAPIKey, cookie: cookie, x221ExternalRef: x221ExternalRef, x221ProjectId: x221ProjectId, projectId: projectId, lang: lang, acceptLanguage: acceptLanguage, limit: limit, offset: offset, paymentId: paymentId, status: status, from: from, to: to, abortTrigger: abortTrigger,);
+  Future<PageRefund?> refundsList({
+    String? authorization,
+    String? xAPIKey,
+    String? cookie,
+    String? x221ExternalRef,
+    String? x221ProjectId,
+    String? projectId,
+    String? lang,
+    String? acceptLanguage,
+    String? limit,
+    String? offset,
+    String? paymentId,
+    String? status,
+    String? from,
+    String? to,
+    Future<void>? abortTrigger,
+  }) async {
+    final response = await refundsListWithHttpInfo(
+      authorization: authorization,
+      xAPIKey: xAPIKey,
+      cookie: cookie,
+      x221ExternalRef: x221ExternalRef,
+      x221ProjectId: x221ProjectId,
+      projectId: projectId,
+      lang: lang,
+      acceptLanguage: acceptLanguage,
+      limit: limit,
+      offset: offset,
+      paymentId: paymentId,
+      status: status,
+      from: from,
+      to: to,
+      abortTrigger: abortTrigger,
+    );
     if (response.statusCode >= HttpStatus.badRequest) {
       throw ApiException(response.statusCode, await _decodeBodyBytes(response));
     }
     // When a remote server returns no body with a status of 204, we shall not decode it.
     // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
     // FormatException when trying to decode an empty string.
-    if (response.body.isNotEmpty && response.statusCode != HttpStatus.noContent) {
-      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'Object',) as Object;
-    
+    if (response.body.isNotEmpty &&
+        response.statusCode != HttpStatus.noContent) {
+      return await apiClient.deserializeAsync(
+        await _decodeBodyBytes(response),
+        'PageRefund',
+      ) as PageRefund;
     }
     return null;
   }
@@ -4903,7 +6528,17 @@ class PaymentsApi {
   /// * [String] lang:
   ///
   /// * [String] acceptLanguage:
-  Future<Response> settingsGetWithHttpInfo({ String? authorization, String? xAPIKey, String? cookie, String? x221ExternalRef, String? x221ProjectId, String? projectId, String? lang, String? acceptLanguage, Future<void>? abortTrigger, }) async {
+  Future<Response> settingsGetWithHttpInfo({
+    String? authorization,
+    String? xAPIKey,
+    String? cookie,
+    String? x221ExternalRef,
+    String? x221ProjectId,
+    String? projectId,
+    String? lang,
+    String? acceptLanguage,
+    Future<void>? abortTrigger,
+  }) async {
     // ignore: prefer_const_declarations
     final path = r'/v1/settings';
 
@@ -4942,7 +6577,6 @@ class PaymentsApi {
 
     const contentTypes = <String>[];
 
-
     return apiClient.invokeAPI(
       path,
       'GET',
@@ -4972,17 +6606,40 @@ class PaymentsApi {
   /// * [String] lang:
   ///
   /// * [String] acceptLanguage:
-  Future<Object?> settingsGet({ String? authorization, String? xAPIKey, String? cookie, String? x221ExternalRef, String? x221ProjectId, String? projectId, String? lang, String? acceptLanguage, Future<void>? abortTrigger, }) async {
-    final response = await settingsGetWithHttpInfo(authorization: authorization, xAPIKey: xAPIKey, cookie: cookie, x221ExternalRef: x221ExternalRef, x221ProjectId: x221ProjectId, projectId: projectId, lang: lang, acceptLanguage: acceptLanguage, abortTrigger: abortTrigger,);
+  Future<Settings?> settingsGet({
+    String? authorization,
+    String? xAPIKey,
+    String? cookie,
+    String? x221ExternalRef,
+    String? x221ProjectId,
+    String? projectId,
+    String? lang,
+    String? acceptLanguage,
+    Future<void>? abortTrigger,
+  }) async {
+    final response = await settingsGetWithHttpInfo(
+      authorization: authorization,
+      xAPIKey: xAPIKey,
+      cookie: cookie,
+      x221ExternalRef: x221ExternalRef,
+      x221ProjectId: x221ProjectId,
+      projectId: projectId,
+      lang: lang,
+      acceptLanguage: acceptLanguage,
+      abortTrigger: abortTrigger,
+    );
     if (response.statusCode >= HttpStatus.badRequest) {
       throw ApiException(response.statusCode, await _decodeBodyBytes(response));
     }
     // When a remote server returns no body with a status of 204, we shall not decode it.
     // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
     // FormatException when trying to decode an empty string.
-    if (response.body.isNotEmpty && response.statusCode != HttpStatus.noContent) {
-      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'Object',) as Object;
-    
+    if (response.body.isNotEmpty &&
+        response.statusCode != HttpStatus.noContent) {
+      return await apiClient.deserializeAsync(
+        await _decodeBodyBytes(response),
+        'Settings',
+      ) as Settings;
     }
     return null;
   }
@@ -4990,7 +6647,7 @@ class PaymentsApi {
   /// Performs an HTTP 'PUT /v1/settings' operation and returns the [Response].
   /// Parameters:
   ///
-  /// * [MultipartFile] body (required):
+  /// * [SettingsRequest] settingsRequest (required):
   ///
   /// * [String] authorization:
   ///
@@ -5007,12 +6664,23 @@ class PaymentsApi {
   /// * [String] lang:
   ///
   /// * [String] acceptLanguage:
-  Future<Response> settingsUpdateWithHttpInfo(MultipartFile body, { String? authorization, String? xAPIKey, String? cookie, String? x221ExternalRef, String? x221ProjectId, String? projectId, String? lang, String? acceptLanguage, Future<void>? abortTrigger, }) async {
+  Future<Response> settingsUpdateWithHttpInfo(
+    SettingsRequest settingsRequest, {
+    String? authorization,
+    String? xAPIKey,
+    String? cookie,
+    String? x221ExternalRef,
+    String? x221ProjectId,
+    String? projectId,
+    String? lang,
+    String? acceptLanguage,
+    Future<void>? abortTrigger,
+  }) async {
     // ignore: prefer_const_declarations
     final path = r'/v1/settings';
 
     // ignore: prefer_final_locals
-    Object? postBody = body;
+    Object? postBody = settingsRequest;
 
     final queryParams = <QueryParam>[];
     final headerParams = <String, String>{};
@@ -5044,8 +6712,7 @@ class PaymentsApi {
       headerParams[r'Accept-Language'] = parameterToString(acceptLanguage);
     }
 
-    const contentTypes = <String>['application/octet-stream'];
-
+    const contentTypes = <String>['application/json'];
 
     return apiClient.invokeAPI(
       path,
@@ -5061,7 +6728,7 @@ class PaymentsApi {
 
   /// Parameters:
   ///
-  /// * [MultipartFile] body (required):
+  /// * [SettingsRequest] settingsRequest (required):
   ///
   /// * [String] authorization:
   ///
@@ -5078,17 +6745,42 @@ class PaymentsApi {
   /// * [String] lang:
   ///
   /// * [String] acceptLanguage:
-  Future<Object?> settingsUpdate(MultipartFile body, { String? authorization, String? xAPIKey, String? cookie, String? x221ExternalRef, String? x221ProjectId, String? projectId, String? lang, String? acceptLanguage, Future<void>? abortTrigger, }) async {
-    final response = await settingsUpdateWithHttpInfo(body, authorization: authorization, xAPIKey: xAPIKey, cookie: cookie, x221ExternalRef: x221ExternalRef, x221ProjectId: x221ProjectId, projectId: projectId, lang: lang, acceptLanguage: acceptLanguage, abortTrigger: abortTrigger,);
+  Future<Settings?> settingsUpdate(
+    SettingsRequest settingsRequest, {
+    String? authorization,
+    String? xAPIKey,
+    String? cookie,
+    String? x221ExternalRef,
+    String? x221ProjectId,
+    String? projectId,
+    String? lang,
+    String? acceptLanguage,
+    Future<void>? abortTrigger,
+  }) async {
+    final response = await settingsUpdateWithHttpInfo(
+      settingsRequest,
+      authorization: authorization,
+      xAPIKey: xAPIKey,
+      cookie: cookie,
+      x221ExternalRef: x221ExternalRef,
+      x221ProjectId: x221ProjectId,
+      projectId: projectId,
+      lang: lang,
+      acceptLanguage: acceptLanguage,
+      abortTrigger: abortTrigger,
+    );
     if (response.statusCode >= HttpStatus.badRequest) {
       throw ApiException(response.statusCode, await _decodeBodyBytes(response));
     }
     // When a remote server returns no body with a status of 204, we shall not decode it.
     // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
     // FormatException when trying to decode an empty string.
-    if (response.body.isNotEmpty && response.statusCode != HttpStatus.noContent) {
-      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'Object',) as Object;
-    
+    if (response.body.isNotEmpty &&
+        response.statusCode != HttpStatus.noContent) {
+      return await apiClient.deserializeAsync(
+        await _decodeBodyBytes(response),
+        'Settings',
+      ) as Settings;
     }
     return null;
   }
@@ -5113,10 +6805,20 @@ class PaymentsApi {
   /// * [String] lang:
   ///
   /// * [String] acceptLanguage:
-  Future<Response> webhookEventAttemptsWithHttpInfo(String id, { String? authorization, String? xAPIKey, String? cookie, String? x221ExternalRef, String? x221ProjectId, String? projectId, String? lang, String? acceptLanguage, Future<void>? abortTrigger, }) async {
+  Future<Response> webhookEventAttemptsWithHttpInfo(
+    String id, {
+    String? authorization,
+    String? xAPIKey,
+    String? cookie,
+    String? x221ExternalRef,
+    String? x221ProjectId,
+    String? projectId,
+    String? lang,
+    String? acceptLanguage,
+    Future<void>? abortTrigger,
+  }) async {
     // ignore: prefer_const_declarations
-    final path = r'/v1/webhook-events/{id}/attempts'
-      .replaceAll('{id}', id);
+    final path = r'/v1/webhook-events/{id}/attempts'.replaceAll('{id}', id);
 
     // ignore: prefer_final_locals
     Object? postBody;
@@ -5152,7 +6854,6 @@ class PaymentsApi {
     }
 
     const contentTypes = <String>[];
-
 
     return apiClient.invokeAPI(
       path,
@@ -5185,17 +6886,43 @@ class PaymentsApi {
   /// * [String] lang:
   ///
   /// * [String] acceptLanguage:
-  Future<Object?> webhookEventAttempts(String id, { String? authorization, String? xAPIKey, String? cookie, String? x221ExternalRef, String? x221ProjectId, String? projectId, String? lang, String? acceptLanguage, Future<void>? abortTrigger, }) async {
-    final response = await webhookEventAttemptsWithHttpInfo(id, authorization: authorization, xAPIKey: xAPIKey, cookie: cookie, x221ExternalRef: x221ExternalRef, x221ProjectId: x221ProjectId, projectId: projectId, lang: lang, acceptLanguage: acceptLanguage, abortTrigger: abortTrigger,);
+  Future<List<WebhookAttempt>?> webhookEventAttempts(
+    String id, {
+    String? authorization,
+    String? xAPIKey,
+    String? cookie,
+    String? x221ExternalRef,
+    String? x221ProjectId,
+    String? projectId,
+    String? lang,
+    String? acceptLanguage,
+    Future<void>? abortTrigger,
+  }) async {
+    final response = await webhookEventAttemptsWithHttpInfo(
+      id,
+      authorization: authorization,
+      xAPIKey: xAPIKey,
+      cookie: cookie,
+      x221ExternalRef: x221ExternalRef,
+      x221ProjectId: x221ProjectId,
+      projectId: projectId,
+      lang: lang,
+      acceptLanguage: acceptLanguage,
+      abortTrigger: abortTrigger,
+    );
     if (response.statusCode >= HttpStatus.badRequest) {
       throw ApiException(response.statusCode, await _decodeBodyBytes(response));
     }
     // When a remote server returns no body with a status of 204, we shall not decode it.
     // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
     // FormatException when trying to decode an empty string.
-    if (response.body.isNotEmpty && response.statusCode != HttpStatus.noContent) {
-      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'Object',) as Object;
-    
+    if (response.body.isNotEmpty &&
+        response.statusCode != HttpStatus.noContent) {
+      final responseBody = await _decodeBodyBytes(response);
+      return (await apiClient.deserializeAsync(
+              responseBody, 'List<WebhookAttempt>') as List)
+          .cast<WebhookAttempt>()
+          .toList(growable: false);
     }
     return null;
   }
@@ -5220,10 +6947,20 @@ class PaymentsApi {
   /// * [String] lang:
   ///
   /// * [String] acceptLanguage:
-  Future<Response> webhookEventRetryWithHttpInfo(String id, { String? authorization, String? xAPIKey, String? cookie, String? x221ExternalRef, String? x221ProjectId, String? projectId, String? lang, String? acceptLanguage, Future<void>? abortTrigger, }) async {
+  Future<Response> webhookEventRetryWithHttpInfo(
+    String id, {
+    String? authorization,
+    String? xAPIKey,
+    String? cookie,
+    String? x221ExternalRef,
+    String? x221ProjectId,
+    String? projectId,
+    String? lang,
+    String? acceptLanguage,
+    Future<void>? abortTrigger,
+  }) async {
     // ignore: prefer_const_declarations
-    final path = r'/v1/webhook-events/{id}/retry'
-      .replaceAll('{id}', id);
+    final path = r'/v1/webhook-events/{id}/retry'.replaceAll('{id}', id);
 
     // ignore: prefer_final_locals
     Object? postBody;
@@ -5259,7 +6996,6 @@ class PaymentsApi {
     }
 
     const contentTypes = <String>[];
-
 
     return apiClient.invokeAPI(
       path,
@@ -5292,17 +7028,42 @@ class PaymentsApi {
   /// * [String] lang:
   ///
   /// * [String] acceptLanguage:
-  Future<Object?> webhookEventRetry(String id, { String? authorization, String? xAPIKey, String? cookie, String? x221ExternalRef, String? x221ProjectId, String? projectId, String? lang, String? acceptLanguage, Future<void>? abortTrigger, }) async {
-    final response = await webhookEventRetryWithHttpInfo(id, authorization: authorization, xAPIKey: xAPIKey, cookie: cookie, x221ExternalRef: x221ExternalRef, x221ProjectId: x221ProjectId, projectId: projectId, lang: lang, acceptLanguage: acceptLanguage, abortTrigger: abortTrigger,);
+  Future<WebhookAttempt?> webhookEventRetry(
+    String id, {
+    String? authorization,
+    String? xAPIKey,
+    String? cookie,
+    String? x221ExternalRef,
+    String? x221ProjectId,
+    String? projectId,
+    String? lang,
+    String? acceptLanguage,
+    Future<void>? abortTrigger,
+  }) async {
+    final response = await webhookEventRetryWithHttpInfo(
+      id,
+      authorization: authorization,
+      xAPIKey: xAPIKey,
+      cookie: cookie,
+      x221ExternalRef: x221ExternalRef,
+      x221ProjectId: x221ProjectId,
+      projectId: projectId,
+      lang: lang,
+      acceptLanguage: acceptLanguage,
+      abortTrigger: abortTrigger,
+    );
     if (response.statusCode >= HttpStatus.badRequest) {
       throw ApiException(response.statusCode, await _decodeBodyBytes(response));
     }
     // When a remote server returns no body with a status of 204, we shall not decode it.
     // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
     // FormatException when trying to decode an empty string.
-    if (response.body.isNotEmpty && response.statusCode != HttpStatus.noContent) {
-      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'Object',) as Object;
-    
+    if (response.body.isNotEmpty &&
+        response.statusCode != HttpStatus.noContent) {
+      return await apiClient.deserializeAsync(
+        await _decodeBodyBytes(response),
+        'WebhookAttempt',
+      ) as WebhookAttempt;
     }
     return null;
   }
@@ -5337,7 +7098,23 @@ class PaymentsApi {
   /// * [String] objectId:
   ///
   /// * [String] eventId:
-  Future<Response> webhookEventsListWithHttpInfo({ String? authorization, String? xAPIKey, String? cookie, String? x221ExternalRef, String? x221ProjectId, String? projectId, String? lang, String? acceptLanguage, String? limit, String? offset, String? createdAfter, String? createdBefore, String? objectId, String? eventId, Future<void>? abortTrigger, }) async {
+  Future<Response> webhookEventsListWithHttpInfo({
+    String? authorization,
+    String? xAPIKey,
+    String? cookie,
+    String? x221ExternalRef,
+    String? x221ProjectId,
+    String? projectId,
+    String? lang,
+    String? acceptLanguage,
+    String? limit,
+    String? offset,
+    String? createdAfter,
+    String? createdBefore,
+    String? objectId,
+    String? eventId,
+    Future<void>? abortTrigger,
+  }) async {
     // ignore: prefer_const_declarations
     final path = r'/v1/webhook-events';
 
@@ -5394,7 +7171,6 @@ class PaymentsApi {
 
     const contentTypes = <String>[];
 
-
     return apiClient.invokeAPI(
       path,
       'GET',
@@ -5436,17 +7212,52 @@ class PaymentsApi {
   /// * [String] objectId:
   ///
   /// * [String] eventId:
-  Future<Object?> webhookEventsList({ String? authorization, String? xAPIKey, String? cookie, String? x221ExternalRef, String? x221ProjectId, String? projectId, String? lang, String? acceptLanguage, String? limit, String? offset, String? createdAfter, String? createdBefore, String? objectId, String? eventId, Future<void>? abortTrigger, }) async {
-    final response = await webhookEventsListWithHttpInfo(authorization: authorization, xAPIKey: xAPIKey, cookie: cookie, x221ExternalRef: x221ExternalRef, x221ProjectId: x221ProjectId, projectId: projectId, lang: lang, acceptLanguage: acceptLanguage, limit: limit, offset: offset, createdAfter: createdAfter, createdBefore: createdBefore, objectId: objectId, eventId: eventId, abortTrigger: abortTrigger,);
+  Future<WebhookEventList?> webhookEventsList({
+    String? authorization,
+    String? xAPIKey,
+    String? cookie,
+    String? x221ExternalRef,
+    String? x221ProjectId,
+    String? projectId,
+    String? lang,
+    String? acceptLanguage,
+    String? limit,
+    String? offset,
+    String? createdAfter,
+    String? createdBefore,
+    String? objectId,
+    String? eventId,
+    Future<void>? abortTrigger,
+  }) async {
+    final response = await webhookEventsListWithHttpInfo(
+      authorization: authorization,
+      xAPIKey: xAPIKey,
+      cookie: cookie,
+      x221ExternalRef: x221ExternalRef,
+      x221ProjectId: x221ProjectId,
+      projectId: projectId,
+      lang: lang,
+      acceptLanguage: acceptLanguage,
+      limit: limit,
+      offset: offset,
+      createdAfter: createdAfter,
+      createdBefore: createdBefore,
+      objectId: objectId,
+      eventId: eventId,
+      abortTrigger: abortTrigger,
+    );
     if (response.statusCode >= HttpStatus.badRequest) {
       throw ApiException(response.statusCode, await _decodeBodyBytes(response));
     }
     // When a remote server returns no body with a status of 204, we shall not decode it.
     // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
     // FormatException when trying to decode an empty string.
-    if (response.body.isNotEmpty && response.statusCode != HttpStatus.noContent) {
-      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'Object',) as Object;
-    
+    if (response.body.isNotEmpty &&
+        response.statusCode != HttpStatus.noContent) {
+      return await apiClient.deserializeAsync(
+        await _decodeBodyBytes(response),
+        'WebhookEventList',
+      ) as WebhookEventList;
     }
     return null;
   }

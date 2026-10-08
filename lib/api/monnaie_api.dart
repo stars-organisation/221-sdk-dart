@@ -10,9 +10,9 @@
 
 part of openapi.api;
 
-
 class MonnaieApi {
-  MonnaieApi([ApiClient? apiClient]) : apiClient = apiClient ?? defaultApiClient;
+  MonnaieApi([ApiClient? apiClient])
+      : apiClient = apiClient ?? defaultApiClient;
 
   final ApiClient apiClient;
 
@@ -23,7 +23,10 @@ class MonnaieApi {
   /// Parameters:
   ///
   /// * [double] montant (required):
-  Future<Response> formatMontantWithHttpInfo(double montant, { Future<void>? abortTrigger, }) async {
+  Future<Response> formatMontantWithHttpInfo(
+    double montant, {
+    Future<void>? abortTrigger,
+  }) async {
     // ignore: prefer_const_declarations
     final path = r'/v1/monnaie/format';
 
@@ -34,10 +37,9 @@ class MonnaieApi {
     final headerParams = <String, String>{};
     final formParams = <String, String>{};
 
-      queryParams.addAll(_queryParams('', 'montant', montant));
+    queryParams.addAll(_queryParams('', 'montant', montant));
 
     const contentTypes = <String>[];
-
 
     return apiClient.invokeAPI(
       path,
@@ -56,17 +58,26 @@ class MonnaieApi {
   /// Parameters:
   ///
   /// * [double] montant (required):
-  Future<Montant?> formatMontant(double montant, { Future<void>? abortTrigger, }) async {
-    final response = await formatMontantWithHttpInfo(montant, abortTrigger: abortTrigger,);
+  Future<Montant?> formatMontant(
+    double montant, {
+    Future<void>? abortTrigger,
+  }) async {
+    final response = await formatMontantWithHttpInfo(
+      montant,
+      abortTrigger: abortTrigger,
+    );
     if (response.statusCode >= HttpStatus.badRequest) {
       throw ApiException(response.statusCode, await _decodeBodyBytes(response));
     }
     // When a remote server returns no body with a status of 204, we shall not decode it.
     // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
     // FormatException when trying to decode an empty string.
-    if (response.body.isNotEmpty && response.statusCode != HttpStatus.noContent) {
-      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'Montant',) as Montant;
-    
+    if (response.body.isNotEmpty &&
+        response.statusCode != HttpStatus.noContent) {
+      return await apiClient.deserializeAsync(
+        await _decodeBodyBytes(response),
+        'Montant',
+      ) as Montant;
     }
     return null;
   }

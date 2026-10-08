@@ -10,9 +10,9 @@
 
 part of openapi.api;
 
-
 class GeographieApi {
-  GeographieApi([ApiClient? apiClient]) : apiClient = apiClient ?? defaultApiClient;
+  GeographieApi([ApiClient? apiClient])
+      : apiClient = apiClient ?? defaultApiClient;
 
   final ApiClient apiClient;
 
@@ -27,7 +27,11 @@ class GeographieApi {
   ///
   /// * [String] to (required):
   ///   Identifiant de lieu ou « latitude,longitude ».
-  Future<Response> distanceLieuxWithHttpInfo(String from, String to, { Future<void>? abortTrigger, }) async {
+  Future<Response> distanceLieuxWithHttpInfo(
+    String from,
+    String to, {
+    Future<void>? abortTrigger,
+  }) async {
     // ignore: prefer_const_declarations
     final path = r'/v1/geographie/distance';
 
@@ -38,11 +42,10 @@ class GeographieApi {
     final headerParams = <String, String>{};
     final formParams = <String, String>{};
 
-      queryParams.addAll(_queryParams('', 'from', from));
-      queryParams.addAll(_queryParams('', 'to', to));
+    queryParams.addAll(_queryParams('', 'from', from));
+    queryParams.addAll(_queryParams('', 'to', to));
 
     const contentTypes = <String>[];
-
 
     return apiClient.invokeAPI(
       path,
@@ -65,17 +68,28 @@ class GeographieApi {
   ///
   /// * [String] to (required):
   ///   Identifiant de lieu ou « latitude,longitude ».
-  Future<Distance?> distanceLieux(String from, String to, { Future<void>? abortTrigger, }) async {
-    final response = await distanceLieuxWithHttpInfo(from, to, abortTrigger: abortTrigger,);
+  Future<Distance?> distanceLieux(
+    String from,
+    String to, {
+    Future<void>? abortTrigger,
+  }) async {
+    final response = await distanceLieuxWithHttpInfo(
+      from,
+      to,
+      abortTrigger: abortTrigger,
+    );
     if (response.statusCode >= HttpStatus.badRequest) {
       throw ApiException(response.statusCode, await _decodeBodyBytes(response));
     }
     // When a remote server returns no body with a status of 204, we shall not decode it.
     // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
     // FormatException when trying to decode an empty string.
-    if (response.body.isNotEmpty && response.statusCode != HttpStatus.noContent) {
-      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'Distance',) as Distance;
-    
+    if (response.body.isNotEmpty &&
+        response.statusCode != HttpStatus.noContent) {
+      return await apiClient.deserializeAsync(
+        await _decodeBodyBytes(response),
+        'Distance',
+      ) as Distance;
     }
     return null;
   }
@@ -87,10 +101,12 @@ class GeographieApi {
   /// Parameters:
   ///
   /// * [String] id (required):
-  Future<Response> getLieuWithHttpInfo(String id, { Future<void>? abortTrigger, }) async {
+  Future<Response> getLieuWithHttpInfo(
+    String id, {
+    Future<void>? abortTrigger,
+  }) async {
     // ignore: prefer_const_declarations
-    final path = r'/v1/geographie/{id}'
-      .replaceAll('{id}', id);
+    final path = r'/v1/geographie/{id}'.replaceAll('{id}', id);
 
     // ignore: prefer_final_locals
     Object? postBody;
@@ -100,7 +116,6 @@ class GeographieApi {
     final formParams = <String, String>{};
 
     const contentTypes = <String>[];
-
 
     return apiClient.invokeAPI(
       path,
@@ -119,17 +134,26 @@ class GeographieApi {
   /// Parameters:
   ///
   /// * [String] id (required):
-  Future<LieuDetail?> getLieu(String id, { Future<void>? abortTrigger, }) async {
-    final response = await getLieuWithHttpInfo(id, abortTrigger: abortTrigger,);
+  Future<LieuDetail?> getLieu(
+    String id, {
+    Future<void>? abortTrigger,
+  }) async {
+    final response = await getLieuWithHttpInfo(
+      id,
+      abortTrigger: abortTrigger,
+    );
     if (response.statusCode >= HttpStatus.badRequest) {
       throw ApiException(response.statusCode, await _decodeBodyBytes(response));
     }
     // When a remote server returns no body with a status of 204, we shall not decode it.
     // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
     // FormatException when trying to decode an empty string.
-    if (response.body.isNotEmpty && response.statusCode != HttpStatus.noContent) {
-      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'LieuDetail',) as LieuDetail;
-    
+    if (response.body.isNotEmpty &&
+        response.statusCode != HttpStatus.noContent) {
+      return await apiClient.deserializeAsync(
+        await _decodeBodyBytes(response),
+        'LieuDetail',
+      ) as LieuDetail;
     }
     return null;
   }
@@ -150,7 +174,14 @@ class GeographieApi {
   ///
   /// * [String] q:
   ///   Sans accents ni casse ; « thies » trouve Thiès.
-  Future<Response> listGeographieWithHttpInfo({ int? page, int? perPage, String? level, String? parentId, String? q, Future<void>? abortTrigger, }) async {
+  Future<Response> listGeographieWithHttpInfo({
+    int? page,
+    int? perPage,
+    String? level,
+    String? parentId,
+    String? q,
+    Future<void>? abortTrigger,
+  }) async {
     // ignore: prefer_const_declarations
     final path = r'/v1/geographie';
 
@@ -179,7 +210,6 @@ class GeographieApi {
 
     const contentTypes = <String>[];
 
-
     return apiClient.invokeAPI(
       path,
       'GET',
@@ -206,17 +236,34 @@ class GeographieApi {
   ///
   /// * [String] q:
   ///   Sans accents ni casse ; « thies » trouve Thiès.
-  Future<LieuPage?> listGeographie({ int? page, int? perPage, String? level, String? parentId, String? q, Future<void>? abortTrigger, }) async {
-    final response = await listGeographieWithHttpInfo(page: page, perPage: perPage, level: level, parentId: parentId, q: q, abortTrigger: abortTrigger,);
+  Future<LieuPage?> listGeographie({
+    int? page,
+    int? perPage,
+    String? level,
+    String? parentId,
+    String? q,
+    Future<void>? abortTrigger,
+  }) async {
+    final response = await listGeographieWithHttpInfo(
+      page: page,
+      perPage: perPage,
+      level: level,
+      parentId: parentId,
+      q: q,
+      abortTrigger: abortTrigger,
+    );
     if (response.statusCode >= HttpStatus.badRequest) {
       throw ApiException(response.statusCode, await _decodeBodyBytes(response));
     }
     // When a remote server returns no body with a status of 204, we shall not decode it.
     // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
     // FormatException when trying to decode an empty string.
-    if (response.body.isNotEmpty && response.statusCode != HttpStatus.noContent) {
-      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'LieuPage',) as LieuPage;
-    
+    if (response.body.isNotEmpty &&
+        response.statusCode != HttpStatus.noContent) {
+      return await apiClient.deserializeAsync(
+        await _decodeBodyBytes(response),
+        'LieuPage',
+      ) as LieuPage;
     }
     return null;
   }
@@ -230,7 +277,11 @@ class GeographieApi {
   /// * [double] lat (required):
   ///
   /// * [double] lon (required):
-  Future<Response> rattacherPointWithHttpInfo(double lat, double lon, { Future<void>? abortTrigger, }) async {
+  Future<Response> rattacherPointWithHttpInfo(
+    double lat,
+    double lon, {
+    Future<void>? abortTrigger,
+  }) async {
     // ignore: prefer_const_declarations
     final path = r'/v1/geographie/rattacher';
 
@@ -241,11 +292,10 @@ class GeographieApi {
     final headerParams = <String, String>{};
     final formParams = <String, String>{};
 
-      queryParams.addAll(_queryParams('', 'lat', lat));
-      queryParams.addAll(_queryParams('', 'lon', lon));
+    queryParams.addAll(_queryParams('', 'lat', lat));
+    queryParams.addAll(_queryParams('', 'lon', lon));
 
     const contentTypes = <String>[];
-
 
     return apiClient.invokeAPI(
       path,
@@ -266,17 +316,28 @@ class GeographieApi {
   /// * [double] lat (required):
   ///
   /// * [double] lon (required):
-  Future<Rattachement?> rattacherPoint(double lat, double lon, { Future<void>? abortTrigger, }) async {
-    final response = await rattacherPointWithHttpInfo(lat, lon, abortTrigger: abortTrigger,);
+  Future<Rattachement?> rattacherPoint(
+    double lat,
+    double lon, {
+    Future<void>? abortTrigger,
+  }) async {
+    final response = await rattacherPointWithHttpInfo(
+      lat,
+      lon,
+      abortTrigger: abortTrigger,
+    );
     if (response.statusCode >= HttpStatus.badRequest) {
       throw ApiException(response.statusCode, await _decodeBodyBytes(response));
     }
     // When a remote server returns no body with a status of 204, we shall not decode it.
     // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
     // FormatException when trying to decode an empty string.
-    if (response.body.isNotEmpty && response.statusCode != HttpStatus.noContent) {
-      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'Rattachement',) as Rattachement;
-    
+    if (response.body.isNotEmpty &&
+        response.statusCode != HttpStatus.noContent) {
+      return await apiClient.deserializeAsync(
+        await _decodeBodyBytes(response),
+        'Rattachement',
+      ) as Rattachement;
     }
     return null;
   }

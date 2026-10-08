@@ -13,26 +13,49 @@ part of openapi.api;
 class Error {
   /// Returns a new [Error] instance.
   Error({
-    required this.error,
+    required this.code,
+    this.fields = const {},
+    required this.message,
+    required this.requestId,
   });
 
-  ErrorBody error;
+  String code;
+
+  /// Un message par champ refusé.
+  Map<String, String> fields;
+
+  String message;
+
+  /// Identifiant de la requête, aussi dans l'en-tête X-Request-Id : à donner au support.
+  String requestId;
 
   @override
-  bool operator ==(Object other) => identical(this, other) || other is Error &&
-    other.error == error;
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      other is Error &&
+          other.code == code &&
+          _deepEquality.equals(other.fields, fields) &&
+          other.message == message &&
+          other.requestId == requestId;
 
   @override
   int get hashCode =>
-    // ignore: unnecessary_parenthesis
-    (error.hashCode);
+      // ignore: unnecessary_parenthesis
+      (code.hashCode) +
+      (fields.hashCode) +
+      (message.hashCode) +
+      (requestId.hashCode);
 
   @override
-  String toString() => 'Error[error=$error]';
+  String toString() =>
+      'Error[code=$code, fields=$fields, message=$message, requestId=$requestId]';
 
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
-      json[r'error'] = this.error;
+    json[r'code'] = this.code;
+    json[r'fields'] = this.fields;
+    json[r'message'] = this.message;
+    json[r'request_id'] = this.requestId;
     return json;
   }
 
@@ -47,19 +70,35 @@ class Error {
       // Note 1: the values aren't checked for validity beyond being non-null.
       // Note 2: this code is stripped in release mode!
       assert(() {
-        assert(json.containsKey(r'error'), 'Required key "Error[error]" is missing from JSON.');
-        assert(json[r'error'] != null, 'Required key "Error[error]" has a null value in JSON.');
+        assert(json.containsKey(r'code'),
+            'Required key "Error[code]" is missing from JSON.');
+        assert(json[r'code'] != null,
+            'Required key "Error[code]" has a null value in JSON.');
+        assert(json.containsKey(r'message'),
+            'Required key "Error[message]" is missing from JSON.');
+        assert(json[r'message'] != null,
+            'Required key "Error[message]" has a null value in JSON.');
+        assert(json.containsKey(r'request_id'),
+            'Required key "Error[request_id]" is missing from JSON.');
+        assert(json[r'request_id'] != null,
+            'Required key "Error[request_id]" has a null value in JSON.');
         return true;
       }());
 
       return Error(
-        error: ErrorBody.fromJson(json[r'error'])!,
+        code: mapValueOfType<String>(json, r'code')!,
+        fields: mapCastOfType<String, String>(json, r'fields') ?? const {},
+        message: mapValueOfType<String>(json, r'message')!,
+        requestId: mapValueOfType<String>(json, r'request_id')!,
       );
     }
     return null;
   }
 
-  static List<Error> listFromJson(dynamic json, {bool growable = false,}) {
+  static List<Error> listFromJson(
+    dynamic json, {
+    bool growable = false,
+  }) {
     final result = <Error>[];
     if (json is List && json.isNotEmpty) {
       for (final row in json) {
@@ -87,13 +126,19 @@ class Error {
   }
 
   // maps a json object with a list of Error-objects as value to a dart map
-  static Map<String, List<Error>> mapListFromJson(dynamic json, {bool growable = false,}) {
+  static Map<String, List<Error>> mapListFromJson(
+    dynamic json, {
+    bool growable = false,
+  }) {
     final map = <String, List<Error>>{};
     if (json is Map && json.isNotEmpty) {
       // ignore: parameter_assignments
       json = json.cast<String, dynamic>();
       for (final entry in json.entries) {
-        map[entry.key] = Error.listFromJson(entry.value, growable: growable,);
+        map[entry.key] = Error.listFromJson(
+          entry.value,
+          growable: growable,
+        );
       }
     }
     return map;
@@ -101,7 +146,8 @@ class Error {
 
   /// The list of required keys that must be present in a JSON.
   static const requiredKeys = <String>{
-    'error',
+    'code',
+    'message',
+    'request_id',
   };
 }
-

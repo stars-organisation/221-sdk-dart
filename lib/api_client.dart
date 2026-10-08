@@ -11,7 +11,10 @@
 part of openapi.api;
 
 class ApiClient {
-  ApiClient({this.basePath = 'http://localhost:8787', this.authentication,});
+  ApiClient({
+    this.basePath = 'http://localhost:8787',
+    this.authentication,
+  });
 
   final String basePath;
   final Authentication? authentication;
@@ -32,7 +35,7 @@ class ApiClient {
   Map<String, String> get defaultHeaderMap => _defaultHeaderMap;
 
   void addDefaultHeader(String key, String value) {
-     _defaultHeaderMap[key] = value;
+    _defaultHeaderMap[key] = value;
   }
 
   // We don't use a Map<String, String> for queryParams.
@@ -55,31 +58,34 @@ class ApiClient {
     }
 
     final urlEncodedQueryParams = queryParams.map((param) => '$param');
-    final queryString = urlEncodedQueryParams.isNotEmpty ? '?${urlEncodedQueryParams.join('&')}' : '';
+    final queryString = urlEncodedQueryParams.isNotEmpty
+        ? '?${urlEncodedQueryParams.join('&')}'
+        : '';
     final uri = Uri.parse('$basePath$path$queryString');
 
     try {
       // Special case for uploading a single file which isn't a 'multipart/form-data'.
-      if (
-        body is MultipartFile && (contentType == null ||
-        !contentType.toLowerCase().startsWith('multipart/form-data'))
-      ) {
-        final request = AbortableStreamedRequest(method, uri, abortTrigger: abortTrigger);
+      if (body is MultipartFile &&
+          (contentType == null ||
+              !contentType.toLowerCase().startsWith('multipart/form-data'))) {
+        final request =
+            AbortableStreamedRequest(method, uri, abortTrigger: abortTrigger);
         request.headers.addAll(headerParams);
         request.contentLength = body.length;
         body.finalize().listen(
-          request.sink.add,
-          onDone: request.sink.close,
-          // ignore: avoid_types_on_closure_parameters
-          onError: (Object error, StackTrace trace) => request.sink.close(),
-          cancelOnError: true,
-        );
+              request.sink.add,
+              onDone: request.sink.close,
+              // ignore: avoid_types_on_closure_parameters
+              onError: (Object error, StackTrace trace) => request.sink.close(),
+              cancelOnError: true,
+            );
         final response = await _client.send(request);
         return Response.fromStream(response);
       }
 
       if (body is MultipartRequest) {
-        final request = AbortableMultipartRequest(method, uri, abortTrigger: abortTrigger);
+        final request =
+            AbortableMultipartRequest(method, uri, abortTrigger: abortTrigger);
         request.fields.addAll(body.fields);
         request.files.addAll(body.files);
         request.headers.addAll(body.headers);
@@ -89,8 +95,8 @@ class ApiClient {
       }
 
       final msgBody = contentType == 'application/x-www-form-urlencoded'
-        ? formParams
-        : await serializeAsync(body);
+          ? formParams
+          : await serializeAsync(body);
       final nullableHeaderParams = headerParams.isEmpty ? null : headerParams;
 
       final request = AbortableRequest(method, uri, abortTrigger: abortTrigger);
@@ -144,29 +150,44 @@ class ApiClient {
     }
   }
 
-  Future<dynamic> deserializeAsync(String value, String targetType, {bool growable = false,}) async =>
-    // ignore: deprecated_member_use_from_same_package
-    deserialize(value, targetType, growable: growable);
+  Future<dynamic> deserializeAsync(
+    String value,
+    String targetType, {
+    bool growable = false,
+  }) async =>
+      // ignore: deprecated_member_use_from_same_package
+      deserialize(value, targetType, growable: growable);
 
-  @Deprecated('Scheduled for removal in OpenAPI Generator 6.x. Use deserializeAsync() instead.')
-  dynamic deserialize(String value, String targetType, {bool growable = false,}) {
+  @Deprecated(
+      'Scheduled for removal in OpenAPI Generator 6.x. Use deserializeAsync() instead.')
+  dynamic deserialize(
+    String value,
+    String targetType, {
+    bool growable = false,
+  }) {
     // Remove all spaces. Necessary for regular expressions as well.
-    targetType = targetType.replaceAll(' ', ''); // ignore: parameter_assignments
+    targetType =
+        targetType.replaceAll(' ', ''); // ignore: parameter_assignments
 
     // If the expected target type is String, nothing to do...
     return targetType == 'String'
-      ? value
-      : fromJson(json.decode(value), targetType, growable: growable);
+        ? value
+        : fromJson(json.decode(value), targetType, growable: growable);
   }
 
   // ignore: deprecated_member_use_from_same_package
   Future<String> serializeAsync(Object? value) async => serialize(value);
 
-  @Deprecated('Scheduled for removal in OpenAPI Generator 6.x. Use serializeAsync() instead.')
+  @Deprecated(
+      'Scheduled for removal in OpenAPI Generator 6.x. Use serializeAsync() instead.')
   String serialize(Object? value) => value == null ? '' : json.encode(value);
 
   /// Returns a native instance of an OpenAPI class matching the [specified type][targetType].
-  static dynamic fromJson(dynamic value, String targetType, {bool growable = false,}) {
+  static dynamic fromJson(
+    dynamic value,
+    String targetType, {
+    bool growable = false,
+  }) {
     try {
       switch (targetType) {
         case 'String':
@@ -195,12 +216,26 @@ class ApiClient {
           return AdresseNormalisee.fromJson(value);
         case 'AnswerInputBody':
           return AnswerInputBody.fromJson(value);
+        case 'ApercuInvitation':
+          return ApercuInvitation.fromJson(value);
         case 'AppelJournal':
           return AppelJournal.fromJson(value);
+        case 'Balances':
+          return Balances.fromJson(value);
+        case 'BankTier':
+          return BankTier.fromJson(value);
+        case 'Banque':
+          return Banque.fromJson(value);
         case 'CleApi':
           return CleApi.fromJson(value);
+        case 'CleAppelante':
+          return CleAppelante.fromJson(value);
         case 'CleCreee':
           return CleCreee.fromJson(value);
+        case 'CollectionPayout':
+          return CollectionPayout.fromJson(value);
+        case 'CollectionPayoutDestination':
+          return CollectionPayoutDestination.fromJson(value);
         case 'Compteur':
           return Compteur.fromJson(value);
         case 'Compteurs':
@@ -213,6 +248,14 @@ class ApiClient {
           return Consommation.fromJson(value);
         case 'Coordonnees':
           return Coordonnees.fromJson(value);
+        case 'Customer':
+          return Customer.fromJson(value);
+        case 'DatasetPageBanque':
+          return DatasetPageBanque.fromJson(value);
+        case 'DatasetPageJourFerie':
+          return DatasetPageJourFerie.fromJson(value);
+        case 'DatasetPagePrefixeOperateur':
+          return DatasetPagePrefixeOperateur.fromJson(value);
         case 'Delai':
           return Delai.fromJson(value);
         case 'DeleteCompteBody':
@@ -223,24 +266,56 @@ class ApiClient {
           return DemandeInputBody.fromJson(value);
         case 'DemandeListe':
           return DemandeListe.fromJson(value);
+        case 'DestinationCodeRequest':
+          return DestinationCodeRequest.fromJson(value);
+        case 'DestinationVerification':
+          return DestinationVerification.fromJson(value);
+        case 'Dispute':
+          return Dispute.fromJson(value);
+        case 'DisputeChallengeRequest':
+          return DisputeChallengeRequest.fromJson(value);
+        case 'DisputeEvidence':
+          return DisputeEvidence.fromJson(value);
+        case 'DisputeEvidenceFile':
+          return DisputeEvidenceFile.fromJson(value);
+        case 'DisputeRequest':
+          return DisputeRequest.fromJson(value);
         case 'Distance':
           return Distance.fromJson(value);
+        case 'EnvoiTest':
+          return EnvoiTest.fromJson(value);
         case 'Error':
           return Error.fromJson(value);
-        case 'ErrorBody':
-          return ErrorBody.fromJson(value);
         case 'Extremite':
           return Extremite.fromJson(value);
+        case 'Fees':
+          return Fees.fromJson(value);
         case 'Geocodage':
           return Geocodage.fromJson(value);
         case 'Health':
           return Health.fromJson(value);
         case 'Invitation':
           return Invitation.fromJson(value);
+        case 'Item':
+          return Item.fromJson(value);
         case 'ItemPage':
           return ItemPage.fromJson(value);
+        case 'JourFerie':
+          return JourFerie.fromJson(value);
         case 'JoursOuvres':
           return JoursOuvres.fromJson(value);
+        case 'KycCapture':
+          return KycCapture.fromJson(value);
+        case 'KycCountryDocuments':
+          return KycCountryDocuments.fromJson(value);
+        case 'KycDocuments':
+          return KycDocuments.fromJson(value);
+        case 'KycSession':
+          return KycSession.fromJson(value);
+        case 'KycSessionRequest':
+          return KycSessionRequest.fromJson(value);
+        case 'KycStatus':
+          return KycStatus.fromJson(value);
         case 'Lieu':
           return Lieu.fromJson(value);
         case 'LieuDetail':
@@ -261,6 +336,10 @@ class ApiClient {
           return ModelSource.fromJson(value);
         case 'Montant':
           return Montant.fromJson(value);
+        case 'NextAction':
+          return NextAction.fromJson(value);
+        case 'NomBilingue':
+          return NomBilingue.fromJson(value);
         case 'NouveauProjetBody':
           return NouveauProjetBody.fromJson(value);
         case 'NouveauRoleBody':
@@ -271,16 +350,76 @@ class ApiClient {
           return NouvelleCleBody.fromJson(value);
         case 'NouvelleInvitationBody':
           return NouvelleInvitationBody.fromJson(value);
+        case 'Offer':
+          return Offer.fromJson(value);
+        case 'OfferBenefit':
+          return OfferBenefit.fromJson(value);
+        case 'OfferRequest':
+          return OfferRequest.fromJson(value);
+        case 'OfferStatusRequest':
+          return OfferStatusRequest.fromJson(value);
         case 'OperateurTelephone':
           return OperateurTelephone.fromJson(value);
+        case 'PageCustomer':
+          return PageCustomer.fromJson(value);
+        case 'PageDispute':
+          return PageDispute.fromJson(value);
+        case 'PageOffer':
+          return PageOffer.fromJson(value);
+        case 'PagePaymentLink':
+          return PagePaymentLink.fromJson(value);
+        case 'PageRefund':
+          return PageRefund.fromJson(value);
         case 'Pagination':
           return Pagination.fromJson(value);
+        case 'PayError':
+          return PayError.fromJson(value);
+        case 'Payment':
+          return Payment.fromJson(value);
+        case 'PaymentAttempt':
+          return PaymentAttempt.fromJson(value);
+        case 'PaymentCustomer':
+          return PaymentCustomer.fromJson(value);
+        case 'PaymentDetail':
+          return PaymentDetail.fromJson(value);
+        case 'PaymentLink':
+          return PaymentLink.fromJson(value);
+        case 'PaymentLinkRequest':
+          return PaymentLinkRequest.fromJson(value);
+        case 'PaymentLinkStatusRequest':
+          return PaymentLinkStatusRequest.fromJson(value);
+        case 'PaymentList':
+          return PaymentList.fromJson(value);
+        case 'PaymentRequest':
+          return PaymentRequest.fromJson(value);
         case 'PaymentsCalls':
           return PaymentsCalls.fromJson(value);
         case 'PaymentsCallsDay':
           return PaymentsCallsDay.fromJson(value);
         case 'PaymentsHealth':
           return PaymentsHealth.fromJson(value);
+        case 'Payout':
+          return Payout.fromJson(value);
+        case 'PayoutDebit':
+          return PayoutDebit.fromJson(value);
+        case 'PayoutDestination':
+          return PayoutDestination.fromJson(value);
+        case 'PayoutDestinationRequest':
+          return PayoutDestinationRequest.fromJson(value);
+        case 'PayoutDestinationType':
+          return PayoutDestinationTypeTypeTransformer().decode(value);
+        case 'PayoutPending':
+          return PayoutPending.fromJson(value);
+        case 'PayoutQuote':
+          return PayoutQuote.fromJson(value);
+        case 'PayoutQuoteRequest':
+          return PayoutQuoteRequest.fromJson(value);
+        case 'PayoutReceipt':
+          return PayoutReceipt.fromJson(value);
+        case 'PayoutRequest':
+          return PayoutRequest.fromJson(value);
+        case 'PrefixeOperateur':
+          return PrefixeOperateur.fromJson(value);
         case 'Projet':
           return Projet.fromJson(value);
         case 'ProjetListe':
@@ -289,18 +428,46 @@ class ApiClient {
           return ProjetTableau.fromJson(value);
         case 'Quota':
           return Quota.fromJson(value);
+        case 'Rail':
+          return Rail.fromJson(value);
+        case 'RailBalance':
+          return RailBalance.fromJson(value);
+        case 'RailFeeExample':
+          return RailFeeExample.fromJson(value);
+        case 'RailFees':
+          return RailFees.fromJson(value);
+        case 'RailList':
+          return RailList.fromJson(value);
+        case 'RailSwitchRequest':
+          return RailSwitchRequest.fromJson(value);
         case 'Rattachement':
           return Rattachement.fromJson(value);
         case 'Recognised':
           return Recognised.fromJson(value);
+        case 'Refund':
+          return Refund.fromJson(value);
+        case 'RefundCore':
+          return RefundCore.fromJson(value);
+        case 'RefundQuote':
+          return RefundQuote.fromJson(value);
+        case 'RefundQuoteRequest':
+          return RefundQuoteRequest.fromJson(value);
+        case 'RefundRequest':
+          return RefundRequest.fromJson(value);
         case 'RenommerProjetBody':
           return RenommerProjetBody.fromJson(value);
         case 'ReportInputBody':
           return ReportInputBody.fromJson(value);
         case 'RotationCleBody':
           return RotationCleBody.fromJson(value);
+        case 'Settings':
+          return Settings.fromJson(value);
+        case 'SettingsRequest':
+          return SettingsRequest.fromJson(value);
         case 'Signalement':
           return Signalement.fromJson(value);
+        case 'SourceVerifiee':
+          return SourceVerifiee.fromJson(value);
         case 'Suggestions':
           return Suggestions.fromJson(value);
         case 'Suivi':
@@ -313,31 +480,64 @@ class ApiClient {
           return Telephone.fromJson(value);
         case 'TypeEvenement':
           return TypeEvenement.fromJson(value);
+        case 'WebhookAttempt':
+          return WebhookAttempt.fromJson(value);
+        case 'WebhookEvent':
+          return WebhookEvent.fromJson(value);
+        case 'WebhookEventList':
+          return WebhookEventList.fromJson(value);
         case 'WebhookEventsBody':
           return WebhookEventsBody.fromJson(value);
+        case 'WebhookRequest':
+          return WebhookRequest.fromJson(value);
+        case 'WebhookResponse':
+          return WebhookResponse.fromJson(value);
         default:
           dynamic match;
-          if (value is List && (match = _regList.firstMatch(targetType)?.group(1)) != null) {
+          if (value is List &&
+              (match = _regList.firstMatch(targetType)?.group(1)) != null) {
             return value
-              .map<dynamic>((dynamic v) => fromJson(v, match, growable: growable,))
-              .toList(growable: growable);
+                .map<dynamic>((dynamic v) => fromJson(
+                      v,
+                      match,
+                      growable: growable,
+                    ))
+                .toList(growable: growable);
           }
-          if (value is Set && (match = _regSet.firstMatch(targetType)?.group(1)) != null) {
+          if (value is Set &&
+              (match = _regSet.firstMatch(targetType)?.group(1)) != null) {
             return value
-              .map<dynamic>((dynamic v) => fromJson(v, match, growable: growable,))
-              .toSet();
+                .map<dynamic>((dynamic v) => fromJson(
+                      v,
+                      match,
+                      growable: growable,
+                    ))
+                .toSet();
           }
-          if (value is Map && (match = _regMap.firstMatch(targetType)?.group(1)) != null) {
+          if (value is Map &&
+              (match = _regMap.firstMatch(targetType)?.group(1)) != null) {
             return Map<String, dynamic>.fromIterables(
               value.keys.cast<String>(),
-              value.values.map<dynamic>((dynamic v) => fromJson(v, match, growable: growable,)),
+              value.values.map<dynamic>((dynamic v) => fromJson(
+                    v,
+                    match,
+                    growable: growable,
+                  )),
             );
           }
       }
     } on Exception catch (error, trace) {
-      throw ApiException.withInner(HttpStatus.internalServerError, 'Exception during deserialization.', error, trace,);
+      throw ApiException.withInner(
+        HttpStatus.internalServerError,
+        'Exception during deserialization.',
+        error,
+        trace,
+      );
     }
-    throw ApiException(HttpStatus.internalServerError, 'Could not find a suitable class for deserialization',);
+    throw ApiException(
+      HttpStatus.internalServerError,
+      'Could not find a suitable class for deserialization',
+    );
   }
 }
 
@@ -365,9 +565,7 @@ Future<dynamic> decodeAsync(DeserializationMessage message) async {
   final targetType = message.targetType.replaceAll(' ', '');
 
   // If the expected target type is String, nothing to do...
-  return targetType == 'String'
-    ? message.json
-    : json.decode(message.json);
+  return targetType == 'String' ? message.json : json.decode(message.json);
 }
 
 /// Primarily intended for use in an isolate.
@@ -377,13 +575,14 @@ Future<dynamic> deserializeAsync(DeserializationMessage message) async {
 
   // If the expected target type is String, nothing to do...
   return targetType == 'String'
-    ? message.json
-    : ApiClient.fromJson(
-        json.decode(message.json),
-        targetType,
-        growable: message.growable,
-      );
+      ? message.json
+      : ApiClient.fromJson(
+          json.decode(message.json),
+          targetType,
+          growable: message.growable,
+        );
 }
 
 /// Primarily intended for use in an isolate.
-Future<String> serializeAsync(Object? value) async => value == null ? '' : json.encode(value);
+Future<String> serializeAsync(Object? value) async =>
+    value == null ? '' : json.encode(value);

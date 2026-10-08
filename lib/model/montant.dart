@@ -34,35 +34,38 @@ class Montant {
   String words;
 
   @override
-  bool operator ==(Object other) => identical(this, other) || other is Montant &&
-    other.amount == amount &&
-    other.currency == currency &&
-    other.eur == eur &&
-    other.eurParity == eurParity &&
-    other.formatted == formatted &&
-    other.words == words;
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      other is Montant &&
+          other.amount == amount &&
+          other.currency == currency &&
+          other.eur == eur &&
+          other.eurParity == eurParity &&
+          other.formatted == formatted &&
+          other.words == words;
 
   @override
   int get hashCode =>
-    // ignore: unnecessary_parenthesis
-    (amount.hashCode) +
-    (currency.hashCode) +
-    (eur.hashCode) +
-    (eurParity.hashCode) +
-    (formatted.hashCode) +
-    (words.hashCode);
+      // ignore: unnecessary_parenthesis
+      (amount.hashCode) +
+      (currency.hashCode) +
+      (eur.hashCode) +
+      (eurParity.hashCode) +
+      (formatted.hashCode) +
+      (words.hashCode);
 
   @override
-  String toString() => 'Montant[amount=$amount, currency=$currency, eur=$eur, eurParity=$eurParity, formatted=$formatted, words=$words]';
+  String toString() =>
+      'Montant[amount=$amount, currency=$currency, eur=$eur, eurParity=$eurParity, formatted=$formatted, words=$words]';
 
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
-      json[r'amount'] = this.amount;
-      json[r'currency'] = this.currency;
-      json[r'eur'] = this.eur;
-      json[r'eur_parity'] = this.eurParity;
-      json[r'formatted'] = this.formatted;
-      json[r'words'] = this.words;
+    json[r'amount'] = this.amount;
+    json[r'currency'] = this.currency;
+    json[r'eur'] = this.eur;
+    json[r'eur_parity'] = this.eurParity;
+    json[r'formatted'] = this.formatted;
+    json[r'words'] = this.words;
     return json;
   }
 
@@ -77,18 +80,30 @@ class Montant {
       // Note 1: the values aren't checked for validity beyond being non-null.
       // Note 2: this code is stripped in release mode!
       assert(() {
-        assert(json.containsKey(r'amount'), 'Required key "Montant[amount]" is missing from JSON.');
-        assert(json[r'amount'] != null, 'Required key "Montant[amount]" has a null value in JSON.');
-        assert(json.containsKey(r'currency'), 'Required key "Montant[currency]" is missing from JSON.');
-        assert(json[r'currency'] != null, 'Required key "Montant[currency]" has a null value in JSON.');
-        assert(json.containsKey(r'eur'), 'Required key "Montant[eur]" is missing from JSON.');
-        assert(json[r'eur'] != null, 'Required key "Montant[eur]" has a null value in JSON.');
-        assert(json.containsKey(r'eur_parity'), 'Required key "Montant[eur_parity]" is missing from JSON.');
-        assert(json[r'eur_parity'] != null, 'Required key "Montant[eur_parity]" has a null value in JSON.');
-        assert(json.containsKey(r'formatted'), 'Required key "Montant[formatted]" is missing from JSON.');
-        assert(json[r'formatted'] != null, 'Required key "Montant[formatted]" has a null value in JSON.');
-        assert(json.containsKey(r'words'), 'Required key "Montant[words]" is missing from JSON.');
-        assert(json[r'words'] != null, 'Required key "Montant[words]" has a null value in JSON.');
+        assert(json.containsKey(r'amount'),
+            'Required key "Montant[amount]" is missing from JSON.');
+        assert(json[r'amount'] != null,
+            'Required key "Montant[amount]" has a null value in JSON.');
+        assert(json.containsKey(r'currency'),
+            'Required key "Montant[currency]" is missing from JSON.');
+        assert(json[r'currency'] != null,
+            'Required key "Montant[currency]" has a null value in JSON.');
+        assert(json.containsKey(r'eur'),
+            'Required key "Montant[eur]" is missing from JSON.');
+        assert(json[r'eur'] != null,
+            'Required key "Montant[eur]" has a null value in JSON.');
+        assert(json.containsKey(r'eur_parity'),
+            'Required key "Montant[eur_parity]" is missing from JSON.');
+        assert(json[r'eur_parity'] != null,
+            'Required key "Montant[eur_parity]" has a null value in JSON.');
+        assert(json.containsKey(r'formatted'),
+            'Required key "Montant[formatted]" is missing from JSON.');
+        assert(json[r'formatted'] != null,
+            'Required key "Montant[formatted]" has a null value in JSON.');
+        assert(json.containsKey(r'words'),
+            'Required key "Montant[words]" is missing from JSON.');
+        assert(json[r'words'] != null,
+            'Required key "Montant[words]" has a null value in JSON.');
         return true;
       }());
 
@@ -104,7 +119,10 @@ class Montant {
     return null;
   }
 
-  static List<Montant> listFromJson(dynamic json, {bool growable = false,}) {
+  static List<Montant> listFromJson(
+    dynamic json, {
+    bool growable = false,
+  }) {
     final result = <Montant>[];
     if (json is List && json.isNotEmpty) {
       for (final row in json) {
@@ -132,13 +150,19 @@ class Montant {
   }
 
   // maps a json object with a list of Montant-objects as value to a dart map
-  static Map<String, List<Montant>> mapListFromJson(dynamic json, {bool growable = false,}) {
+  static Map<String, List<Montant>> mapListFromJson(
+    dynamic json, {
+    bool growable = false,
+  }) {
     final map = <String, List<Montant>>{};
     if (json is Map && json.isNotEmpty) {
       // ignore: parameter_assignments
       json = json.cast<String, dynamic>();
       for (final entry in json.entries) {
-        map[entry.key] = Montant.listFromJson(entry.value, growable: growable,);
+        map[entry.key] = Montant.listFromJson(
+          entry.value,
+          growable: growable,
+        );
       }
     }
     return map;
@@ -154,7 +178,6 @@ class Montant {
     'words',
   };
 }
-
 
 enum MontantCurrencyEnum {
   XOF._(r'XOF'),
@@ -174,11 +197,15 @@ enum MontantCurrencyEnum {
 
   /// Returns the instance of [MontantCurrencyEnum] that was successfully decoded
   /// from the passed [value] on success, null otherwise.
-  static MontantCurrencyEnum? fromJson(dynamic value) => MontantCurrencyEnumTypeTransformer().decode(value);
+  static MontantCurrencyEnum? fromJson(dynamic value) =>
+      MontantCurrencyEnumTypeTransformer().decode(value);
 
   /// Returns a [List] containing instances of [MontantCurrencyEnum]
   /// that were successfully decoded from the passed [JSON][json].
-  static List<MontantCurrencyEnum> listFromJson(dynamic json, {bool growable = false,}) {
+  static List<MontantCurrencyEnum> listFromJson(
+    dynamic json, {
+    bool growable = false,
+  }) {
     final result = <MontantCurrencyEnum>[];
     if (json is List && json.isNotEmpty) {
       for (final row in json) {
@@ -195,7 +222,8 @@ enum MontantCurrencyEnum {
 /// Transformation class that can [encode] an instance of [MontantCurrencyEnum] to String,
 /// and [decode] dynamic data back to [MontantCurrencyEnum].
 class MontantCurrencyEnumTypeTransformer {
-  factory MontantCurrencyEnumTypeTransformer() => _instance ??= const MontantCurrencyEnumTypeTransformer._();
+  factory MontantCurrencyEnumTypeTransformer() =>
+      _instance ??= const MontantCurrencyEnumTypeTransformer._();
 
   const MontantCurrencyEnumTypeTransformer._();
 
@@ -216,7 +244,8 @@ class MontantCurrencyEnumTypeTransformer {
     }
     if (data != null) {
       switch (data) {
-        case r'XOF': return MontantCurrencyEnum.XOF;
+        case r'XOF':
+          return MontantCurrencyEnum.XOF;
         default:
           if (!allowNull) {
             throw ArgumentError('Unknown enum value to decode: $data');
@@ -229,5 +258,3 @@ class MontantCurrencyEnumTypeTransformer {
   /// The singleton instance of this transformer.
   static MontantCurrencyEnumTypeTransformer? _instance;
 }
-
-

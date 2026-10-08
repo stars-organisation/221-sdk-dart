@@ -49,36 +49,39 @@ class LieuDetail {
   String searchKey;
 
   @override
-  bool operator ==(Object other) => identical(this, other) || other is LieuDetail &&
-    _deepEquality.equals(other.ancestors, ancestors) &&
-    _deepEquality.equals(other.children, children) &&
-    other.id == id &&
-    other.lat == lat &&
-    other.level == level &&
-    other.lon == lon &&
-    other.name == name &&
-    other.nameSource == nameSource &&
-    other.parentId == parentId &&
-    other.population2023 == population2023 &&
-    other.searchKey == searchKey;
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      other is LieuDetail &&
+          _deepEquality.equals(other.ancestors, ancestors) &&
+          _deepEquality.equals(other.children, children) &&
+          other.id == id &&
+          other.lat == lat &&
+          other.level == level &&
+          other.lon == lon &&
+          other.name == name &&
+          other.nameSource == nameSource &&
+          other.parentId == parentId &&
+          other.population2023 == population2023 &&
+          other.searchKey == searchKey;
 
   @override
   int get hashCode =>
-    // ignore: unnecessary_parenthesis
-    (ancestors == null ? 0 : ancestors!.hashCode) +
-    (children == null ? 0 : children!.hashCode) +
-    (id.hashCode) +
-    (lat == null ? 0 : lat!.hashCode) +
-    (level.hashCode) +
-    (lon == null ? 0 : lon!.hashCode) +
-    (name == null ? 0 : name!.hashCode) +
-    (nameSource.hashCode) +
-    (parentId == null ? 0 : parentId!.hashCode) +
-    (population2023 == null ? 0 : population2023!.hashCode) +
-    (searchKey.hashCode);
+      // ignore: unnecessary_parenthesis
+      (ancestors == null ? 0 : ancestors!.hashCode) +
+      (children == null ? 0 : children!.hashCode) +
+      (id.hashCode) +
+      (lat == null ? 0 : lat!.hashCode) +
+      (level.hashCode) +
+      (lon == null ? 0 : lon!.hashCode) +
+      (name == null ? 0 : name!.hashCode) +
+      (nameSource.hashCode) +
+      (parentId == null ? 0 : parentId!.hashCode) +
+      (population2023 == null ? 0 : population2023!.hashCode) +
+      (searchKey.hashCode);
 
   @override
-  String toString() => 'LieuDetail[ancestors=$ancestors, children=$children, id=$id, lat=$lat, level=$level, lon=$lon, name=$name, nameSource=$nameSource, parentId=$parentId, population2023=$population2023, searchKey=$searchKey]';
+  String toString() =>
+      'LieuDetail[ancestors=$ancestors, children=$children, id=$id, lat=$lat, level=$level, lon=$lon, name=$name, nameSource=$nameSource, parentId=$parentId, population2023=$population2023, searchKey=$searchKey]';
 
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -92,13 +95,13 @@ class LieuDetail {
     } else {
       json[r'children'] = null;
     }
-      json[r'id'] = this.id;
+    json[r'id'] = this.id;
     if (this.lat != null) {
       json[r'lat'] = this.lat;
     } else {
       json[r'lat'] = null;
     }
-      json[r'level'] = this.level;
+    json[r'level'] = this.level;
     if (this.lon != null) {
       json[r'lon'] = this.lon;
     } else {
@@ -109,7 +112,7 @@ class LieuDetail {
     } else {
       json[r'name'] = null;
     }
-      json[r'name_source'] = this.nameSource;
+    json[r'name_source'] = this.nameSource;
     if (this.parentId != null) {
       json[r'parent_id'] = this.parentId;
     } else {
@@ -120,7 +123,7 @@ class LieuDetail {
     } else {
       json[r'population_2023'] = null;
     }
-      json[r'search_key'] = this.searchKey;
+    json[r'search_key'] = this.searchKey;
     return json;
   }
 
@@ -135,14 +138,22 @@ class LieuDetail {
       // Note 1: the values aren't checked for validity beyond being non-null.
       // Note 2: this code is stripped in release mode!
       assert(() {
-        assert(json.containsKey(r'id'), 'Required key "LieuDetail[id]" is missing from JSON.');
-        assert(json[r'id'] != null, 'Required key "LieuDetail[id]" has a null value in JSON.');
-        assert(json.containsKey(r'level'), 'Required key "LieuDetail[level]" is missing from JSON.');
-        assert(json[r'level'] != null, 'Required key "LieuDetail[level]" has a null value in JSON.');
-        assert(json.containsKey(r'name_source'), 'Required key "LieuDetail[name_source]" is missing from JSON.');
-        assert(json[r'name_source'] != null, 'Required key "LieuDetail[name_source]" has a null value in JSON.');
-        assert(json.containsKey(r'search_key'), 'Required key "LieuDetail[search_key]" is missing from JSON.');
-        assert(json[r'search_key'] != null, 'Required key "LieuDetail[search_key]" has a null value in JSON.');
+        assert(json.containsKey(r'id'),
+            'Required key "LieuDetail[id]" is missing from JSON.');
+        assert(json[r'id'] != null,
+            'Required key "LieuDetail[id]" has a null value in JSON.');
+        assert(json.containsKey(r'level'),
+            'Required key "LieuDetail[level]" is missing from JSON.');
+        assert(json[r'level'] != null,
+            'Required key "LieuDetail[level]" has a null value in JSON.');
+        assert(json.containsKey(r'name_source'),
+            'Required key "LieuDetail[name_source]" is missing from JSON.');
+        assert(json[r'name_source'] != null,
+            'Required key "LieuDetail[name_source]" has a null value in JSON.');
+        assert(json.containsKey(r'search_key'),
+            'Required key "LieuDetail[search_key]" is missing from JSON.');
+        assert(json[r'search_key'] != null,
+            'Required key "LieuDetail[search_key]" has a null value in JSON.');
         return true;
       }());
 
@@ -163,7 +174,10 @@ class LieuDetail {
     return null;
   }
 
-  static List<LieuDetail> listFromJson(dynamic json, {bool growable = false,}) {
+  static List<LieuDetail> listFromJson(
+    dynamic json, {
+    bool growable = false,
+  }) {
     final result = <LieuDetail>[];
     if (json is List && json.isNotEmpty) {
       for (final row in json) {
@@ -191,13 +205,19 @@ class LieuDetail {
   }
 
   // maps a json object with a list of LieuDetail-objects as value to a dart map
-  static Map<String, List<LieuDetail>> mapListFromJson(dynamic json, {bool growable = false,}) {
+  static Map<String, List<LieuDetail>> mapListFromJson(
+    dynamic json, {
+    bool growable = false,
+  }) {
     final map = <String, List<LieuDetail>>{};
     if (json is Map && json.isNotEmpty) {
       // ignore: parameter_assignments
       json = json.cast<String, dynamic>();
       for (final entry in json.entries) {
-        map[entry.key] = LieuDetail.listFromJson(entry.value, growable: growable,);
+        map[entry.key] = LieuDetail.listFromJson(
+          entry.value,
+          growable: growable,
+        );
       }
     }
     return map;
@@ -211,4 +231,3 @@ class LieuDetail {
     'search_key',
   };
 }
-

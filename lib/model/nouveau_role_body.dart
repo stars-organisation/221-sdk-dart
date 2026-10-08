@@ -19,20 +19,20 @@ class NouveauRoleBody {
   NouveauRoleBodyRoleEnum role;
 
   @override
-  bool operator ==(Object other) => identical(this, other) || other is NouveauRoleBody &&
-    other.role == role;
+  bool operator ==(Object other) =>
+      identical(this, other) || other is NouveauRoleBody && other.role == role;
 
   @override
   int get hashCode =>
-    // ignore: unnecessary_parenthesis
-    (role.hashCode);
+      // ignore: unnecessary_parenthesis
+      (role.hashCode);
 
   @override
   String toString() => 'NouveauRoleBody[role=$role]';
 
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
-      json[r'role'] = this.role;
+    json[r'role'] = this.role;
     return json;
   }
 
@@ -47,8 +47,10 @@ class NouveauRoleBody {
       // Note 1: the values aren't checked for validity beyond being non-null.
       // Note 2: this code is stripped in release mode!
       assert(() {
-        assert(json.containsKey(r'role'), 'Required key "NouveauRoleBody[role]" is missing from JSON.');
-        assert(json[r'role'] != null, 'Required key "NouveauRoleBody[role]" has a null value in JSON.');
+        assert(json.containsKey(r'role'),
+            'Required key "NouveauRoleBody[role]" is missing from JSON.');
+        assert(json[r'role'] != null,
+            'Required key "NouveauRoleBody[role]" has a null value in JSON.');
         return true;
       }());
 
@@ -59,7 +61,10 @@ class NouveauRoleBody {
     return null;
   }
 
-  static List<NouveauRoleBody> listFromJson(dynamic json, {bool growable = false,}) {
+  static List<NouveauRoleBody> listFromJson(
+    dynamic json, {
+    bool growable = false,
+  }) {
     final result = <NouveauRoleBody>[];
     if (json is List && json.isNotEmpty) {
       for (final row in json) {
@@ -87,13 +92,19 @@ class NouveauRoleBody {
   }
 
   // maps a json object with a list of NouveauRoleBody-objects as value to a dart map
-  static Map<String, List<NouveauRoleBody>> mapListFromJson(dynamic json, {bool growable = false,}) {
+  static Map<String, List<NouveauRoleBody>> mapListFromJson(
+    dynamic json, {
+    bool growable = false,
+  }) {
     final map = <String, List<NouveauRoleBody>>{};
     if (json is Map && json.isNotEmpty) {
       // ignore: parameter_assignments
       json = json.cast<String, dynamic>();
       for (final entry in json.entries) {
-        map[entry.key] = NouveauRoleBody.listFromJson(entry.value, growable: growable,);
+        map[entry.key] = NouveauRoleBody.listFromJson(
+          entry.value,
+          growable: growable,
+        );
       }
     }
     return map;
@@ -104,7 +115,6 @@ class NouveauRoleBody {
     'role',
   };
 }
-
 
 enum NouveauRoleBodyRoleEnum {
   admin._(r'admin'),
@@ -126,11 +136,15 @@ enum NouveauRoleBodyRoleEnum {
 
   /// Returns the instance of [NouveauRoleBodyRoleEnum] that was successfully decoded
   /// from the passed [value] on success, null otherwise.
-  static NouveauRoleBodyRoleEnum? fromJson(dynamic value) => NouveauRoleBodyRoleEnumTypeTransformer().decode(value);
+  static NouveauRoleBodyRoleEnum? fromJson(dynamic value) =>
+      NouveauRoleBodyRoleEnumTypeTransformer().decode(value);
 
   /// Returns a [List] containing instances of [NouveauRoleBodyRoleEnum]
   /// that were successfully decoded from the passed [JSON][json].
-  static List<NouveauRoleBodyRoleEnum> listFromJson(dynamic json, {bool growable = false,}) {
+  static List<NouveauRoleBodyRoleEnum> listFromJson(
+    dynamic json, {
+    bool growable = false,
+  }) {
     final result = <NouveauRoleBodyRoleEnum>[];
     if (json is List && json.isNotEmpty) {
       for (final row in json) {
@@ -147,7 +161,8 @@ enum NouveauRoleBodyRoleEnum {
 /// Transformation class that can [encode] an instance of [NouveauRoleBodyRoleEnum] to String,
 /// and [decode] dynamic data back to [NouveauRoleBodyRoleEnum].
 class NouveauRoleBodyRoleEnumTypeTransformer {
-  factory NouveauRoleBodyRoleEnumTypeTransformer() => _instance ??= const NouveauRoleBodyRoleEnumTypeTransformer._();
+  factory NouveauRoleBodyRoleEnumTypeTransformer() =>
+      _instance ??= const NouveauRoleBodyRoleEnumTypeTransformer._();
 
   const NouveauRoleBodyRoleEnumTypeTransformer._();
 
@@ -168,9 +183,12 @@ class NouveauRoleBodyRoleEnumTypeTransformer {
     }
     if (data != null) {
       switch (data) {
-        case r'admin': return NouveauRoleBodyRoleEnum.admin;
-        case r'user': return NouveauRoleBodyRoleEnum.user;
-        case r'read_only': return NouveauRoleBodyRoleEnum.readOnly;
+        case r'admin':
+          return NouveauRoleBodyRoleEnum.admin;
+        case r'user':
+          return NouveauRoleBodyRoleEnum.user;
+        case r'read_only':
+          return NouveauRoleBodyRoleEnum.readOnly;
         default:
           if (!allowNull) {
             throw ArgumentError('Unknown enum value to decode: $data');
@@ -183,5 +201,3 @@ class NouveauRoleBodyRoleEnumTypeTransformer {
   /// The singleton instance of this transformer.
   static NouveauRoleBodyRoleEnumTypeTransformer? _instance;
 }
-
-

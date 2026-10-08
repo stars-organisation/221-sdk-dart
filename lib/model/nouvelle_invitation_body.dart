@@ -22,23 +22,24 @@ class NouvelleInvitationBody {
   NouvelleInvitationBodyRoleEnum role;
 
   @override
-  bool operator ==(Object other) => identical(this, other) || other is NouvelleInvitationBody &&
-    other.email == email &&
-    other.role == role;
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      other is NouvelleInvitationBody &&
+          other.email == email &&
+          other.role == role;
 
   @override
   int get hashCode =>
-    // ignore: unnecessary_parenthesis
-    (email.hashCode) +
-    (role.hashCode);
+      // ignore: unnecessary_parenthesis
+      (email.hashCode) + (role.hashCode);
 
   @override
   String toString() => 'NouvelleInvitationBody[email=$email, role=$role]';
 
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
-      json[r'email'] = this.email;
-      json[r'role'] = this.role;
+    json[r'email'] = this.email;
+    json[r'role'] = this.role;
     return json;
   }
 
@@ -53,10 +54,14 @@ class NouvelleInvitationBody {
       // Note 1: the values aren't checked for validity beyond being non-null.
       // Note 2: this code is stripped in release mode!
       assert(() {
-        assert(json.containsKey(r'email'), 'Required key "NouvelleInvitationBody[email]" is missing from JSON.');
-        assert(json[r'email'] != null, 'Required key "NouvelleInvitationBody[email]" has a null value in JSON.');
-        assert(json.containsKey(r'role'), 'Required key "NouvelleInvitationBody[role]" is missing from JSON.');
-        assert(json[r'role'] != null, 'Required key "NouvelleInvitationBody[role]" has a null value in JSON.');
+        assert(json.containsKey(r'email'),
+            'Required key "NouvelleInvitationBody[email]" is missing from JSON.');
+        assert(json[r'email'] != null,
+            'Required key "NouvelleInvitationBody[email]" has a null value in JSON.');
+        assert(json.containsKey(r'role'),
+            'Required key "NouvelleInvitationBody[role]" is missing from JSON.');
+        assert(json[r'role'] != null,
+            'Required key "NouvelleInvitationBody[role]" has a null value in JSON.');
         return true;
       }());
 
@@ -68,7 +73,10 @@ class NouvelleInvitationBody {
     return null;
   }
 
-  static List<NouvelleInvitationBody> listFromJson(dynamic json, {bool growable = false,}) {
+  static List<NouvelleInvitationBody> listFromJson(
+    dynamic json, {
+    bool growable = false,
+  }) {
     final result = <NouvelleInvitationBody>[];
     if (json is List && json.isNotEmpty) {
       for (final row in json) {
@@ -96,13 +104,19 @@ class NouvelleInvitationBody {
   }
 
   // maps a json object with a list of NouvelleInvitationBody-objects as value to a dart map
-  static Map<String, List<NouvelleInvitationBody>> mapListFromJson(dynamic json, {bool growable = false,}) {
+  static Map<String, List<NouvelleInvitationBody>> mapListFromJson(
+    dynamic json, {
+    bool growable = false,
+  }) {
     final map = <String, List<NouvelleInvitationBody>>{};
     if (json is Map && json.isNotEmpty) {
       // ignore: parameter_assignments
       json = json.cast<String, dynamic>();
       for (final entry in json.entries) {
-        map[entry.key] = NouvelleInvitationBody.listFromJson(entry.value, growable: growable,);
+        map[entry.key] = NouvelleInvitationBody.listFromJson(
+          entry.value,
+          growable: growable,
+        );
       }
     }
     return map;
@@ -114,7 +128,6 @@ class NouvelleInvitationBody {
     'role',
   };
 }
-
 
 enum NouvelleInvitationBodyRoleEnum {
   admin._(r'admin'),
@@ -136,11 +149,15 @@ enum NouvelleInvitationBodyRoleEnum {
 
   /// Returns the instance of [NouvelleInvitationBodyRoleEnum] that was successfully decoded
   /// from the passed [value] on success, null otherwise.
-  static NouvelleInvitationBodyRoleEnum? fromJson(dynamic value) => NouvelleInvitationBodyRoleEnumTypeTransformer().decode(value);
+  static NouvelleInvitationBodyRoleEnum? fromJson(dynamic value) =>
+      NouvelleInvitationBodyRoleEnumTypeTransformer().decode(value);
 
   /// Returns a [List] containing instances of [NouvelleInvitationBodyRoleEnum]
   /// that were successfully decoded from the passed [JSON][json].
-  static List<NouvelleInvitationBodyRoleEnum> listFromJson(dynamic json, {bool growable = false,}) {
+  static List<NouvelleInvitationBodyRoleEnum> listFromJson(
+    dynamic json, {
+    bool growable = false,
+  }) {
     final result = <NouvelleInvitationBodyRoleEnum>[];
     if (json is List && json.isNotEmpty) {
       for (final row in json) {
@@ -157,7 +174,8 @@ enum NouvelleInvitationBodyRoleEnum {
 /// Transformation class that can [encode] an instance of [NouvelleInvitationBodyRoleEnum] to String,
 /// and [decode] dynamic data back to [NouvelleInvitationBodyRoleEnum].
 class NouvelleInvitationBodyRoleEnumTypeTransformer {
-  factory NouvelleInvitationBodyRoleEnumTypeTransformer() => _instance ??= const NouvelleInvitationBodyRoleEnumTypeTransformer._();
+  factory NouvelleInvitationBodyRoleEnumTypeTransformer() =>
+      _instance ??= const NouvelleInvitationBodyRoleEnumTypeTransformer._();
 
   const NouvelleInvitationBodyRoleEnumTypeTransformer._();
 
@@ -172,15 +190,19 @@ class NouvelleInvitationBodyRoleEnumTypeTransformer {
   ///
   /// The [allowNull] is very handy when an API changes and a new enum value is added or removed,
   /// and users are still using an old app with the old code.
-  NouvelleInvitationBodyRoleEnum? decode(dynamic data, {bool allowNull = true}) {
+  NouvelleInvitationBodyRoleEnum? decode(dynamic data,
+      {bool allowNull = true}) {
     if (data is NouvelleInvitationBodyRoleEnum) {
       return data;
     }
     if (data != null) {
       switch (data) {
-        case r'admin': return NouvelleInvitationBodyRoleEnum.admin;
-        case r'user': return NouvelleInvitationBodyRoleEnum.user;
-        case r'read_only': return NouvelleInvitationBodyRoleEnum.readOnly;
+        case r'admin':
+          return NouvelleInvitationBodyRoleEnum.admin;
+        case r'user':
+          return NouvelleInvitationBodyRoleEnum.user;
+        case r'read_only':
+          return NouvelleInvitationBodyRoleEnum.readOnly;
         default:
           if (!allowNull) {
             throw ArgumentError('Unknown enum value to decode: $data');
@@ -193,5 +215,3 @@ class NouvelleInvitationBodyRoleEnumTypeTransformer {
   /// The singleton instance of this transformer.
   static NouvelleInvitationBodyRoleEnumTypeTransformer? _instance;
 }
-
-

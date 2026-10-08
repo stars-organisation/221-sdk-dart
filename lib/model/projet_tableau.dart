@@ -60,38 +60,41 @@ class ProjetTableau {
   List<Abonnement>? webhooks;
 
   @override
-  bool operator ==(Object other) => identical(this, other) || other is ProjetTableau &&
-    _deepEquality.equals(other.calls, calls) &&
-    other.createdAt == createdAt &&
-    other.id == id &&
-    _deepEquality.equals(other.keys, keys) &&
-    other.liveEnabled == liveEnabled &&
-    other.name == name &&
-    other.paymentsCalls == paymentsCalls &&
-    other.quota == quota &&
-    other.slug == slug &&
-    _deepEquality.equals(other.usage, usage) &&
-    other.webhookSecret == webhookSecret &&
-    _deepEquality.equals(other.webhooks, webhooks);
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      other is ProjetTableau &&
+          _deepEquality.equals(other.calls, calls) &&
+          other.createdAt == createdAt &&
+          other.id == id &&
+          _deepEquality.equals(other.keys, keys) &&
+          other.liveEnabled == liveEnabled &&
+          other.name == name &&
+          other.paymentsCalls == paymentsCalls &&
+          other.quota == quota &&
+          other.slug == slug &&
+          _deepEquality.equals(other.usage, usage) &&
+          other.webhookSecret == webhookSecret &&
+          _deepEquality.equals(other.webhooks, webhooks);
 
   @override
   int get hashCode =>
-    // ignore: unnecessary_parenthesis
-    (calls == null ? 0 : calls!.hashCode) +
-    (createdAt.hashCode) +
-    (id.hashCode) +
-    (keys == null ? 0 : keys!.hashCode) +
-    (liveEnabled.hashCode) +
-    (name.hashCode) +
-    (paymentsCalls == null ? 0 : paymentsCalls!.hashCode) +
-    (quota.hashCode) +
-    (slug.hashCode) +
-    (usage == null ? 0 : usage!.hashCode) +
-    (webhookSecret.hashCode) +
-    (webhooks == null ? 0 : webhooks!.hashCode);
+      // ignore: unnecessary_parenthesis
+      (calls == null ? 0 : calls!.hashCode) +
+      (createdAt.hashCode) +
+      (id.hashCode) +
+      (keys == null ? 0 : keys!.hashCode) +
+      (liveEnabled.hashCode) +
+      (name.hashCode) +
+      (paymentsCalls == null ? 0 : paymentsCalls!.hashCode) +
+      (quota.hashCode) +
+      (slug.hashCode) +
+      (usage == null ? 0 : usage!.hashCode) +
+      (webhookSecret.hashCode) +
+      (webhooks == null ? 0 : webhooks!.hashCode);
 
   @override
-  String toString() => 'ProjetTableau[calls=$calls, createdAt=$createdAt, id=$id, keys=$keys, liveEnabled=$liveEnabled, name=$name, paymentsCalls=$paymentsCalls, quota=$quota, slug=$slug, usage=$usage, webhookSecret=$webhookSecret, webhooks=$webhooks]';
+  String toString() =>
+      'ProjetTableau[calls=$calls, createdAt=$createdAt, id=$id, keys=$keys, liveEnabled=$liveEnabled, name=$name, paymentsCalls=$paymentsCalls, quota=$quota, slug=$slug, usage=$usage, webhookSecret=$webhookSecret, webhooks=$webhooks]';
 
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -100,28 +103,28 @@ class ProjetTableau {
     } else {
       json[r'calls'] = null;
     }
-      json[r'created_at'] = this.createdAt.toUtc().toIso8601String();
-      json[r'id'] = this.id;
+    json[r'created_at'] = this.createdAt.toUtc().toIso8601String();
+    json[r'id'] = this.id;
     if (this.keys != null) {
       json[r'keys'] = this.keys;
     } else {
       json[r'keys'] = null;
     }
-      json[r'live_enabled'] = this.liveEnabled;
-      json[r'name'] = this.name;
+    json[r'live_enabled'] = this.liveEnabled;
+    json[r'name'] = this.name;
     if (this.paymentsCalls != null) {
       json[r'payments_calls'] = this.paymentsCalls;
     } else {
       json[r'payments_calls'] = null;
     }
-      json[r'quota'] = this.quota;
-      json[r'slug'] = this.slug;
+    json[r'quota'] = this.quota;
+    json[r'slug'] = this.slug;
     if (this.usage != null) {
       json[r'usage'] = this.usage;
     } else {
       json[r'usage'] = null;
     }
-      json[r'webhook_secret'] = this.webhookSecret;
+    json[r'webhook_secret'] = this.webhookSecret;
     if (this.webhooks != null) {
       json[r'webhooks'] = this.webhooks;
     } else {
@@ -141,20 +144,34 @@ class ProjetTableau {
       // Note 1: the values aren't checked for validity beyond being non-null.
       // Note 2: this code is stripped in release mode!
       assert(() {
-        assert(json.containsKey(r'created_at'), 'Required key "ProjetTableau[created_at]" is missing from JSON.');
-        assert(json[r'created_at'] != null, 'Required key "ProjetTableau[created_at]" has a null value in JSON.');
-        assert(json.containsKey(r'id'), 'Required key "ProjetTableau[id]" is missing from JSON.');
-        assert(json[r'id'] != null, 'Required key "ProjetTableau[id]" has a null value in JSON.');
-        assert(json.containsKey(r'live_enabled'), 'Required key "ProjetTableau[live_enabled]" is missing from JSON.');
-        assert(json[r'live_enabled'] != null, 'Required key "ProjetTableau[live_enabled]" has a null value in JSON.');
-        assert(json.containsKey(r'name'), 'Required key "ProjetTableau[name]" is missing from JSON.');
-        assert(json[r'name'] != null, 'Required key "ProjetTableau[name]" has a null value in JSON.');
-        assert(json.containsKey(r'quota'), 'Required key "ProjetTableau[quota]" is missing from JSON.');
-        assert(json[r'quota'] != null, 'Required key "ProjetTableau[quota]" has a null value in JSON.');
-        assert(json.containsKey(r'slug'), 'Required key "ProjetTableau[slug]" is missing from JSON.');
-        assert(json[r'slug'] != null, 'Required key "ProjetTableau[slug]" has a null value in JSON.');
-        assert(json.containsKey(r'webhook_secret'), 'Required key "ProjetTableau[webhook_secret]" is missing from JSON.');
-        assert(json[r'webhook_secret'] != null, 'Required key "ProjetTableau[webhook_secret]" has a null value in JSON.');
+        assert(json.containsKey(r'created_at'),
+            'Required key "ProjetTableau[created_at]" is missing from JSON.');
+        assert(json[r'created_at'] != null,
+            'Required key "ProjetTableau[created_at]" has a null value in JSON.');
+        assert(json.containsKey(r'id'),
+            'Required key "ProjetTableau[id]" is missing from JSON.');
+        assert(json[r'id'] != null,
+            'Required key "ProjetTableau[id]" has a null value in JSON.');
+        assert(json.containsKey(r'live_enabled'),
+            'Required key "ProjetTableau[live_enabled]" is missing from JSON.');
+        assert(json[r'live_enabled'] != null,
+            'Required key "ProjetTableau[live_enabled]" has a null value in JSON.');
+        assert(json.containsKey(r'name'),
+            'Required key "ProjetTableau[name]" is missing from JSON.');
+        assert(json[r'name'] != null,
+            'Required key "ProjetTableau[name]" has a null value in JSON.');
+        assert(json.containsKey(r'quota'),
+            'Required key "ProjetTableau[quota]" is missing from JSON.');
+        assert(json[r'quota'] != null,
+            'Required key "ProjetTableau[quota]" has a null value in JSON.');
+        assert(json.containsKey(r'slug'),
+            'Required key "ProjetTableau[slug]" is missing from JSON.');
+        assert(json[r'slug'] != null,
+            'Required key "ProjetTableau[slug]" has a null value in JSON.');
+        assert(json.containsKey(r'webhook_secret'),
+            'Required key "ProjetTableau[webhook_secret]" is missing from JSON.');
+        assert(json[r'webhook_secret'] != null,
+            'Required key "ProjetTableau[webhook_secret]" has a null value in JSON.');
         return true;
       }());
 
@@ -176,7 +193,10 @@ class ProjetTableau {
     return null;
   }
 
-  static List<ProjetTableau> listFromJson(dynamic json, {bool growable = false,}) {
+  static List<ProjetTableau> listFromJson(
+    dynamic json, {
+    bool growable = false,
+  }) {
     final result = <ProjetTableau>[];
     if (json is List && json.isNotEmpty) {
       for (final row in json) {
@@ -204,13 +224,19 @@ class ProjetTableau {
   }
 
   // maps a json object with a list of ProjetTableau-objects as value to a dart map
-  static Map<String, List<ProjetTableau>> mapListFromJson(dynamic json, {bool growable = false,}) {
+  static Map<String, List<ProjetTableau>> mapListFromJson(
+    dynamic json, {
+    bool growable = false,
+  }) {
     final map = <String, List<ProjetTableau>>{};
     if (json is Map && json.isNotEmpty) {
       // ignore: parameter_assignments
       json = json.cast<String, dynamic>();
       for (final entry in json.entries) {
-        map[entry.key] = ProjetTableau.listFromJson(entry.value, growable: growable,);
+        map[entry.key] = ProjetTableau.listFromJson(
+          entry.value,
+          growable: growable,
+        );
       }
     }
     return map;
@@ -227,4 +253,3 @@ class ProjetTableau {
     'webhook_secret',
   };
 }
-

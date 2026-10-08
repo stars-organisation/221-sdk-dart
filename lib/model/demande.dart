@@ -45,52 +45,55 @@ class Demande {
   int votes;
 
   @override
-  bool operator ==(Object other) => identical(this, other) || other is Demande &&
-    other.createdAt == createdAt &&
-    other.details == details &&
-    other.id == id &&
-    other.kind == kind &&
-    other.note == note &&
-    other.status == status &&
-    other.title == title &&
-    other.voted == voted &&
-    other.votes == votes;
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      other is Demande &&
+          other.createdAt == createdAt &&
+          other.details == details &&
+          other.id == id &&
+          other.kind == kind &&
+          other.note == note &&
+          other.status == status &&
+          other.title == title &&
+          other.voted == voted &&
+          other.votes == votes;
 
   @override
   int get hashCode =>
-    // ignore: unnecessary_parenthesis
-    (createdAt.hashCode) +
-    (details == null ? 0 : details!.hashCode) +
-    (id.hashCode) +
-    (kind.hashCode) +
-    (note == null ? 0 : note!.hashCode) +
-    (status.hashCode) +
-    (title.hashCode) +
-    (voted.hashCode) +
-    (votes.hashCode);
+      // ignore: unnecessary_parenthesis
+      (createdAt.hashCode) +
+      (details == null ? 0 : details!.hashCode) +
+      (id.hashCode) +
+      (kind.hashCode) +
+      (note == null ? 0 : note!.hashCode) +
+      (status.hashCode) +
+      (title.hashCode) +
+      (voted.hashCode) +
+      (votes.hashCode);
 
   @override
-  String toString() => 'Demande[createdAt=$createdAt, details=$details, id=$id, kind=$kind, note=$note, status=$status, title=$title, voted=$voted, votes=$votes]';
+  String toString() =>
+      'Demande[createdAt=$createdAt, details=$details, id=$id, kind=$kind, note=$note, status=$status, title=$title, voted=$voted, votes=$votes]';
 
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
-      json[r'created_at'] = this.createdAt.toUtc().toIso8601String();
+    json[r'created_at'] = this.createdAt.toUtc().toIso8601String();
     if (this.details != null) {
       json[r'details'] = this.details;
     } else {
       json[r'details'] = null;
     }
-      json[r'id'] = this.id;
-      json[r'kind'] = this.kind;
+    json[r'id'] = this.id;
+    json[r'kind'] = this.kind;
     if (this.note != null) {
       json[r'note'] = this.note;
     } else {
       json[r'note'] = null;
     }
-      json[r'status'] = this.status;
-      json[r'title'] = this.title;
-      json[r'voted'] = this.voted;
-      json[r'votes'] = this.votes;
+    json[r'status'] = this.status;
+    json[r'title'] = this.title;
+    json[r'voted'] = this.voted;
+    json[r'votes'] = this.votes;
     return json;
   }
 
@@ -105,20 +108,34 @@ class Demande {
       // Note 1: the values aren't checked for validity beyond being non-null.
       // Note 2: this code is stripped in release mode!
       assert(() {
-        assert(json.containsKey(r'created_at'), 'Required key "Demande[created_at]" is missing from JSON.');
-        assert(json[r'created_at'] != null, 'Required key "Demande[created_at]" has a null value in JSON.');
-        assert(json.containsKey(r'id'), 'Required key "Demande[id]" is missing from JSON.');
-        assert(json[r'id'] != null, 'Required key "Demande[id]" has a null value in JSON.');
-        assert(json.containsKey(r'kind'), 'Required key "Demande[kind]" is missing from JSON.');
-        assert(json[r'kind'] != null, 'Required key "Demande[kind]" has a null value in JSON.');
-        assert(json.containsKey(r'status'), 'Required key "Demande[status]" is missing from JSON.');
-        assert(json[r'status'] != null, 'Required key "Demande[status]" has a null value in JSON.');
-        assert(json.containsKey(r'title'), 'Required key "Demande[title]" is missing from JSON.');
-        assert(json[r'title'] != null, 'Required key "Demande[title]" has a null value in JSON.');
-        assert(json.containsKey(r'voted'), 'Required key "Demande[voted]" is missing from JSON.');
-        assert(json[r'voted'] != null, 'Required key "Demande[voted]" has a null value in JSON.');
-        assert(json.containsKey(r'votes'), 'Required key "Demande[votes]" is missing from JSON.');
-        assert(json[r'votes'] != null, 'Required key "Demande[votes]" has a null value in JSON.');
+        assert(json.containsKey(r'created_at'),
+            'Required key "Demande[created_at]" is missing from JSON.');
+        assert(json[r'created_at'] != null,
+            'Required key "Demande[created_at]" has a null value in JSON.');
+        assert(json.containsKey(r'id'),
+            'Required key "Demande[id]" is missing from JSON.');
+        assert(json[r'id'] != null,
+            'Required key "Demande[id]" has a null value in JSON.');
+        assert(json.containsKey(r'kind'),
+            'Required key "Demande[kind]" is missing from JSON.');
+        assert(json[r'kind'] != null,
+            'Required key "Demande[kind]" has a null value in JSON.');
+        assert(json.containsKey(r'status'),
+            'Required key "Demande[status]" is missing from JSON.');
+        assert(json[r'status'] != null,
+            'Required key "Demande[status]" has a null value in JSON.');
+        assert(json.containsKey(r'title'),
+            'Required key "Demande[title]" is missing from JSON.');
+        assert(json[r'title'] != null,
+            'Required key "Demande[title]" has a null value in JSON.');
+        assert(json.containsKey(r'voted'),
+            'Required key "Demande[voted]" is missing from JSON.');
+        assert(json[r'voted'] != null,
+            'Required key "Demande[voted]" has a null value in JSON.');
+        assert(json.containsKey(r'votes'),
+            'Required key "Demande[votes]" is missing from JSON.');
+        assert(json[r'votes'] != null,
+            'Required key "Demande[votes]" has a null value in JSON.');
         return true;
       }());
 
@@ -137,7 +154,10 @@ class Demande {
     return null;
   }
 
-  static List<Demande> listFromJson(dynamic json, {bool growable = false,}) {
+  static List<Demande> listFromJson(
+    dynamic json, {
+    bool growable = false,
+  }) {
     final result = <Demande>[];
     if (json is List && json.isNotEmpty) {
       for (final row in json) {
@@ -165,13 +185,19 @@ class Demande {
   }
 
   // maps a json object with a list of Demande-objects as value to a dart map
-  static Map<String, List<Demande>> mapListFromJson(dynamic json, {bool growable = false,}) {
+  static Map<String, List<Demande>> mapListFromJson(
+    dynamic json, {
+    bool growable = false,
+  }) {
     final map = <String, List<Demande>>{};
     if (json is Map && json.isNotEmpty) {
       // ignore: parameter_assignments
       json = json.cast<String, dynamic>();
       for (final entry in json.entries) {
-        map[entry.key] = Demande.listFromJson(entry.value, growable: growable,);
+        map[entry.key] = Demande.listFromJson(
+          entry.value,
+          growable: growable,
+        );
       }
     }
     return map;
@@ -188,7 +214,6 @@ class Demande {
     'votes',
   };
 }
-
 
 enum DemandeKindEnum {
   api._(r'api'),
@@ -209,11 +234,15 @@ enum DemandeKindEnum {
 
   /// Returns the instance of [DemandeKindEnum] that was successfully decoded
   /// from the passed [value] on success, null otherwise.
-  static DemandeKindEnum? fromJson(dynamic value) => DemandeKindEnumTypeTransformer().decode(value);
+  static DemandeKindEnum? fromJson(dynamic value) =>
+      DemandeKindEnumTypeTransformer().decode(value);
 
   /// Returns a [List] containing instances of [DemandeKindEnum]
   /// that were successfully decoded from the passed [JSON][json].
-  static List<DemandeKindEnum> listFromJson(dynamic json, {bool growable = false,}) {
+  static List<DemandeKindEnum> listFromJson(
+    dynamic json, {
+    bool growable = false,
+  }) {
     final result = <DemandeKindEnum>[];
     if (json is List && json.isNotEmpty) {
       for (final row in json) {
@@ -230,7 +259,8 @@ enum DemandeKindEnum {
 /// Transformation class that can [encode] an instance of [DemandeKindEnum] to String,
 /// and [decode] dynamic data back to [DemandeKindEnum].
 class DemandeKindEnumTypeTransformer {
-  factory DemandeKindEnumTypeTransformer() => _instance ??= const DemandeKindEnumTypeTransformer._();
+  factory DemandeKindEnumTypeTransformer() =>
+      _instance ??= const DemandeKindEnumTypeTransformer._();
 
   const DemandeKindEnumTypeTransformer._();
 
@@ -251,8 +281,10 @@ class DemandeKindEnumTypeTransformer {
     }
     if (data != null) {
       switch (data) {
-        case r'api': return DemandeKindEnum.api;
-        case r'donnees': return DemandeKindEnum.donnees;
+        case r'api':
+          return DemandeKindEnum.api;
+        case r'donnees':
+          return DemandeKindEnum.donnees;
         default:
           if (!allowNull) {
             throw ArgumentError('Unknown enum value to decode: $data');
@@ -265,8 +297,6 @@ class DemandeKindEnumTypeTransformer {
   /// The singleton instance of this transformer.
   static DemandeKindEnumTypeTransformer? _instance;
 }
-
-
 
 enum DemandeStatusEnum {
   ouverte._(r'ouverte'),
@@ -289,11 +319,15 @@ enum DemandeStatusEnum {
 
   /// Returns the instance of [DemandeStatusEnum] that was successfully decoded
   /// from the passed [value] on success, null otherwise.
-  static DemandeStatusEnum? fromJson(dynamic value) => DemandeStatusEnumTypeTransformer().decode(value);
+  static DemandeStatusEnum? fromJson(dynamic value) =>
+      DemandeStatusEnumTypeTransformer().decode(value);
 
   /// Returns a [List] containing instances of [DemandeStatusEnum]
   /// that were successfully decoded from the passed [JSON][json].
-  static List<DemandeStatusEnum> listFromJson(dynamic json, {bool growable = false,}) {
+  static List<DemandeStatusEnum> listFromJson(
+    dynamic json, {
+    bool growable = false,
+  }) {
     final result = <DemandeStatusEnum>[];
     if (json is List && json.isNotEmpty) {
       for (final row in json) {
@@ -310,7 +344,8 @@ enum DemandeStatusEnum {
 /// Transformation class that can [encode] an instance of [DemandeStatusEnum] to String,
 /// and [decode] dynamic data back to [DemandeStatusEnum].
 class DemandeStatusEnumTypeTransformer {
-  factory DemandeStatusEnumTypeTransformer() => _instance ??= const DemandeStatusEnumTypeTransformer._();
+  factory DemandeStatusEnumTypeTransformer() =>
+      _instance ??= const DemandeStatusEnumTypeTransformer._();
 
   const DemandeStatusEnumTypeTransformer._();
 
@@ -331,10 +366,14 @@ class DemandeStatusEnumTypeTransformer {
     }
     if (data != null) {
       switch (data) {
-        case r'ouverte': return DemandeStatusEnum.ouverte;
-        case r'en_cours': return DemandeStatusEnum.enCours;
-        case r'publiee': return DemandeStatusEnum.publiee;
-        case r'impossible': return DemandeStatusEnum.impossible;
+        case r'ouverte':
+          return DemandeStatusEnum.ouverte;
+        case r'en_cours':
+          return DemandeStatusEnum.enCours;
+        case r'publiee':
+          return DemandeStatusEnum.publiee;
+        case r'impossible':
+          return DemandeStatusEnum.impossible;
         default:
           if (!allowNull) {
             throw ArgumentError('Unknown enum value to decode: $data');
@@ -347,5 +386,3 @@ class DemandeStatusEnumTypeTransformer {
   /// The singleton instance of this transformer.
   static DemandeStatusEnumTypeTransformer? _instance;
 }
-
-

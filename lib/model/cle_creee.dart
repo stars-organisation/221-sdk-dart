@@ -15,15 +15,15 @@ class CleCreee {
   CleCreee({
     required this.createdAt,
     required this.dailyLimit,
-    required this.disabledAt,
+    this.disabledAt,
     this.disabledReason,
-    required this.expiresAt,
+    this.expiresAt,
     required this.id,
-    required this.lastUsedAt,
+    this.lastUsedAt,
     required this.mode,
     required this.name,
     required this.prefix,
-    required this.revokedAt,
+    this.revokedAt,
     this.rotatedFrom,
     this.scopes = const [],
     required this.secret,
@@ -34,16 +34,16 @@ class CleCreee {
   int dailyLimit;
 
   /// Désactivation par un administrateur (usage abusif).
-  DateTime disabledAt;
+  DateTime? disabledAt;
 
   String? disabledReason;
 
   /// Fin de validité ; null : sans expiration.
-  DateTime expiresAt;
+  DateTime? expiresAt;
 
   String id;
 
-  DateTime lastUsedAt;
+  DateTime? lastUsedAt;
 
   /// test : aucun argent réel ; live : argent réel.
   CleCreeeModeEnum mode;
@@ -52,7 +52,7 @@ class CleCreee {
 
   String prefix;
 
-  DateTime revokedAt;
+  DateTime? revokedAt;
 
   /// Clé remplacée par celle-ci lors d'une rotation ; null sinon.
   String? rotatedFrom;
@@ -64,60 +64,79 @@ class CleCreee {
   String secret;
 
   @override
-  bool operator ==(Object other) => identical(this, other) || other is CleCreee &&
-    other.createdAt == createdAt &&
-    other.dailyLimit == dailyLimit &&
-    other.disabledAt == disabledAt &&
-    other.disabledReason == disabledReason &&
-    other.expiresAt == expiresAt &&
-    other.id == id &&
-    other.lastUsedAt == lastUsedAt &&
-    other.mode == mode &&
-    other.name == name &&
-    other.prefix == prefix &&
-    other.revokedAt == revokedAt &&
-    other.rotatedFrom == rotatedFrom &&
-    _deepEquality.equals(other.scopes, scopes) &&
-    other.secret == secret;
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      other is CleCreee &&
+          other.createdAt == createdAt &&
+          other.dailyLimit == dailyLimit &&
+          other.disabledAt == disabledAt &&
+          other.disabledReason == disabledReason &&
+          other.expiresAt == expiresAt &&
+          other.id == id &&
+          other.lastUsedAt == lastUsedAt &&
+          other.mode == mode &&
+          other.name == name &&
+          other.prefix == prefix &&
+          other.revokedAt == revokedAt &&
+          other.rotatedFrom == rotatedFrom &&
+          _deepEquality.equals(other.scopes, scopes) &&
+          other.secret == secret;
 
   @override
   int get hashCode =>
-    // ignore: unnecessary_parenthesis
-    (createdAt.hashCode) +
-    (dailyLimit.hashCode) +
-    (disabledAt.hashCode) +
-    (disabledReason == null ? 0 : disabledReason!.hashCode) +
-    (expiresAt.hashCode) +
-    (id.hashCode) +
-    (lastUsedAt.hashCode) +
-    (mode.hashCode) +
-    (name.hashCode) +
-    (prefix.hashCode) +
-    (revokedAt.hashCode) +
-    (rotatedFrom == null ? 0 : rotatedFrom!.hashCode) +
-    (scopes == null ? 0 : scopes!.hashCode) +
-    (secret.hashCode);
+      // ignore: unnecessary_parenthesis
+      (createdAt.hashCode) +
+      (dailyLimit.hashCode) +
+      (disabledAt == null ? 0 : disabledAt!.hashCode) +
+      (disabledReason == null ? 0 : disabledReason!.hashCode) +
+      (expiresAt == null ? 0 : expiresAt!.hashCode) +
+      (id.hashCode) +
+      (lastUsedAt == null ? 0 : lastUsedAt!.hashCode) +
+      (mode.hashCode) +
+      (name.hashCode) +
+      (prefix.hashCode) +
+      (revokedAt == null ? 0 : revokedAt!.hashCode) +
+      (rotatedFrom == null ? 0 : rotatedFrom!.hashCode) +
+      (scopes == null ? 0 : scopes!.hashCode) +
+      (secret.hashCode);
 
   @override
-  String toString() => 'CleCreee[createdAt=$createdAt, dailyLimit=$dailyLimit, disabledAt=$disabledAt, disabledReason=$disabledReason, expiresAt=$expiresAt, id=$id, lastUsedAt=$lastUsedAt, mode=$mode, name=$name, prefix=$prefix, revokedAt=$revokedAt, rotatedFrom=$rotatedFrom, scopes=$scopes, secret=$secret]';
+  String toString() =>
+      'CleCreee[createdAt=$createdAt, dailyLimit=$dailyLimit, disabledAt=$disabledAt, disabledReason=$disabledReason, expiresAt=$expiresAt, id=$id, lastUsedAt=$lastUsedAt, mode=$mode, name=$name, prefix=$prefix, revokedAt=$revokedAt, rotatedFrom=$rotatedFrom, scopes=$scopes, secret=$secret]';
 
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
-      json[r'created_at'] = this.createdAt.toUtc().toIso8601String();
-      json[r'daily_limit'] = this.dailyLimit;
-      json[r'disabled_at'] = this.disabledAt.toUtc().toIso8601String();
+    json[r'created_at'] = this.createdAt.toUtc().toIso8601String();
+    json[r'daily_limit'] = this.dailyLimit;
+    if (this.disabledAt != null) {
+      json[r'disabled_at'] = this.disabledAt!.toUtc().toIso8601String();
+    } else {
+      json[r'disabled_at'] = null;
+    }
     if (this.disabledReason != null) {
       json[r'disabled_reason'] = this.disabledReason;
     } else {
       json[r'disabled_reason'] = null;
     }
-      json[r'expires_at'] = this.expiresAt.toUtc().toIso8601String();
-      json[r'id'] = this.id;
-      json[r'last_used_at'] = this.lastUsedAt.toUtc().toIso8601String();
-      json[r'mode'] = this.mode;
-      json[r'name'] = this.name;
-      json[r'prefix'] = this.prefix;
-      json[r'revoked_at'] = this.revokedAt.toUtc().toIso8601String();
+    if (this.expiresAt != null) {
+      json[r'expires_at'] = this.expiresAt!.toUtc().toIso8601String();
+    } else {
+      json[r'expires_at'] = null;
+    }
+    json[r'id'] = this.id;
+    if (this.lastUsedAt != null) {
+      json[r'last_used_at'] = this.lastUsedAt!.toUtc().toIso8601String();
+    } else {
+      json[r'last_used_at'] = null;
+    }
+    json[r'mode'] = this.mode;
+    json[r'name'] = this.name;
+    json[r'prefix'] = this.prefix;
+    if (this.revokedAt != null) {
+      json[r'revoked_at'] = this.revokedAt!.toUtc().toIso8601String();
+    } else {
+      json[r'revoked_at'] = null;
+    }
     if (this.rotatedFrom != null) {
       json[r'rotated_from'] = this.rotatedFrom;
     } else {
@@ -128,7 +147,7 @@ class CleCreee {
     } else {
       json[r'scopes'] = null;
     }
-      json[r'secret'] = this.secret;
+    json[r'secret'] = this.secret;
     return json;
   }
 
@@ -143,46 +162,54 @@ class CleCreee {
       // Note 1: the values aren't checked for validity beyond being non-null.
       // Note 2: this code is stripped in release mode!
       assert(() {
-        assert(json.containsKey(r'created_at'), 'Required key "CleCreee[created_at]" is missing from JSON.');
-        assert(json[r'created_at'] != null, 'Required key "CleCreee[created_at]" has a null value in JSON.');
-        assert(json.containsKey(r'daily_limit'), 'Required key "CleCreee[daily_limit]" is missing from JSON.');
-        assert(json[r'daily_limit'] != null, 'Required key "CleCreee[daily_limit]" has a null value in JSON.');
-        assert(json.containsKey(r'disabled_at'), 'Required key "CleCreee[disabled_at]" is missing from JSON.');
-        assert(json[r'disabled_at'] != null, 'Required key "CleCreee[disabled_at]" has a null value in JSON.');
-        assert(json.containsKey(r'expires_at'), 'Required key "CleCreee[expires_at]" is missing from JSON.');
-        assert(json[r'expires_at'] != null, 'Required key "CleCreee[expires_at]" has a null value in JSON.');
-        assert(json.containsKey(r'id'), 'Required key "CleCreee[id]" is missing from JSON.');
-        assert(json[r'id'] != null, 'Required key "CleCreee[id]" has a null value in JSON.');
-        assert(json.containsKey(r'last_used_at'), 'Required key "CleCreee[last_used_at]" is missing from JSON.');
-        assert(json[r'last_used_at'] != null, 'Required key "CleCreee[last_used_at]" has a null value in JSON.');
-        assert(json.containsKey(r'mode'), 'Required key "CleCreee[mode]" is missing from JSON.');
-        assert(json[r'mode'] != null, 'Required key "CleCreee[mode]" has a null value in JSON.');
-        assert(json.containsKey(r'name'), 'Required key "CleCreee[name]" is missing from JSON.');
-        assert(json[r'name'] != null, 'Required key "CleCreee[name]" has a null value in JSON.');
-        assert(json.containsKey(r'prefix'), 'Required key "CleCreee[prefix]" is missing from JSON.');
-        assert(json[r'prefix'] != null, 'Required key "CleCreee[prefix]" has a null value in JSON.');
-        assert(json.containsKey(r'revoked_at'), 'Required key "CleCreee[revoked_at]" is missing from JSON.');
-        assert(json[r'revoked_at'] != null, 'Required key "CleCreee[revoked_at]" has a null value in JSON.');
-        assert(json.containsKey(r'secret'), 'Required key "CleCreee[secret]" is missing from JSON.');
-        assert(json[r'secret'] != null, 'Required key "CleCreee[secret]" has a null value in JSON.');
+        assert(json.containsKey(r'created_at'),
+            'Required key "CleCreee[created_at]" is missing from JSON.');
+        assert(json[r'created_at'] != null,
+            'Required key "CleCreee[created_at]" has a null value in JSON.');
+        assert(json.containsKey(r'daily_limit'),
+            'Required key "CleCreee[daily_limit]" is missing from JSON.');
+        assert(json[r'daily_limit'] != null,
+            'Required key "CleCreee[daily_limit]" has a null value in JSON.');
+        assert(json.containsKey(r'id'),
+            'Required key "CleCreee[id]" is missing from JSON.');
+        assert(json[r'id'] != null,
+            'Required key "CleCreee[id]" has a null value in JSON.');
+        assert(json.containsKey(r'mode'),
+            'Required key "CleCreee[mode]" is missing from JSON.');
+        assert(json[r'mode'] != null,
+            'Required key "CleCreee[mode]" has a null value in JSON.');
+        assert(json.containsKey(r'name'),
+            'Required key "CleCreee[name]" is missing from JSON.');
+        assert(json[r'name'] != null,
+            'Required key "CleCreee[name]" has a null value in JSON.');
+        assert(json.containsKey(r'prefix'),
+            'Required key "CleCreee[prefix]" is missing from JSON.');
+        assert(json[r'prefix'] != null,
+            'Required key "CleCreee[prefix]" has a null value in JSON.');
+        assert(json.containsKey(r'secret'),
+            'Required key "CleCreee[secret]" is missing from JSON.');
+        assert(json[r'secret'] != null,
+            'Required key "CleCreee[secret]" has a null value in JSON.');
         return true;
       }());
 
       return CleCreee(
         createdAt: mapDateTime(json, r'created_at', r'')!,
         dailyLimit: mapValueOfType<int>(json, r'daily_limit')!,
-        disabledAt: mapDateTime(json, r'disabled_at', r'')!,
+        disabledAt: mapDateTime(json, r'disabled_at', r''),
         disabledReason: mapValueOfType<String>(json, r'disabled_reason'),
-        expiresAt: mapDateTime(json, r'expires_at', r'')!,
+        expiresAt: mapDateTime(json, r'expires_at', r''),
         id: mapValueOfType<String>(json, r'id')!,
-        lastUsedAt: mapDateTime(json, r'last_used_at', r'')!,
+        lastUsedAt: mapDateTime(json, r'last_used_at', r''),
         mode: CleCreeeModeEnum.fromJson(json[r'mode'])!,
         name: mapValueOfType<String>(json, r'name')!,
         prefix: mapValueOfType<String>(json, r'prefix')!,
-        revokedAt: mapDateTime(json, r'revoked_at', r'')!,
+        revokedAt: mapDateTime(json, r'revoked_at', r''),
         rotatedFrom: mapValueOfType<String>(json, r'rotated_from'),
         scopes: json[r'scopes'] is Iterable
-            ? (json[r'scopes'] as Iterable).cast<String>().toList(growable: false)
+            ? (json[r'scopes'] as Iterable)
+                .cast<String>()
+                .toList(growable: false)
             : const [],
         secret: mapValueOfType<String>(json, r'secret')!,
       );
@@ -190,7 +217,10 @@ class CleCreee {
     return null;
   }
 
-  static List<CleCreee> listFromJson(dynamic json, {bool growable = false,}) {
+  static List<CleCreee> listFromJson(
+    dynamic json, {
+    bool growable = false,
+  }) {
     final result = <CleCreee>[];
     if (json is List && json.isNotEmpty) {
       for (final row in json) {
@@ -218,13 +248,19 @@ class CleCreee {
   }
 
   // maps a json object with a list of CleCreee-objects as value to a dart map
-  static Map<String, List<CleCreee>> mapListFromJson(dynamic json, {bool growable = false,}) {
+  static Map<String, List<CleCreee>> mapListFromJson(
+    dynamic json, {
+    bool growable = false,
+  }) {
     final map = <String, List<CleCreee>>{};
     if (json is Map && json.isNotEmpty) {
       // ignore: parameter_assignments
       json = json.cast<String, dynamic>();
       for (final entry in json.entries) {
-        map[entry.key] = CleCreee.listFromJson(entry.value, growable: growable,);
+        map[entry.key] = CleCreee.listFromJson(
+          entry.value,
+          growable: growable,
+        );
       }
     }
     return map;
@@ -234,14 +270,10 @@ class CleCreee {
   static const requiredKeys = <String>{
     'created_at',
     'daily_limit',
-    'disabled_at',
-    'expires_at',
     'id',
-    'last_used_at',
     'mode',
     'name',
     'prefix',
-    'revoked_at',
     'secret',
   };
 }
@@ -266,11 +298,15 @@ enum CleCreeeModeEnum {
 
   /// Returns the instance of [CleCreeeModeEnum] that was successfully decoded
   /// from the passed [value] on success, null otherwise.
-  static CleCreeeModeEnum? fromJson(dynamic value) => CleCreeeModeEnumTypeTransformer().decode(value);
+  static CleCreeeModeEnum? fromJson(dynamic value) =>
+      CleCreeeModeEnumTypeTransformer().decode(value);
 
   /// Returns a [List] containing instances of [CleCreeeModeEnum]
   /// that were successfully decoded from the passed [JSON][json].
-  static List<CleCreeeModeEnum> listFromJson(dynamic json, {bool growable = false,}) {
+  static List<CleCreeeModeEnum> listFromJson(
+    dynamic json, {
+    bool growable = false,
+  }) {
     final result = <CleCreeeModeEnum>[];
     if (json is List && json.isNotEmpty) {
       for (final row in json) {
@@ -287,7 +323,8 @@ enum CleCreeeModeEnum {
 /// Transformation class that can [encode] an instance of [CleCreeeModeEnum] to String,
 /// and [decode] dynamic data back to [CleCreeeModeEnum].
 class CleCreeeModeEnumTypeTransformer {
-  factory CleCreeeModeEnumTypeTransformer() => _instance ??= const CleCreeeModeEnumTypeTransformer._();
+  factory CleCreeeModeEnumTypeTransformer() =>
+      _instance ??= const CleCreeeModeEnumTypeTransformer._();
 
   const CleCreeeModeEnumTypeTransformer._();
 
@@ -308,8 +345,10 @@ class CleCreeeModeEnumTypeTransformer {
     }
     if (data != null) {
       switch (data) {
-        case r'test': return CleCreeeModeEnum.test;
-        case r'live': return CleCreeeModeEnum.live;
+        case r'test':
+          return CleCreeeModeEnum.test;
+        case r'live':
+          return CleCreeeModeEnum.live;
         default:
           if (!allowNull) {
             throw ArgumentError('Unknown enum value to decode: $data');
@@ -322,5 +361,3 @@ class CleCreeeModeEnumTypeTransformer {
   /// The singleton instance of this transformer.
   static CleCreeeModeEnumTypeTransformer? _instance;
 }
-
-

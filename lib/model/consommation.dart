@@ -25,26 +25,26 @@ class Consommation {
   String keyId;
 
   @override
-  bool operator ==(Object other) => identical(this, other) || other is Consommation &&
-    other.count == count &&
-    other.day == day &&
-    other.keyId == keyId;
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      other is Consommation &&
+          other.count == count &&
+          other.day == day &&
+          other.keyId == keyId;
 
   @override
   int get hashCode =>
-    // ignore: unnecessary_parenthesis
-    (count.hashCode) +
-    (day.hashCode) +
-    (keyId.hashCode);
+      // ignore: unnecessary_parenthesis
+      (count.hashCode) + (day.hashCode) + (keyId.hashCode);
 
   @override
   String toString() => 'Consommation[count=$count, day=$day, keyId=$keyId]';
 
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
-      json[r'count'] = this.count;
-      json[r'day'] = this.day;
-      json[r'key_id'] = this.keyId;
+    json[r'count'] = this.count;
+    json[r'day'] = this.day;
+    json[r'key_id'] = this.keyId;
     return json;
   }
 
@@ -59,12 +59,18 @@ class Consommation {
       // Note 1: the values aren't checked for validity beyond being non-null.
       // Note 2: this code is stripped in release mode!
       assert(() {
-        assert(json.containsKey(r'count'), 'Required key "Consommation[count]" is missing from JSON.');
-        assert(json[r'count'] != null, 'Required key "Consommation[count]" has a null value in JSON.');
-        assert(json.containsKey(r'day'), 'Required key "Consommation[day]" is missing from JSON.');
-        assert(json[r'day'] != null, 'Required key "Consommation[day]" has a null value in JSON.');
-        assert(json.containsKey(r'key_id'), 'Required key "Consommation[key_id]" is missing from JSON.');
-        assert(json[r'key_id'] != null, 'Required key "Consommation[key_id]" has a null value in JSON.');
+        assert(json.containsKey(r'count'),
+            'Required key "Consommation[count]" is missing from JSON.');
+        assert(json[r'count'] != null,
+            'Required key "Consommation[count]" has a null value in JSON.');
+        assert(json.containsKey(r'day'),
+            'Required key "Consommation[day]" is missing from JSON.');
+        assert(json[r'day'] != null,
+            'Required key "Consommation[day]" has a null value in JSON.');
+        assert(json.containsKey(r'key_id'),
+            'Required key "Consommation[key_id]" is missing from JSON.');
+        assert(json[r'key_id'] != null,
+            'Required key "Consommation[key_id]" has a null value in JSON.');
         return true;
       }());
 
@@ -77,7 +83,10 @@ class Consommation {
     return null;
   }
 
-  static List<Consommation> listFromJson(dynamic json, {bool growable = false,}) {
+  static List<Consommation> listFromJson(
+    dynamic json, {
+    bool growable = false,
+  }) {
     final result = <Consommation>[];
     if (json is List && json.isNotEmpty) {
       for (final row in json) {
@@ -105,13 +114,19 @@ class Consommation {
   }
 
   // maps a json object with a list of Consommation-objects as value to a dart map
-  static Map<String, List<Consommation>> mapListFromJson(dynamic json, {bool growable = false,}) {
+  static Map<String, List<Consommation>> mapListFromJson(
+    dynamic json, {
+    bool growable = false,
+  }) {
     final map = <String, List<Consommation>>{};
     if (json is Map && json.isNotEmpty) {
       // ignore: parameter_assignments
       json = json.cast<String, dynamic>();
       for (final entry in json.entries) {
-        map[entry.key] = Consommation.listFromJson(entry.value, growable: growable,);
+        map[entry.key] = Consommation.listFromJson(
+          entry.value,
+          growable: growable,
+        );
       }
     }
     return map;
@@ -124,4 +139,3 @@ class Consommation {
     'key_id',
   };
 }
-

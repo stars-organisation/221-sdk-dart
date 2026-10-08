@@ -19,20 +19,21 @@ class NouveauProjetBody {
   String name;
 
   @override
-  bool operator ==(Object other) => identical(this, other) || other is NouveauProjetBody &&
-    other.name == name;
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      other is NouveauProjetBody && other.name == name;
 
   @override
   int get hashCode =>
-    // ignore: unnecessary_parenthesis
-    (name.hashCode);
+      // ignore: unnecessary_parenthesis
+      (name.hashCode);
 
   @override
   String toString() => 'NouveauProjetBody[name=$name]';
 
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
-      json[r'name'] = this.name;
+    json[r'name'] = this.name;
     return json;
   }
 
@@ -47,8 +48,10 @@ class NouveauProjetBody {
       // Note 1: the values aren't checked for validity beyond being non-null.
       // Note 2: this code is stripped in release mode!
       assert(() {
-        assert(json.containsKey(r'name'), 'Required key "NouveauProjetBody[name]" is missing from JSON.');
-        assert(json[r'name'] != null, 'Required key "NouveauProjetBody[name]" has a null value in JSON.');
+        assert(json.containsKey(r'name'),
+            'Required key "NouveauProjetBody[name]" is missing from JSON.');
+        assert(json[r'name'] != null,
+            'Required key "NouveauProjetBody[name]" has a null value in JSON.');
         return true;
       }());
 
@@ -59,7 +62,10 @@ class NouveauProjetBody {
     return null;
   }
 
-  static List<NouveauProjetBody> listFromJson(dynamic json, {bool growable = false,}) {
+  static List<NouveauProjetBody> listFromJson(
+    dynamic json, {
+    bool growable = false,
+  }) {
     final result = <NouveauProjetBody>[];
     if (json is List && json.isNotEmpty) {
       for (final row in json) {
@@ -87,13 +93,19 @@ class NouveauProjetBody {
   }
 
   // maps a json object with a list of NouveauProjetBody-objects as value to a dart map
-  static Map<String, List<NouveauProjetBody>> mapListFromJson(dynamic json, {bool growable = false,}) {
+  static Map<String, List<NouveauProjetBody>> mapListFromJson(
+    dynamic json, {
+    bool growable = false,
+  }) {
     final map = <String, List<NouveauProjetBody>>{};
     if (json is Map && json.isNotEmpty) {
       // ignore: parameter_assignments
       json = json.cast<String, dynamic>();
       for (final entry in json.entries) {
-        map[entry.key] = NouveauProjetBody.listFromJson(entry.value, growable: growable,);
+        map[entry.key] = NouveauProjetBody.listFromJson(
+          entry.value,
+          growable: growable,
+        );
       }
     }
     return map;
@@ -104,4 +116,3 @@ class NouveauProjetBody {
     'name',
   };
 }
-

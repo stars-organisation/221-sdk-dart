@@ -25,26 +25,26 @@ class Coordonnees {
   CoordonneesPrecisionEnum precision;
 
   @override
-  bool operator ==(Object other) => identical(this, other) || other is Coordonnees &&
-    other.lat == lat &&
-    other.lon == lon &&
-    other.precision == precision;
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      other is Coordonnees &&
+          other.lat == lat &&
+          other.lon == lon &&
+          other.precision == precision;
 
   @override
   int get hashCode =>
-    // ignore: unnecessary_parenthesis
-    (lat.hashCode) +
-    (lon.hashCode) +
-    (precision.hashCode);
+      // ignore: unnecessary_parenthesis
+      (lat.hashCode) + (lon.hashCode) + (precision.hashCode);
 
   @override
   String toString() => 'Coordonnees[lat=$lat, lon=$lon, precision=$precision]';
 
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
-      json[r'lat'] = this.lat;
-      json[r'lon'] = this.lon;
-      json[r'precision'] = this.precision;
+    json[r'lat'] = this.lat;
+    json[r'lon'] = this.lon;
+    json[r'precision'] = this.precision;
     return json;
   }
 
@@ -59,12 +59,18 @@ class Coordonnees {
       // Note 1: the values aren't checked for validity beyond being non-null.
       // Note 2: this code is stripped in release mode!
       assert(() {
-        assert(json.containsKey(r'lat'), 'Required key "Coordonnees[lat]" is missing from JSON.');
-        assert(json[r'lat'] != null, 'Required key "Coordonnees[lat]" has a null value in JSON.');
-        assert(json.containsKey(r'lon'), 'Required key "Coordonnees[lon]" is missing from JSON.');
-        assert(json[r'lon'] != null, 'Required key "Coordonnees[lon]" has a null value in JSON.');
-        assert(json.containsKey(r'precision'), 'Required key "Coordonnees[precision]" is missing from JSON.');
-        assert(json[r'precision'] != null, 'Required key "Coordonnees[precision]" has a null value in JSON.');
+        assert(json.containsKey(r'lat'),
+            'Required key "Coordonnees[lat]" is missing from JSON.');
+        assert(json[r'lat'] != null,
+            'Required key "Coordonnees[lat]" has a null value in JSON.');
+        assert(json.containsKey(r'lon'),
+            'Required key "Coordonnees[lon]" is missing from JSON.');
+        assert(json[r'lon'] != null,
+            'Required key "Coordonnees[lon]" has a null value in JSON.');
+        assert(json.containsKey(r'precision'),
+            'Required key "Coordonnees[precision]" is missing from JSON.');
+        assert(json[r'precision'] != null,
+            'Required key "Coordonnees[precision]" has a null value in JSON.');
         return true;
       }());
 
@@ -77,7 +83,10 @@ class Coordonnees {
     return null;
   }
 
-  static List<Coordonnees> listFromJson(dynamic json, {bool growable = false,}) {
+  static List<Coordonnees> listFromJson(
+    dynamic json, {
+    bool growable = false,
+  }) {
     final result = <Coordonnees>[];
     if (json is List && json.isNotEmpty) {
       for (final row in json) {
@@ -105,13 +114,19 @@ class Coordonnees {
   }
 
   // maps a json object with a list of Coordonnees-objects as value to a dart map
-  static Map<String, List<Coordonnees>> mapListFromJson(dynamic json, {bool growable = false,}) {
+  static Map<String, List<Coordonnees>> mapListFromJson(
+    dynamic json, {
+    bool growable = false,
+  }) {
     final map = <String, List<Coordonnees>>{};
     if (json is Map && json.isNotEmpty) {
       // ignore: parameter_assignments
       json = json.cast<String, dynamic>();
       for (final entry in json.entries) {
-        map[entry.key] = Coordonnees.listFromJson(entry.value, growable: growable,);
+        map[entry.key] = Coordonnees.listFromJson(
+          entry.value,
+          growable: growable,
+        );
       }
     }
     return map;
@@ -124,7 +139,6 @@ class Coordonnees {
     'precision',
   };
 }
-
 
 enum CoordonneesPrecisionEnum {
   region._(r'region'),
@@ -148,11 +162,15 @@ enum CoordonneesPrecisionEnum {
 
   /// Returns the instance of [CoordonneesPrecisionEnum] that was successfully decoded
   /// from the passed [value] on success, null otherwise.
-  static CoordonneesPrecisionEnum? fromJson(dynamic value) => CoordonneesPrecisionEnumTypeTransformer().decode(value);
+  static CoordonneesPrecisionEnum? fromJson(dynamic value) =>
+      CoordonneesPrecisionEnumTypeTransformer().decode(value);
 
   /// Returns a [List] containing instances of [CoordonneesPrecisionEnum]
   /// that were successfully decoded from the passed [JSON][json].
-  static List<CoordonneesPrecisionEnum> listFromJson(dynamic json, {bool growable = false,}) {
+  static List<CoordonneesPrecisionEnum> listFromJson(
+    dynamic json, {
+    bool growable = false,
+  }) {
     final result = <CoordonneesPrecisionEnum>[];
     if (json is List && json.isNotEmpty) {
       for (final row in json) {
@@ -169,7 +187,8 @@ enum CoordonneesPrecisionEnum {
 /// Transformation class that can [encode] an instance of [CoordonneesPrecisionEnum] to String,
 /// and [decode] dynamic data back to [CoordonneesPrecisionEnum].
 class CoordonneesPrecisionEnumTypeTransformer {
-  factory CoordonneesPrecisionEnumTypeTransformer() => _instance ??= const CoordonneesPrecisionEnumTypeTransformer._();
+  factory CoordonneesPrecisionEnumTypeTransformer() =>
+      _instance ??= const CoordonneesPrecisionEnumTypeTransformer._();
 
   const CoordonneesPrecisionEnumTypeTransformer._();
 
@@ -190,11 +209,16 @@ class CoordonneesPrecisionEnumTypeTransformer {
     }
     if (data != null) {
       switch (data) {
-        case r'region': return CoordonneesPrecisionEnum.region;
-        case r'departement': return CoordonneesPrecisionEnum.departement;
-        case r'arrondissement': return CoordonneesPrecisionEnum.arrondissement;
-        case r'ville': return CoordonneesPrecisionEnum.ville;
-        case r'commune': return CoordonneesPrecisionEnum.commune;
+        case r'region':
+          return CoordonneesPrecisionEnum.region;
+        case r'departement':
+          return CoordonneesPrecisionEnum.departement;
+        case r'arrondissement':
+          return CoordonneesPrecisionEnum.arrondissement;
+        case r'ville':
+          return CoordonneesPrecisionEnum.ville;
+        case r'commune':
+          return CoordonneesPrecisionEnum.commune;
         default:
           if (!allowNull) {
             throw ArgumentError('Unknown enum value to decode: $data');
@@ -207,5 +231,3 @@ class CoordonneesPrecisionEnumTypeTransformer {
   /// The singleton instance of this transformer.
   static CoordonneesPrecisionEnumTypeTransformer? _instance;
 }
-
-

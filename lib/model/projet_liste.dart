@@ -22,15 +22,16 @@ class ProjetListe {
   int limit;
 
   @override
-  bool operator ==(Object other) => identical(this, other) || other is ProjetListe &&
-    _deepEquality.equals(other.data, data) &&
-    other.limit == limit;
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      other is ProjetListe &&
+          _deepEquality.equals(other.data, data) &&
+          other.limit == limit;
 
   @override
   int get hashCode =>
-    // ignore: unnecessary_parenthesis
-    (data == null ? 0 : data!.hashCode) +
-    (limit.hashCode);
+      // ignore: unnecessary_parenthesis
+      (data == null ? 0 : data!.hashCode) + (limit.hashCode);
 
   @override
   String toString() => 'ProjetListe[data=$data, limit=$limit]';
@@ -42,7 +43,7 @@ class ProjetListe {
     } else {
       json[r'data'] = null;
     }
-      json[r'limit'] = this.limit;
+    json[r'limit'] = this.limit;
     return json;
   }
 
@@ -57,8 +58,10 @@ class ProjetListe {
       // Note 1: the values aren't checked for validity beyond being non-null.
       // Note 2: this code is stripped in release mode!
       assert(() {
-        assert(json.containsKey(r'limit'), 'Required key "ProjetListe[limit]" is missing from JSON.');
-        assert(json[r'limit'] != null, 'Required key "ProjetListe[limit]" has a null value in JSON.');
+        assert(json.containsKey(r'limit'),
+            'Required key "ProjetListe[limit]" is missing from JSON.');
+        assert(json[r'limit'] != null,
+            'Required key "ProjetListe[limit]" has a null value in JSON.');
         return true;
       }());
 
@@ -70,7 +73,10 @@ class ProjetListe {
     return null;
   }
 
-  static List<ProjetListe> listFromJson(dynamic json, {bool growable = false,}) {
+  static List<ProjetListe> listFromJson(
+    dynamic json, {
+    bool growable = false,
+  }) {
     final result = <ProjetListe>[];
     if (json is List && json.isNotEmpty) {
       for (final row in json) {
@@ -98,13 +104,19 @@ class ProjetListe {
   }
 
   // maps a json object with a list of ProjetListe-objects as value to a dart map
-  static Map<String, List<ProjetListe>> mapListFromJson(dynamic json, {bool growable = false,}) {
+  static Map<String, List<ProjetListe>> mapListFromJson(
+    dynamic json, {
+    bool growable = false,
+  }) {
     final map = <String, List<ProjetListe>>{};
     if (json is Map && json.isNotEmpty) {
       // ignore: parameter_assignments
       json = json.cast<String, dynamic>();
       for (final entry in json.entries) {
-        map[entry.key] = ProjetListe.listFromJson(entry.value, growable: growable,);
+        map[entry.key] = ProjetListe.listFromJson(
+          entry.value,
+          growable: growable,
+        );
       }
     }
     return map;
@@ -115,4 +127,3 @@ class ProjetListe {
     'limit',
   };
 }
-

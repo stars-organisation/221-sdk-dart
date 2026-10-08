@@ -57,47 +57,50 @@ class ReportInputBody {
   String? version;
 
   @override
-  bool operator ==(Object other) => identical(this, other) || other is ReportInputBody &&
-    other.currentValue == currentValue &&
-    other.dataset == dataset &&
-    other.email == email &&
-    other.expectedValue == expectedValue &&
-    other.lang == lang &&
-    other.place == place &&
-    other.source_ == source_ &&
-    other.turnstileToken == turnstileToken &&
-    other.version == version;
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      other is ReportInputBody &&
+          other.currentValue == currentValue &&
+          other.dataset == dataset &&
+          other.email == email &&
+          other.expectedValue == expectedValue &&
+          other.lang == lang &&
+          other.place == place &&
+          other.source_ == source_ &&
+          other.turnstileToken == turnstileToken &&
+          other.version == version;
 
   @override
   int get hashCode =>
-    // ignore: unnecessary_parenthesis
-    (currentValue.hashCode) +
-    (dataset.hashCode) +
-    (email.hashCode) +
-    (expectedValue.hashCode) +
-    (lang == null ? 0 : lang!.hashCode) +
-    (place.hashCode) +
-    (source_.hashCode) +
-    (turnstileToken.hashCode) +
-    (version == null ? 0 : version!.hashCode);
+      // ignore: unnecessary_parenthesis
+      (currentValue.hashCode) +
+      (dataset.hashCode) +
+      (email.hashCode) +
+      (expectedValue.hashCode) +
+      (lang == null ? 0 : lang!.hashCode) +
+      (place.hashCode) +
+      (source_.hashCode) +
+      (turnstileToken.hashCode) +
+      (version == null ? 0 : version!.hashCode);
 
   @override
-  String toString() => 'ReportInputBody[currentValue=$currentValue, dataset=$dataset, email=$email, expectedValue=$expectedValue, lang=$lang, place=$place, source_=$source_, turnstileToken=$turnstileToken, version=$version]';
+  String toString() =>
+      'ReportInputBody[currentValue=$currentValue, dataset=$dataset, email=$email, expectedValue=$expectedValue, lang=$lang, place=$place, source_=$source_, turnstileToken=$turnstileToken, version=$version]';
 
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
-      json[r'current_value'] = this.currentValue;
-      json[r'dataset'] = this.dataset;
-      json[r'email'] = this.email;
-      json[r'expected_value'] = this.expectedValue;
+    json[r'current_value'] = this.currentValue;
+    json[r'dataset'] = this.dataset;
+    json[r'email'] = this.email;
+    json[r'expected_value'] = this.expectedValue;
     if (this.lang != null) {
       json[r'lang'] = this.lang;
     } else {
       json[r'lang'] = null;
     }
-      json[r'place'] = this.place;
-      json[r'source'] = this.source_;
-      json[r'turnstile_token'] = this.turnstileToken;
+    json[r'place'] = this.place;
+    json[r'source'] = this.source_;
+    json[r'turnstile_token'] = this.turnstileToken;
     if (this.version != null) {
       json[r'version'] = this.version;
     } else {
@@ -117,20 +120,34 @@ class ReportInputBody {
       // Note 1: the values aren't checked for validity beyond being non-null.
       // Note 2: this code is stripped in release mode!
       assert(() {
-        assert(json.containsKey(r'current_value'), 'Required key "ReportInputBody[current_value]" is missing from JSON.');
-        assert(json[r'current_value'] != null, 'Required key "ReportInputBody[current_value]" has a null value in JSON.');
-        assert(json.containsKey(r'dataset'), 'Required key "ReportInputBody[dataset]" is missing from JSON.');
-        assert(json[r'dataset'] != null, 'Required key "ReportInputBody[dataset]" has a null value in JSON.');
-        assert(json.containsKey(r'email'), 'Required key "ReportInputBody[email]" is missing from JSON.');
-        assert(json[r'email'] != null, 'Required key "ReportInputBody[email]" has a null value in JSON.');
-        assert(json.containsKey(r'expected_value'), 'Required key "ReportInputBody[expected_value]" is missing from JSON.');
-        assert(json[r'expected_value'] != null, 'Required key "ReportInputBody[expected_value]" has a null value in JSON.');
-        assert(json.containsKey(r'place'), 'Required key "ReportInputBody[place]" is missing from JSON.');
-        assert(json[r'place'] != null, 'Required key "ReportInputBody[place]" has a null value in JSON.');
-        assert(json.containsKey(r'source'), 'Required key "ReportInputBody[source]" is missing from JSON.');
-        assert(json[r'source'] != null, 'Required key "ReportInputBody[source]" has a null value in JSON.');
-        assert(json.containsKey(r'turnstile_token'), 'Required key "ReportInputBody[turnstile_token]" is missing from JSON.');
-        assert(json[r'turnstile_token'] != null, 'Required key "ReportInputBody[turnstile_token]" has a null value in JSON.');
+        assert(json.containsKey(r'current_value'),
+            'Required key "ReportInputBody[current_value]" is missing from JSON.');
+        assert(json[r'current_value'] != null,
+            'Required key "ReportInputBody[current_value]" has a null value in JSON.');
+        assert(json.containsKey(r'dataset'),
+            'Required key "ReportInputBody[dataset]" is missing from JSON.');
+        assert(json[r'dataset'] != null,
+            'Required key "ReportInputBody[dataset]" has a null value in JSON.');
+        assert(json.containsKey(r'email'),
+            'Required key "ReportInputBody[email]" is missing from JSON.');
+        assert(json[r'email'] != null,
+            'Required key "ReportInputBody[email]" has a null value in JSON.');
+        assert(json.containsKey(r'expected_value'),
+            'Required key "ReportInputBody[expected_value]" is missing from JSON.');
+        assert(json[r'expected_value'] != null,
+            'Required key "ReportInputBody[expected_value]" has a null value in JSON.');
+        assert(json.containsKey(r'place'),
+            'Required key "ReportInputBody[place]" is missing from JSON.');
+        assert(json[r'place'] != null,
+            'Required key "ReportInputBody[place]" has a null value in JSON.');
+        assert(json.containsKey(r'source'),
+            'Required key "ReportInputBody[source]" is missing from JSON.');
+        assert(json[r'source'] != null,
+            'Required key "ReportInputBody[source]" has a null value in JSON.');
+        assert(json.containsKey(r'turnstile_token'),
+            'Required key "ReportInputBody[turnstile_token]" is missing from JSON.');
+        assert(json[r'turnstile_token'] != null,
+            'Required key "ReportInputBody[turnstile_token]" has a null value in JSON.');
         return true;
       }());
 
@@ -149,7 +166,10 @@ class ReportInputBody {
     return null;
   }
 
-  static List<ReportInputBody> listFromJson(dynamic json, {bool growable = false,}) {
+  static List<ReportInputBody> listFromJson(
+    dynamic json, {
+    bool growable = false,
+  }) {
     final result = <ReportInputBody>[];
     if (json is List && json.isNotEmpty) {
       for (final row in json) {
@@ -177,13 +197,19 @@ class ReportInputBody {
   }
 
   // maps a json object with a list of ReportInputBody-objects as value to a dart map
-  static Map<String, List<ReportInputBody>> mapListFromJson(dynamic json, {bool growable = false,}) {
+  static Map<String, List<ReportInputBody>> mapListFromJson(
+    dynamic json, {
+    bool growable = false,
+  }) {
     final map = <String, List<ReportInputBody>>{};
     if (json is Map && json.isNotEmpty) {
       // ignore: parameter_assignments
       json = json.cast<String, dynamic>();
       for (final entry in json.entries) {
-        map[entry.key] = ReportInputBody.listFromJson(entry.value, growable: growable,);
+        map[entry.key] = ReportInputBody.listFromJson(
+          entry.value,
+          growable: growable,
+        );
       }
     }
     return map;
@@ -221,11 +247,15 @@ enum ReportInputBodyLangEnum {
 
   /// Returns the instance of [ReportInputBodyLangEnum] that was successfully decoded
   /// from the passed [value] on success, null otherwise.
-  static ReportInputBodyLangEnum? fromJson(dynamic value) => ReportInputBodyLangEnumTypeTransformer().decode(value);
+  static ReportInputBodyLangEnum? fromJson(dynamic value) =>
+      ReportInputBodyLangEnumTypeTransformer().decode(value);
 
   /// Returns a [List] containing instances of [ReportInputBodyLangEnum]
   /// that were successfully decoded from the passed [JSON][json].
-  static List<ReportInputBodyLangEnum> listFromJson(dynamic json, {bool growable = false,}) {
+  static List<ReportInputBodyLangEnum> listFromJson(
+    dynamic json, {
+    bool growable = false,
+  }) {
     final result = <ReportInputBodyLangEnum>[];
     if (json is List && json.isNotEmpty) {
       for (final row in json) {
@@ -242,7 +272,8 @@ enum ReportInputBodyLangEnum {
 /// Transformation class that can [encode] an instance of [ReportInputBodyLangEnum] to String,
 /// and [decode] dynamic data back to [ReportInputBodyLangEnum].
 class ReportInputBodyLangEnumTypeTransformer {
-  factory ReportInputBodyLangEnumTypeTransformer() => _instance ??= const ReportInputBodyLangEnumTypeTransformer._();
+  factory ReportInputBodyLangEnumTypeTransformer() =>
+      _instance ??= const ReportInputBodyLangEnumTypeTransformer._();
 
   const ReportInputBodyLangEnumTypeTransformer._();
 
@@ -263,8 +294,10 @@ class ReportInputBodyLangEnumTypeTransformer {
     }
     if (data != null) {
       switch (data) {
-        case r'fr': return ReportInputBodyLangEnum.fr;
-        case r'en': return ReportInputBodyLangEnum.en;
+        case r'fr':
+          return ReportInputBodyLangEnum.fr;
+        case r'en':
+          return ReportInputBodyLangEnum.en;
         default:
           if (!allowNull) {
             throw ArgumentError('Unknown enum value to decode: $data');
@@ -277,5 +310,3 @@ class ReportInputBodyLangEnumTypeTransformer {
   /// The singleton instance of this transformer.
   static ReportInputBodyLangEnumTypeTransformer? _instance;
 }
-
-

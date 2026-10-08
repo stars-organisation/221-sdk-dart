@@ -9,8 +9,8 @@ Future<void> main() async {
   final client = createApiClient(apiKey: env['API_KEY'], baseUrl: env['API_URL'] ?? defaultBaseUrl);
   try {
     final holidays = await JoursFeriesApi(client).listJoursFeries(year: '2026');
-    final first = holidays!.data!.first as Map<String, dynamic>;
-    print('En ligne : ${holidays.pagination.total} jours fériés en 2026, le premier : ${first['date']} ${first['name']['fr']}');
+    final first = holidays!.data.first;
+    print('En ligne : ${holidays.pagination.total} jours fériés en 2026, le premier : ${first.date} ${first.name.fr}');
   } on ApiException catch (e) {
     // 429 : quota quotidien atteint (remis à zéro à minuit GMT) ; les méthodes ...WithHttpInfo donnent Retry-After.
     print('${e.code} : ${e.message}');

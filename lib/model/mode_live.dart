@@ -19,20 +19,21 @@ class ModeLive {
   bool liveEnabled;
 
   @override
-  bool operator ==(Object other) => identical(this, other) || other is ModeLive &&
-    other.liveEnabled == liveEnabled;
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      other is ModeLive && other.liveEnabled == liveEnabled;
 
   @override
   int get hashCode =>
-    // ignore: unnecessary_parenthesis
-    (liveEnabled.hashCode);
+      // ignore: unnecessary_parenthesis
+      (liveEnabled.hashCode);
 
   @override
   String toString() => 'ModeLive[liveEnabled=$liveEnabled]';
 
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
-      json[r'live_enabled'] = this.liveEnabled;
+    json[r'live_enabled'] = this.liveEnabled;
     return json;
   }
 
@@ -47,8 +48,10 @@ class ModeLive {
       // Note 1: the values aren't checked for validity beyond being non-null.
       // Note 2: this code is stripped in release mode!
       assert(() {
-        assert(json.containsKey(r'live_enabled'), 'Required key "ModeLive[live_enabled]" is missing from JSON.');
-        assert(json[r'live_enabled'] != null, 'Required key "ModeLive[live_enabled]" has a null value in JSON.');
+        assert(json.containsKey(r'live_enabled'),
+            'Required key "ModeLive[live_enabled]" is missing from JSON.');
+        assert(json[r'live_enabled'] != null,
+            'Required key "ModeLive[live_enabled]" has a null value in JSON.');
         return true;
       }());
 
@@ -59,7 +62,10 @@ class ModeLive {
     return null;
   }
 
-  static List<ModeLive> listFromJson(dynamic json, {bool growable = false,}) {
+  static List<ModeLive> listFromJson(
+    dynamic json, {
+    bool growable = false,
+  }) {
     final result = <ModeLive>[];
     if (json is List && json.isNotEmpty) {
       for (final row in json) {
@@ -87,13 +93,19 @@ class ModeLive {
   }
 
   // maps a json object with a list of ModeLive-objects as value to a dart map
-  static Map<String, List<ModeLive>> mapListFromJson(dynamic json, {bool growable = false,}) {
+  static Map<String, List<ModeLive>> mapListFromJson(
+    dynamic json, {
+    bool growable = false,
+  }) {
     final map = <String, List<ModeLive>>{};
     if (json is Map && json.isNotEmpty) {
       // ignore: parameter_assignments
       json = json.cast<String, dynamic>();
       for (final entry in json.entries) {
-        map[entry.key] = ModeLive.listFromJson(entry.value, growable: growable,);
+        map[entry.key] = ModeLive.listFromJson(
+          entry.value,
+          growable: growable,
+        );
       }
     }
     return map;
@@ -104,4 +116,3 @@ class ModeLive {
     'live_enabled',
   };
 }
-

@@ -23,23 +23,22 @@ class PaymentsCallsDay {
   String day;
 
   @override
-  bool operator ==(Object other) => identical(this, other) || other is PaymentsCallsDay &&
-    other.count == count &&
-    other.day == day;
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      other is PaymentsCallsDay && other.count == count && other.day == day;
 
   @override
   int get hashCode =>
-    // ignore: unnecessary_parenthesis
-    (count.hashCode) +
-    (day.hashCode);
+      // ignore: unnecessary_parenthesis
+      (count.hashCode) + (day.hashCode);
 
   @override
   String toString() => 'PaymentsCallsDay[count=$count, day=$day]';
 
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
-      json[r'count'] = this.count;
-      json[r'day'] = this.day;
+    json[r'count'] = this.count;
+    json[r'day'] = this.day;
     return json;
   }
 
@@ -54,10 +53,14 @@ class PaymentsCallsDay {
       // Note 1: the values aren't checked for validity beyond being non-null.
       // Note 2: this code is stripped in release mode!
       assert(() {
-        assert(json.containsKey(r'count'), 'Required key "PaymentsCallsDay[count]" is missing from JSON.');
-        assert(json[r'count'] != null, 'Required key "PaymentsCallsDay[count]" has a null value in JSON.');
-        assert(json.containsKey(r'day'), 'Required key "PaymentsCallsDay[day]" is missing from JSON.');
-        assert(json[r'day'] != null, 'Required key "PaymentsCallsDay[day]" has a null value in JSON.');
+        assert(json.containsKey(r'count'),
+            'Required key "PaymentsCallsDay[count]" is missing from JSON.');
+        assert(json[r'count'] != null,
+            'Required key "PaymentsCallsDay[count]" has a null value in JSON.');
+        assert(json.containsKey(r'day'),
+            'Required key "PaymentsCallsDay[day]" is missing from JSON.');
+        assert(json[r'day'] != null,
+            'Required key "PaymentsCallsDay[day]" has a null value in JSON.');
         return true;
       }());
 
@@ -69,7 +72,10 @@ class PaymentsCallsDay {
     return null;
   }
 
-  static List<PaymentsCallsDay> listFromJson(dynamic json, {bool growable = false,}) {
+  static List<PaymentsCallsDay> listFromJson(
+    dynamic json, {
+    bool growable = false,
+  }) {
     final result = <PaymentsCallsDay>[];
     if (json is List && json.isNotEmpty) {
       for (final row in json) {
@@ -97,13 +103,19 @@ class PaymentsCallsDay {
   }
 
   // maps a json object with a list of PaymentsCallsDay-objects as value to a dart map
-  static Map<String, List<PaymentsCallsDay>> mapListFromJson(dynamic json, {bool growable = false,}) {
+  static Map<String, List<PaymentsCallsDay>> mapListFromJson(
+    dynamic json, {
+    bool growable = false,
+  }) {
     final map = <String, List<PaymentsCallsDay>>{};
     if (json is Map && json.isNotEmpty) {
       // ignore: parameter_assignments
       json = json.cast<String, dynamic>();
       for (final entry in json.entries) {
-        map[entry.key] = PaymentsCallsDay.listFromJson(entry.value, growable: growable,);
+        map[entry.key] = PaymentsCallsDay.listFromJson(
+          entry.value,
+          growable: growable,
+        );
       }
     }
     return map;
@@ -115,4 +127,3 @@ class PaymentsCallsDay {
     'day',
   };
 }
-

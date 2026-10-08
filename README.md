@@ -96,7 +96,7 @@ import 'package:sdk221/sdk221.dart';
 
 final client = createApiClient();
 final jours = await JoursFeriesApi(client).listJoursFeries(year: '2026');
-print((jours?.data?.first as Map)['name']['fr']); // « Jour de l'an »
+print(jours?.data.first.name.fr); // « Jour de l'an »
 ```
 
 Les noms de méthodes (`listJoursFeries`) sont les `operationId` de l'OpenAPI.

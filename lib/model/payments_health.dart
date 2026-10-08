@@ -26,26 +26,27 @@ class PaymentsHealth {
   bool ready;
 
   @override
-  bool operator ==(Object other) => identical(this, other) || other is PaymentsHealth &&
-    other.gatewayMode == gatewayMode &&
-    other.mode == mode &&
-    other.ready == ready;
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      other is PaymentsHealth &&
+          other.gatewayMode == gatewayMode &&
+          other.mode == mode &&
+          other.ready == ready;
 
   @override
   int get hashCode =>
-    // ignore: unnecessary_parenthesis
-    (gatewayMode.hashCode) +
-    (mode.hashCode) +
-    (ready.hashCode);
+      // ignore: unnecessary_parenthesis
+      (gatewayMode.hashCode) + (mode.hashCode) + (ready.hashCode);
 
   @override
-  String toString() => 'PaymentsHealth[gatewayMode=$gatewayMode, mode=$mode, ready=$ready]';
+  String toString() =>
+      'PaymentsHealth[gatewayMode=$gatewayMode, mode=$mode, ready=$ready]';
 
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
-      json[r'gateway_mode'] = this.gatewayMode;
-      json[r'mode'] = this.mode;
-      json[r'ready'] = this.ready;
+    json[r'gateway_mode'] = this.gatewayMode;
+    json[r'mode'] = this.mode;
+    json[r'ready'] = this.ready;
     return json;
   }
 
@@ -60,17 +61,24 @@ class PaymentsHealth {
       // Note 1: the values aren't checked for validity beyond being non-null.
       // Note 2: this code is stripped in release mode!
       assert(() {
-        assert(json.containsKey(r'gateway_mode'), 'Required key "PaymentsHealth[gateway_mode]" is missing from JSON.');
-        assert(json[r'gateway_mode'] != null, 'Required key "PaymentsHealth[gateway_mode]" has a null value in JSON.');
-        assert(json.containsKey(r'mode'), 'Required key "PaymentsHealth[mode]" is missing from JSON.');
-        assert(json[r'mode'] != null, 'Required key "PaymentsHealth[mode]" has a null value in JSON.');
-        assert(json.containsKey(r'ready'), 'Required key "PaymentsHealth[ready]" is missing from JSON.');
-        assert(json[r'ready'] != null, 'Required key "PaymentsHealth[ready]" has a null value in JSON.');
+        assert(json.containsKey(r'gateway_mode'),
+            'Required key "PaymentsHealth[gateway_mode]" is missing from JSON.');
+        assert(json[r'gateway_mode'] != null,
+            'Required key "PaymentsHealth[gateway_mode]" has a null value in JSON.');
+        assert(json.containsKey(r'mode'),
+            'Required key "PaymentsHealth[mode]" is missing from JSON.');
+        assert(json[r'mode'] != null,
+            'Required key "PaymentsHealth[mode]" has a null value in JSON.');
+        assert(json.containsKey(r'ready'),
+            'Required key "PaymentsHealth[ready]" is missing from JSON.');
+        assert(json[r'ready'] != null,
+            'Required key "PaymentsHealth[ready]" has a null value in JSON.');
         return true;
       }());
 
       return PaymentsHealth(
-        gatewayMode: PaymentsHealthGatewayModeEnum.fromJson(json[r'gateway_mode'])!,
+        gatewayMode:
+            PaymentsHealthGatewayModeEnum.fromJson(json[r'gateway_mode'])!,
         mode: mapValueOfType<String>(json, r'mode')!,
         ready: mapValueOfType<bool>(json, r'ready')!,
       );
@@ -78,7 +86,10 @@ class PaymentsHealth {
     return null;
   }
 
-  static List<PaymentsHealth> listFromJson(dynamic json, {bool growable = false,}) {
+  static List<PaymentsHealth> listFromJson(
+    dynamic json, {
+    bool growable = false,
+  }) {
     final result = <PaymentsHealth>[];
     if (json is List && json.isNotEmpty) {
       for (final row in json) {
@@ -106,13 +117,19 @@ class PaymentsHealth {
   }
 
   // maps a json object with a list of PaymentsHealth-objects as value to a dart map
-  static Map<String, List<PaymentsHealth>> mapListFromJson(dynamic json, {bool growable = false,}) {
+  static Map<String, List<PaymentsHealth>> mapListFromJson(
+    dynamic json, {
+    bool growable = false,
+  }) {
     final map = <String, List<PaymentsHealth>>{};
     if (json is Map && json.isNotEmpty) {
       // ignore: parameter_assignments
       json = json.cast<String, dynamic>();
       for (final entry in json.entries) {
-        map[entry.key] = PaymentsHealth.listFromJson(entry.value, growable: growable,);
+        map[entry.key] = PaymentsHealth.listFromJson(
+          entry.value,
+          growable: growable,
+        );
       }
     }
     return map;
@@ -147,11 +164,15 @@ enum PaymentsHealthGatewayModeEnum {
 
   /// Returns the instance of [PaymentsHealthGatewayModeEnum] that was successfully decoded
   /// from the passed [value] on success, null otherwise.
-  static PaymentsHealthGatewayModeEnum? fromJson(dynamic value) => PaymentsHealthGatewayModeEnumTypeTransformer().decode(value);
+  static PaymentsHealthGatewayModeEnum? fromJson(dynamic value) =>
+      PaymentsHealthGatewayModeEnumTypeTransformer().decode(value);
 
   /// Returns a [List] containing instances of [PaymentsHealthGatewayModeEnum]
   /// that were successfully decoded from the passed [JSON][json].
-  static List<PaymentsHealthGatewayModeEnum> listFromJson(dynamic json, {bool growable = false,}) {
+  static List<PaymentsHealthGatewayModeEnum> listFromJson(
+    dynamic json, {
+    bool growable = false,
+  }) {
     final result = <PaymentsHealthGatewayModeEnum>[];
     if (json is List && json.isNotEmpty) {
       for (final row in json) {
@@ -168,7 +189,8 @@ enum PaymentsHealthGatewayModeEnum {
 /// Transformation class that can [encode] an instance of [PaymentsHealthGatewayModeEnum] to String,
 /// and [decode] dynamic data back to [PaymentsHealthGatewayModeEnum].
 class PaymentsHealthGatewayModeEnumTypeTransformer {
-  factory PaymentsHealthGatewayModeEnumTypeTransformer() => _instance ??= const PaymentsHealthGatewayModeEnumTypeTransformer._();
+  factory PaymentsHealthGatewayModeEnumTypeTransformer() =>
+      _instance ??= const PaymentsHealthGatewayModeEnumTypeTransformer._();
 
   const PaymentsHealthGatewayModeEnumTypeTransformer._();
 
@@ -189,9 +211,12 @@ class PaymentsHealthGatewayModeEnumTypeTransformer {
     }
     if (data != null) {
       switch (data) {
-        case r'simulated': return PaymentsHealthGatewayModeEnum.simulated;
-        case r'real': return PaymentsHealthGatewayModeEnum.real;
-        case r'not_wired': return PaymentsHealthGatewayModeEnum.notWired;
+        case r'simulated':
+          return PaymentsHealthGatewayModeEnum.simulated;
+        case r'real':
+          return PaymentsHealthGatewayModeEnum.real;
+        case r'not_wired':
+          return PaymentsHealthGatewayModeEnum.notWired;
         default:
           if (!allowNull) {
             throw ArgumentError('Unknown enum value to decode: $data');
@@ -204,5 +229,3 @@ class PaymentsHealthGatewayModeEnumTypeTransformer {
   /// The singleton instance of this transformer.
   static PaymentsHealthGatewayModeEnumTypeTransformer? _instance;
 }
-
-

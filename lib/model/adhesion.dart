@@ -22,23 +22,22 @@ class Adhesion {
   AdhesionRoleEnum role;
 
   @override
-  bool operator ==(Object other) => identical(this, other) || other is Adhesion &&
-    other.projectId == projectId &&
-    other.role == role;
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      other is Adhesion && other.projectId == projectId && other.role == role;
 
   @override
   int get hashCode =>
-    // ignore: unnecessary_parenthesis
-    (projectId.hashCode) +
-    (role.hashCode);
+      // ignore: unnecessary_parenthesis
+      (projectId.hashCode) + (role.hashCode);
 
   @override
   String toString() => 'Adhesion[projectId=$projectId, role=$role]';
 
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
-      json[r'project_id'] = this.projectId;
-      json[r'role'] = this.role;
+    json[r'project_id'] = this.projectId;
+    json[r'role'] = this.role;
     return json;
   }
 
@@ -53,10 +52,14 @@ class Adhesion {
       // Note 1: the values aren't checked for validity beyond being non-null.
       // Note 2: this code is stripped in release mode!
       assert(() {
-        assert(json.containsKey(r'project_id'), 'Required key "Adhesion[project_id]" is missing from JSON.');
-        assert(json[r'project_id'] != null, 'Required key "Adhesion[project_id]" has a null value in JSON.');
-        assert(json.containsKey(r'role'), 'Required key "Adhesion[role]" is missing from JSON.');
-        assert(json[r'role'] != null, 'Required key "Adhesion[role]" has a null value in JSON.');
+        assert(json.containsKey(r'project_id'),
+            'Required key "Adhesion[project_id]" is missing from JSON.');
+        assert(json[r'project_id'] != null,
+            'Required key "Adhesion[project_id]" has a null value in JSON.');
+        assert(json.containsKey(r'role'),
+            'Required key "Adhesion[role]" is missing from JSON.');
+        assert(json[r'role'] != null,
+            'Required key "Adhesion[role]" has a null value in JSON.');
         return true;
       }());
 
@@ -68,7 +71,10 @@ class Adhesion {
     return null;
   }
 
-  static List<Adhesion> listFromJson(dynamic json, {bool growable = false,}) {
+  static List<Adhesion> listFromJson(
+    dynamic json, {
+    bool growable = false,
+  }) {
     final result = <Adhesion>[];
     if (json is List && json.isNotEmpty) {
       for (final row in json) {
@@ -96,13 +102,19 @@ class Adhesion {
   }
 
   // maps a json object with a list of Adhesion-objects as value to a dart map
-  static Map<String, List<Adhesion>> mapListFromJson(dynamic json, {bool growable = false,}) {
+  static Map<String, List<Adhesion>> mapListFromJson(
+    dynamic json, {
+    bool growable = false,
+  }) {
     final map = <String, List<Adhesion>>{};
     if (json is Map && json.isNotEmpty) {
       // ignore: parameter_assignments
       json = json.cast<String, dynamic>();
       for (final entry in json.entries) {
-        map[entry.key] = Adhesion.listFromJson(entry.value, growable: growable,);
+        map[entry.key] = Adhesion.listFromJson(
+          entry.value,
+          growable: growable,
+        );
       }
     }
     return map;
@@ -114,7 +126,6 @@ class Adhesion {
     'role',
   };
 }
-
 
 enum AdhesionRoleEnum {
   admin._(r'admin'),
@@ -136,11 +147,15 @@ enum AdhesionRoleEnum {
 
   /// Returns the instance of [AdhesionRoleEnum] that was successfully decoded
   /// from the passed [value] on success, null otherwise.
-  static AdhesionRoleEnum? fromJson(dynamic value) => AdhesionRoleEnumTypeTransformer().decode(value);
+  static AdhesionRoleEnum? fromJson(dynamic value) =>
+      AdhesionRoleEnumTypeTransformer().decode(value);
 
   /// Returns a [List] containing instances of [AdhesionRoleEnum]
   /// that were successfully decoded from the passed [JSON][json].
-  static List<AdhesionRoleEnum> listFromJson(dynamic json, {bool growable = false,}) {
+  static List<AdhesionRoleEnum> listFromJson(
+    dynamic json, {
+    bool growable = false,
+  }) {
     final result = <AdhesionRoleEnum>[];
     if (json is List && json.isNotEmpty) {
       for (final row in json) {
@@ -157,7 +172,8 @@ enum AdhesionRoleEnum {
 /// Transformation class that can [encode] an instance of [AdhesionRoleEnum] to String,
 /// and [decode] dynamic data back to [AdhesionRoleEnum].
 class AdhesionRoleEnumTypeTransformer {
-  factory AdhesionRoleEnumTypeTransformer() => _instance ??= const AdhesionRoleEnumTypeTransformer._();
+  factory AdhesionRoleEnumTypeTransformer() =>
+      _instance ??= const AdhesionRoleEnumTypeTransformer._();
 
   const AdhesionRoleEnumTypeTransformer._();
 
@@ -178,9 +194,12 @@ class AdhesionRoleEnumTypeTransformer {
     }
     if (data != null) {
       switch (data) {
-        case r'admin': return AdhesionRoleEnum.admin;
-        case r'user': return AdhesionRoleEnum.user;
-        case r'read_only': return AdhesionRoleEnum.readOnly;
+        case r'admin':
+          return AdhesionRoleEnum.admin;
+        case r'user':
+          return AdhesionRoleEnum.user;
+        case r'read_only':
+          return AdhesionRoleEnum.readOnly;
         default:
           if (!allowNull) {
             throw ArgumentError('Unknown enum value to decode: $data');
@@ -193,5 +212,3 @@ class AdhesionRoleEnumTypeTransformer {
   /// The singleton instance of this transformer.
   static AdhesionRoleEnumTypeTransformer? _instance;
 }
-
-

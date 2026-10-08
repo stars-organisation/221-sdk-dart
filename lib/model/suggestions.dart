@@ -22,15 +22,17 @@ class Suggestions {
   List<ModelSource>? sources;
 
   @override
-  bool operator ==(Object other) => identical(this, other) || other is Suggestions &&
-    _deepEquality.equals(other.data, data) &&
-    _deepEquality.equals(other.sources, sources);
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      other is Suggestions &&
+          _deepEquality.equals(other.data, data) &&
+          _deepEquality.equals(other.sources, sources);
 
   @override
   int get hashCode =>
-    // ignore: unnecessary_parenthesis
-    (data == null ? 0 : data!.hashCode) +
-    (sources == null ? 0 : sources!.hashCode);
+      // ignore: unnecessary_parenthesis
+      (data == null ? 0 : data!.hashCode) +
+      (sources == null ? 0 : sources!.hashCode);
 
   @override
   String toString() => 'Suggestions[data=$data, sources=$sources]';
@@ -72,7 +74,10 @@ class Suggestions {
     return null;
   }
 
-  static List<Suggestions> listFromJson(dynamic json, {bool growable = false,}) {
+  static List<Suggestions> listFromJson(
+    dynamic json, {
+    bool growable = false,
+  }) {
     final result = <Suggestions>[];
     if (json is List && json.isNotEmpty) {
       for (final row in json) {
@@ -100,20 +105,24 @@ class Suggestions {
   }
 
   // maps a json object with a list of Suggestions-objects as value to a dart map
-  static Map<String, List<Suggestions>> mapListFromJson(dynamic json, {bool growable = false,}) {
+  static Map<String, List<Suggestions>> mapListFromJson(
+    dynamic json, {
+    bool growable = false,
+  }) {
     final map = <String, List<Suggestions>>{};
     if (json is Map && json.isNotEmpty) {
       // ignore: parameter_assignments
       json = json.cast<String, dynamic>();
       for (final entry in json.entries) {
-        map[entry.key] = Suggestions.listFromJson(entry.value, growable: growable,);
+        map[entry.key] = Suggestions.listFromJson(
+          entry.value,
+          growable: growable,
+        );
       }
     }
     return map;
   }
 
   /// The list of required keys that must be present in a JSON.
-  static const requiredKeys = <String>{
-  };
+  static const requiredKeys = <String>{};
 }
-

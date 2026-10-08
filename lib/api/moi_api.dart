@@ -10,7 +10,6 @@
 
 part of openapi.api;
 
-
 class MoiApi {
   MoiApi([ApiClient? apiClient]) : apiClient = apiClient ?? defaultApiClient;
 
@@ -23,7 +22,10 @@ class MoiApi {
   /// Parameters:
   ///
   /// * [ConditionsInputBody] conditionsInputBody (required):
-  Future<Response> acceptConditionsWithHttpInfo(ConditionsInputBody conditionsInputBody, { Future<void>? abortTrigger, }) async {
+  Future<Response> acceptConditionsWithHttpInfo(
+    ConditionsInputBody conditionsInputBody, {
+    Future<void>? abortTrigger,
+  }) async {
     // ignore: prefer_const_declarations
     final path = r'/v1/moi/conditions';
 
@@ -35,7 +37,6 @@ class MoiApi {
     final formParams = <String, String>{};
 
     const contentTypes = <String>['application/json'];
-
 
     return apiClient.invokeAPI(
       path,
@@ -54,17 +55,26 @@ class MoiApi {
   /// Parameters:
   ///
   /// * [ConditionsInputBody] conditionsInputBody (required):
-  Future<Conditions?> acceptConditions(ConditionsInputBody conditionsInputBody, { Future<void>? abortTrigger, }) async {
-    final response = await acceptConditionsWithHttpInfo(conditionsInputBody, abortTrigger: abortTrigger,);
+  Future<Conditions?> acceptConditions(
+    ConditionsInputBody conditionsInputBody, {
+    Future<void>? abortTrigger,
+  }) async {
+    final response = await acceptConditionsWithHttpInfo(
+      conditionsInputBody,
+      abortTrigger: abortTrigger,
+    );
     if (response.statusCode >= HttpStatus.badRequest) {
       throw ApiException(response.statusCode, await _decodeBodyBytes(response));
     }
     // When a remote server returns no body with a status of 204, we shall not decode it.
     // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
     // FormatException when trying to decode an empty string.
-    if (response.body.isNotEmpty && response.statusCode != HttpStatus.noContent) {
-      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'Conditions',) as Conditions;
-    
+    if (response.body.isNotEmpty &&
+        response.statusCode != HttpStatus.noContent) {
+      return await apiClient.deserializeAsync(
+        await _decodeBodyBytes(response),
+        'Conditions',
+      ) as Conditions;
     }
     return null;
   }
@@ -77,10 +87,12 @@ class MoiApi {
   ///
   /// * [String] jeu (required):
   ///   Identifiant du jeu de données (catalogue /v1/jeux).
-  Future<Response> addAbonnementWithHttpInfo(String jeu, { Future<void>? abortTrigger, }) async {
+  Future<Response> addAbonnementWithHttpInfo(
+    String jeu, {
+    Future<void>? abortTrigger,
+  }) async {
     // ignore: prefer_const_declarations
-    final path = r'/v1/moi/abonnements/{jeu}'
-      .replaceAll('{jeu}', jeu);
+    final path = r'/v1/moi/abonnements/{jeu}'.replaceAll('{jeu}', jeu);
 
     // ignore: prefer_final_locals
     Object? postBody;
@@ -90,7 +102,6 @@ class MoiApi {
     final formParams = <String, String>{};
 
     const contentTypes = <String>[];
-
 
     return apiClient.invokeAPI(
       path,
@@ -110,17 +121,26 @@ class MoiApi {
   ///
   /// * [String] jeu (required):
   ///   Identifiant du jeu de données (catalogue /v1/jeux).
-  Future<Suivi?> addAbonnement(String jeu, { Future<void>? abortTrigger, }) async {
-    final response = await addAbonnementWithHttpInfo(jeu, abortTrigger: abortTrigger,);
+  Future<Suivi?> addAbonnement(
+    String jeu, {
+    Future<void>? abortTrigger,
+  }) async {
+    final response = await addAbonnementWithHttpInfo(
+      jeu,
+      abortTrigger: abortTrigger,
+    );
     if (response.statusCode >= HttpStatus.badRequest) {
       throw ApiException(response.statusCode, await _decodeBodyBytes(response));
     }
     // When a remote server returns no body with a status of 204, we shall not decode it.
     // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
     // FormatException when trying to decode an empty string.
-    if (response.body.isNotEmpty && response.statusCode != HttpStatus.noContent) {
-      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'Suivi',) as Suivi;
-    
+    if (response.body.isNotEmpty &&
+        response.statusCode != HttpStatus.noContent) {
+      return await apiClient.deserializeAsync(
+        await _decodeBodyBytes(response),
+        'Suivi',
+      ) as Suivi;
     }
     return null;
   }
@@ -133,10 +153,12 @@ class MoiApi {
   ///
   /// * [String] jeu (required):
   ///   Identifiant du jeu de données (catalogue /v1/jeux).
-  Future<Response> addFavoriWithHttpInfo(String jeu, { Future<void>? abortTrigger, }) async {
+  Future<Response> addFavoriWithHttpInfo(
+    String jeu, {
+    Future<void>? abortTrigger,
+  }) async {
     // ignore: prefer_const_declarations
-    final path = r'/v1/moi/favoris/{jeu}'
-      .replaceAll('{jeu}', jeu);
+    final path = r'/v1/moi/favoris/{jeu}'.replaceAll('{jeu}', jeu);
 
     // ignore: prefer_final_locals
     Object? postBody;
@@ -146,7 +168,6 @@ class MoiApi {
     final formParams = <String, String>{};
 
     const contentTypes = <String>[];
-
 
     return apiClient.invokeAPI(
       path,
@@ -166,17 +187,26 @@ class MoiApi {
   ///
   /// * [String] jeu (required):
   ///   Identifiant du jeu de données (catalogue /v1/jeux).
-  Future<Suivi?> addFavori(String jeu, { Future<void>? abortTrigger, }) async {
-    final response = await addFavoriWithHttpInfo(jeu, abortTrigger: abortTrigger,);
+  Future<Suivi?> addFavori(
+    String jeu, {
+    Future<void>? abortTrigger,
+  }) async {
+    final response = await addFavoriWithHttpInfo(
+      jeu,
+      abortTrigger: abortTrigger,
+    );
     if (response.statusCode >= HttpStatus.badRequest) {
       throw ApiException(response.statusCode, await _decodeBodyBytes(response));
     }
     // When a remote server returns no body with a status of 204, we shall not decode it.
     // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
     // FormatException when trying to decode an empty string.
-    if (response.body.isNotEmpty && response.statusCode != HttpStatus.noContent) {
-      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'Suivi',) as Suivi;
-    
+    if (response.body.isNotEmpty &&
+        response.statusCode != HttpStatus.noContent) {
+      return await apiClient.deserializeAsync(
+        await _decodeBodyBytes(response),
+        'Suivi',
+      ) as Suivi;
     }
     return null;
   }
@@ -190,10 +220,14 @@ class MoiApi {
   /// * [String] question (required):
   ///
   /// * [AnswerInputBody] answerInputBody (required):
-  Future<Response> answerOnboardingWithHttpInfo(String question, AnswerInputBody answerInputBody, { Future<void>? abortTrigger, }) async {
+  Future<Response> answerOnboardingWithHttpInfo(
+    String question,
+    AnswerInputBody answerInputBody, {
+    Future<void>? abortTrigger,
+  }) async {
     // ignore: prefer_const_declarations
-    final path = r'/v1/moi/onboarding/{question}'
-      .replaceAll('{question}', question);
+    final path =
+        r'/v1/moi/onboarding/{question}'.replaceAll('{question}', question);
 
     // ignore: prefer_final_locals
     Object? postBody = answerInputBody;
@@ -204,7 +238,6 @@ class MoiApi {
 
     const contentTypes = <String>['application/json'];
 
-
     return apiClient.invokeAPI(
       path,
       'PUT',
@@ -224,8 +257,16 @@ class MoiApi {
   /// * [String] question (required):
   ///
   /// * [AnswerInputBody] answerInputBody (required):
-  Future<void> answerOnboarding(String question, AnswerInputBody answerInputBody, { Future<void>? abortTrigger, }) async {
-    final response = await answerOnboardingWithHttpInfo(question, answerInputBody, abortTrigger: abortTrigger,);
+  Future<void> answerOnboarding(
+    String question,
+    AnswerInputBody answerInputBody, {
+    Future<void>? abortTrigger,
+  }) async {
+    final response = await answerOnboardingWithHttpInfo(
+      question,
+      answerInputBody,
+      abortTrigger: abortTrigger,
+    );
     if (response.statusCode >= HttpStatus.badRequest) {
       throw ApiException(response.statusCode, await _decodeBodyBytes(response));
     }
@@ -239,10 +280,12 @@ class MoiApi {
   ///
   /// * [String] jeu (required):
   ///   Identifiant du jeu de données (catalogue /v1/jeux).
-  Future<Response> getAbonnementWithHttpInfo(String jeu, { Future<void>? abortTrigger, }) async {
+  Future<Response> getAbonnementWithHttpInfo(
+    String jeu, {
+    Future<void>? abortTrigger,
+  }) async {
     // ignore: prefer_const_declarations
-    final path = r'/v1/moi/abonnements/{jeu}'
-      .replaceAll('{jeu}', jeu);
+    final path = r'/v1/moi/abonnements/{jeu}'.replaceAll('{jeu}', jeu);
 
     // ignore: prefer_final_locals
     Object? postBody;
@@ -252,7 +295,6 @@ class MoiApi {
     final formParams = <String, String>{};
 
     const contentTypes = <String>[];
-
 
     return apiClient.invokeAPI(
       path,
@@ -272,17 +314,79 @@ class MoiApi {
   ///
   /// * [String] jeu (required):
   ///   Identifiant du jeu de données (catalogue /v1/jeux).
-  Future<Suivi?> getAbonnement(String jeu, { Future<void>? abortTrigger, }) async {
-    final response = await getAbonnementWithHttpInfo(jeu, abortTrigger: abortTrigger,);
+  Future<Suivi?> getAbonnement(
+    String jeu, {
+    Future<void>? abortTrigger,
+  }) async {
+    final response = await getAbonnementWithHttpInfo(
+      jeu,
+      abortTrigger: abortTrigger,
+    );
     if (response.statusCode >= HttpStatus.badRequest) {
       throw ApiException(response.statusCode, await _decodeBodyBytes(response));
     }
     // When a remote server returns no body with a status of 204, we shall not decode it.
     // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
     // FormatException when trying to decode an empty string.
-    if (response.body.isNotEmpty && response.statusCode != HttpStatus.noContent) {
-      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'Suivi',) as Suivi;
-    
+    if (response.body.isNotEmpty &&
+        response.statusCode != HttpStatus.noContent) {
+      return await apiClient.deserializeAsync(
+        await _decodeBodyBytes(response),
+        'Suivi',
+      ) as Suivi;
+    }
+    return null;
+  }
+
+  /// Projet, mode et portées de la clé API qui appelle
+  ///
+  /// Note: This method returns the HTTP [Response].
+  Future<Response> getCleAppelanteWithHttpInfo({
+    Future<void>? abortTrigger,
+  }) async {
+    // ignore: prefer_const_declarations
+    final path = r'/v1/moi/cle';
+
+    // ignore: prefer_final_locals
+    Object? postBody;
+
+    final queryParams = <QueryParam>[];
+    final headerParams = <String, String>{};
+    final formParams = <String, String>{};
+
+    const contentTypes = <String>[];
+
+    return apiClient.invokeAPI(
+      path,
+      'GET',
+      queryParams,
+      postBody,
+      headerParams,
+      formParams,
+      contentTypes.isEmpty ? null : contentTypes.first,
+      abortTrigger: abortTrigger,
+    );
+  }
+
+  /// Projet, mode et portées de la clé API qui appelle
+  Future<CleAppelante?> getCleAppelante({
+    Future<void>? abortTrigger,
+  }) async {
+    final response = await getCleAppelanteWithHttpInfo(
+      abortTrigger: abortTrigger,
+    );
+    if (response.statusCode >= HttpStatus.badRequest) {
+      throw ApiException(response.statusCode, await _decodeBodyBytes(response));
+    }
+    // When a remote server returns no body with a status of 204, we shall not decode it.
+    // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
+    // FormatException when trying to decode an empty string.
+    if (response.body.isNotEmpty &&
+        response.statusCode != HttpStatus.noContent) {
+      return await apiClient.deserializeAsync(
+        await _decodeBodyBytes(response),
+        'CleAppelante',
+      ) as CleAppelante;
     }
     return null;
   }
@@ -290,7 +394,9 @@ class MoiApi {
   /// Version des conditions d’utilisation et acceptation du compte
   ///
   /// Note: This method returns the HTTP [Response].
-  Future<Response> getConditionsWithHttpInfo({ Future<void>? abortTrigger, }) async {
+  Future<Response> getConditionsWithHttpInfo({
+    Future<void>? abortTrigger,
+  }) async {
     // ignore: prefer_const_declarations
     final path = r'/v1/moi/conditions';
 
@@ -303,7 +409,6 @@ class MoiApi {
 
     const contentTypes = <String>[];
 
-
     return apiClient.invokeAPI(
       path,
       'GET',
@@ -317,17 +422,24 @@ class MoiApi {
   }
 
   /// Version des conditions d’utilisation et acceptation du compte
-  Future<Conditions?> getConditions({ Future<void>? abortTrigger, }) async {
-    final response = await getConditionsWithHttpInfo(abortTrigger: abortTrigger,);
+  Future<Conditions?> getConditions({
+    Future<void>? abortTrigger,
+  }) async {
+    final response = await getConditionsWithHttpInfo(
+      abortTrigger: abortTrigger,
+    );
     if (response.statusCode >= HttpStatus.badRequest) {
       throw ApiException(response.statusCode, await _decodeBodyBytes(response));
     }
     // When a remote server returns no body with a status of 204, we shall not decode it.
     // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
     // FormatException when trying to decode an empty string.
-    if (response.body.isNotEmpty && response.statusCode != HttpStatus.noContent) {
-      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'Conditions',) as Conditions;
-    
+    if (response.body.isNotEmpty &&
+        response.statusCode != HttpStatus.noContent) {
+      return await apiClient.deserializeAsync(
+        await _decodeBodyBytes(response),
+        'Conditions',
+      ) as Conditions;
     }
     return null;
   }
@@ -340,10 +452,12 @@ class MoiApi {
   ///
   /// * [String] jeu (required):
   ///   Identifiant du jeu de données (catalogue /v1/jeux).
-  Future<Response> getFavoriWithHttpInfo(String jeu, { Future<void>? abortTrigger, }) async {
+  Future<Response> getFavoriWithHttpInfo(
+    String jeu, {
+    Future<void>? abortTrigger,
+  }) async {
     // ignore: prefer_const_declarations
-    final path = r'/v1/moi/favoris/{jeu}'
-      .replaceAll('{jeu}', jeu);
+    final path = r'/v1/moi/favoris/{jeu}'.replaceAll('{jeu}', jeu);
 
     // ignore: prefer_final_locals
     Object? postBody;
@@ -353,7 +467,6 @@ class MoiApi {
     final formParams = <String, String>{};
 
     const contentTypes = <String>[];
-
 
     return apiClient.invokeAPI(
       path,
@@ -373,17 +486,26 @@ class MoiApi {
   ///
   /// * [String] jeu (required):
   ///   Identifiant du jeu de données (catalogue /v1/jeux).
-  Future<Suivi?> getFavori(String jeu, { Future<void>? abortTrigger, }) async {
-    final response = await getFavoriWithHttpInfo(jeu, abortTrigger: abortTrigger,);
+  Future<Suivi?> getFavori(
+    String jeu, {
+    Future<void>? abortTrigger,
+  }) async {
+    final response = await getFavoriWithHttpInfo(
+      jeu,
+      abortTrigger: abortTrigger,
+    );
     if (response.statusCode >= HttpStatus.badRequest) {
       throw ApiException(response.statusCode, await _decodeBodyBytes(response));
     }
     // When a remote server returns no body with a status of 204, we shall not decode it.
     // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
     // FormatException when trying to decode an empty string.
-    if (response.body.isNotEmpty && response.statusCode != HttpStatus.noContent) {
-      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'Suivi',) as Suivi;
-    
+    if (response.body.isNotEmpty &&
+        response.statusCode != HttpStatus.noContent) {
+      return await apiClient.deserializeAsync(
+        await _decodeBodyBytes(response),
+        'Suivi',
+      ) as Suivi;
     }
     return null;
   }
@@ -391,7 +513,9 @@ class MoiApi {
   /// Questions d’accueil et réponses du compte
   ///
   /// Note: This method returns the HTTP [Response].
-  Future<Response> getOnboardingWithHttpInfo({ Future<void>? abortTrigger, }) async {
+  Future<Response> getOnboardingWithHttpInfo({
+    Future<void>? abortTrigger,
+  }) async {
     // ignore: prefer_const_declarations
     final path = r'/v1/moi/onboarding';
 
@@ -404,7 +528,6 @@ class MoiApi {
 
     const contentTypes = <String>[];
 
-
     return apiClient.invokeAPI(
       path,
       'GET',
@@ -418,17 +541,24 @@ class MoiApi {
   }
 
   /// Questions d’accueil et réponses du compte
-  Future<Accueil?> getOnboarding({ Future<void>? abortTrigger, }) async {
-    final response = await getOnboardingWithHttpInfo(abortTrigger: abortTrigger,);
+  Future<Accueil?> getOnboarding({
+    Future<void>? abortTrigger,
+  }) async {
+    final response = await getOnboardingWithHttpInfo(
+      abortTrigger: abortTrigger,
+    );
     if (response.statusCode >= HttpStatus.badRequest) {
       throw ApiException(response.statusCode, await _decodeBodyBytes(response));
     }
     // When a remote server returns no body with a status of 204, we shall not decode it.
     // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
     // FormatException when trying to decode an empty string.
-    if (response.body.isNotEmpty && response.statusCode != HttpStatus.noContent) {
-      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'Accueil',) as Accueil;
-    
+    if (response.body.isNotEmpty &&
+        response.statusCode != HttpStatus.noContent) {
+      return await apiClient.deserializeAsync(
+        await _decodeBodyBytes(response),
+        'Accueil',
+      ) as Accueil;
     }
     return null;
   }
@@ -436,7 +566,9 @@ class MoiApi {
   /// Mes abonnements aux nouvelles versions (e-mail)
   ///
   /// Note: This method returns the HTTP [Response].
-  Future<Response> listAbonnementsWithHttpInfo({ Future<void>? abortTrigger, }) async {
+  Future<Response> listAbonnementsWithHttpInfo({
+    Future<void>? abortTrigger,
+  }) async {
     // ignore: prefer_const_declarations
     final path = r'/v1/moi/abonnements';
 
@@ -449,7 +581,6 @@ class MoiApi {
 
     const contentTypes = <String>[];
 
-
     return apiClient.invokeAPI(
       path,
       'GET',
@@ -463,17 +594,24 @@ class MoiApi {
   }
 
   /// Mes abonnements aux nouvelles versions (e-mail)
-  Future<SuiviListe?> listAbonnements({ Future<void>? abortTrigger, }) async {
-    final response = await listAbonnementsWithHttpInfo(abortTrigger: abortTrigger,);
+  Future<SuiviListe?> listAbonnements({
+    Future<void>? abortTrigger,
+  }) async {
+    final response = await listAbonnementsWithHttpInfo(
+      abortTrigger: abortTrigger,
+    );
     if (response.statusCode >= HttpStatus.badRequest) {
       throw ApiException(response.statusCode, await _decodeBodyBytes(response));
     }
     // When a remote server returns no body with a status of 204, we shall not decode it.
     // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
     // FormatException when trying to decode an empty string.
-    if (response.body.isNotEmpty && response.statusCode != HttpStatus.noContent) {
-      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'SuiviListe',) as SuiviListe;
-    
+    if (response.body.isNotEmpty &&
+        response.statusCode != HttpStatus.noContent) {
+      return await apiClient.deserializeAsync(
+        await _decodeBodyBytes(response),
+        'SuiviListe',
+      ) as SuiviListe;
     }
     return null;
   }
@@ -481,7 +619,9 @@ class MoiApi {
   /// Mes favoris
   ///
   /// Note: This method returns the HTTP [Response].
-  Future<Response> listFavorisWithHttpInfo({ Future<void>? abortTrigger, }) async {
+  Future<Response> listFavorisWithHttpInfo({
+    Future<void>? abortTrigger,
+  }) async {
     // ignore: prefer_const_declarations
     final path = r'/v1/moi/favoris';
 
@@ -493,7 +633,6 @@ class MoiApi {
     final formParams = <String, String>{};
 
     const contentTypes = <String>[];
-
 
     return apiClient.invokeAPI(
       path,
@@ -508,17 +647,24 @@ class MoiApi {
   }
 
   /// Mes favoris
-  Future<SuiviListe?> listFavoris({ Future<void>? abortTrigger, }) async {
-    final response = await listFavorisWithHttpInfo(abortTrigger: abortTrigger,);
+  Future<SuiviListe?> listFavoris({
+    Future<void>? abortTrigger,
+  }) async {
+    final response = await listFavorisWithHttpInfo(
+      abortTrigger: abortTrigger,
+    );
     if (response.statusCode >= HttpStatus.badRequest) {
       throw ApiException(response.statusCode, await _decodeBodyBytes(response));
     }
     // When a remote server returns no body with a status of 204, we shall not decode it.
     // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
     // FormatException when trying to decode an empty string.
-    if (response.body.isNotEmpty && response.statusCode != HttpStatus.noContent) {
-      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'SuiviListe',) as SuiviListe;
-    
+    if (response.body.isNotEmpty &&
+        response.statusCode != HttpStatus.noContent) {
+      return await apiClient.deserializeAsync(
+        await _decodeBodyBytes(response),
+        'SuiviListe',
+      ) as SuiviListe;
     }
     return null;
   }
@@ -531,10 +677,12 @@ class MoiApi {
   ///
   /// * [String] jeu (required):
   ///   Identifiant du jeu de données (catalogue /v1/jeux).
-  Future<Response> removeAbonnementWithHttpInfo(String jeu, { Future<void>? abortTrigger, }) async {
+  Future<Response> removeAbonnementWithHttpInfo(
+    String jeu, {
+    Future<void>? abortTrigger,
+  }) async {
     // ignore: prefer_const_declarations
-    final path = r'/v1/moi/abonnements/{jeu}'
-      .replaceAll('{jeu}', jeu);
+    final path = r'/v1/moi/abonnements/{jeu}'.replaceAll('{jeu}', jeu);
 
     // ignore: prefer_final_locals
     Object? postBody;
@@ -544,7 +692,6 @@ class MoiApi {
     final formParams = <String, String>{};
 
     const contentTypes = <String>[];
-
 
     return apiClient.invokeAPI(
       path,
@@ -564,8 +711,14 @@ class MoiApi {
   ///
   /// * [String] jeu (required):
   ///   Identifiant du jeu de données (catalogue /v1/jeux).
-  Future<void> removeAbonnement(String jeu, { Future<void>? abortTrigger, }) async {
-    final response = await removeAbonnementWithHttpInfo(jeu, abortTrigger: abortTrigger,);
+  Future<void> removeAbonnement(
+    String jeu, {
+    Future<void>? abortTrigger,
+  }) async {
+    final response = await removeAbonnementWithHttpInfo(
+      jeu,
+      abortTrigger: abortTrigger,
+    );
     if (response.statusCode >= HttpStatus.badRequest) {
       throw ApiException(response.statusCode, await _decodeBodyBytes(response));
     }
@@ -579,10 +732,12 @@ class MoiApi {
   ///
   /// * [String] jeu (required):
   ///   Identifiant du jeu de données (catalogue /v1/jeux).
-  Future<Response> removeFavoriWithHttpInfo(String jeu, { Future<void>? abortTrigger, }) async {
+  Future<Response> removeFavoriWithHttpInfo(
+    String jeu, {
+    Future<void>? abortTrigger,
+  }) async {
     // ignore: prefer_const_declarations
-    final path = r'/v1/moi/favoris/{jeu}'
-      .replaceAll('{jeu}', jeu);
+    final path = r'/v1/moi/favoris/{jeu}'.replaceAll('{jeu}', jeu);
 
     // ignore: prefer_final_locals
     Object? postBody;
@@ -592,7 +747,6 @@ class MoiApi {
     final formParams = <String, String>{};
 
     const contentTypes = <String>[];
-
 
     return apiClient.invokeAPI(
       path,
@@ -612,8 +766,14 @@ class MoiApi {
   ///
   /// * [String] jeu (required):
   ///   Identifiant du jeu de données (catalogue /v1/jeux).
-  Future<void> removeFavori(String jeu, { Future<void>? abortTrigger, }) async {
-    final response = await removeFavoriWithHttpInfo(jeu, abortTrigger: abortTrigger,);
+  Future<void> removeFavori(
+    String jeu, {
+    Future<void>? abortTrigger,
+  }) async {
+    final response = await removeFavoriWithHttpInfo(
+      jeu,
+      abortTrigger: abortTrigger,
+    );
     if (response.statusCode >= HttpStatus.badRequest) {
       throw ApiException(response.statusCode, await _decodeBodyBytes(response));
     }

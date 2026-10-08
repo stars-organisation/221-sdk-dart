@@ -40,43 +40,46 @@ class LieuResume {
   int? population2023;
 
   @override
-  bool operator ==(Object other) => identical(this, other) || other is LieuResume &&
-    other.contexte == contexte &&
-    other.coordonnees == coordonnees &&
-    other.id == id &&
-    other.level == level &&
-    other.name == name &&
-    other.nameSource == nameSource &&
-    other.parentId == parentId &&
-    other.population2023 == population2023;
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      other is LieuResume &&
+          other.contexte == contexte &&
+          other.coordonnees == coordonnees &&
+          other.id == id &&
+          other.level == level &&
+          other.name == name &&
+          other.nameSource == nameSource &&
+          other.parentId == parentId &&
+          other.population2023 == population2023;
 
   @override
   int get hashCode =>
-    // ignore: unnecessary_parenthesis
-    (contexte.hashCode) +
-    (coordonnees.hashCode) +
-    (id.hashCode) +
-    (level.hashCode) +
-    (name == null ? 0 : name!.hashCode) +
-    (nameSource.hashCode) +
-    (parentId == null ? 0 : parentId!.hashCode) +
-    (population2023 == null ? 0 : population2023!.hashCode);
+      // ignore: unnecessary_parenthesis
+      (contexte.hashCode) +
+      (coordonnees.hashCode) +
+      (id.hashCode) +
+      (level.hashCode) +
+      (name == null ? 0 : name!.hashCode) +
+      (nameSource.hashCode) +
+      (parentId == null ? 0 : parentId!.hashCode) +
+      (population2023 == null ? 0 : population2023!.hashCode);
 
   @override
-  String toString() => 'LieuResume[contexte=$contexte, coordonnees=$coordonnees, id=$id, level=$level, name=$name, nameSource=$nameSource, parentId=$parentId, population2023=$population2023]';
+  String toString() =>
+      'LieuResume[contexte=$contexte, coordonnees=$coordonnees, id=$id, level=$level, name=$name, nameSource=$nameSource, parentId=$parentId, population2023=$population2023]';
 
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
-      json[r'contexte'] = this.contexte;
-      json[r'coordonnees'] = this.coordonnees;
-      json[r'id'] = this.id;
-      json[r'level'] = this.level;
+    json[r'contexte'] = this.contexte;
+    json[r'coordonnees'] = this.coordonnees;
+    json[r'id'] = this.id;
+    json[r'level'] = this.level;
     if (this.name != null) {
       json[r'name'] = this.name;
     } else {
       json[r'name'] = null;
     }
-      json[r'name_source'] = this.nameSource;
+    json[r'name_source'] = this.nameSource;
     if (this.parentId != null) {
       json[r'parent_id'] = this.parentId;
     } else {
@@ -101,16 +104,26 @@ class LieuResume {
       // Note 1: the values aren't checked for validity beyond being non-null.
       // Note 2: this code is stripped in release mode!
       assert(() {
-        assert(json.containsKey(r'contexte'), 'Required key "LieuResume[contexte]" is missing from JSON.');
-        assert(json[r'contexte'] != null, 'Required key "LieuResume[contexte]" has a null value in JSON.');
-        assert(json.containsKey(r'coordonnees'), 'Required key "LieuResume[coordonnees]" is missing from JSON.');
-        assert(json[r'coordonnees'] != null, 'Required key "LieuResume[coordonnees]" has a null value in JSON.');
-        assert(json.containsKey(r'id'), 'Required key "LieuResume[id]" is missing from JSON.');
-        assert(json[r'id'] != null, 'Required key "LieuResume[id]" has a null value in JSON.');
-        assert(json.containsKey(r'level'), 'Required key "LieuResume[level]" is missing from JSON.');
-        assert(json[r'level'] != null, 'Required key "LieuResume[level]" has a null value in JSON.');
-        assert(json.containsKey(r'name_source'), 'Required key "LieuResume[name_source]" is missing from JSON.');
-        assert(json[r'name_source'] != null, 'Required key "LieuResume[name_source]" has a null value in JSON.');
+        assert(json.containsKey(r'contexte'),
+            'Required key "LieuResume[contexte]" is missing from JSON.');
+        assert(json[r'contexte'] != null,
+            'Required key "LieuResume[contexte]" has a null value in JSON.');
+        assert(json.containsKey(r'coordonnees'),
+            'Required key "LieuResume[coordonnees]" is missing from JSON.');
+        assert(json[r'coordonnees'] != null,
+            'Required key "LieuResume[coordonnees]" has a null value in JSON.');
+        assert(json.containsKey(r'id'),
+            'Required key "LieuResume[id]" is missing from JSON.');
+        assert(json[r'id'] != null,
+            'Required key "LieuResume[id]" has a null value in JSON.');
+        assert(json.containsKey(r'level'),
+            'Required key "LieuResume[level]" is missing from JSON.');
+        assert(json[r'level'] != null,
+            'Required key "LieuResume[level]" has a null value in JSON.');
+        assert(json.containsKey(r'name_source'),
+            'Required key "LieuResume[name_source]" is missing from JSON.');
+        assert(json[r'name_source'] != null,
+            'Required key "LieuResume[name_source]" has a null value in JSON.');
         return true;
       }());
 
@@ -128,7 +141,10 @@ class LieuResume {
     return null;
   }
 
-  static List<LieuResume> listFromJson(dynamic json, {bool growable = false,}) {
+  static List<LieuResume> listFromJson(
+    dynamic json, {
+    bool growable = false,
+  }) {
     final result = <LieuResume>[];
     if (json is List && json.isNotEmpty) {
       for (final row in json) {
@@ -156,13 +172,19 @@ class LieuResume {
   }
 
   // maps a json object with a list of LieuResume-objects as value to a dart map
-  static Map<String, List<LieuResume>> mapListFromJson(dynamic json, {bool growable = false,}) {
+  static Map<String, List<LieuResume>> mapListFromJson(
+    dynamic json, {
+    bool growable = false,
+  }) {
     final map = <String, List<LieuResume>>{};
     if (json is Map && json.isNotEmpty) {
       // ignore: parameter_assignments
       json = json.cast<String, dynamic>();
       for (final entry in json.entries) {
-        map[entry.key] = LieuResume.listFromJson(entry.value, growable: growable,);
+        map[entry.key] = LieuResume.listFromJson(
+          entry.value,
+          growable: growable,
+        );
       }
     }
     return map;
@@ -177,7 +199,6 @@ class LieuResume {
     'name_source',
   };
 }
-
 
 enum LieuResumeLevelEnum {
   region._(r'region'),
@@ -202,11 +223,15 @@ enum LieuResumeLevelEnum {
 
   /// Returns the instance of [LieuResumeLevelEnum] that was successfully decoded
   /// from the passed [value] on success, null otherwise.
-  static LieuResumeLevelEnum? fromJson(dynamic value) => LieuResumeLevelEnumTypeTransformer().decode(value);
+  static LieuResumeLevelEnum? fromJson(dynamic value) =>
+      LieuResumeLevelEnumTypeTransformer().decode(value);
 
   /// Returns a [List] containing instances of [LieuResumeLevelEnum]
   /// that were successfully decoded from the passed [JSON][json].
-  static List<LieuResumeLevelEnum> listFromJson(dynamic json, {bool growable = false,}) {
+  static List<LieuResumeLevelEnum> listFromJson(
+    dynamic json, {
+    bool growable = false,
+  }) {
     final result = <LieuResumeLevelEnum>[];
     if (json is List && json.isNotEmpty) {
       for (final row in json) {
@@ -223,7 +248,8 @@ enum LieuResumeLevelEnum {
 /// Transformation class that can [encode] an instance of [LieuResumeLevelEnum] to String,
 /// and [decode] dynamic data back to [LieuResumeLevelEnum].
 class LieuResumeLevelEnumTypeTransformer {
-  factory LieuResumeLevelEnumTypeTransformer() => _instance ??= const LieuResumeLevelEnumTypeTransformer._();
+  factory LieuResumeLevelEnumTypeTransformer() =>
+      _instance ??= const LieuResumeLevelEnumTypeTransformer._();
 
   const LieuResumeLevelEnumTypeTransformer._();
 
@@ -244,12 +270,18 @@ class LieuResumeLevelEnumTypeTransformer {
     }
     if (data != null) {
       switch (data) {
-        case r'region': return LieuResumeLevelEnum.region;
-        case r'departement': return LieuResumeLevelEnum.departement;
-        case r'arrondissement': return LieuResumeLevelEnum.arrondissement;
-        case r'ville': return LieuResumeLevelEnum.ville;
-        case r'commune': return LieuResumeLevelEnum.commune;
-        case r'localite': return LieuResumeLevelEnum.localite;
+        case r'region':
+          return LieuResumeLevelEnum.region;
+        case r'departement':
+          return LieuResumeLevelEnum.departement;
+        case r'arrondissement':
+          return LieuResumeLevelEnum.arrondissement;
+        case r'ville':
+          return LieuResumeLevelEnum.ville;
+        case r'commune':
+          return LieuResumeLevelEnum.commune;
+        case r'localite':
+          return LieuResumeLevelEnum.localite;
         default:
           if (!allowNull) {
             throw ArgumentError('Unknown enum value to decode: $data');
@@ -262,5 +294,3 @@ class LieuResumeLevelEnumTypeTransformer {
   /// The singleton instance of this transformer.
   static LieuResumeLevelEnumTypeTransformer? _instance;
 }
-
-

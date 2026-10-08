@@ -31,20 +31,23 @@ class DemandeInputBody {
   String title;
 
   @override
-  bool operator ==(Object other) => identical(this, other) || other is DemandeInputBody &&
-    other.details == details &&
-    other.kind == kind &&
-    other.title == title;
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      other is DemandeInputBody &&
+          other.details == details &&
+          other.kind == kind &&
+          other.title == title;
 
   @override
   int get hashCode =>
-    // ignore: unnecessary_parenthesis
-    (details == null ? 0 : details!.hashCode) +
-    (kind.hashCode) +
-    (title.hashCode);
+      // ignore: unnecessary_parenthesis
+      (details == null ? 0 : details!.hashCode) +
+      (kind.hashCode) +
+      (title.hashCode);
 
   @override
-  String toString() => 'DemandeInputBody[details=$details, kind=$kind, title=$title]';
+  String toString() =>
+      'DemandeInputBody[details=$details, kind=$kind, title=$title]';
 
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -53,8 +56,8 @@ class DemandeInputBody {
     } else {
       json[r'details'] = null;
     }
-      json[r'kind'] = this.kind;
-      json[r'title'] = this.title;
+    json[r'kind'] = this.kind;
+    json[r'title'] = this.title;
     return json;
   }
 
@@ -69,10 +72,14 @@ class DemandeInputBody {
       // Note 1: the values aren't checked for validity beyond being non-null.
       // Note 2: this code is stripped in release mode!
       assert(() {
-        assert(json.containsKey(r'kind'), 'Required key "DemandeInputBody[kind]" is missing from JSON.');
-        assert(json[r'kind'] != null, 'Required key "DemandeInputBody[kind]" has a null value in JSON.');
-        assert(json.containsKey(r'title'), 'Required key "DemandeInputBody[title]" is missing from JSON.');
-        assert(json[r'title'] != null, 'Required key "DemandeInputBody[title]" has a null value in JSON.');
+        assert(json.containsKey(r'kind'),
+            'Required key "DemandeInputBody[kind]" is missing from JSON.');
+        assert(json[r'kind'] != null,
+            'Required key "DemandeInputBody[kind]" has a null value in JSON.');
+        assert(json.containsKey(r'title'),
+            'Required key "DemandeInputBody[title]" is missing from JSON.');
+        assert(json[r'title'] != null,
+            'Required key "DemandeInputBody[title]" has a null value in JSON.');
         return true;
       }());
 
@@ -85,7 +92,10 @@ class DemandeInputBody {
     return null;
   }
 
-  static List<DemandeInputBody> listFromJson(dynamic json, {bool growable = false,}) {
+  static List<DemandeInputBody> listFromJson(
+    dynamic json, {
+    bool growable = false,
+  }) {
     final result = <DemandeInputBody>[];
     if (json is List && json.isNotEmpty) {
       for (final row in json) {
@@ -113,13 +123,19 @@ class DemandeInputBody {
   }
 
   // maps a json object with a list of DemandeInputBody-objects as value to a dart map
-  static Map<String, List<DemandeInputBody>> mapListFromJson(dynamic json, {bool growable = false,}) {
+  static Map<String, List<DemandeInputBody>> mapListFromJson(
+    dynamic json, {
+    bool growable = false,
+  }) {
     final map = <String, List<DemandeInputBody>>{};
     if (json is Map && json.isNotEmpty) {
       // ignore: parameter_assignments
       json = json.cast<String, dynamic>();
       for (final entry in json.entries) {
-        map[entry.key] = DemandeInputBody.listFromJson(entry.value, growable: growable,);
+        map[entry.key] = DemandeInputBody.listFromJson(
+          entry.value,
+          growable: growable,
+        );
       }
     }
     return map;
@@ -131,7 +147,6 @@ class DemandeInputBody {
     'title',
   };
 }
-
 
 enum DemandeInputBodyKindEnum {
   api._(r'api'),
@@ -152,11 +167,15 @@ enum DemandeInputBodyKindEnum {
 
   /// Returns the instance of [DemandeInputBodyKindEnum] that was successfully decoded
   /// from the passed [value] on success, null otherwise.
-  static DemandeInputBodyKindEnum? fromJson(dynamic value) => DemandeInputBodyKindEnumTypeTransformer().decode(value);
+  static DemandeInputBodyKindEnum? fromJson(dynamic value) =>
+      DemandeInputBodyKindEnumTypeTransformer().decode(value);
 
   /// Returns a [List] containing instances of [DemandeInputBodyKindEnum]
   /// that were successfully decoded from the passed [JSON][json].
-  static List<DemandeInputBodyKindEnum> listFromJson(dynamic json, {bool growable = false,}) {
+  static List<DemandeInputBodyKindEnum> listFromJson(
+    dynamic json, {
+    bool growable = false,
+  }) {
     final result = <DemandeInputBodyKindEnum>[];
     if (json is List && json.isNotEmpty) {
       for (final row in json) {
@@ -173,7 +192,8 @@ enum DemandeInputBodyKindEnum {
 /// Transformation class that can [encode] an instance of [DemandeInputBodyKindEnum] to String,
 /// and [decode] dynamic data back to [DemandeInputBodyKindEnum].
 class DemandeInputBodyKindEnumTypeTransformer {
-  factory DemandeInputBodyKindEnumTypeTransformer() => _instance ??= const DemandeInputBodyKindEnumTypeTransformer._();
+  factory DemandeInputBodyKindEnumTypeTransformer() =>
+      _instance ??= const DemandeInputBodyKindEnumTypeTransformer._();
 
   const DemandeInputBodyKindEnumTypeTransformer._();
 
@@ -194,8 +214,10 @@ class DemandeInputBodyKindEnumTypeTransformer {
     }
     if (data != null) {
       switch (data) {
-        case r'api': return DemandeInputBodyKindEnum.api;
-        case r'donnees': return DemandeInputBodyKindEnum.donnees;
+        case r'api':
+          return DemandeInputBodyKindEnum.api;
+        case r'donnees':
+          return DemandeInputBodyKindEnum.donnees;
         default:
           if (!allowNull) {
             throw ArgumentError('Unknown enum value to decode: $data');
@@ -208,5 +230,3 @@ class DemandeInputBodyKindEnumTypeTransformer {
   /// The singleton instance of this transformer.
   static DemandeInputBodyKindEnumTypeTransformer? _instance;
 }
-
-

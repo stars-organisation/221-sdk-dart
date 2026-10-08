@@ -26,30 +26,33 @@ class PaymentsCalls {
   int today;
 
   @override
-  bool operator ==(Object other) => identical(this, other) || other is PaymentsCalls &&
-    other.errorsToday == errorsToday &&
-    _deepEquality.equals(other.last14Days, last14Days) &&
-    other.today == today;
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      other is PaymentsCalls &&
+          other.errorsToday == errorsToday &&
+          _deepEquality.equals(other.last14Days, last14Days) &&
+          other.today == today;
 
   @override
   int get hashCode =>
-    // ignore: unnecessary_parenthesis
-    (errorsToday.hashCode) +
-    (last14Days == null ? 0 : last14Days!.hashCode) +
-    (today.hashCode);
+      // ignore: unnecessary_parenthesis
+      (errorsToday.hashCode) +
+      (last14Days == null ? 0 : last14Days!.hashCode) +
+      (today.hashCode);
 
   @override
-  String toString() => 'PaymentsCalls[errorsToday=$errorsToday, last14Days=$last14Days, today=$today]';
+  String toString() =>
+      'PaymentsCalls[errorsToday=$errorsToday, last14Days=$last14Days, today=$today]';
 
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
-      json[r'errors_today'] = this.errorsToday;
+    json[r'errors_today'] = this.errorsToday;
     if (this.last14Days != null) {
       json[r'last_14_days'] = this.last14Days;
     } else {
       json[r'last_14_days'] = null;
     }
-      json[r'today'] = this.today;
+    json[r'today'] = this.today;
     return json;
   }
 
@@ -64,10 +67,14 @@ class PaymentsCalls {
       // Note 1: the values aren't checked for validity beyond being non-null.
       // Note 2: this code is stripped in release mode!
       assert(() {
-        assert(json.containsKey(r'errors_today'), 'Required key "PaymentsCalls[errors_today]" is missing from JSON.');
-        assert(json[r'errors_today'] != null, 'Required key "PaymentsCalls[errors_today]" has a null value in JSON.');
-        assert(json.containsKey(r'today'), 'Required key "PaymentsCalls[today]" is missing from JSON.');
-        assert(json[r'today'] != null, 'Required key "PaymentsCalls[today]" has a null value in JSON.');
+        assert(json.containsKey(r'errors_today'),
+            'Required key "PaymentsCalls[errors_today]" is missing from JSON.');
+        assert(json[r'errors_today'] != null,
+            'Required key "PaymentsCalls[errors_today]" has a null value in JSON.');
+        assert(json.containsKey(r'today'),
+            'Required key "PaymentsCalls[today]" is missing from JSON.');
+        assert(json[r'today'] != null,
+            'Required key "PaymentsCalls[today]" has a null value in JSON.');
         return true;
       }());
 
@@ -80,7 +87,10 @@ class PaymentsCalls {
     return null;
   }
 
-  static List<PaymentsCalls> listFromJson(dynamic json, {bool growable = false,}) {
+  static List<PaymentsCalls> listFromJson(
+    dynamic json, {
+    bool growable = false,
+  }) {
     final result = <PaymentsCalls>[];
     if (json is List && json.isNotEmpty) {
       for (final row in json) {
@@ -108,13 +118,19 @@ class PaymentsCalls {
   }
 
   // maps a json object with a list of PaymentsCalls-objects as value to a dart map
-  static Map<String, List<PaymentsCalls>> mapListFromJson(dynamic json, {bool growable = false,}) {
+  static Map<String, List<PaymentsCalls>> mapListFromJson(
+    dynamic json, {
+    bool growable = false,
+  }) {
     final map = <String, List<PaymentsCalls>>{};
     if (json is Map && json.isNotEmpty) {
       // ignore: parameter_assignments
       json = json.cast<String, dynamic>();
       for (final entry in json.entries) {
-        map[entry.key] = PaymentsCalls.listFromJson(entry.value, growable: growable,);
+        map[entry.key] = PaymentsCalls.listFromJson(
+          entry.value,
+          growable: growable,
+        );
       }
     }
     return map;
@@ -126,4 +142,3 @@ class PaymentsCalls {
     'today',
   };
 }
-
